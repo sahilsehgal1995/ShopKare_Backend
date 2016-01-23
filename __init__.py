@@ -2,6 +2,8 @@ from flask import Flask, url_for
 import Customer, Admin, Product
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
+app.config['UPLOAD_FOLDER'] = '.'
+app.config['MAX_CONTENT_LENGTH'] = 18 * 1024 * 1024
 
 @app.route("/")
 def home():
