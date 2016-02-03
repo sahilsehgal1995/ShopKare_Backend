@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Admin Portal</title>
+  
+  
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+	  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+		<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	
+	
+
+  
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-fixed-top navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <img alt="Admin Portal" src="">
+      </a>
+    </div>
+  </div>
+</nav>
+
+   	<div class="container" style="margin-top:50px;">    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6  col-sm-8 ">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Market Survey</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">(Add If Any)</div>
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                       
+                                    
+                       					<div class="alert alert-danger register-alert hidden" role="alert"></div>
+
+		<form class="register-form" action="process.php" method="POST">
+			<div class="form-group">
+		    <label for="pname">Product Name</label>
+		    <input type="text" name="pname" class="form-control" id="pname" placeholder="Enter product name" >
+		  </div>
+		  <div class="form-group">
+		    <label for="sname">Store Name</label>
+		    <input type="text" name="sname" class="form-control" id="sname" placeholder="Enter store name" >
+		  </div>
+		  <div class="form-group">
+		    <label for="sloc">Store Location</label>
+		    <input type="text" name="sloc" class="form-control" id="sloc" placeholder="Enter store location" >
+		  </div>
+		  <div class="form-group">
+		    <label for="cp">Cost Price</label>
+		    <input type="number" name="cp" class="form-control" id="cp" placeholder="Enter cost price" >
+		  </div>
+		  <div class="form-group">
+		    <label for="sp">Selling Price</label>
+		    <input type="number" name="sp" class="form-control" id="sp" placeholder="Enter selling price" >
+		  </div>
+
+ <label for="exampleTextarea">Feedback (if any)</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+<br>  
+<button type="submit" class="btn btn-primary">Submit</button>
+		  <fieldset class="form-group">
+   
+		</form>
+                            
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+       
+    </div>
+
+               
+               
+                
+         </div> 
+    </div>
+    
+
+    
+	
+
+	 
+
+</body>
+</html>

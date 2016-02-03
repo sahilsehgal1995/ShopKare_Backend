@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Portal</title>
+    
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    
+    <link href="assets/css/style.css" rel="stylesheet" />
+     
+	 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+
+		<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	 
+	 <style>
+	 .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+}
+.fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+}
+	 </style>
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a  class="navbar-brand" href="index.html">Admin Portal
+
+                </a>
+            </div>
+
+            <div class="notifications-wrapper">
+<ul class="nav">
+               
+               
+                <li class="dropdown navbar-right">
+                   <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                        <i class="fa fa-user-plus"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user" >
+                        
+                       
+                        <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav  class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="assets/img/user.png" class="img-circle" />
+
+                           
+                        </div>
+
+                    </li>
+                     <li>
+                        <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
+                    </li>
+                    <li>
+                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a  href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        
+                    </li>
+                   
+                    <li>
+                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                    </li>
+<li>
+                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                    </li>
+							<li>
+                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                    </li>
+                   
+                </ul>
+            </div>
+
+        </nav>
+		
+		 <div id="page-wrapper" class="page-wrapper-cls">
+             <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">Add Product</h1>
+		
+ <div class="container"  >    
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+            <div class="panel panel-info" >
+                    <div class="panel-heading">
+                        <div class="panel-title">Add Product</div>
+                        <div style="float:right; font-size: 80%; position: relative; top:-10px">(Add If Any)</div>
+                    </div>     
+
+                    <div style="padding-top:30px" class="panel-body" >
+
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                            
+                       
+                                    
+                       				<form>
+  
+  <fieldset class="form-group">
+    <label for="text">Product Name</label>
+    <input type="text" class="form-control" id="text" placeholder="Product Name">
+  </fieldset>
+  
+   <fieldset class="form-group">
+    <label for="exampleTextarea">Description (if any)</label>
+    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+  </fieldset>
+  
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Level 1 Category</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  
+    <fieldset class="form-group">
+    <label for="exampleSelect2">Main Category</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  
+    <fieldset class="form-group">
+    <label for="exampleSelect2">Sub Category</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+  </fieldset>
+  
+    
+  <fieldset class="form-group">
+    <label for="number">Selling Price</label>
+    <input type="number" class="form-control" id="text" placeholder="Product Price">
+  </fieldset>
+  
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Main Category</label>
+    <select multiple class="form-control" id="exampleSelect2">
+      <option>Available</option>
+      <option>Out Of Stock</option>
+      <option>Coming Soon</option>
+    </select>
+  </fieldset>
+  
+  <fieldset class="form-group">
+    <label for="exampleSelect2">Select Picture</label><br>
+  <input id="uploadFile" placeholder="Choose Picture" disabled="disabled" />
+<div class="fileUpload btn btn-primary">
+    <span>Upload</span>
+    <input id="uploadBtn" type="file" class="upload" />
+</div>
+</fieldset>
+	<br>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>    
+                            
+
+
+
+                        </div>                     
+                    </div>  
+        </div>
+       
+    </div>		
+		
+						
+						</div>
+						</div>
+						</div>
+		
+		
+		   <footer >
+          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+    </footer>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+<script> document.getElementById("uploadBtn").onchange = function () {
+    document.getElementById("uploadFile").value = this.value;
+}; </script>
+
+</body>
+</html>

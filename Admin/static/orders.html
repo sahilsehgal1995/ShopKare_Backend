@@ -1,0 +1,317 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Portal</title>
+    
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    
+    <link href="assets/css/style.css" rel="stylesheet" />
+     
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a  class="navbar-brand" href="index.html">Admin Portal
+
+                </a>
+            </div>
+
+            <div class="notifications-wrapper">
+<ul class="nav">
+               
+               
+                <li class="dropdown navbar-right">
+                   <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
+                        <i class="fa fa-user-plus"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user" >
+                        
+                       
+                        <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            </div>
+        </nav>
+        <!-- /. NAV TOP  -->
+        <nav  class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+                    <li>
+                        <div class="user-img-div">
+                            <img src="assets/img/user.png" class="img-circle" />
+
+                           
+                        </div>
+
+                    </li>
+                     <li>
+                        <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
+                    </li>
+                    <li>
+                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        
+                    </li>
+                    
+                    <li>
+                        <a class="active-menu" href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        
+                    </li>
+                   
+                    <li>
+                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                    </li>
+<li>
+                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                    </li>
+                   <li>
+                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                    </li>
+                </ul>
+            </div>
+
+        </nav>
+        <!-- /. SIDEBAR MENU (navbar-side) -->
+        <div id="page-wrapper" class="page-wrapper-cls">
+             <div class="row">
+                    <div class="col-md-12">
+                        <h1 class="page-head-line">Orders</h1>
+						  <table class="table table-hover table-bordered">
+    <thead>
+      <tr>
+        <th>Serial No.</th>
+        <th>Product</th>
+        <th>P_Id</th>
+		<th>Customer</th>
+		<th>Status</th>
+		<th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Tea</td>
+		<td>15</td>
+        <td>Ram</td>
+		<td>Delivered</td>
+		<th>	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Details</button> </th>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Order Details</h4>
+        </div>
+        <div class="modal-body">
+       
+	   <form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Order No.</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Order No.">
+        </div>
+    </div> <br>
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Customer</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputPassword" placeholder="Customer">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Address</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Address">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Delivery Boy</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Deliverey Boy">
+        </div>
+    </div> <br>
+    
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+		<br>
+    </div>
+</form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Tea</td>
+		<td>15</td>
+        <td>Ram</td>
+		<td>Pending</td>
+		<th>	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Details</button> </th>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Order Details</h4>
+        </div>
+        <div class="modal-body">
+       
+	   <form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Order No.</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Order No.">
+        </div>
+    </div> <br>
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Customer</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputPassword" placeholder="Customer">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Address</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Address">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Delivery Boy</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Deliverey Boy">
+        </div>
+    </div> <br>
+    
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+		<br>
+    </div>
+</form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </tr>
+      </tr>
+     <tr>
+        <td>1</td>
+        <td>Tea</td>
+		<td>15</td>
+        <td>Ram</td>
+		<td>On Way</td>
+		<th>	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Details</button> </th>
+	
+
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Order Details</h4>
+        </div>
+        <div class="modal-body">
+       
+	   <form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Order No.</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Order No.">
+        </div>
+    </div> <br>
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Customer</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputPassword" placeholder="Customer">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Address</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Address">
+        </div>
+    </div> <br>
+	<div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Delivery Boy</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" id="inputEmail" placeholder="Deliverey Boy">
+        </div>
+    </div> <br>
+    
+    <div class="form-group">
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+		<br>
+    </div>
+</form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      </tr>      </tr>
+    </tbody>
+  </table>
+
+                    </div>
+                </div>
+              
+            <!-- /. PAGE INNER  -->
+        </div>
+        <!-- /. PAGE WRAPPER  -->
+    </div>
+    <!-- /. WRAPPER  -->
+   <footer >
+          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+    </footer>
+    <!-- /. FOOTER  -->
+    <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
+    <!-- JQUERY SCRIPTS -->
+    <script src="assets/js/jquery-1.11.1.js"></script>
+    <!-- BOOTSTRAP SCRIPTS -->
+    <script src="assets/js/bootstrap.js"></script>
+    <!-- METISMENU SCRIPTS -->
+    <script src="assets/js/jquery.metisMenu.js"></script>
+    <!-- CUSTOM SCRIPTS -->
+    <script src="assets/js/custom.js"></script>
+
+
+</body>
+</html>

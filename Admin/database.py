@@ -82,6 +82,8 @@ def removeProduct(MainCategory, SubCategory, pid):
     iter = collection.find({"_id":pid}).count()
     if iter:
       collection.remove({"_id":pid})
+      connection, db, collection = MongoDBconnection('Batches', pid)
+      db.drop_collection(pid)
     else:
       return 'Unable to Remove'
     connection.close()
@@ -134,9 +136,9 @@ def RemoveBatch(pid, BatchID):
 
 
 if __name__ == '__main__':
-  #print RemoveBatch('P_1_1_1',"B_2")
-  print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
+  print RemoveBatch('P_1_1_1',"B_3")
+  #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
   #print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
   #print loginAdmin('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
   #print registerProduct('Snacks Beverages','Cold Drinks','{"_id":"1_1","Name":"Coke", "Brand":"CocaCola"}')
-  #print removeProduct('Snacks Beverages','Cold Drinks','P_1_1_14')
+  #print removeProduct('Snacks Beverages','Cold Drinks','P_1_1_1')
