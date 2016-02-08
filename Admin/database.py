@@ -134,9 +134,77 @@ def RemoveBatch(pid, BatchID):
     print str(e)
     return 'Unable to Remove'
 
+def addlevel1Category(level1category):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.insert({"_id":level1category, "Main Category":[], "Sub Categories":[]})
+    return 'Added'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Add'
+
+def removelevel1Category(level1category):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.remove({"_id":level1category})
+    connection.close()
+    gc.collect()
+    return 'Removed'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+
+def addMainCategory(level1category, MainCategory):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.update({"_id":level1category},{"$addToSet":{"Main Category":MainCategory}})
+    connection.close()
+    gc.collect()
+    return 'Added'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Add'
+
+def removeMainCategory(level1category, MainCategory):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.update({"_id":level1category},{"$pull":{"Main Category":MainCategory}})
+    connection.close()
+    gc.collect()
+    return 'Remove'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+
+def addSubCategory(level1category, SubCategory):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.update({"_id":level1category},{"$addToSet":{"Main Category":MainCategory}})
+    connection.close()
+    gc.collect()
+    return 'Added'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Add'
+
+def removeMainCategory(level1category, MainCategory):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    collection.update({"_id":level1category},{"$pull":{"Main Category":MainCategory}})
+    connection.close()
+    gc.collect()
+    return 'Remove'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+
 
 if __name__ == '__main__':
-  print RemoveBatch('P_1_1_1',"B_3")
+  print removeMainCategory('Grocery', 'Bakery')
+  #print addMainCategory('Grocery', 'Bakery')
+  #print removelevel1Category('Medicines')
+  #print addlevel1Category('Grocery')
+  #print RemoveBatch('P_1_1_1',"B_3")
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
   #print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
   #print loginAdmin('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
