@@ -137,7 +137,7 @@ def RemoveBatch(pid, BatchID):
 def addlevel1Category(level1category):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    collection.insert({"_id":level1category, "Main Category":[], "Sub Categories":[]})
+    collection.insert({"_id":level1category, "Categories":[]})
     return 'Added'
   except Exception as e:
     print str(e)
@@ -157,7 +157,7 @@ def removelevel1Category(level1category):
 def addMainCategory(level1category, MainCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    collection.update({"_id":level1category},{"$addToSet":{"Main Category":MainCategory}})
+    collection.update({"_id":level1category},{"$addToSet":{"Categories":{MainCategory:[]}}})
     connection.close()
     gc.collect()
     return 'Added'
@@ -168,41 +168,88 @@ def addMainCategory(level1category, MainCategory):
 def removeMainCategory(level1category, MainCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    collection.update({"_id":level1category},{"$pull":{"Main Category":MainCategory}})
+    iter = collection.find({"_id":level1category})
+    iter = tuple(iter)
+    for item in iter:
+      categories = dict(item)
+    for index, category in enumerate(categories['Categories']):
+      if MainCategory in category.keys():
+	del categories['Categories'][index]
+	collection.update({"_id":level1category},{"Categories":categories['Categories']})
+	connection.close()
+	gc.collect()
+	return 'Removed'
     connection.close()
     gc.collect()
-    return 'Remove'
+    return 'Removed'
   except Exception as e:
     print str(e)
     return 'Unable to Remove'
 
-def addSubCategory(level1category, SubCategory):
+def addSubCategory(level1category, MainCategory, subCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    collection.update({"_id":level1category},{"$addToSet":{"Main Category":MainCategory}})
+    iter = collection.find({"_id":level1category})
+    iter = tuple(iter)
+    for item in iter:
+      categories = dict(item)
+    for index, category in enumerate(categories['Categories']):
+      if MainCategory in category.keys():
+	category[MainCategory].append(subCategory)
+	category = json.loads(json.dumps(category))
+	categories['Categories'][index] = category
+	collection.update({"_id":level1category},{"Categories":categories['Categories']})
+	return 'Added'
     connection.close()
     gc.collect()
+    #print iter[0]
     return 'Added'
   except Exception as e:
     print str(e)
     return 'Unable to Add'
 
-def removeMainCategory(level1category, MainCategory):
+def removeSubCategory(level1category, MainCategory, subCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    collection.update({"_id":level1category},{"$pull":{"Main Category":MainCategory}})
+    iter = collection.find({"_id":level1category})
+    iter = tuple(iter)
+    for item in iter:
+      categories = dict(item)
+    for index, category in enumerate(categories['Categories']):
+      if MainCategory in category.keys() and subCategory in category[MainCategory]:
+	category[MainCategory].remove(subCategory)
+	collection.update({"_id":level1category},{"Categories":categories['Categories']})
+	connection.close()
+	gc.collect()
+	return 'Removed'
     connection.close()
     gc.collect()
-    return 'Remove'
+    return 'Removed'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+
+def reteriveCategories():
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find()
+    if not iter.count():
+      return '[]'
+    connection.close()
+    gc.collect()
+    return str(json.dumps(tuple(iter)))
   except Exception as e:
     print str(e)
     return 'Unable to Remove'
 
 
 if __name__ == '__main__':
-  print removeMainCategory('Grocery', 'Bakery')
-  #print addMainCategory('Grocery', 'Bakery')
-  #print removelevel1Category('Medicines')
+  print reteriveCategories()
+  #print addSubCategory('Grocery', 'Beverages', 'Tea')
+  #print removeSubCategory('Grocery', 'Beverages', 'Tea')
+  #print removeMainCategory('Grocery', 'Medicines')
+  #print addMainCategory('Grocery', 'Medicines')
+  #print removelevel1Category('Grocery')
   #print addlevel1Category('Grocery')
   #print RemoveBatch('P_1_1_1',"B_3")
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
