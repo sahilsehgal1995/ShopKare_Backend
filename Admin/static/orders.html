@@ -4,12 +4,20 @@
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
+   
+<!-- 
+ Angular js Codes     -->
+
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
+
+
+
+    <link href="http://shopkare.com/Admin/static/assets/css/bootstrap.css" rel="stylesheet" />
     
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
     
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/style.css" rel="stylesheet" />
      
 </head>
 <body>
@@ -22,7 +30,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  class="navbar-brand" href="index.html">Admin Portal
+                <a  class="navbar-brand" href="http://shopkare.com/Admin/static/index.html">Admin Portal
 
                 </a>
             </div>
@@ -61,28 +69,29 @@
                         <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
                     </li>
                     <li>
-                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
                     <li>
-                        <a class="active-menu" href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a class="active-menu" href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
-                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
                    <li>
-                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a    href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                 </ul>
             </div>
 
         </nav>
+
         <!-- /. SIDEBAR MENU (navbar-side) -->
         <div id="page-wrapper" class="page-wrapper-cls">
              <div class="row">
@@ -177,7 +186,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Order Details</h4>
+          <h4 class="modal-title">Order Details</h4>Tea
         </div>
         <div class="modal-body">
        
@@ -233,6 +242,33 @@
 		<td>On Way</td>
 		<th>	<button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Details</button> </th>
 	
+   <!-- Angular Code ng-repeat -->
+ <table class="table table-hover table-bordered" ng-controller="orders_data">
+    <thead>
+      <tr>
+        <th>Serial No.</th>
+        <th>Product</th>
+        <th>P_Id</th>
+        <th>Customer</th>
+        <th>Status</th>
+        <th>Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="item in orders">
+        <td>{{item.id}}</td>
+        <td>{{item.product}}</td>
+        <td>{{item.p_id}}</td>
+        <td>{{item.customer}}</td>
+        <td>{{item.status}}</td>
+        <th>    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#myModal">Details</button> </th>
+    
+
+
+<!-- Angular Code ng-repeat -->
+
+
+ 
 
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
@@ -299,18 +335,18 @@
     </div>
     <!-- /. WRAPPER  -->
    <footer >
-          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+          <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/bootstrap.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/custom.js"></script>
 
 
 </body>

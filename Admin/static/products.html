@@ -1,15 +1,21 @@
-﻿<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+﻿
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="ShopKare_Backend-master">
 <head>
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
     
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/bootstrap.css" rel="stylesheet" />
     
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
     
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/style.css" rel="stylesheet" />
+
+      <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
+         <script type="text/javascript" src="http://shopkare.com/Admin/static/js/Controllers/product_controller.js"></script>
+
      
 </head>
 
@@ -25,7 +31,7 @@
 }
 </style>
 
-<body>
+<body ng-controller="AppCTRL">
     <div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
@@ -64,7 +70,7 @@
                 <ul class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-circle" />
+                            <img src="http://shopkare.com/Admin/static/assets/img/user.png" class="img-circle" />
 
                            
                         </div>
@@ -80,20 +86,20 @@
                     </li>
                     
                     <li>
-                        <a href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 
 					<li>
-                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
 					
 					<li>
-                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a    href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                    
                 </ul>
@@ -102,166 +108,77 @@
         </nav>        <!-- /. SIDEBAR MENU (navbar-side) -->
         <div id="page-wrapper" class="page-wrapper-cls">
            <div class="row">
-      
-<div class="container">
-	   <h1 class="page-head-line">Products</h1>
-                                       
-  <div class="dropdown">
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Main Category
-    <span class="caret"></span></button>
-    
-	<ul class="dropdown-menu">
-	
-      <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Biscuits & Bakery<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-		   </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Fruits & Vegetables<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Cleaning & Hygiene<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Household Appliances<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Masala & Spices<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Oil Ghee Dairy<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Personal Care<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Pulses Grains Flowers<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
-<li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Spread Products<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
- <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
- </ul>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Snacks & Beverages<span class="caret"></span></a>
-	  <ul class="dropdown-menu">
- <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-          <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-           <li><a tabindex="-1" href="batch.html">2nd level dropdown</a></li>
-        </ul>
-	  </li>
-	  
-    </ul>
+<div class="container" >
+	   <h1 class="page-head-line">Products</h1>                                   
+    <div class="dropdown">
+    <label for="text">Select Level 1 Category</label> &nbsp;
+
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-change="selectLevel1Category()">  
+    <option value="{{category}}" ng-repeat="category in categories">{{category._id}} </option>
+    </select> 
   </div>
+<div class="dropdown">
+    <label for="text">Select Main Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="btn btn-default dropdown-toggle" ng-model="mainCategory" type="button" ng-change="selectmainCategory()">  
+      <option value="{{$index}}" ng-repeat="maincategory in mainCategories">{{maincategory}}</option>
+    </select>
 </div>
-	  <div class="col-md-12">
-                        <h1 class="page-head-line" style="margin-top:350px">Products</h1>
- 
-  <table class="table table-hover table-bordered">
+
+<div class="dropdown">
+    <label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="subcategoryindex" ng-change="selectsubcategories()">  
+      <option value="{{$index}}" ng-repeat="subcategory in subcategories">{{subcategory}}</option>
+    </select><br>
+</div>
+</form>
+<table class="table table-hover table-bordered">
     <thead>
       <tr>
-        <th>Batch No.</th>
         <th>Product Name</th>
-        <th>Cost Price</th>
-		<th>Selling Price</th>
-		<th>Date Of Expiry</th>
-      </tr>
+        <th>Selling Price</th>
+	<th>Description</th>
+	<th>Options</th>
+	</tr>
     </thead>
     <tbody>
-      <tr>
-        <td>12345</td>
-        <td>Dove</td>
-        <td>₹45</td>
-		<td>₹50</td>
-		<td>05/06/2015</td>
+      <tr ng-repeat="p in products">
+        <td>{{p.product_name}}</td>
+        <td>
+        <p ng-repeat ="k in p.Quantity">
+        {{k['Quantity'][0]}} :- <b>RS {{k['Quantity'][1]}}</b>
+        </p>
+	</td>
+	<td>{{p.description}}</td>
+	<td><button type="button" class="btn btn-danger" ng-click="delete_Product($index)">Remove</button>
       </tr>
-      <tr>
-        <td>12345</td>
-        <td>Dove</td>
-        <td>₹45</td>
-		<td>₹50</td>
-		<td>05/06/2015</td>
-      </tr>
-      <tr>
-        <td>12345</td>
-        <td>Dove</td>
-        <td>₹45</td>
-		<td>₹50</td>
-		<td>05/06/2015</td>
-      </tr>
-    </tbody>
+     </tbody>
   </table>
-
-
 	  <a href="add.html"><button type="button" class="btn btn-primary">Add Product</button></a> &nbsp&nbsp&nbsp&nbsp
-	  <button type="button" class="btn btn-primary">Remove Product</button>
+	  <button type="button" ng-hide="true" class="btn btn-primary">Remove Product</button>
 	  <br>
 	  
-	  
-
 					</div>
                 </div>
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
     </div>
+    
     <!-- /. WRAPPER  -->
 	 <footer>
-          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+          <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>  
     
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/bootstrap.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/custom.js"></script>
 	
 	
 <script>

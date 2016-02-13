@@ -1,15 +1,17 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml"  ng-app="ShopKare_Backend-master">
 <head>
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
+    <link href="http://shopkare.comAdmin/static/assets/css/bootstrap.css" rel="stylesheet" />
     
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
     
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
-    
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/style.css" rel="stylesheet" />
+     <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
+         <script type="text/javascript" src="http://shopkare.com/Admin/static/js/Controllers/add_product.js"></script>
      
 	 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -75,7 +77,7 @@
                 <ul class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-circle" />
+                            <img src="http://shopkare.com/Admin/static/assets/img/user.png" class="img-circle" />
 
                            
                         </div>
@@ -108,13 +110,13 @@
             </div>
 
         </nav>
-		
-		 <div id="page-wrapper" class="page-wrapper-cls">
+</div>
+		 <div id="page-wrapper" class="pageadd_new_product-wrapper-cls">
              <div class="row">
-                    <div class="col-md-12">
+                    <div class="col-md-12 offset">
                         <h1 class="page-head-line">Add Product</h1>
 		
- <div class="container"  >    
+ <div class="container"  ng-controller="add_new_product" >    
         <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-info" >
                     <div class="panel-heading">
@@ -128,109 +130,94 @@
                             
                        
                                     
-                       				<form>
   
   <fieldset class="form-group">
     <label for="text">Product Name</label>
-    <input type="text" class="form-control" id="text" placeholder="Product Name">
+    <input type="text" class="form-control" id="text" placeholder="Product Name" ng-model="Product.product_name">
   </fieldset>
-  
    <fieldset class="form-group">
     <label for="exampleTextarea">Description (if any)</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    <textarea class="form-control" id="exampleTextarea" ng-model="Product.description" rows="3"></textarea>
   </fieldset>
   
-  <fieldset class="form-group">
-    <label for="exampleSelect2">Level 1 Category</label>
-    <select multiple class="form-control" id="exampleSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+  <div class="dropdown">
+    <label for="text">Select Level 1 Category</label> &nbsp;
+
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-change="selectLevel1Category()">  
+    <option value="{{category}}" ng-repeat="category in categories">{{category._id}} </option>
     </select>
-  </fieldset>
-  
-    <fieldset class="form-group">
-    <label for="exampleSelect2">Main Category</label>
-    <select multiple class="form-control" id="exampleSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
+  </div>
+<div class="dropdown">
+    <label for="text">Select Main Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="btn btn-default dropdown-toggle" ng-model="mainCategory" type="button" ng-change="selectmainCategory()">  
+      <option value="{{$index}}" ng-repeat="maincategory in mainCategories">{{maincategory}}</option>
     </select>
-  </fieldset>
-  
-    <fieldset class="form-group">
-    <label for="exampleSelect2">Sub Category</label>
-    <select multiple class="form-control" id="exampleSelect2">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
-      <option>5</option>
-    </select>
-  </fieldset>
-  
-    
-  <fieldset class="form-group">
-    <label for="number">Selling Price</label>
-    <input type="number" class="form-control" id="text" placeholder="Product Price">
-  </fieldset>
-  
-  <fieldset class="form-group">
-    <label for="exampleSelect2">Main Category</label>
-    <select multiple class="form-control" id="exampleSelect2">
-      <option>Available</option>
-      <option>Out Of Stock</option>
-      <option>Coming Soon</option>
-    </select>
-  </fieldset>
-  
-  <fieldset class="form-group">
-    <label for="exampleSelect2">Select Picture</label><br>
-  <input id="uploadFile" placeholder="Choose Picture" disabled="disabled" />
-<div class="fileUpload btn btn-primary">
-    <span>Upload</span>
-    <input id="uploadBtn" type="file" class="upload" />
 </div>
-</fieldset>
-	<br>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>    
-                            
 
+<div class="dropdown">
+    <label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="subcategoryindex">  
+      <option value="{{$index}}" ng-repeat="subcategory in subcategories">{{subcategory}}</option>
+    </select>
+</div> 
+   <br>
+    <fieldset class="form-group">
+    <label for="number">Enter Quantities And Price :<br></label><br>
+    <div id="Add_New" ng-repeat="q in Product.Quantity">
+     <input type="text" id="text" placeholder="Product Quantity" ng-model="q.Quantity[0]" value="{{q.Quantity[0]}}">
+    <input type="number" id="text" placeholder="Product Price"  ng-model="q.Quantity[1]" value="{{q.Quantity[1]}}"><br>  
+   </div>
+<button ng-click="button_function(q)"> Add More Quantities</button>
 
-
-                        </div>                     
-                    </div>  
-        </div>
-       
-    </div>		
-		
-						
-						</div>
-						</div>
-						</div>
+  </fieldset>
+<!--<form action="/api/Admin/imageUpload/" id="myForm">
+<fieldset>
+              <label>Select Image:</label> 
+              <br><input type=file class="form-control" name="file1" multiple max-uploads=5 required/>
+            </fieldset>
+            </form>-->
+            <label>{{reply}} <br></label>
+  <button class="btn btn-primary" ng-click="addProduct()" ng-disabled="!Product.product_name || !Product.description || !l1category || !mainCategory || !subcategoryindex">Submit</button>
+   
+    
+    </div></div></div></div></div></div>      		
+			</div>
+						</div></div>
 		
 		
 		   <footer >
-          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+          <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/bootstrap.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
-<script> document.getElementById("uploadBtn").onchange = function () {
-    document.getElementById("uploadFile").value = this.value;
-}; </script>
+    <script src="http://127.0.0.1:5000/Admin/static/assets/js/custom.js"></script>
+
+<script type="text/javascript">
+function load_more_options () {
+
+  var container = document.getElementById("Add_New");
+   var input = document. createElement("input");
+   input.type = "text";
+   input.placeholder="Product Quantity and Type";
+   input.name = "";
+   var input1 = document.createElement("input");
+   input1.type = "number";
+   input1.name = "";
+   input1.placeholder="Product Price";
+   container.appendChild(input);
+   container.appendChild(input1);
+   container.appendChild(document.createElement("br"))
+                
+}
+
+</script>
 
 </body>
 </html>

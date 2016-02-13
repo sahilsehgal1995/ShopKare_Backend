@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ShopKare_Backend-master">
 <head>
   <title>Admin Portal</title>
   
@@ -9,6 +9,14 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
+
+ <!-- 
+ Angular js Codes     -->
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
+
+
+
 
 	  	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
@@ -46,22 +54,22 @@
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                             
-                        <form id="loginform" class="form-horizontal" role="form">
+            <form id="loginform" class="form-horizontal" role="form" ng-controller="login_data" ng-submit="loginData">
                                     
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">                                        
+                                        <input id="login-username" type="email" class="form-control" name="username"  placeholder="Email" ng-model="l_data.Email">                                       
                                     </div>
                                 
                             <div style="margin-bottom: 25px" class="input-group">
                                         <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="l_data.Password">
                                     </div>
                                     
-
+                                     {{reply}}
                                 
-                            <div class="input-group">
-                                      <div class="checkbox">
+                            <div class="input-group" ng-hide=true>
+                                      <div class="checkbox" >
                                         <label>
                                           <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
                                         </label>
@@ -72,9 +80,9 @@
                                 <div style="margin-top:10px" class="form-group">
                                     <!-- Button -->
 
-                                    <div class="col-sm-12 controls">
-                                      <a id="btn-login" href="#" class="btn btn-success">Login  </a>
-                                      <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
+                                    <div class="col-sm-12 controls" >
+                                      <a id="btn-login" name="submit" value="submit" ng-click="loginData()" href="#" class="btn btn-success" ng-disabled="!l_data.Email || !l_data.Password">Login  </a>
+                                      <a id="btn-fblogin" href="#" ng-hide=true class="btn btn-primary">Login with Facebook</a>
 
                                     </div>
                                 </div>
@@ -104,55 +112,56 @@
                             <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="#" onclick="$('#signupbox').hide(); $('#loginbox').show()">Sign In</a></div>
                         </div>  
                         <div class="panel-body" >
-                            <form id="signupform" class="form-horizontal" role="form">
+                  <form id="signupform"  ng-controller="register_data" class="form-horizontal" role="form">                
                                 
-                                <div id="signupalert" style="display:none" class="alert alert-danger">
-                                    <p>Error:</p>
-                                    <span></span>
+                                <div class="form-group">
+                                    <label for="email" class="col-md-3 control-label" ng-if="response">{{response}}</label>
                                 </div>
-                                    
                                 
-                                  
                                 <div class="form-group">
                                     <label for="email" class="col-md-3 control-label">Email</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="email" placeholder="Email Address">
+                                        <input type="email" class="form-control" name="email" ng-model="register.Email" placeholder="Email Address">
                                     </div>
                                 </div>
                                     
                                 <div class="form-group">
-                                    <label for="firstname" class="col-md-3 control-label">First Name</label>
+                                    <label for="firstname" class="col-md-3 control-label">Full Name</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="firstname" placeholder="First Name">
+                                        <input type="text" class="form-control" name="firstname" ng-model="register.Name" placeholder="First Name">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="lastname" class="col-md-3 control-label">Last Name</label>
+                                    <label for="lastname" class="col-md-3 control-label">Contact </label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+                                        <input type="number" class="form-control" name="lastname" ng-model="register.Mobile" placeholder="Contact No">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="password" class="col-md-3 control-label">Password</label>
                                     <div class="col-md-9">
-                                        <input type="password" class="form-control" name="passwd" placeholder="Password">
-                                    </div>
-                                </div>
-                                    
-                              
-
-                                <div class="form-group">
-                                    <!-- Button -->                                        
-                                    <div class="col-md-offset-3 col-md-9">
-                                        <button id="btn-signup" type="button" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp Sign Up</button>
-                                        <span style="margin-left:8px;">or</span>  
+                                        <input type="password" class="form-control" ng-model="register.Password" name="passwd" placeholder="Password">
                                     </div>
                                 </div>
                                 
-                                <div style="border-top: 1px solid #999; padding-top:20px"  class="form-group">
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Secret Key</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" ng-model="secretkey" name="secretkey" placeholder="Secret key for admin singup">
+                                    </div>
+                                </div>
+                                    
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="col-md-offset-3 col-md-9">
+<button id="btn-signup" type="button" value="submit" name="submit" ng-click="registerData();" ng-disabled="!register.Email || !register.Name || !register.Mobile || !register.Password || !secretkey" class="btn btn-info"><i class="icon-hand-right"></i> &nbsp; Sign Up</button>
+                                    </div>
+                                </div>
+                                
+                                <div style="border-top: 1px solid #999; padding-top:20px" ng-hide=true class="form-group">
                                     
                                     <div class="col-md-offset-3 col-md-9">
-                                        <button id="btn-fbsignup" type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
+                                        <button id="btn-fbsignup" ng-hide=true type="button" class="btn btn-primary"><i class="icon-facebook"></i>   Sign Up with Facebook</button>
                                     </div>                                           
                                         
                                 </div>

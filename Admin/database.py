@@ -39,6 +39,7 @@ def loginAdmin(user):
     iter = collection.find({'$or':[{"Email":user['Email']},{"Mobile":user['Mobile']}]})
     if not iter.count():
       return "User Does't Exists", '[]'
+    print iter[0]['Password']
     if sha256_crypt.verify(user['Password'],iter[0]['Password']):
       reply = iter[0]
       connection.close()
@@ -53,7 +54,7 @@ def loginAdmin(user):
       return 'Authentication Failed', '[]'
   except Exception as e:
     print str(e)
-    return 'Unable to Login'
+    return 'Unable to Login', '[]'
 
 def registerProduct(MainCategory, SubCategory, product):
   try:
@@ -61,6 +62,8 @@ def registerProduct(MainCategory, SubCategory, product):
     SubCategory = SubCategory.replace(" ","_")
     product = json.loads(product)
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
+    for index, hashed in enumerate(product['Quantity']):
+      del product['Quantity'][index]['$$hashKey']
     iter = collection.find()
     if not iter.count():
       product['_id']='P_'+product['_id']+'_1'
@@ -137,6 +140,9 @@ def RemoveBatch(pid, BatchID):
 def addlevel1Category(level1category):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find({"_id":level1category})
+    if iter.count():
+      return 'Category Already Exists'
     collection.insert({"_id":level1category, "Categories":[]})
     return 'Added'
   except Exception as e:
@@ -157,6 +163,7 @@ def removelevel1Category(level1category):
 def addMainCategory(level1category, MainCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    MainCategory = MainCategory[1:-1]
     collection.update({"_id":level1category},{"$addToSet":{"Categories":{MainCategory:[]}}})
     connection.close()
     gc.collect()
@@ -189,6 +196,7 @@ def removeMainCategory(level1category, MainCategory):
 def addSubCategory(level1category, MainCategory, subCategory):
   try:
     connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    subCategory = subCategory[1:-1]
     iter = collection.find({"_id":level1category})
     iter = tuple(iter)
     for item in iter:
@@ -242,10 +250,51 @@ def reteriveCategories():
     print str(e)
     return 'Unable to Remove'
 
+def reteriveProducts(MainCategory, SubCategory):
+  try:
+    MainCategory = MainCategory.replace(" ","_")
+    SubCategory = SubCategory.replace(" ","_")
+    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
+    iter = collection.find()
+    if not iter.count():
+      return '[]'
+    connection.close()
+    gc.collect()
+    return str(json.dumps(tuple(iter)))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+  
+def reteriveCategories():
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find()
+    if not iter.count():
+      return '[]'
+    connection.close()
+    gc.collect()
+    return str(json.dumps(tuple(iter)))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+  
+def reteriveBatches(pid):
+  try:
+    connection, db, collection = MongoDBconnection('Batches', pid)
+    iter = collection.find()
+    if not iter.count():
+      return '[]'
+    connection.close()
+    gc.collect()
+    return str(json.dumps(tuple(iter)))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
 
 if __name__ == '__main__':
-  print reteriveCategories()
-  #print addSubCategory('Grocery', 'Beverages', 'Tea')
+  print reteriveProducts('Bakery','Cakes')
+  #print reteriveCategories()
+  #print addSubCategory('Grocery', 'Bakery', 'Cakes')
   #print removeSubCategory('Grocery', 'Beverages', 'Tea')
   #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')

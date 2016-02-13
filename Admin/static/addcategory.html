@@ -1,15 +1,19 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="ShopKare_Backend-master">
 <head>
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
     
-    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/bootstrap.css" rel="stylesheet" />
     
-    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
     
-    <link href="assets/css/style.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/style.css" rel="stylesheet" />
+
+      <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
+        <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
+         <script type="text/javascript" src="http://shopkare.com/Admin/static/js/Controllers/Add_category_controller.js"></script>
      
 </head>
 
@@ -64,7 +68,7 @@
                 <ul class="nav" id="main-menu">
                     <li>
                         <div class="user-img-div">
-                            <img src="assets/img/user.png" class="img-circle" />
+                            <img src="http://shopkare.com/Admin/static/assets/img/user.png" class="img-circle" />
 
                            
                         </div>
@@ -75,24 +79,24 @@
                     </li>
       
                     <li>
-                        <a  href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a  href="http://shopkare.com/products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
                     <li>
-                        <a href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a href="http://shopkare.com/orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="http://shopkare.com/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
-                        <a   class="active-menu" href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   class="active-menu" href="http://shopkare.com/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
 					
 					<li>
-                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a    href="http://shopkare.com/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                    
                 </ul>
@@ -119,17 +123,14 @@
                             
                        
                                     
-                       				<form>
-									
-	  
-									<fieldset class="form-group">
+    <form ng-controller="addlevel1category">
+	<fieldset class="form-group">
+    
     <label for="text">Enter Level 1 Category</label>
-    <input type="text" class="form-control" id="text" placeholder="Product Name">
+    <input type="text" class="form-control" id="text" value="Grocery"  ng-model="level1category" placeholder="Product Name">
   </fieldset>
-  
- 
-	<br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+	{{message}}<br>
+  <button type="submit" value="submit" ng-click="addlevel1category()" class="btn btn-primary">Submit</button>
 </form>    
                             
 
@@ -155,74 +156,25 @@
                             
                        
                                     
-                       				<form>
-									
-									
-							<div class="dropdown">
-							<label for="text">Select Level 1 Category</label> &nbsp
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Groccery	
-    <span class="caret"></span></button>
-    
-	<ul class="dropdown-menu">
+<form ng-controller="addmaincategory">
+    {{message}}
+				<div class="dropdown">
 	
-      <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Biscuits & Bakery</a>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Fruits & Vegetables</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Cleaning & Hygiene</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Household Appliances</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Masala & Spices</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Oil Ghee Dairy</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Personal Care</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Pulses Grains Flowers</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Spread Products
-	  </a>
-	 
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Snacks & Beverages</a>
-	 
-	  </li>
-	  
-    </ul>
+    <div class="dropdown">
+    <label for="text">Select Level 1 Category</label> &nbsp;
+
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-change="selectLevel1Category()">  
+    <option value="{{category}}" ng-repeat="category in categories">{{category._id}} </option>
+    </select>
   </div>
-  
-<br>  
-									<fieldset class="form-group">
+	<fieldset class="form-group">
     <label for="text">Enter Main Category</label>
-    <input type="text" class="form-control" id="text" placeholder="Product Name">
+    <input type="text" ng-model="Maincategory" class="form-control" id="text" placeholder="Product Name">
   </fieldset>
-  
- 
+ </div>
 	<br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  <button type="submit" name="submit" ng-click="add_new_category_database()" class="btn btn-primary">Submit</button>
 </form>    
-                            
-
-
-
                         </div>                     
                     </div>  
         </div>
@@ -243,125 +195,31 @@
                             
                        
                                     
-                       				<form>
-									
-							<div class="dropdown">
-							<label for="text">Select Level 1 Category</label> &nbsp
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Groccery
-    <span class="caret"></span></button>
-    
-<ul class="dropdown-menu">
-	
-      <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Biscuits & Bakery</a>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Fruits & Vegetables</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Cleaning & Hygiene</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Household Appliances</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Masala & Spices</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Oil Ghee Dairy</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Personal Care</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Pulses Grains Flowers</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Spread Products
-	  </a>
-	 
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Snacks & Beverages</a>
-	 
-	  </li>
-	  
-    </ul>
-	</div>
-<br>  
-					<div class="dropdown">
-							<label for="text">Select Main Category</label> &nbsp
-    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown">Groccery	
-    <span class="caret"></span></button>
-    
-	<ul class="dropdown-menu">
-	
-      <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Biscuits & Bakery</a>
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Fruits & Vegetables</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Cleaning & Hygiene</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Household Appliances</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Masala & Spices</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Oil Ghee Dairy</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Personal Care</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Pulses Grains Flowers</a>
-	  
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Spread Products
-	  </a>
-	 
-	  </li>
-	  <li class="dropdown-submenu">
-	  <a class="test" tabindex="-1" href="#">Snacks & Beverages</a>
-	 
-	  </li>
-	  
-    </ul>
+    <form  ng-controller="addsubcategory">					
+<div class="dropdown">
+    <label for="text">Select Level 1 Category</label> &nbsp;
+
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-change="selectLevel1Category()">  
+    <option value="{{category}}" ng-repeat="category in categories">{{category._id}} </option>
+    </select>
   </div>
-  <br>
-									<fieldset class="form-group">
+<div class="dropdown">
+    <label for="text">Select Main Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <select class="btn btn-default dropdown-toggle" ng-model="mainCategory" type="button" ng-change="selectmainCategory()">  
+      <option value="{{$index}}" ng-repeat="maincategory in mainCategories">{{maincategory}}</option>
+    </select>
+</div>
+    <fieldset class="form-group">
     <label for="text">Enter Sub Category</label>
-    <input type="text" class="form-control" id="text" placeholder="Product Name">
+    <input type="text" ng-model="subCategory" class="form-control" id="text" placeholder="Add Sub Level Category">
   </fieldset>
+{{response1}}&nbsp;<button type="submit" value="submit" name="submit" ng-click="add_new_subCategory()" class="btn btn-primary">Submit</button>
   
- 
-	<br>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  </div>
+  
 </form>    
-                            
-
-
-
-                        </div>                     
-                    </div>  
+ </div>                     
+     </div>  
         </div>
        
     </div>		
@@ -375,19 +233,19 @@
     </div>
     <!-- /. WRAPPER  -->
 	 <footer>
-          <b> &copy; Admin Portal | By : Akash Upadhyay  </b>
+          <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>  
     
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
-    <script src="assets/js/jquery-1.11.1.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS -->
-    <script src="assets/js/bootstrap.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/bootstrap.js"></script>
     <!-- METISMENU SCRIPTS -->
-    <script src="assets/js/jquery.metisMenu.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="assets/js/custom.js"></script>
+    <script src="http://shopkare.com/Admin/static/assets/js/custom.js"></script>
 	
 	
 <script>

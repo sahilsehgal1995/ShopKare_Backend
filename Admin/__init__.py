@@ -1,6 +1,6 @@
-from flask import Blueprint, session, request
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories
-import json
+from flask import Blueprint, session, request, send_from_directory
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches
+import json, os
 from werkzeug import secure_filename
 
 def allowed_file(filename):
@@ -11,7 +11,19 @@ def add_routes(app=None):
   
   @Admin.route('/api/Admin')
   def home():
-    return 'Admin page'
+    try:
+      return send_from_directory(os.getcwd()+'/Admin/static/', 'signup.html')
+    except Exception as e:
+      print str(e)
+      return 'Unable to load'
+  
+  @Admin.route('/api/Admin/dashboard/')
+  def dashboard():
+    try:
+      return send_from_directory(os.getcwd()+'/Admin/static/', 'products.html')
+    except Exception as e:
+      print str(e)
+      return 'Unable to load'
   
   @Admin.route('/api/Admin/login/', methods=['GET','POST'])
   def login():
@@ -21,6 +33,7 @@ def add_routes(app=None):
 	session['id'] = user['_id']
 	session['Email'] = user['Email']
 	session['user'] = 'Admin'
+	user['response']='Login Successfull'
 	return json.dumps(user)
       else:
 	return reply
@@ -37,20 +50,27 @@ def add_routes(app=None):
   
   @Admin.route('/api/Admin/addProduct/', methods=['GET','POST'])
   def addproduct():
-    if request.method == 'POST':
-      if session['user'] == 'Admin':
-	product = json.loads(request.args.get('product'))
-	reply = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
-	return reply
-      return 'Authentication Failed'
-    return 'Invalid Request'
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  product = json.loads(request.args.get('product'))
+	  reply = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Add'
   
   @Admin.route('/api/Admin/removeProduct/', methods=['GET','POST'])
   def removeproduct():
     if request.method == 'POST':
       if session['user'] == 'Admin':
 	product = json.loads(request.args.get('product'))
-	reply = registerProduct(product['Main Category'], product['Sub Category'], product['_id'])
+	del product['$$hashKey']
+	reply = removeProduct(product['Main Category'], product['Sub Category'], product['_id'])
+	if reply =='Registered':
+	  path = ProductImagePath(product['Main Category'], product['Sub Category'], product['_id'])
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'
@@ -92,14 +112,18 @@ def add_routes(app=None):
     return 'Invalid Request'
   
   @Admin.route('/api/Admin/addlevel1category/', methods=['GET','POST'])
-  def addlevel1Category():
-    if request.method == 'POST':
-      if session['user'] == 'Admin':
-	reply = addlevel1Category(request.args.get('level1category'))
-	return reply
-      return 'Authentication Failed'
-    return 'Invalid Request'
-  
+  def addlevel1category():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  reply = addlevel1Category(request.args.get('level1category'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to add right now'
+    
   @Admin.route('/api/Admin/removelevel1Category/', methods=['GET','POST'])
   def removelevel1category():
     if request.method == 'POST':
@@ -153,5 +177,31 @@ def add_routes(app=None):
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'
+  
+  @Admin.route('/api/admin/getProducts/', methods=['GET','POST'])
+  def ReteriveProducts():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  reply = reteriveProducts(request.args.get('maincategory'), request.args.get('subcategory'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
+    
+  @Admin.route('/api/Admin/reteriveBatches/', methods=['GET','POST'])
+  def reterivebatches():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  reply = reteriveBatches(request.args.get('pid'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
   
   app.register_blueprint(Admin)
