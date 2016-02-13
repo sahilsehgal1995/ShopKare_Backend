@@ -1,7 +1,7 @@
 (function() {
   var app = angular.module('ShopKare_Backend-master', []);
-  var base = 'http://127.0.0.1:5000';
-
+//   var base = 'http://127.0.0.1:5000';
+  var base = 'http://shopkare.com';
   //survey form controller
   app.controller('survey_data' , ['$scope','$http', function ($scope,$http){
     
