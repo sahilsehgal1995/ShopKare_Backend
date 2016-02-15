@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  class="navbar-brand" href="index.html">Admin Portal
+                <a  class="navbar-brand" href="http://shopkare.com/Admin/static/products.html">Admin Portal
 
                 </a>
             </div>
@@ -71,24 +71,24 @@
                     </li>
                       
                     <li>
-                        <a href="http://shopkare.com/products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
                     <li>
-                        <a href="http://shopkare.com/orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="http://shopkare.com/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
-                        <a   href="http://shopkare.com/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
                    
 				   <li>
-                        <a class="active-menu"   href="http://shopkare.com/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a class="active-menu"   href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                 </ul>
             </div>
@@ -132,7 +132,7 @@
 	<label for="text">Select Product</label>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 	<select class="btn btn-default dropdown-toggle" type="button" ng-init="productindex='-1'" ng-model="productindex" ng-change="selectproducts()">  
 	<option value="-1">Select Sub Category First </option>
-	<option value="{{$index}}" ng-repeat="product in products">{{product.product_name}}</option>
+	<option value="{{$index}}" ng-repeat="product in products track by $index">{{product.product_name}}</option>
 	</select>
 	</div>
     
@@ -150,6 +150,7 @@
       <tr>
         <th>Store Id</th>
         <th>Date Of Purchase</th>
+	<th>Date of Expiry</th>
 		<th>Quantity</th>
 		<th>Total Cost Price</th>
 		<th>Total Selling Price</th>
@@ -160,6 +161,7 @@
       <tr ng-repeat="batch in Batches">
         <td>{{batch.StoreId}}</td>
         <td>{{batch.DateOfPurchase}}</td>
+	<td>{{batch.DateOfExpiry}}</td>
         <td>{{batch.Quantity.type}}: Rs {{batch.Quantity.value}}</td>
         <td>{{batch.Cost_Price}}</td>
         <td>{{batch.Selling_Price}}</td>
@@ -167,12 +169,7 @@
       </tr>
     </tbody>
   </table>
- 
-
-<br>
-<a href="http://shopkare.com/add.html"><button type="button" class="btn btn-primary">Add Batch</button></a> &nbsp&nbsp&nbsp&nbsp
-	  
-		   <br><br><br>
+ <br>
 		   		
 <div class="container" >    
 
@@ -211,6 +208,9 @@
  <div class="form-group">
     <label for="date">Date Of Purchase</label>
     <input type="date" name="name" class="form-control" ng-model="Batch_data.DateOfPurchase" id="your-name" placeholder="Enter date of purchase" >
+    </div>
+    <label for="date">Date Of Expiry</label>
+    <input type="date" name="name" class="form-control" ng-model="Batch_data.DateOfExpiry" id$
     </div>
 <div id="Add_New">
      <label for="qno">Quantity</label><br>

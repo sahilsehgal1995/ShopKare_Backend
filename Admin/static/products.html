@@ -81,7 +81,7 @@
                     </li>
       
                     <li>
-                        <a class="active-menu" href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a class="active-menu" href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
@@ -125,10 +125,10 @@
 </div>
 
 <div class="dropdown">
-    <label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    <select class="btn btn-default dropdown-toggle" type="button" ng-model="subcategoryindex" ng-change="selectsubcategories()">  
-      <option value="{{$index}}" ng-repeat="subcategory in subcategories">{{subcategory}}</option>
-    </select><br>
+    <label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+<select class="btn btn-default dropdown-toggle" type="button" ng-model="subcategoryindex" ng-change="selectsubcategories()">  
+      <option value="{{$index}}" ng-repeat="subcategory in subcategories track by $index">{{subcategory}}</option>   
+</select><br>
 </div>
 </form>
 <table class="table table-hover table-bordered">

@@ -292,10 +292,10 @@ def reteriveBatches(pid):
     return 'Unable to Remove'
 
 if __name__ == '__main__':
-  print reteriveProducts('Bakery','Cakes')
+  #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
-  #print removeSubCategory('Grocery', 'Beverages', 'Tea')
+  print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
   #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
   #print removelevel1Category('Grocery')

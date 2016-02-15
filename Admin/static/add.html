@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
-    <link href="http://shopkare.comAdmin/static/assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="http://shopkare.com/Admin/static/assets/css/bootstrap.css" rel="stylesheet" />
     
     <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
     
@@ -48,7 +48,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  class="navbar-brand" href="index.html">Admin Portal
+                <a  class="navbar-brand" href="http://shopkare.com/Admin/static/products.html">Admin Portal
 
                 </a>
             </div>
@@ -87,23 +87,23 @@
                         <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
                     </li>
                     <li>
-                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
                     <li>
-                        <a  href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a  href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
-                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
 							<li>
-                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a    href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                    
                 </ul>
@@ -157,7 +157,7 @@
 <div class="dropdown">
     <label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <select class="btn btn-default dropdown-toggle" type="button" ng-model="subcategoryindex">  
-      <option value="{{$index}}" ng-repeat="subcategory in subcategories">{{subcategory}}</option>
+      <option value="{{$index}}" ng-repeat="subcategory in subcategories track by $index">{{subcategory}}</option>
     </select>
 </div> 
    <br>

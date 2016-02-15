@@ -100,10 +100,15 @@
     console.log(JSON.stringify($scope.products[index]));
     $http.post("/api/Admin/removeProduct/?product="+JSON.stringify($scope.products[index]))
     .success(function(response){
-      console.log(response);
+      alert(response);
+	if(response == 'Removed')
+	{
+	  $window.location.href=base+"/Admin/static/products.html";
+	}
     })
     .error(function(response){
       console.log(response);
+	alert(response);
     });
   };  
   
