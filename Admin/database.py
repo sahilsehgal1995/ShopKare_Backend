@@ -291,11 +291,34 @@ def reteriveBatches(pid):
     print str(e)
     return 'Unable to Remove'
 
+def updateProduct(product, MainCategory, SubCategory):
+  try:
+    product = json.loads(product)
+    MainCategory = MainCategory.replace(" ","_")
+    SubCategory = SubCategory.replace(" ","_")
+    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
+    iter = collection.update({"_id":product['_id']},product)
+    return 'Updated'
+  except Exception as e:
+    print str(e)
+    return 'Unable to update'
+
+def updateBatch (pid, batch):
+  try:
+    batch = json.loads(batch)
+    connection, db, collection = MongoDBconnection('Batches', pid)
+    iter = collection.update({"_id":batch['_id']},batch)
+    return 'Updated'
+  except Exception as e:
+    print str(e)
+    return 'Unable to update'
+
 if __name__ == '__main__':
+  print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
-  print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
+  #print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
   #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
   #print removelevel1Category('Grocery')

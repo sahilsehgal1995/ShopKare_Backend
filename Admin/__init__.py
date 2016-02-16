@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct
 import json, os
 from werkzeug import secure_filename
 
@@ -203,5 +203,31 @@ def add_routes(app=None):
     except Exception as e:
       print str(e)
       return 'Unable to Fetch'
-  
+
+  @Admin.route('/api/Admin/updateBatch/', methods=['GET','POST'])
+  def UpdateBatch():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
+    
+  @Admin.route('/api/Admin/updateProduct/', methods=['GET','POST'])
+  def UpdateProduct():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Admin':
+	  reply = updateProduct(request.args.get('product'), request.args.get('MainCategory'), request.args.get('SubCategory'))
+	  return reply
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
+    
   app.register_blueprint(Admin)
