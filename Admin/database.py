@@ -95,14 +95,15 @@ def removeProduct(MainCategory, SubCategory, pid):
   except Exception as e:
     return 'Unable to Remove'
 
-def ProductImagePath(MainCategory, SubCategory, pid):
+def ProductImagePath(level1Category, MainCategory, SubCategory, pid):
   try:
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
-    path = os.getcwd()+"/Product/static/Products/"+MainCategory+"/"+SubCategory+"/"+pid+"/"
+    level1Category = SubCategory.replace(" ","_")
+    path = os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
     if not os.path.exists(path):
-      os.makedirs(os.getcwd()+"/Product/static/Products/"+MainCategory+"/"+SubCategory+"/"+pid+"/")
-    return os.getcwd()+"/Product/static/Products/"+MainCategory+"/"+SubCategory+"/"+pid+"/"
+      os.makedirs(os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/")
+    return os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
   except Exception as e:
     return 'Unable to fetch'
 
@@ -312,6 +313,49 @@ def updateBatch (pid, batch):
   except Exception as e:
     print str(e)
     return 'Unable to update'
+  
+
+def registerDeliveryBoy(user):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'DeliveryBoy')
+    user = json.loads(user)
+    if collection.find({'$or':[{"Mobile":user['Mobile']},{"Email":user['Email']}]}).count():
+      return 'User Already Exists'
+    iter = collection.find()
+    if not iter.count():
+      user['_id']='D_1'
+    else:
+      user['_id'] = 'D_'+ str(int(iter[iter.count()-1]['_id'].split("_")[-1])+1)
+    collection.insert(user)
+    connection.close()
+    gc.collect()
+    return 'Registration Successfull'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Register'
+
+def loginDeliveryBoy(user):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'DeliveryBoy')
+    user = json.loads(user)
+    iter = collection.find({'$or':[{"Email":user['Email']},{"Mobile":user['Mobile']}]})
+    if not iter.count():
+      return "User Does't Exists", '[]'
+    if user['Password'] == iter[0]['Password']:
+      reply = iter[0]
+      connection.close()
+      gc.collect()
+      del reply['Password']
+      connection.close()
+      gc.collect()
+      return 'Login Sucess', reply
+    else:
+      connection.close()
+      gc.collect()
+      return 'Authentication Failed', '[]'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Login', '[]'  
 
 if __name__ == '__main__':
   print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')

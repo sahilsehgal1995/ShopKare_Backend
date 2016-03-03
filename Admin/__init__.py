@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct, loginDeliveryBoy, registerDeliveryBoy
 import json, os
 from werkzeug import secure_filename
 
@@ -78,11 +78,14 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/imageUpload/', methods=['GET','POST'])
   def imageUpload():
     if request.method == 'POST':
+      file = request.files['file']
+      print file, request.args.get('Product')
+      return 'Thanks'
       if session['user'] == 'Admin':
 	file = request.files['file']
 	if allowed_file(file.filename):
 	  product = json.loads(request.args.get('product'))
-	  path = ProductImagePath(product['Main Category'], product['Sub Category'], product['_id']) 
+	  path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
 	  if not path == 'Unable to fetch':
 	    file.save(os.path.join(path, secure_filename(file.filename)))
 	    return 'Image Uploaded'
@@ -172,10 +175,8 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/reteriveCategories/', methods=['GET','POST'])
   def reterivecategories():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
-	reply = reteriveCategories()
-	return reply
-      return 'Authentication Failed'
+      reply = reteriveCategories()
+      return reply
     return 'Invalid Request'
   
   @Admin.route('/api/admin/getProducts/', methods=['GET','POST'])
@@ -229,5 +230,26 @@ def add_routes(app=None):
     except Exception as e:
       print str(e)
       return 'Unable to Fetch'
+    
+  @Admin.route('/api/Admin/DeliveryBoylogin/', methods=['GET','POST'])
+  def DeliveryBoylogin():
+    if request.method == 'POST':
+      reply, user = loginDeliveryBoy(request.args.get('user'))
+      if reply == 'Login Sucess':
+	session['id'] = user['_id']
+	session['Email'] = user['Email']
+	session['user'] = 'Delivery Boy'
+	user['response']='Login Successfull'
+	return json.dumps(user)
+      else:
+	return reply
+    return 'Invalid Request'
+  
+  @Admin.route('/api/Admin/DeliveryBoysignup/', methods=['GET','POST'])
+  def DeliveryBoysignup():
+    if request.method == 'POST' and session['user'] == 'Admin':
+      reply = registerDeliveryBoy(request.args.get('user'))
+      return reply
+    return 'Authentication Failed'
     
   app.register_blueprint(Admin)
