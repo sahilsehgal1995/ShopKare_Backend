@@ -4,7 +4,9 @@ import json, os
 from werkzeug import secure_filename
 
 def allowed_file(filename):
-  return filename.rsplit('.', 1)[-1].lower() in ['png', 'jpg', 'jpeg', 'gif', 'bmp']
+  if filename.rsplit('.', 1)[-1].lower() in ['png', 'jpg', 'jpeg', 'gif', 'bmp']:
+    return True
+  return False
 
 def add_routes(app=None):
   Admin = Blueprint('Admin', __name__, static_url_path='/Admin/static', static_folder='./static', template_folder='./templates')
@@ -53,8 +55,18 @@ def add_routes(app=None):
     try:
       if request.method == 'POST':
 	if session['user'] == 'Admin':
+	  file = request.files.getlist('uploadedFile')
+	  for f in file:
+	    if not allowed_file(f.filename):
+	      return f.filename + ' File Note Allowed'
 	  product = json.loads(request.args.get('product'))
 	  reply = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
+	  if reply == 'Registered':
+	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
+	    if not path == 'Unable to fetch':
+	      file = request.files.getlist('uploadedFile')
+	      for f in file:
+		f.save(os.path.join(path, secure_filename(f.filename)))
 	  return reply
 	return 'Authentication Failed'
       return 'Invalid Request'
@@ -77,22 +89,28 @@ def add_routes(app=None):
   
   @Admin.route('/api/Admin/imageUpload/', methods=['GET','POST'])
   def imageUpload():
-    if request.method == 'POST':
-      file = request.files['file']
-      print file, request.args.get('Product')
-      return 'Thanks'
-      if session['user'] == 'Admin':
-	file = request.files['file']
-	if allowed_file(file.filename):
-	  product = json.loads(request.args.get('product'))
-	  path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
-	  if not path == 'Unable to fetch':
-	    file.save(os.path.join(path, secure_filename(file.filename)))
-	    return 'Image Uploaded'
-	  return 'Unable to Upload'
-	return 'Invalid Image format'
-      return 'Authentication Failed'
-    return 'Invalid Request'
+    try:
+      if request.method == 'POST':
+	file = request.files.getlist('uploadedFile')
+	print request.args.get('Product')
+	for f in file:
+	  f.save(os.path.join('/home/sahil/my/', secure_filename(f.filename)))
+	return 'Thanks'
+	if session['user'] == 'Admin':
+	  file = request.files['file']
+	  if allowed_file(file.filename):
+	    product = json.loads(request.args.get('product'))
+	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
+	    if not path == 'Unable to fetch':
+	      file.save(os.path.join(path, secure_filename(file.filename)))
+	      return 'Image Uploaded'
+	    return 'Unable to Upload'
+	  return 'Invalid Image format'
+	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return str(e)
   
   @Admin.route('/api/Admin/removeBatch/', methods=['GET','POST'])
   def removeBatch():
