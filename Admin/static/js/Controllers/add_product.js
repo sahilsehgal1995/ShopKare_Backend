@@ -63,8 +63,16 @@
             objXhr.addEventListener("load", transferComplete, false);
 	    
 	  //add Product details in Product
-	    $scope.addProduct();
 
+	    ProductQuantityArray['City']=$scope.city; 
+	  ProductQuantityArray['Quantities']=$scope.quantities; 
+	//console.log(getproducts());  
+	$scope.Product['_id'] = getproducts();
+	$scope.Product['Quantity']=ProductQuantityArray;
+	$scope.Product['Level1 Category'] = JSON.parse($scope.l1category)._id;
+	$scope.Product['Main Category'] = $scope.mainCategories[$scope.mainCategory];
+	$scope.Product['Sub Category'] = $scope.subcategories[$scope.subcategoryindex];
+	
             // SEND FILE DETAILS TO THE API.
             objXhr.open("POST", base+"/api/Admin/addProduct/?product=JSON.stringify($scope.Product)");
             objXhr.send(data);
