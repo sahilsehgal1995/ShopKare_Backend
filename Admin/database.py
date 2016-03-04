@@ -298,7 +298,7 @@ def updateProduct(product, MainCategory, SubCategory):
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
-    iter = collection.update({"_id":product['_id']},product)
+    collection.update({"_id":product['_id']},product)
     return 'Updated'
   except Exception as e:
     print str(e)
@@ -356,6 +356,39 @@ def loginDeliveryBoy(user):
   except Exception as e:
     print str(e)
     return 'Unable to Login', '[]'  
+  
+def updateOrderStatus(Did, orderID, status):
+  try:
+    connection, db, collection = MongoDBconnection('DeliveryBoy', Did)
+    collection.update({"_id":orderID},{"$set":{"status":status}})
+    connection.close()
+    connection, db, collection = MongoDBconnection('Admin', 'Orders')
+    collection.update({"_id":orderID},{"$set":{"status":status}})
+    iter = tuple(collection.find({"_id":orderID}))
+    connection.close()
+    gc.collect()
+    connection, db, collection = MongoDBconnection('Customers', iter[0]['cid'])
+    collection.update({"_id":orderID},{"$set":{"status":status}})
+    connection.close()
+    gc.collect()
+    return 'Updated'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Update'
+
+def FetchOrders(userMode, Did):
+  try:
+    connection, db, collection = MongoDBconnection(userMode, Did)
+    if userMode == 'DeliveryBoy':
+      iter = collection.find({"status":"Pending"})
+    else:
+      iter = collection.find()
+    if not iter.count():
+      return '[]'
+    return str(json.dumps(tuple(iter)))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Fetch'
 
 if __name__ == '__main__':
   print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')

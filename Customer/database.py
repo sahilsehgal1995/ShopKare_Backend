@@ -1,6 +1,7 @@
 import pymongo
 import json
 from passlib.hash import sha256_crypt
+import datetime
 import os
 import gc
 
@@ -65,16 +66,17 @@ def OrderPlacement(cartItems, cid):
       cartItems['_id']='O'+cid+'-1'
     else:
       cartItems['_id'] = 'O'+cid+ '-'+ str(int(iter[iter.count()-1]['_id'].split("_")[-1])+1)
+    cartItems['Status']= 'Pending'
+    dt = datetime.now()
+    cartItems['OrderDate']= dt.strftime("%A, %d. %B %Y %I:%M%p")
     collection.insert(cartItems)
     connection.close()
     gc.collect()
+    cartItems['cid']= cid
     connection, db, collection = MongoDBconnection('Admin', 'Orders')
+    cartItems['DeliveryBoy']=[]
     collection.insert(cartItems)
     return 'Order Placed'
-    #path = os.getcwd()+"/Customer/static/orders/"+cid+"/"
-    #os.makedirs(path)
-    #f = open(path + cartItems['_id'] + '.txt', 'w' )
-    #f.write(json.dumps(cartItems))
   except Exception as e:
     print str(e)
     return 'Unable to Place'
