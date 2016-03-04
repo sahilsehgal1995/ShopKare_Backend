@@ -5,7 +5,7 @@
 
   var categories = [];
   var level1keys= [];
-  var ProductQuantityArray= {};
+  var ProductQuantityArray= [];
     app.controller('add_new_product',['$scope', '$http',function($scope,$http){
       console.log("CONtroller Working");
      
@@ -63,9 +63,11 @@
             objXhr.addEventListener("load", transferComplete, false);
 	    
 	  //add Product details in Product
-
-	    ProductQuantityArray['City']=$scope.city; 
-	  ProductQuantityArray['Quantities']=$scope.quantities; 
+	    var quant = {
+	      "City":$scope.city,
+	      'Quantities': $scope.quantities
+	    };
+	    ProductQuantityArray.push(quant);  
 	//console.log(getproducts());  
 	$scope.Product['_id'] = getproducts();
 	$scope.Product['Quantity']=ProductQuantityArray;

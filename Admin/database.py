@@ -394,13 +394,17 @@ def FetchOrders(userMode, Did):
     return 'Unable to Fetch'
 
 def testing():
-  x = {"product_name":"Mah Ki daal","description":"Maah ki Daal","_id":"0_0_0","Quantity":{"City":"Hyderabad","Quantities":[{"Quantity":["1kg",100],"$$hashKey":"object:3"},{"Quantity":["500gm",50],"$$hashKey":"object:16"}]},"Level1 Category":"Grocery","Main Category":"Pulses and Grains","Sub Category":"Dals"}
-  for index,val in enumerate(x['Quantity']["Quantities"]):
-    del x['Quantity']["Quantities"][index]['$$hashKey']
-  return x
+  x = {u'description': u'Maah ki Dal', u'Level1 Category': u'Grocery', u'Main Category': u'Pulses and Grains', u'Sub Category': u'Dals', u'_id': u'0_0_0', u'product_name': u'Maah Ki dal', u'Quantity': [{u'City': u'Hyderabad', u'Quantities': [{u'$$hashKey': u'object:3', u'Quantity': [u'1 Kg', 100]}, {u'$$hashKey': u'object:16', u'Quantity': [u'500 gm', 50]}]}, {}]}
+  print x
+  print 
+  for index,val in enumerate(x['Quantity']):
+    q = x['Quantity'][index]
+    print q
+    #del x['Quantity'][index]["Quantities"][index]['$$hashKey']
+  return 
 
 if __name__ == '__main__':
-  print testing()
+  testing()
   #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
