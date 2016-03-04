@@ -74,7 +74,7 @@
 	$scope.Product['Sub Category'] = $scope.subcategories[$scope.subcategoryindex];
 	
             // SEND FILE DETAILS TO THE API.
-            objXhr.open("POST", base+"/api/Admin/addProduct/?product"+JSON.stringify($scope.Product));
+            objXhr.open("POST", base+"/api/Admin/addProduct/?product="+JSON.stringify($scope.Product));
             objXhr.send(data);
         }
 
@@ -88,7 +88,7 @@
 
         // CONFIRMATION.
         function transferComplete(e) {
-            alert(e.currentTarget.response);
+            console.log(e.currentTarget.response);
         }
                
      
