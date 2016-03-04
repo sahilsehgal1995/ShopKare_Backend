@@ -60,10 +60,10 @@ def registerProduct(MainCategory, SubCategory, product):
   try:
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
-    product = json.loads(product)
-    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     for index, hashed in enumerate(product['Quantity']):
       del product['Quantity'][index]['$$hashKey']
+    product = json.loads(product)
+    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     if not iter.count():
       product['_id']='P_'+product['_id']+'_1'
@@ -72,7 +72,7 @@ def registerProduct(MainCategory, SubCategory, product):
     collection.insert(product)
     connection.close()
     gc.collect()
-    return 'Registered'
+    return 'Registered', product['_id']
   except Exception as e:
     print str(e)
     return 'Unable to Register'
@@ -390,8 +390,15 @@ def FetchOrders(userMode, Did):
     print str(e)
     return 'Unable to Fetch'
 
+def testing():
+  x = {"product_name":"Mah Ki daal","description":"Maah ki Daal","_id":"0_0_0","Quantity":{"City":"Hyderabad","Quantities":[{"Quantity":["1kg",100],"$$hashKey":"object:3"},{"Quantity":["500gm",50],"$$hashKey":"object:16"}]},"Level1 Category":"Grocery","Main Category":"Pulses and Grains","Sub Category":"Dals"}
+  for index,val in enumerate(x['Quantity']["Quantities"]):
+    del x['Quantity']["Quantities"][index]['$$hashKey']
+  return x
+
 if __name__ == '__main__':
-  print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
+  print testing()
+  #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')

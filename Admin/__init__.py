@@ -61,13 +61,15 @@ def add_routes(app=None):
 	    if not allowed_file(f.filename):
 	      return f.filename + ' File Note Allowed'
 	  product = json.loads(request.args.get('product'))
-	  reply = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
+	  reply, pid = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
 	  if reply == 'Registered':
-	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
+	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], pid) 
 	    if not path == 'Unable to fetch':
 	      file = request.files.getlist('uploadedFile')
 	      for f in file:
 		f.save(os.path.join(path, secure_filename(f.filename)))
+	      return 'Product Registered with Images'
+	    return 'Product Registerd but unable to upload images'
 	  return reply
 	return 'Authentication Failed'
       return 'Invalid Request'
