@@ -378,6 +378,7 @@ def updateOrderStatus(Did, orderID, status):
 
 def FetchOrders(userMode, Did):
   try:
+    return '[{"OrderID":"O_101","Products":[{"ProductID":"P_101","PName":"Pepsi","Quantiy":"1 Liter","Price":"RS80"},{"ProductID":"P_102","PName":"Coca","Quantiy":"300 ML","Price":"Rs60"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sahil Sehgal","Mobile":"9988776655","City":"Roorkee","state":"Utrakhand", "Address":"IIT Roorkee","Total amount":"1000"},{"OrderID":"O_102","Products":[{"ProductID":"P_110","PName":"Goodday","Quantiy":"1 Packet","Price":"Rs10"},{"ProductID":"P_112","PName":"50-50 Biscuits","Quantiy":"300gm","Price":"Rs20"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sandeep","Mobile":"9188776655","City":"Hyderabad","state":"Andhra Pardesh", "Address":"RamKoti","Total amount":"2000"}]'
     connection, db, collection = MongoDBconnection(userMode, Did)
     if userMode == 'DeliveryBoy':
       iter = collection.find({"status":"Pending"})
