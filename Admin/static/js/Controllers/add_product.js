@@ -88,7 +88,7 @@
 
         // CONFIRMATION.
         function transferComplete(e) {
-            alert("Files uploaded successfully."+ e);
+            alert(e.currentTarget.response);
         }
                
      

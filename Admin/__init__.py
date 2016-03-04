@@ -60,6 +60,7 @@ def add_routes(app=None):
 	  for f in file:
 	    if not allowed_file(f.filename):
 	      return f.filename + ' File Note Allowed'
+	  return 'Uploaded'
 	  product = json.loads(request.args.get('product'))
 	  reply, pid = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
 	  if reply == 'Registered':
@@ -98,7 +99,7 @@ def add_routes(app=None):
 	print request.args.get('Product')
 	for f in file:
 	  f.save(os.path.join('/home/sahil/my/', secure_filename(f.filename)))
-	return 'Thanks'
+	return 'Uploaded'
 	if session['user'] == 'Admin':
 	  file = request.files['file']
 	  if allowed_file(file.filename):
