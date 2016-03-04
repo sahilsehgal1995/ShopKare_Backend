@@ -60,9 +60,11 @@ def registerProduct(MainCategory, SubCategory, product):
   try:
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
+    product = json.loads(product)
+    return str(product), '[]'
     for index, hashed in enumerate(product['Quantity']):
       del product['Quantity'][index]['$$hashKey']
-    product = json.loads(product)
+    return str(product), '[]'
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     if not iter.count():
@@ -74,8 +76,8 @@ def registerProduct(MainCategory, SubCategory, product):
     gc.collect()
     return 'Registered', product['_id']
   except Exception as e:
-    print str(e)
-    return 'Unable to Register'
+    return str(e)
+    return 'Unable to Register', '[]'
 
 def removeProduct(MainCategory, SubCategory, pid):
   try:
