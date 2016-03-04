@@ -13,7 +13,8 @@
         <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
          <script type="text/javascript" src="http://shopkare.com/Admin/static/js/Controllers/add_product.js"></script>
      
-	 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
 
 		<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
@@ -37,6 +38,9 @@
     filter: alpha(opacity=0);
 }
 	 </style>
+   <script type="text/javascript">
+</script>
+
 </head>
 <body>
     <div id="wrapper">
@@ -48,13 +52,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  class="navbar-brand" href="http://shopkare.com/Admin/static/products.html">Admin Portal
+                <a  class="navbar-brand" href="products.html">Admin Portal
 
                 </a>
             </div>
 
             <div class="notifications-wrapper">
-<ul class="nav">
+                <ul class="nav">
                
                
                 <li class="dropdown navbar-right">
@@ -87,23 +91,23 @@
                         <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
                     </li>
                     <li>
-                        <a href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
+                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
                         
                     </li>
                     
                     <li>
-                        <a  href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
+                        <a  href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
                         
                     </li>
                    
                     <li>
-                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
-                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
 							<li>
-                        <a    href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
                    
                 </ul>
@@ -127,10 +131,12 @@
                     <div style="padding-top:30px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-                       
-                                    
-  
+   <fieldset class="form-group">
+<!--    <label for="text">City(Region)</label>
+    <select class="btn btn-default dropdown-toggle" type="button" ng-model="city">  
+    <option value="{{city}}" ng-repeat="city in categories">{{category._id}} </option>
+    </select>
+-->
   <fieldset class="form-group">
     <label for="text">Product Name</label>
     <input type="text" class="form-control" id="text" placeholder="Product Name" ng-model="Product.product_name">
@@ -163,29 +169,31 @@
    <br>
     <fieldset class="form-group">
     <label for="number">Enter Quantities And Price :<br></label><br>
-    <div id="Add_New" ng-repeat="q in Product.Quantity">
-     <input type="text" id="text" placeholder="Product Quantity" ng-model="q.Quantity[0]" value="{{q.Quantity[0]}}">
+    <div id="Add_New" ng-repeat="q in quantities">  
+  <input type="text" id="text" placeholder="Product Quantity" ng-model="q.Quantity[0]" value="{{q.Quantity[0]}}">
     <input type="number" id="text" placeholder="Product Price"  ng-model="q.Quantity[1]" value="{{q.Quantity[1]}}"><br>  
-   </div>
+    </div>
+
 <button ng-click="button_function(q)"> Add More Quantities</button>
+<button ng-click="ShowQuantity()"> ShowData</button>
 
   </fieldset>
-<!--<form action="/api/Admin/imageUpload/" id="myForm">
 <fieldset>
-              <label>Select Image:</label> 
-              <br><input type=file class="form-control" name="file1" multiple max-uploads=5 required/>
-            </fieldset>
-            </form>-->
-            <label>{{reply}} <br></label>
-  <button class="btn btn-primary" ng-click="addProduct()" ng-disabled="!Product.product_name || !Product.description || !l1category || !mainCategory || !subcategoryindex">Submit</button>
-   
+    <div>
+        <input type="file" id="file" name="file" multiple
+            onchange="angular.element(this).scope().getFileDetails(this)" />
+
+        <!--ADD A PROGRESS BAR ELEMENT.-->
+        <p><progress id="pro" value="0" ></progress></p>
+    </div>
+</fieldset>
+  <label>{{reply}} <br></label>
+  <button class="btn btn-primary" ng-click="uploadFiles()">Submit</button>
+   <!-->
     
     </div></div></div></div></div></div>      		
 			</div>
-						</div></div>
-		
-		
-		   <footer >
+					 <footer >
           <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>
     <!-- /. FOOTER  -->
@@ -197,27 +205,9 @@
     <!-- METISMENU SCRIPTS -->
     <script src="http://shopkare.com/Admin/static/assets/js/jquery.metisMenu.js"></script>
     <!-- CUSTOM SCRIPTS -->
-    <script src="http://127.0.0.1:5000/Admin/static/assets/js/custom.js"></script>
-
-<script type="text/javascript">
-function load_more_options () {
-
-  var container = document.getElementById("Add_New");
-   var input = document. createElement("input");
-   input.type = "text";
-   input.placeholder="Product Quantity and Type";
-   input.name = "";
-   var input1 = document.createElement("input");
-   input1.type = "number";
-   input1.name = "";
-   input1.placeholder="Product Price";
-   container.appendChild(input);
-   container.appendChild(input1);
-   container.appendChild(document.createElement("br"))
-                
-}
-
-</script>
+    <script src="http://shopkare.com/Admin/static/assets/js/custom.js"></script>
+ 
+ 
 
 </body>
 </html>
