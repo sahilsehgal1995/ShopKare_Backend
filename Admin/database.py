@@ -61,11 +61,9 @@ def registerProduct(MainCategory, SubCategory, product):
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
     product = json.loads(product)
-    #return str(product), '[]'
     for index,val in enumerate(product['Quantity']):
       for i,val in enumerate(product['Quantity'][index]["Quantities"]):
 	del product['Quantity'][index]["Quantities"][i]["$$hashKey"]
-    return str(product), '[]'
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     if not iter.count():
@@ -102,7 +100,7 @@ def ProductImagePath(level1Category, MainCategory, SubCategory, pid):
   try:
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
-    level1Category = SubCategory.replace(" ","_")
+    level1Category = level1Category.replace(" ","_")
     path = os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
     if not os.path.exists(path):
       os.makedirs(os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/")

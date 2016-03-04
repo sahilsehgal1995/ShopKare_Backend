@@ -60,7 +60,6 @@ def add_routes(app=None):
 	  for f in file:
 	    if not allowed_file(f.filename):
 	      return f.filename + ' File Note Allowed'
-	  return 'Uploaded'
 	  product = json.loads(request.args.get('product'))
 	  reply, pid = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
 	  if reply == 'Registered':
@@ -75,7 +74,7 @@ def add_routes(app=None):
 	return 'Authentication Failed'
       return 'Invalid Request'
     except Exception as e:
-      print str(e)
+      return str(e)
       return 'Unable to Add'
   
   @Admin.route('/api/Admin/removeProduct/', methods=['GET','POST'])
