@@ -48,7 +48,7 @@
         };
        		// NOW UPLOAD THE FILES.
         $scope.uploadFiles = function () {
-
+	     $scope.status="Please while the products are being Uploaded..."
             //FILL FormData WITH FILE DETAILS.
 	    console.log("Sumitted");
             var data = new FormData();
@@ -82,15 +82,15 @@
 
         // UPDATE PROGRESS BAR.
         function updateProgress(e) {
-            if (e.lengthComputable) {
-                document.getElementById('pro').setAttribute('value', e.loaded);
-                document.getElementById('pro').setAttribute('max', e.total);
-            }
+//             if (e.lengthComputable) {
+//                 document.getElementById('pro').setAttribute('value', e.loaded);
+//                 document.getElementById('pro').setAttribute('max', e.total);
+//             }
         }
 
         // CONFIRMATION.
         function transferComplete(e) {
-            console.log(e.currentTarget.response);
+            $scope.status=e.currentTarget.response;
         }
                
      
