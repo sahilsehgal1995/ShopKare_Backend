@@ -48,13 +48,13 @@ def loginCustomer(user):
       del reply['Password']
       connection.close()
       gc.collect()
-      return 'Login Sucess', reply
+      return 'Login Success', reply
     else:
       connection.close()
       gc.collect()
       return 'Authentication Failed', '[]'
   except Exception as e:
-    print str(e)
+    return str(e)
     return 'Unable to Login', '[]'
 
 def OrderPlacement(cartItems, cid):

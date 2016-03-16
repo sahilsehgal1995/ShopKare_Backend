@@ -357,7 +357,7 @@ def loginDeliveryBoy(user):
   except Exception as e:
     print str(e)
     return 'Unable to Login', '[]'  
-  
+
 def updateOrderStatus(Did, orderID, status):
   try:
     connection, db, collection = MongoDBconnection('DeliveryBoy', Did)
@@ -377,9 +377,26 @@ def updateOrderStatus(Did, orderID, status):
     print str(e)
     return 'Unable to Update'
 
+def VerifyOrder(Did, orderID, otp):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Orders')
+    iter = collection.find({"_id":orderID},{"OTP":True})
+    if iter.count() and iter[0]['OTP']== otp:
+      reply = updateOrderStatus(Did, orderID, 'Delivered')
+      if reply == 'Updated':
+	connection.close()
+	gc.collect()
+	return 'Order Delivered'
+    connection.close()
+    gc.collect()
+    return 'Invalid OTP'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Update'
+
 def FetchOrders(userMode, Did):
   try:
-    return '[{"OrderID":"O_101","Products":[{"ProductID":"P_101","PName":"Pepsi","Quantiy":"1 Liter","Price":"RS80"},{"ProductID":"P_102","PName":"Coca","Quantiy":"300 ML","Price":"Rs60"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sahil Sehgal","Mobile":"9988776655","City":"Roorkee","state":"Utrakhand", "Address":"IIT Roorkee","Total amount":"1000"},{"OrderID":"O_102","Products":[{"ProductID":"P_110","PName":"Goodday","Quantiy":"1 Packet","Price":"Rs10"},{"ProductID":"P_112","PName":"50-50 Biscuits","Quantiy":"300gm","Price":"Rs20"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sandeep","Mobile":"9188776655","City":"Hyderabad","state":"Andhra Pardesh", "Address":"RamKoti","Total amount":"2000"}]'
+    return '[{"_id":"O_101","Products":[{"ProductID":"P_101","PName":"Pepsi","Quantiy":"1 Liter","Price":"RS80"},{"ProductID":"P_102","PName":"Coca","Quantiy":"300 ML","Price":"Rs60"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sahil Sehgal","Mobile":"9988776655","City":"Roorkee","state":"Utrakhand", "Address":"IIT Roorkee","Total amount":"1000"},{"_id":"O_102","Products":[{"ProductID":"P_110","PName":"Goodday","Quantiy":"1 Packet","Price":"Rs10"},{"ProductID":"P_112","PName":"50-50 Biscuits","Quantiy":"300gm","Price":"Rs20"},{"ProductID":"P_103","PName":"Limca","Quantiy":"1 Liter","Price":"Rs90"}],"Customer Name":"Sandeep","Mobile":"9188776655","City":"Hyderabad","state":"Andhra Pardesh", "Address":"RamKoti","Total amount":"2000"}]'
     connection, db, collection = MongoDBconnection(userMode, Did)
     if userMode == 'DeliveryBoy':
       iter = collection.find({"status":"Pending"})
@@ -400,7 +417,8 @@ def testing():
   return json.dumps(x) 
 
 if __name__ == '__main__':
-  print testing()
+  #print testing()
+  print VerifyOrder('D_1',"O_102",'9182')
   #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()

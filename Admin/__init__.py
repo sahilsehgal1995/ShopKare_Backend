@@ -1,6 +1,6 @@
 from flask import Blueprint, session, request, send_from_directory
 from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct, loginDeliveryBoy, registerDeliveryBoy
-from database import updateOrderStatus, FetchOrders
+from database import updateOrderStatus, FetchOrders, VerifyOrder
 import json, os
 from werkzeug import secure_filename
 
@@ -292,6 +292,15 @@ def add_routes(app=None):
 	return reply
       elif session['user'] == 'Admin':
 	reply = FetchOrders('Admin', 'Orders')
+	return reply
+      return 'Authentication Failed'
+    return 'Invalid Request'
+  
+  @Admin.route('/api/Admin/verifyorder/', methods=['GET','POST'])
+  def verifyOrder():
+    if request.method == 'POST':
+      if session['user'] == 'Delivery Boy':
+	reply = VerifyOrder(session['id'],request.args.get('orderID'), request.args.get('otp'))
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'

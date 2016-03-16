@@ -1,6 +1,7 @@
 from flask import Blueprint, session, request
 from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement
-
+import json
+import gc
 def add_routes(app=None):
   Customer = Blueprint('Customer', __name__, static_url_path='/Customer/static', static_folder='./static', template_folder='./templates')
   
@@ -8,16 +9,25 @@ def add_routes(app=None):
   def home():
     return 'Customer page'
   
+  @Customer.route('/api/Customer/logout/')
+  def logout():
+    try:
+      session.clear()
+      gc.collect()
+      return 'Logged out'
+    except Exception as e:
+      return str(e)
+  
   @Customer.route('/api/Customer/login/', methods=['GET','POST'])
   def login():
     if request.method == 'POST':
       reply, user = loginCustomer(request.args.get('user'))
-      if reply == 'Login Sucess':
+      if reply == 'Login Success':
 	session['id'] = user['_id']
 	session['Email'] = user['Email']
 	session['user'] = 'Customer'
 	user['response']='Login Successfull'
-	return json.dumps(user)
+	return reply
       else:
 	return reply
     return 'Invalid Request'

@@ -31,7 +31,8 @@ def categoryProducts(level1Category, MainCategory, SubCategory):
     level1Category = level1Category.replace(" ","_")
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
-    connection, db, collection = MongoDBconnection(MainCategory.replace(" ","_"), SubCategory.replace(" ","_"))
+    print MainCategory, SubCategory 
+    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     products = list()
     if not iter.count():
@@ -69,4 +70,5 @@ def newProducts(level1Category, MainCategory, SubCategory):
     
  
 if __name__ == "__main__":
-  print newProducts('Grocery', 'Bakery', 'Cakes')
+  print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
+  #print newProducts('Grocery', 'Bakery', 'Cakes')
