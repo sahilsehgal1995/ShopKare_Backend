@@ -1,6 +1,6 @@
 from flask import Blueprint, session, request, send_from_directory
 from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct, loginDeliveryBoy, registerDeliveryBoy
-from database import updateOrderStatus, FetchOrders, VerifyOrder
+from database import updateOrderStatus, FetchOrders, updateProduct, VerifyOrder
 import json, os
 from werkzeug import secure_filename
 
@@ -87,6 +87,16 @@ def add_routes(app=None):
 	if reply =='Registered':
 	  path = ProductImagePath(product['Main Category'], product['Sub Category'], product['_id'])
 	return reply
+      return 'Authentication Failed'
+    return 'Invalid Request'
+  
+  @Admin.route('/api/Admin/updateProduct/', methods=['GET','POST'])
+  def Updateproduct():
+    if request.method == 'POST':
+      if session['user'] == 'Admin':
+	product = json.loads(request.args.get('product'))
+	del product['$$hashKey']
+	return updateProduct(product['Main Category'], product['Sub Category'], product)
       return 'Authentication Failed'
     return 'Invalid Request'
   

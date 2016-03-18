@@ -78,6 +78,22 @@ def registerProduct(MainCategory, SubCategory, product):
     return str(e)
     return 'Unable to Register', '[]'
 
+def updateProduct(MainCategory, SubCategory, product):
+  try:
+    MainCategory = MainCategory.replace(" ","_")
+    SubCategory = SubCategory.replace(" ","_")
+    for index,val in enumerate(product['Quantity']):
+      for i,val in enumerate(product['Quantity'][index]["Quantities"]):
+	del product['Quantity'][index]["Quantities"][i]["$$hashKey"]
+    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
+    collection.update({"_id":product['_id']},product)
+    connection.close()
+    gc.collect()
+    return 'Updated'
+  except Exception as e:
+    print str(e)
+    return 'Unable to update'
+
 def removeProduct(MainCategory, SubCategory, pid):
   try:
     MainCategory = MainCategory.replace(" ","_")
@@ -418,7 +434,7 @@ def testing():
 
 if __name__ == '__main__':
   #print testing()
-  print VerifyOrder('D_1',"O_102",'9182')
+  #print VerifyOrder('D_1',"O_102",'9182')
   #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
@@ -426,8 +442,8 @@ if __name__ == '__main__':
   #print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
   #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
-  #print removelevel1Category('Grocery')
-  #print addlevel1Category('Grocery')
+  print removelevel1Category('Electricals')
+  #print addlevel1Category('Electricals')
   #print RemoveBatch('P_1_1_1',"B_3")
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
   #print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
