@@ -139,6 +139,16 @@ def AddBatch(pid, Batch):
     print str(e)
     return 'Unable to Add'
 
+def UpdateBatch(pid, Batch):
+  try:
+    Batch = json.loads(Batch)
+    connection, db, collection = MongoDBconnection('Batches', pid)
+    collection.update({"_id":pid},Batch)
+    return "Updated"
+  except Exception as e:
+    print str(e)
+    return 'Unable to Update'
+
 def RemoveBatch(pid, BatchID):
   try:
     connection, db, collection = MongoDBconnection('Batches', pid)

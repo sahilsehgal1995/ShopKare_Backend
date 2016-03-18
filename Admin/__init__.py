@@ -1,6 +1,6 @@
 from flask import Blueprint, session, request, send_from_directory
 from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct, loginDeliveryBoy, registerDeliveryBoy
-from database import updateOrderStatus, FetchOrders, updateProduct, VerifyOrder
+from database import updateOrderStatus, FetchOrders, updateProduct, VerifyOrder, UpdateBatch
 import json, os
 from werkzeug import secure_filename
 
@@ -141,6 +141,15 @@ def add_routes(app=None):
     if request.method == 'POST':
       if session['user'] == 'Admin':
 	reply = AddBatch(request.args.get('pid'), request.args.get('Batch'))
+	return reply
+      return 'Authentication Failed'
+    return 'Invalid Request'
+  
+  @Admin.route('/api/Admin/UpdateBatch/', methods=['GET','POST'])
+  def updateBatch():
+    if request.method == 'POST':
+      if session['user'] == 'Admin':
+	reply = UpdateBatch(request.args.get('pid'), request.args.get('Batch'))
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'
