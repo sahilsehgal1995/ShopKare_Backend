@@ -1,0 +1,37 @@
+<div class="features_items"><br><!--features_items-->
+					<h2 class="title text-center">Available Products</h2>
+						<div class="col-sm-4" ng-repeat ="p in products.slice(Pindex,2)">
+							<div class="product-image-wrapper">
+								<div class="single-products">
+									<div class="productinfo text-center">
+										<img ng-src="http://shopkare.com{{p.images[0]}}" height="200px" alt="{{p.product_name}}" />
+										<h2>{{p.product_name}}</h2>
+										<select ng-model="k" ng-init="k='0'">
+											<option value ="{{$index}}" ng-repeat="k in p.Qwt">{{k}}</option>
+										</select>
+										<p> Rs {{p.Qrs[k]}}</p>
+										
+										<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k)"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>
+
+										<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>
+
+										<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>
+
+									</div>
+									
+								</div>
+								<!--<div class="choose">
+									<ul class="nav nav-pills nav-justified">
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+										<li><a href=""><i class="fa fa-plus-square"></i>Add to compare</a></li>
+									</ul>
+								</div>-->
+							</div>
+						</div>
+						<div class="row">
+						<center><ul class="pagination">
+							<li ng-repeat="p in NO_PAGES"><a ng-click="setIndexp(p)">{{p+1}}</a></li>
+							</ul></center>
+						</div>
+					</p>
+					</div><!--features_items-->

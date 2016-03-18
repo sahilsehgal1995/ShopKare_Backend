@@ -1,0 +1,230 @@
+
+app.controller('AppCTRL',['$scope','$http', '$window',function($scope, $http, $window){
+ var base = 'http://shopkare.com';
+  var categories = [];
+  var level1keys= [];
+    console.log('App control');
+     $http.post(base+'/api/Admin/reteriveCategories/')
+  .success(function(data){
+    categories = data;
+    console.log()
+    level1keys = Object.keys(data)
+    for (key in level1keys)
+    {
+      level1keys[key] = data[key]._id;
+      console.log(data[key]._id);
+    }
+    
+    $scope.categories = categories;
+    console.log(data);
+  })
+  .error(function(err){
+    console.log(err);
+  });
+  $scope.mainCategories = [];
+  $scope.MAINCATEGORY="";
+  $scope.subcategories=[];
+  $scope.SUBCATEGORY="";
+    $scope.selectLevel1Category = function()
+    {
+      $scope.mainCategories=[];
+      var a = JSON.parse($scope.l1category);
+      $scope.MainCategories = a.Categories; 
+//       console.log(a.Categories);
+      $scope.level1keys = Object.keys(a.Categories);
+      
+//  console.log(Object.keys(a.Categories[]));
+  for (key in $scope.level1keys)
+  {
+    $scope.mainCategories.push(Object.keys(a.Categories[key])[0]);
+  }
+  //console.log($scope.mainCategories);
+    };
+    
+    $scope.selectmainCategory = function(){
+     
+      $scope.subcategories = JSON.parse($scope.l1category).Categories[$scope.mainCategory];
+      $scope.MAINCATEGORY=$scope.mainCategories[$scope.mainCategory];
+      console.log($scope.MAINCATEGORY);
+      var mainCategory = $scope.mainCategories[$scope.mainCategory]; 
+  console.log($scope.subcategories[mainCategory]);
+      $scope.subcategories = $scope.subcategories[mainCategory];
+//       console.log(Object.keys(a.Categories[key])[0]); 
+    };
+    $scope.selectsubcategories=function(){
+      $scope.SUBCATEGORY=$scope.subcategories[$scope.subcategoryindex];
+      $scope.getProducts();
+      console.log($scope.SUBCATEGORY);
+      
+      
+    };
+    $scope.getproducts = function()
+    {
+      var id = level1keys.indexOf(JSON.parse($scope.l1category)._id).toString() + $scope.mainCategory.toString() + $scope.subcategoryindex.toString();
+      console.log(id);
+    };
+    
+  
+    
+   $scope.getProducts=function(){
+     $http.post("/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
+     .success(function(response) {
+       $scope.reply=response;
+       $scope.products=response;
+       console.log($scope.reply);
+       //$window.location.href=base+"/Admin/static/products.html";
+     })
+     .error(function(error){
+       $scope.error=error;
+    });
+   };
+   
+   
+   $scope.selectproducts=function(){
+       $scope.product=$scope.products[$scope.productindex];
+       console.log($scope.product);
+       $scope.quantity=$scope.products[$scope.productindex].Quantity;
+       console.log($scope.quantity);
+       
+        var x=$scope.productindex;
+   console.log(x);
+   $scope.p_id=$scope.products[x]._id;  
+    console.log($scope.p_id);
+   
+     };
+  
+}]);
+   
+   
+
+
+
+
+
+app.controller('cartitems',['$scope','$http', function($scope,$http){ 
+console.log("cart controller");
+$scope.cartProducts={};
+console.log($scope.cartProducts);
+$scope.post_login_data=function(){
+  $http.post("url")
+  .success(function(data){
+    console.log(data);
+    $scope.cartProducts=data;
+  })
+  .error(function(data){
+    console.log(data);
+  });
+ };
+
+}]);
+
+app.controller('productBycategory',['$scope','$http', function($scope,$http){ 
+$scope.getProducts=function(id){
+  $scope.RES=id;
+  console.log($scope.RES);
+ /* $http.post("url?category="+$scope.tab)
+  .success(function(data){
+    $scope.products=data;
+    console.log("Data Available");
+  })
+  .error(function(response){
+    console.log(response);
+  });*/
+};
+}]);
+app.controller('featuredProducts',['$scope','$http', function($scope,$http){ 
+console.log('featuredProducts');
+  /*$http.get("url")
+  .success(function(data){
+    $scope.products=data;
+    console.log($scope.products);
+  })
+  .error(function(response){
+    console.log(response);
+  }); */
+}]);
+app.controller('recommended',['$scope','$http', function($scope,$http){ 
+   console.log('recommended');
+  /*$http.get("url")
+  .success(function(data){
+    $scope.products=data;
+    console.log($scope.products);
+  })
+  .error(function(response){
+    console.log(response);
+  }); */
+}]);
+app.controller('leftmenu',['$scope','$http', function($scope,$http){ 
+  console.log('leftmenu');
+  /*$http.get("url")
+  .success(function(data){
+    $scope.products=data;
+    console.log($scope.products);
+  })
+  .error(function(response){
+    console.log(response);
+  }); */
+
+}]);
+
+
+app.controller('contactus',['$scope','$http', function($scope,$http){ 
+$scope.contact={};
+console.log($scope.contact);
+$scope.post_data=function(){
+  console.log($scope.contact);
+
+  $http.post("url")
+  .success(function(data){
+    console.log(data);
+
+  })
+  .error(function(response){
+    console.log(response);
+  });
+};
+
+}]);
+
+
+app.controller('login',['$scope','$http', function($scope,$http){ 
+$scope.loginD={};
+$scope.signup={};
+console.log($scope.signup);
+console.log($scope.loginD);
+$scope.post_login_data=function(){
+  console.log($scope.loginD);
+  $http.post("url")
+  .success(function(data){
+    console.log(data);
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  $scope.loginD={};
+};
+$scope.post_signup_data=function(){
+  console.log($scope.signup);
+  $http.post("url")
+  .success(function(data){
+    console.log(data);
+  })
+  .error(function(data){
+    console.log(data);
+  });
+  $scope.signup={};
+};
+
+}]);
+
+
+
+
+
+
+
+    
+               
+ 
+ 
+ 
