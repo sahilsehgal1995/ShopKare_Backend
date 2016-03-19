@@ -305,7 +305,6 @@ def reteriveBatches(pid):
 
 def updateProduct(product, MainCategory, SubCategory):
   try:
-    product = json.loads(product)
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)

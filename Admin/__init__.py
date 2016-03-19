@@ -94,7 +94,7 @@ def add_routes(app=None):
     if request.method == 'POST':
       if session['user'] == 'Admin':
 	product = json.loads(request.args.get('product'))
-	return updateProduct(product['Main Category'], product['Sub Category'], product)
+	return updateProduct(product, product['Main Category'], product['Sub Category'])
       return 'Authentication Failed'
     return 'Invalid Request'
   
