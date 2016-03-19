@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request
-from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement
+from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement, NewCourierOrder
 import json
 import gc
 def add_routes(app=None):
@@ -50,7 +50,20 @@ def add_routes(app=None):
       return 'Invalid Request'
     except Exception as e:
       return str(e)
-    
+  
+  @Customer.route('/api/Customer/NewCourierOrder/', methods=['GET','POST'])
+  def newCourierOrder():
+    try:
+      if request.method == 'POST':
+	if session['user'] == 'Customer':
+	  reply = NewCourierOrder(session['id'], request.args.get('order'))
+	  return reply
+	return 'User Not Logged IN'
+      return 'Invalid Request'
+    except Exception as e:
+      return str(e)
+      return 'Unable to Place order right now'
+  
   @Customer.route('/api/Customer/FetchOrders/', methods=['GET','POST'])
   def Fetchorders():
     if request.method == 'POST':

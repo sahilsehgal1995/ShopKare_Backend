@@ -81,6 +81,30 @@ def OrderPlacement(cartItems, cid):
     print str(e)
     return 'Unable to Place'
 
+def NewCourierOrder(cid,order):
+  try:
+    connection, db, collection = MongoDBconnection('Courier', cid)
+    order = json.loads(order)
+    order['status']= 'Fresh'
+    iter = collection.find()
+    if not iter.count():
+      order['_id']='CO_'+'1'
+    else:
+      order['_id'] = 'CO_' + str(int(iter[iter.count()-1]['_id'].split("_")[-1])+1)
+    collection.insert(order)
+    connection.close()
+    gc.collect()
+    connection, db, collection = MongoDBconnection('Courier', 'Orders')
+    order['cid']=cid
+    collection.insert(order)
+    connection.close()
+    gc.collect()
+    return 'Order Placed'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Fetch'
+
+
 def FetchOrders(cid):
   try:
     connection, db, collection = MongoDBconnection('Customer', cid)
