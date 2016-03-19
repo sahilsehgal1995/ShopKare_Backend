@@ -257,19 +257,6 @@ def add_routes(app=None):
       print str(e)
       return 'Unable to Fetch'
     
-  @Admin.route('/api/Admin/updateProduct/', methods=['GET','POST'])
-  def UpdateProduct():
-    try:
-      if request.method == 'POST':
-	if session['user'] == 'Admin':
-	  reply = updateProduct(request.args.get('product'), request.args.get('MainCategory'), request.args.get('SubCategory'))
-	  return reply
-	return 'Authentication Failed'
-      return 'Invalid Request'
-    except Exception as e:
-      print str(e)
-      return 'Unable to Fetch'
-    
   @Admin.route('/api/Admin/DeliveryBoylogin/', methods=['GET','POST'])
   def DeliveryBoylogin():
     if request.method == 'POST':
