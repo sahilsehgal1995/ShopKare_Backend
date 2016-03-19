@@ -312,8 +312,8 @@ def updateProduct(product, MainCategory, SubCategory):
     collection.update({"_id":product['_id']},product)
     return 'Updated'
   except Exception as e:
-    print str(e)
-    return 'Unable to update'
+    return str(e)
+    return 'Update Failed'
 
 def updateBatch (pid, batch):
   try:
@@ -429,14 +429,14 @@ def testing():
 if __name__ == '__main__':
   #print testing()
   #print VerifyOrder('D_1',"O_102",'9182')
-  #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
+  print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
   #print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
   #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
-  print removelevel1Category('Electricals')
+  #print removelevel1Category('Electricals')
   #print addlevel1Category('Electricals')
   #print RemoveBatch('P_1_1_1',"B_3")
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')

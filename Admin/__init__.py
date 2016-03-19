@@ -1,6 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, updateProduct, loginDeliveryBoy, registerDeliveryBoy
-from database import updateOrderStatus, FetchOrders, VerifyOrder, UpdateBatch
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, UpdateBatch, updateProduct
 import json, os
 from werkzeug import secure_filename
 
