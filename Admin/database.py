@@ -78,22 +78,6 @@ def registerProduct(MainCategory, SubCategory, product):
     return str(e)
     return 'Unable to Register', '[]'
 
-def updateProduct(MainCategory, SubCategory, product):
-  try:
-    MainCategory = MainCategory.replace(" ","_")
-    SubCategory = SubCategory.replace(" ","_")
-    for index,val in enumerate(product['Quantity']):
-      for i,val in enumerate(product['Quantity'][index]["Quantities"]):
-	del product['Quantity'][index]["Quantities"][i]["$$hashKey"]
-    connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
-    collection.update({"_id":product['_id']},product)
-    connection.close()
-    gc.collect()
-    return 'Updated'
-  except Exception as e:
-    print str(e)
-    return 'Unable to update'
-
 def removeProduct(MainCategory, SubCategory, pid):
   try:
     MainCategory = MainCategory.replace(" ","_")
