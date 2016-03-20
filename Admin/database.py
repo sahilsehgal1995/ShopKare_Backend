@@ -366,6 +366,21 @@ def loginDeliveryBoy(user):
   except Exception as e:
     print str(e)
     return 'Unable to Login', '[]'  
+
+def removeDeliveryBoy(id):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'DeliveryBoy')
+    collection.remove({"_id":id})
+    connection.close()
+    gc.collect()
+    connection, db, collection = MongoDBconnection('DeliveryBoy', id)
+    collection.drop()
+    connection.close()
+    gc.collect()
+    return 'Removed'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
   
 def reterieveDeliveryBoys():
   try:
@@ -440,7 +455,8 @@ def testing():
 
 if __name__ == '__main__':
   #print testing()
-  print reterieveDeliveryBoys()
+  print removeDeliveryBoy('D_1')
+  #print reterieveDeliveryBoys()
   #registerDeliveryBoy('{"Mobile":"9780008628","Email":"sahil@gmail.com", "Password":"1234", "Name":"Sahil"}')
   #print VerifyOrder('D_1',"O_102",'9182')
   #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')

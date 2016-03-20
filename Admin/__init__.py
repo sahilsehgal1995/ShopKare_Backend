@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, UpdateBatch, updateProduct, reterieveDeliveryBoys
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, UpdateBatch, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
 import json, os
 from werkzeug import secure_filename
 
@@ -275,6 +275,15 @@ def add_routes(app=None):
     if request.method == 'POST':
       if session['user'] == 'Admin':
 	reply = registerDeliveryBoy(request.args.get('user'))
+	return reply
+      return 'Authentication Failed'
+    return 'Invalid Request'
+  
+  @Admin.route('/api/Admin/removeDeliveryBoy/', methods=['GET','POST'])
+  def RemoveDeliveryBoy():
+    if request.method == 'POST':
+      if session['user'] == 'Admin':
+	reply = removeDeliveryBoy(request.args.get('id'))
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'
