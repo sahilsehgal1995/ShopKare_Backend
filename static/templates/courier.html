@@ -1,58 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/font-awesome.min.css" rel="stylesheet">
-    <link href="css/prettyPhoto.css" rel="stylesheet">
-    <link href="css/price-range.css" rel="stylesheet">
-    <link href="css/animate.css" rel="stylesheet">
-	<link href="css/main.css" rel="stylesheet">
-	<link href="css/responsive.css" rel="stylesheet">
-	
-	<link rel="stylesheet" type="text/css" href="New folder/style.css">
-	
-	
-    <link rel="shortcut icon" href="images/ico/favicon.ico">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="images/ico/apple-touch-icon-57-precomposed.png">
-
-		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
-
-		<link href="http://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-
-	
-</head>
-	 <style>
-	 .fileUpload {
-    position: relative;
-    overflow: hidden;
-    margin: 10px;
-}
-.fileUpload input.upload {
-    position: absolute;
-    top: 0;
-    right: 0;
-    margin: 0;
-    padding: 0;
-    font-size: 20px;
-    cursor: pointer;
-    opacity: 0;
-    filter: alpha(opacity=0);
-}
-	 </style>
-<style>
-.btn-success {
-    background: #26734d;
-    color: #ffffff;
-}
- 
-</style>
-
-		
- <div class="container"  >    
+ <div class="container"> 
         <div id="loginbox1" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-success" >
                     <div class="panel-heading">
@@ -66,58 +12,58 @@
                             
                        
                                     
-          <form id="signupform" class="form-horizontal" role="form" method='post' action="/signup/">
+          <form id="signupform" class="form-horizontal" role="form">
+          	<center><b><span style="color:red">{{MessageCourrierError}}</span><span style="color:green">{{MessageCourrierSuccess}}</span><b></center>
+          		<br>
 							<div class="top-margin">
 								<label>Full Name</label>
-								<input type="text" class="form-control" name="firstName">
+								<input type="text" class="form-control" name="firstName"
+								ng-model="CourierDetails.Name">
 							</div>
 							<br>
 							<div class="top-margin">
 								<label>Email Address <span class="text-danger">*</span></label>
-								<input type="email" name="email" class="form-control">
+								<input type="email" name="email" class="form-control"
+								ng-model="CourierDetails.Email">
 							</div>
 							<br>
 							<div class="top-margin">
 								<label>Mobile Number <span class="text-danger">*</span></label>
-								<input type="email" name="phonenumber" class="form-control">
+								<input type="number" name="phonenumber" class="form-control" ng-model="CourierDetails.Mobile">
 							</div>
 							<br>
-							
+						<span style="color:red"><b>{{PasswordMsg}}</b></span>
 							<div class="row top-margin">
 								<div class="col-sm-6">
 									<label>Password <span class="text-danger">*</span></label>
-									<input type="password" class="form-control" name="password">
+									<input type="password" class="form-control" name="password" ng-model="CourierDetails.Password">
 								</div>
 								<div class="col-sm-6">
 									<label>Confirm Password <span class="text-danger">*</span></label>
-									<input type="password" class="form-control" name="confirmpassword" required>
+									<input type="password" class="form-control" name="confirmpassword" ng-model="password2"required ng-change="checkPassword()">
 								</div>
 							</div>
 							<br>
 							<div class="top-margin">
 								<label>Item Name</label>
-								<input type="text" class="form-control" name="ItemName">
+								<input type="text" class="form-control" name="ItemName"
+								ng-model="CourierDetails.Item">
 							</div>
 							<br>
 							<div class="form-group">
 							 <div class="col-sm-12">
     <label for="exampleTextarea">Item Details (if any)</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    <textarea class="form-control" id="exampleTextarea" rows="3" ng-model="CourierDetails.Itemdetails"></textarea>
 	</div>
   </div>
-							<hr>
-							<div class="row">
-								<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
 									<label class="checkbox">
-										<input type="checkbox"> I've read the <a href="page_terms.html">Terms and Conditions</a>
-									</label>                        
-								</div><br>
-								
-								
-    								<div class="col-lg-3 col-md-5 col-sm-4  text-right">
-									<button class="btn btn-success" type="submit">Sign Up</button>
+										<input type="checkbox" ng-model="checked"> I've read the <a href="">Terms and Conditions</a></label>
+
+								<hr><br><div class="row">									
+    								<center><button class="btn btn-success" type="submit" ng-disabled="!CourierDetails.Name || !CourierDetails.Email ||!CourierDetails.Password ||!CourierDetails.Mobile ||!CourierDetails.Item ||!CourierDetails.Itemdetails ||!checked" ng-click="courierSubmission()">Sign Up</button></center>
 								</div>
-							</div>
+								<br>
+						
 						</form>  
                             
 

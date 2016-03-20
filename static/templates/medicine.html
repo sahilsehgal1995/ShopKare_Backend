@@ -1,5 +1,5 @@
 
- <div class="container"  >    
+ <div class="container">    
         <div id="loginbox1" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
             <div class="panel panel-success" >
                     <div class="panel-heading">
@@ -9,38 +9,40 @@
 
                     <div style="padding-top:30px" class="panel-body" >
 
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                            
-                       
-                                    
-                       				<form>
-  
+                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>                                    
+  <form >
   <fieldset class="form-group">
     <label for="text"> Name</label>
-    <input type="text" class="form-control" id="text" placeholder="Your Name">
+    <input type="text" ng-model="MedicineDetails.Name" class="form-control" id="text" placeholder="Your Name">
   </fieldset>
   
    <fieldset class="form-group">
     <label for="exampleTextarea">Description (if any)</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    <textarea class="form-control" ng-model="MedicineDetails.Description" id="exampleTextarea" rows="3"></textarea>
   </fieldset>
   
    <fieldset class="form-group">
     <label for="exampleTextarea">Problem</label>
-    <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+    <textarea class="form-control" id="exampleTextarea" ng-model="MedicineDetails.Problem"rows="3"></textarea>
   </fieldset>
   
   
   
   <fieldset class="form-group">
     <label for="exampleSelect2">Upload Your Perscription</label><br>
-  <input id="uploadFile" placeholder="Choose Perscription" disabled="disabled" />
+  <input id="uploadFile" placeholder="Choose Perscription" ng-model="MedicineDetails.Prescription"/>
 <div class="fileUpload btn btn-primary">
     <span>Upload</span>
     <input id="uploadBtn" type="file" class="upload" />
 </div>
 </fieldset>
-  <button type="submit" class="btn btn-primary">Submit</button>
+
+              <hr><br>
+              <div class="row">                 
+                    <center><button class="btn btn-success"  ng-disabled="!MedicineDetails.Name || !MedicineDetails.Problem || !MedicineDetails.Description" ng-click="medi()">Sign Up</button></center>
+                </div>
+                <br>
+        
 </form>    
                             
 

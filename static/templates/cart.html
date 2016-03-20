@@ -14,8 +14,9 @@
 						<tr class="cart_menu">
 							<td class="image">Item</td>
 							<td class="price">Name</td>
-							<td class="description">Description</td>
-							<td class="total">Price</td>
+							<td class="quantity">Price</td>
+							<td class="total">Quantity</td>
+							<td class="price">Total Price</td>
 							<td>Delete</td>
 						</tr>
 					</thead>
@@ -28,15 +29,23 @@
 							<td class="cart_price">
 								<p>{{p[1]}}</p>
 							</td>
-							<td class="description">
-								<h4><a href=""></a></h4>
-								<p>{{p[2]}}</p>
-							</td>
 							<td class="cart_total">
+								<p>{{p[2]}}</p>
 								<p class="cart_total_price">Rs.{{p[3]}}</p>
+							</td>		
+							<td class="cart_total">
+								<div class="cart_quantity_button">
+									<a class="cart_quantity_up"><button ng-click="addQuantity(p[5],$index)">+</button> </a>
+									<input class="cart_quantity_input" type="text" name="quantity" readonly value="1" ng-model="p[5]" size="2">
+									<a class="cart_quantity_up"><button ng-disabled="p[5]==1" ng-click="subQuantity(p[5],$index)">--</button> </a>
+								</div>
+							</td>
+							
+							<td class="cart_total">
+								<p class="cart_total_price">Rs.{{p[3]*p[5]}}</p>
 							</td>
 							<td class="cart_delete">
-								<a ng-click="removeFromcart(p,$index)"class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<a ng-click="removeFromcart(p,$index)" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
 							</td>
 						</tr>
 
@@ -44,7 +53,7 @@
 				</table>
 			</div>
 				<br>
-			<a href="home.html#/checkout"><center><button class="btn btn-block btn-info"> Finialise Your Order </button></center></a>
+			<a href="http://shopkare.com/static/home.html#/checkout"><center><button class="btn btn-block btn-info" ng-click="updateCart()"> Finialise Your Order </button></center></a>
 			</div>
 			<br>
 		</div>
@@ -59,7 +68,7 @@
 				</P>
 			<div class="row">
 			<p>
-				<a href="index.html"><button class="btn btn-success" > Continue Shopping </button></a>  on the <a href="home.html"> ShopKare.com</a> homepage, learn about today's deals and special offers....
+				<a href="http://shopkare.com/static/index.html"><button class="btn btn-success" > Continue Shopping </button></a>  on the <a href="http://shopkare.com/static/home.html"> ShopKare.com</a> homepage, learn about today's deals and special offers....
 			</p>	<br>
 				
 			</div>
