@@ -366,6 +366,19 @@ def loginDeliveryBoy(user):
   except Exception as e:
     print str(e)
     return 'Unable to Login', '[]'  
+  
+def reterieveDeliveryBoys():
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'DeliveryBoy')
+    iter = collection.find({},{"Password":False})
+    if not iter.count():
+      return '[]'
+    connection.close()
+    gc.collect()
+    return str(json.dumps(tuple(iter)))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Reterieve'
 
 def updateOrderStatus(Did, orderID, status):
   try:
@@ -427,8 +440,10 @@ def testing():
 
 if __name__ == '__main__':
   #print testing()
+  print reterieveDeliveryBoys()
+  #registerDeliveryBoy('{"Mobile":"9780008628","Email":"sahil@gmail.com", "Password":"1234", "Name":"Sahil"}')
   #print VerifyOrder('D_1',"O_102",'9182')
-  print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
+  #print updateProduct('{"_id":"123", "Name":"Sahil","Category":["Val1", "val2"]}', 'Bakery', 'Cakes')
   #print reteriveProducts('Bakery','Cakes')
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
