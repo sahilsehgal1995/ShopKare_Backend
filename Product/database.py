@@ -3,6 +3,7 @@ import json
 import os
 import gc
 from os import walk
+from random import randint
 
 base='http://www.filterlady.com/'
 
@@ -31,7 +32,6 @@ def categoryProducts(level1Category, MainCategory, SubCategory):
     level1Category = level1Category.replace(" ","_")
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
-    print MainCategory, SubCategory 
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     products = list()
@@ -67,8 +67,44 @@ def newProducts(level1Category, MainCategory, SubCategory):
   except Exception as e:
     print str(e)
     return 'Unable to Fetch'
-    
+
+def randomSubCategory(id, mainCategory, mainCategoryIndex):
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  subCategoryIndex = randint(0,len(iter[0]['Categories'][mainCategoryIndex][mainCategory])-1)
+  subCategory = iter[0]['Categories'][mainCategoryIndex][mainCategory][subCategoryIndex]
+  connection.close()
+  gc.collect()
+  return subCategory, subCategoryIndex
+
+def randomCategory(id):
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  randnumber = randint(0,len(iter[0]['Categories']) -1)
+  categories = iter[0]['Categories']
+  mainCategory = categories[randnumber]
+  subCategory, subCategoryIndex = randomSubCategory(id, mainCategory.keys()[0], randnumber)
+  connection.close()
+  gc.collect()
+  return mainCategory.keys()[0], randnumber, subCategory, subCategoryIndex
+
+def randomProducts(id):
+  mainCategory, mainCategoryIndex, subCategory, subCategoryIndex = randomCategory(id)
+  print mainCategory, mainCategoryIndex, subCategory, subCategoryIndex
+  return categoryProducts(id, mainCategory, subCategory)
+
+def randomMainCategoryProducts(id, mainCategory):
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  for index, category in enumerate(iter[0]['Categories']):
+    if mainCategory == category.keys()[0]:
+      mainCategoryIndex = index
+      break
+  subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
+  return categoryProducts(id, mainCategory, subCategory)
  
 if __name__ == "__main__":
-  print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
+  print randomProducts('Grocery')
+  #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
+  #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
   #print newProducts('Grocery', 'Bakery', 'Cakes')
