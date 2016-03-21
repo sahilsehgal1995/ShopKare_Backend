@@ -57,6 +57,20 @@ def loginCustomer(user):
     return str(e)
     return 'Unable to Login', '[]'
 
+def addToCart(cid, cartItem):
+  try:
+    connection, db, collection = MongoDBconnection('Cart', cid)
+    cartItem = json.loads(cartItem)
+    iter = collection.find()
+    if iter.count():
+      print 'hello world'
+    connection.close()
+    gc.collect()
+    return ''
+  except Exception as e:
+    print str(e)
+    return 'Unable to Add to cart'
+
 def OrderPlacement(cartItems, cid):
   try:
     connection, db, collection = MongoDBconnection('Customer', cid)

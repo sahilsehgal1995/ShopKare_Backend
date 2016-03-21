@@ -47,6 +47,26 @@ def categoryProducts(level1Category, MainCategory, SubCategory):
     print str(e)
     return 'Unable to Fetch'
   
+def categoryProductDetail(level1Category, MainCategory, SubCategory, pid):
+  try:
+    level1Category = level1Category.replace(" ","_")
+    MainCategory = MainCategory.replace(" ","_")
+    SubCategory = SubCategory.replace(" ","_")
+    connection, db, collection = MongoDBconnection(MainCategory.replace(" ","_"), SubCategory.replace(" ","_"))
+    iter = collection.find({"_id":pid})
+    products = list()
+    if not iter.count():
+      return '[]'
+    for i in iter:
+      i['images'] = getProductImages(level1Category,MainCategory, SubCategory, i['_id'])
+      products.append(i)
+    connection.close()
+    gc.collect()
+    return str(json.dumps(products))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Fetch'
+
 def newProducts(level1Category, MainCategory, SubCategory):
   try:
     level1Category = level1Category.replace(" ","_")

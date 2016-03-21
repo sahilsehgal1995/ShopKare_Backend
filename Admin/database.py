@@ -197,9 +197,11 @@ def removeMainCategory(level1category, MainCategory):
 	collection.update({"_id":level1category},{"Categories":categories['Categories']})
 	connection.close()
 	gc.collect()
+	connection.drop_database(MainCategory)
 	return 'Removed'
     connection.close()
     gc.collect()
+    
     return 'Removed'
   except Exception as e:
     print str(e)
@@ -455,7 +457,7 @@ def testing():
 
 if __name__ == '__main__':
   #print testing()
-  print removeDeliveryBoy('D_1')
+  #print removeDeliveryBoy('D_1')
   #print reterieveDeliveryBoys()
   #registerDeliveryBoy('{"Mobile":"9780008628","Email":"sahil@gmail.com", "Password":"1234", "Name":"Sahil"}')
   #print VerifyOrder('D_1',"O_102",'9182')
@@ -464,7 +466,7 @@ if __name__ == '__main__':
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
   #print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
-  #print removeMainCategory('Grocery', 'Medicines')
+  print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
   #print removelevel1Category('Electricals')
   #print addlevel1Category('Electricals')
