@@ -61,6 +61,7 @@ def addToCart(cid, cartItem):
   try:
     connection, db, collection = MongoDBconnection('Cart', cid)
     cartItem = json.loads(cartItem)
+    cartItem['Status'] = 'New Order'
     iter = collection.find()
     if iter.count():
       print 'hello world'
