@@ -122,6 +122,9 @@ def randomMainCategoryProducts(id, mainCategory):
       break
   subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
   return categoryProducts(id, mainCategory, subCategory)
+
+def searchProduct(productName):
+  return ''
  
 if __name__ == "__main__":
   print randomProducts('Grocery')

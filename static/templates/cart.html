@@ -12,7 +12,7 @@
 				<table class="table table-condensed">
 					<thead>
 						<tr class="cart_menu">
-							<td class="image">Item</td>
+							<td width="150px" class="image">Item</td>
 							<td class="price">Name</td>
 							<td class="quantity">Price</td>
 							<td class="total">Quantity</td>
@@ -23,8 +23,8 @@
 					<tbody>
 						<tr ng-repeat ="p in Products">
 							
-							<td class="cart_product">
-							<a href=""><img class="img" ng-src="http://shopkare.com{{p[0][0]}}" alt="{{p[0][0]}}" height="100px" width="150px"></a>
+							<td  width="150px" class="cart_product">
+							<img class="img" ng-src="http://shopkare.com{{p[0][0]}}" alt="{{p[0][0]}}" height="100px" width="100px">
 							</td>	
 							<td class="cart_price">
 								<p>{{p[1]}}</p>
@@ -53,16 +53,13 @@
 				</table>
 			</div>
 				<br>
-			<a href="http://shopkare.com/static/home.html#/checkout"><center><button class="btn btn-block btn-info" ng-click="updateCart()"> Finialise Your Order </button></center></a>
+			<a href="http://shopkare.com/static/home.html#/checkout"ng-show="login" ><center><button class="btn btn-block btn-info" ng-click="updateCart()"> Finialise Your Order </button></center></a>
+
+<center> <button type="button" class="btn btn-success"  ng-show="!login"  data-toggle="modal" data-target="#myModal"> Finialise Your Order </button> </center>
+
 			</div>
-			<br>
-		</div>
-	</section> <!--/#cart_items-->
-
-
-	<section id="do_action" ng-hide="message">
-		<div class="container">
-			<div class="heading">
+		
+	<div ng-hide="message">
 				<h2>Your Shopping Cart is empty.</h2>
 			<p>Your Shopping Cart lives to serve. Give it purpose--fill it with Items.
 				</P>
@@ -72,11 +69,12 @@
 			</p>	<br>
 				
 			</div>
-			</div>
+		
 			<p>
 				The price and availability of items at Shopkare.com are subject to change. The shopping cart is a temporary place to store a list of your items and reflects each item's most recent price. 
 				</p>
 		</div>
+	</div>
 	</section>
 
 <br>

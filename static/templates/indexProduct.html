@@ -1,7 +1,7 @@
       
-       <div class="recommended_items" ng-controller="HOT_DEALS"><!--hot_deals-->
+       <div class="recommended_items" ><!--hot_deals-->
             <h2 class="title text-center">Hot Deals</h2>            
-            <div id="recommended-item-carousel" ng-show="HOTDEALS_Products" class="carousel slide" data-ride="carousel"  >
+            <div id="recommended-item-carousel" ng-controller="HOT_DEALS" ng-show="HOTDEALS_Products" class="carousel slide" data-ride="carousel"  >
               <div class="carousel-inner">
                 <div class="item active"> 
                   <div class="col-sm-4" ng-repeat="p in HOTDEALS_Products">
@@ -44,7 +44,7 @@
                 <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
                 <i class="fa fa-angle-right"></i>
                 </a>      
-            </div>
+  
         
 
               <div ng-show ="!HOTDEALS_Products">
@@ -56,16 +56,35 @@
                 <br>
                  </div>
    </div><!--/hot_deals-->   
-        
-       <div class="category-tab" ng-controller="productBycategory" ><!--category-tab-->
+        <div  ng-controller="productBycategory">
+       <div class="category-tab" ><!--category-tab-->
             <div class="col-sm-12">
                 <ul class="nav nav-tabs">
-                <li ng-repeat="data in level2Categories |limitTo :5 |orderBy:random" ng-click="getProducts(data)"><a href="{{data}}}" data-toggle="tab">{{data}}</a></li>
+                <li class="active" ng-click="getProducts()"><a href="#newProduct" data-toggle="tab">New Products</a></li>
+                <li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>
               </ul>
             </div>
             <div class="tab-content">
-              <div class="tab-pane fade active in" id="{{data}}" >
-                <div class="col-sm-3" >  <!-- ng-repeat="p in products"-->
+              
+               <div class="tab-pane fade active in" id="newProduct" >
+                <div class="col-sm-3" ng-repeat ="p in McategoryPoducts">  <!-- ng-repeat="p in products"-->
+                  <div class="product-image-wrapper">
+                    <div class="single-products">
+                      <div class="productinfo text-center">
+                        <img src="images/home/soft-drink-bottle-250x250.jpg" alt="" />
+                        <h2>₹436</h2>
+                        <p>Easy Polo Black Edition</p>
+                        <a  ng-click="addCart(p)" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+                      </div>
+                      
+                    </div>
+                  </div>
+                </div>
+               
+              </div>
+
+              <div class="tab-pane fade active in" id="data" >
+                <div class="col-sm-3" ng-repeat ="p in McategoryPoducts">  <!-- ng-repeat="p in products"-->
                   <div class="product-image-wrapper">
                     <div class="single-products">
                       <div class="productinfo text-center">
@@ -121,13 +140,13 @@
           
 
           
-          <div class="recommended_items" ng-controller="NEW_RELEASES"><!--recommended_items-->
+          <div class="recommended_items"><!--recommended_items-->
             <h2 class="title text-center">New Releases</h2>
             
             <div id="recommended-item-carousel" ng-show="NEW_Products" class="carousel slide" data-ride="carousel"   >
               <div class="carousel-inner">
                 <div class="item active"> 
-                  <div class="col-sm-4" ng-repeat="p in NEW_Products">
+                  <div class="col-sm-4" >
                     <div class="product-image-wrapper1">
                       <div class="single-products">
                         <div class="productinfo text-center">
@@ -140,6 +159,7 @@
                       </div>
                     </div>
                   </div>
+                </div>
                   
                 <div class="item">  
                   <div class="col-sm-4">
@@ -178,4 +198,4 @@
 
         </div>
       </div><!--/recommended_items-->
-         
+        </div>

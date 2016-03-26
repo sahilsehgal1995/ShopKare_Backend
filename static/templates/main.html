@@ -170,12 +170,6 @@
     </style>
   <div class="container">
 
-  <div class="col-sm-9">
-        
- <div ui-view ="slider"></div>
-  
-  </div>
-
   
   <div class="col-sm-3">
           <div class="left-sidebar">
@@ -186,7 +180,7 @@
               <div class="panel panel-default" ng-repeat ="data in level2Categories">
                 <div class="panel-heading">
                   <h4 class="panel-title">
-                    <a data-toggle="collapse" data-parent="#accordian" href="#{{level2CategoriesWTF[$index]}}">
+                    <a data-toggle="collapse" data-parent="#accordian" href="/#{{level2CategoriesWTF[$index]}}">
                       <span class="badge pull-right"><i class="fa fa-plus"></i></span>
                       {{data}}
                     </a>
@@ -209,6 +203,12 @@
             
           </div>
         </div>
+
+  <div class="col-sm-9">
+        
+ <div ui-view ="slider"></div>
+  
+  </div>
 
   
   

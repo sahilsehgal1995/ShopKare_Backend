@@ -1,0 +1,74 @@
+		<div class="product-details">
+						<!--product-details-->
+						<div class="col-sm-5">
+							<div class="view-product">
+								<img ng-src="http://shopkare.com/{{ProductDT.images[initialImage]}}" alt="" />
+							
+							</div>								
+						<div id="similar-product" ng-show="ProductDT.images[2]" class="carousel slide" data-ride="carousel">
+								
+								  <!-- Wrapper for slides -->
+								    <div class="carousel-inner">
+										<div class="item active"  style='padding-left:30px'>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" /></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" /></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" /></a>
+										</div>
+										<div class="item"  style='padding-left:30px'>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" /></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" /></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" /></a>
+										</div>
+										<div class="item"  style='padding-left:30px'>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px"/></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" /></a>
+										  <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" /></a>
+										</div>
+										
+									</div>
+
+								  <!-- Controls -->
+								  <a class="left item-control" href="#similar-product" data-slide="prev">
+									<i class="fa fa-angle-left"></i>
+								  </a>
+								  <a class="right item-control" href="#similar-product" data-slide="next">
+									<i class="fa fa-angle-right"></i>
+								  </a>
+							</div>
+						</div>
+
+						<div class="col-sm-7">
+							<div class="product-information"><!--/product-information-->
+								<img src="images/product-details/new.jpg" class="newarrival" alt="" />
+								<h1>{{ProductDT.product_name}}</h1>
+								<select ng-model="k" ng-init="k='0'" style="max-width:35%">
+											<option value ="{{$index}}" ng-repeat="k in ProductDT.Qwt">{{k}}</option>
+									</select>
+									<br>
+								<span>
+									<p ng-show="ProductDT.discount[k]" ><b>Price</b> :<a class="orgPrice"> Rs.{{ProductDT.orgPrice[k]}}</a><br>
+									</p>
+									<span>Rs {{ProductDT.Qrs[k]}}</span>
+									
+							
+<a ng-show="ProductDT.cart[k]=='Add to Cart'" ng-click="addCart(ProductDT,k)"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>
+
+										<a ng-show="ProductDT.cart[k]=='Already in Cart'" ng-disable="ProductDT.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>
+
+										<a ng-show="ProductDT.cart[k]=='Added in Your Cart'" ng-disable="ProductDT.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>
+
+								</span>
+								<p ng-show="ProductDT.discount[k]"><b>You Save : Rs {{ProductDT.discount[k]}}</b></p>
+								<p><b>Description:</b> {{ProductDT.description}}</p>
+								<p><b>Availability:</b> {{ProductDT.Availablity[k]}}</p>
+								
+							</div><!--/product-information-->
+						</div>
+					</div><!--/product-details-->
+					
+					<style>
+.orgPrice{
+   text-decoration: line-through;
+
+}
+</	style>
