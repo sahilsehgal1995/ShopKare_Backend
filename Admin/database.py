@@ -3,6 +3,8 @@ import json
 from passlib.hash import sha256_crypt
 import os
 import gc
+import csv
+from pyexcel_xlsx import get_data
 
 base='http://www.shopkare.com/'
 
@@ -12,9 +14,14 @@ def MongoDBconnection(database, collection):
   cursor = db[collection]
   return connection, db, cursor
 
-def registerAdmin(user):
+def registerAdmin(user, AdminType):
   try:
-    connection, db, collection = MongoDBconnection('Admin', 'Admin')
+    if AdminType == 'Super Admin':
+      connection, db, collection = MongoDBconnection('Admin', 'SuperAdmin')
+    elif AdminType == 'Normal Admin':
+      connection, db, collection = MongoDBconnection('Admin', 'Admin')
+    else:
+      return 'Authorization Not Found'
     user = json.loads(user)
     if collection.find({'$or':[{"Mobile":user['Mobile']},{"Email":user['Email']}]}).count():
       return 'User Already Exists'
@@ -32,9 +39,14 @@ def registerAdmin(user):
     print str(e)
     return 'Unable to Register'
 
-def loginAdmin(user):
+def loginAdmin(user, AdminType):
   try:
-    connection, db, collection = MongoDBconnection('Admin', 'Admin')
+    if AdminType == 'Super Admin':
+      connection, db, collection = MongoDBconnection('Admin', 'SuperAdmin')
+    elif AdminType == 'Normal Admin':
+      connection, db, collection = MongoDBconnection('Admin', 'Admin')
+    else:
+      return 'Authorization Not Found'
     user = json.loads(user)
     iter = collection.find({'$or':[{"Email":user['Email']},{"Mobile":user['Mobile']}]})
     if not iter.count():
@@ -77,6 +89,24 @@ def registerProduct(MainCategory, SubCategory, product):
   except Exception as e:
     return str(e)
     return 'Unable to Register', '[]'
+  
+def registerBulkProduct(level1Category,fileName):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find({'_id':level1Category},{"Categories":True})
+    categories = iter[0]['Categories']
+    MainCategories = []
+    for category in categories:
+      MainCategories.append(category.keys()[0])
+    records = get_data(fileName)
+    for i in range(1,len(records)):
+      product = {'Level1 Category':records[i][1], 'Main Category': records[i][2], 'Sub Category': records[i][3], 'product_name': records[i][5], 'Product Category': records[i][4]}
+      print records[i][2], MainCategories.index('Personal Care')
+      #print MainCategories.index(records[i][2])
+    return 'Registered'
+  except Exception as e:
+    return str(e)
+    return 'Unable to Register', '[]'
 
 def removeProduct(MainCategory, SubCategory, pid):
   try:
@@ -96,15 +126,13 @@ def removeProduct(MainCategory, SubCategory, pid):
   except Exception as e:
     return 'Unable to Remove'
 
-def ProductImagePath(level1Category, MainCategory, SubCategory, pid):
+def ProductImagePath(pid):
   try:
-    MainCategory = MainCategory.replace(" ","_")
-    SubCategory = SubCategory.replace(" ","_")
-    level1Category = level1Category.replace(" ","_")
-    path = os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
+    ids = pid.split("_")
+    path = os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"
     if not os.path.exists(path):
-      os.makedirs(os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/")
-    return os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
+      os.makedirs(os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/")
+    return os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"
   except Exception as e:
     return 'Unable to fetch'
 
@@ -201,11 +229,34 @@ def removeMainCategory(level1category, MainCategory):
 	return 'Removed'
     connection.close()
     gc.collect()
-    
     return 'Removed'
   except Exception as e:
     print str(e)
     return 'Unable to Remove'
+
+def editMainCategory(level1category, oldMainCategory, newMainCategory):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find({"_id":level1category})
+    iter = tuple(iter)
+    for item in iter:
+      categories = dict(item)
+    for index, category in enumerate(categories['Categories']):
+      if oldMainCategory in category.keys():
+	print categories['Categories'][index]
+	del categories['Categories'][index][oldMainCategory]
+	categories['Categories'][index][newMainCategory] = categories['Categories'][index][oldMainCategory]
+	print categories['Categories'][index]
+	#collection.update({"_id":level1category},{"Categories":categories['Categories']})
+	connection.close()
+	gc.collect()
+	return 'Updated'
+    connection.close()
+    gc.collect()
+    return 'Updated'
+  except Exception as e:
+    print str(e)
+    return 'Unable to Updated'
 
 def addSubCategory(level1category, MainCategory, subCategory):
   try:
@@ -449,14 +500,15 @@ def FetchOrders(userMode, Did):
     return 'Unable to Fetch'
 
 def testing():
-  x = {u'description': u'Maah ki dal', u'Level1 Category': u'Grocery', u'Main Category': u'Pulses and Grains', u'Sub Category': u'Dals', u'_id': u'0_0_0', u'product_name': u'Maah ki Dal', u'Quantity': [{u'City': u'Hyderabad', u'Quantities': [{u'$$hashKey': u'object:3', u'Quantity': [u'1 Kg', 1000]}, {u'$$hashKey': u'object:16', u'Quantity': [u'500 gm', 50]}]}]}
-  for index,val in enumerate(x['Quantity']):
-    for i,val in enumerate(x['Quantity'][index]["Quantities"]):
-      del x['Quantity'][index]["Quantities"][i]["$$hashKey"]
-  return json.dumps(x) 
+  connection, db, collection = MongoDBconnection('Admin', 'Orders')
+  connection.admin.command('copydb', fromdb='sample', todb='newsam')
+  return '' 
 
 if __name__ == '__main__':
   #print testing()
+  print registerBulkProduct('Grocery','Prodduct List new 2.xlsx')
+  #print editMainCategory('Medicines', 'Corosin', 'Antibiotics')
+  #print ProductImagePath('P_1_0_1_1')
   #print removeDeliveryBoy('D_1')
   #print reterieveDeliveryBoys()
   #registerDeliveryBoy('{"Mobile":"9780008628","Email":"sahil@gmail.com", "Password":"1234", "Name":"Sahil"}')
@@ -466,7 +518,7 @@ if __name__ == '__main__':
   #print reteriveCategories()
   #print addSubCategory('Grocery', 'Bakery', 'Cakes')
   #print removeSubCategory('Grocery', 'Pulses and Grains', 'Dals')
-  print removeMainCategory('Grocery', 'Medicines')
+  #print removeMainCategory('Grocery', 'Medicines')
   #print addMainCategory('Grocery', 'Medicines')
   #print removelevel1Category('Electricals')
   #print addlevel1Category('Electricals')

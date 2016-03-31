@@ -13,19 +13,35 @@ def MongoDBconnection(database, collection):
   cursor = db[collection]
   return connection, db, cursor
 
-def getProductImages(level1Category, MainCategory, SubCategory, pid):
+def getProductImages(pid):
   try:
-    MainCategory = MainCategory.replace(" ","_")
-    SubCategory = SubCategory.replace(" ","_")
-    level1Category = level1Category.replace(" ","_")
-    path = os.getcwd()+"/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"
+    ids = pid.split("_")
+    path = os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"
     images = list()
     if os.listdir(path):
       for f in os.listdir(path):
-	images.append("/Product/static/Products/"+ level1Category + '/'+ MainCategory + "/"+ SubCategory + "/"+pid+"/"+f)
+	images.append("/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+f)
     return images
   except Exception as e:
     return []
+
+def retrieveAllProducts(level1Category):
+  try:
+    level1Category = level1Category.replace(" ","_")
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find({'_id':level1Category})
+    categories = iter[0]['Categories']
+    products = list()
+    for category in categories:
+      for mainCategory in category:
+	for subCategory in category[mainCategory]:
+	  products.append(categoryProducts(level1Category, mainCategory, subCategory))
+    connection.close()
+    gc.collect()
+    return str(json.dumps(products))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Fetch'
 
 def categoryProducts(level1Category, MainCategory, SubCategory):
   try:
@@ -38,7 +54,7 @@ def categoryProducts(level1Category, MainCategory, SubCategory):
     if not iter.count():
       return '[]'
     for i in iter:
-      i['images'] = getProductImages(level1Category,MainCategory, SubCategory, i['_id'])
+      i['images'] = getProductImages(i['_id'])
       products.append(i)
     connection.close()
     gc.collect()
@@ -58,7 +74,7 @@ def categoryProductDetail(level1Category, MainCategory, SubCategory, pid):
     if not iter.count():
       return '[]'
     for i in iter:
-      i['images'] = getProductImages(level1Category,MainCategory, SubCategory, i['_id'])
+      i['images'] = getProductImages(i['_id'])
       products.append(i)
     connection.close()
     gc.collect()
@@ -78,7 +94,7 @@ def newProducts(level1Category, MainCategory, SubCategory):
     if not iter.count():
       return '[]'
     for i in iter:
-      i['images'] = getProductImages(level1Category,MainCategory, SubCategory, i['_id'])
+      i['images'] = getProductImages(i['_id'])
       products.append(i)
     products= products[::-1]
     connection.close()
@@ -127,7 +143,8 @@ def searchProduct(productName):
   return ''
  
 if __name__ == "__main__":
-  print randomProducts('Grocery')
+  #print randomProducts('Grocery')
+  print retrieveAllProducts('Grocery')
   #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
   #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
   #print newProducts('Grocery', 'Bakery', 'Cakes')

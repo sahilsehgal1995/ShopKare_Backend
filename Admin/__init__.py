@@ -30,31 +30,44 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/login/', methods=['GET','POST'])
   def login():
     if request.method == 'POST':
-      reply, user = loginAdmin(request.args.get('user'))
-      if reply == 'Login Sucess':
-	session['id'] = user['_id']
-	session['Email'] = user['Email']
-	session['user'] = 'Admin'
-	user['response']='Login Successfull'
-	return json.dumps(user)
-      else:
+      if request.args.get('adminType') == 'Super Admin':
+	reply, user = loginAdmin(request.args.get('user'), 'Super Admin')
+	if reply == 'Login Sucess':
+	  session['id'] = user['_id']
+	  session['Email'] = user['Email']
+	  session['user'] = 'Super Admin'
+	  user['response']='Login Successfull'
+	  return json.dumps(user)
 	return reply
+      elif request.args.get('adminType') == 'Normal Admin':
+	reply, user = loginAdmin(request.args.get('user'), 'Normal Admin')
+	if reply == 'Login Sucess':
+	  session['id'] = user['_id']
+	  session['Email'] = user['Email']
+	  session['user'] = 'Normal Admin'
+	  user['response']='Login Successfull'
+	  return json.dumps(user)
+	return reply
+      return 'Authentication failed'
     return 'Invalid Request'
   
   @Admin.route('/api/Admin/signup/', methods=['GET','POST'])
   def signup():
     if request.method == 'POST':
-      if request.args.get('secretkey') == 'cmclogo':
-	reply = registerAdmin(request.args.get('user'))
-	return reply
-      return 'Authentication Failed'
+      if request.args.get('secretkey') == 'cmclogoAdmin':
+	reply = registerAdmin(request.args.get('user'), 'Super Admin')
+      elif request.args.get('secretkey') == 'NormalAdmin':
+	reply = registerAdmin(request.args.get('user'), 'Admin')
+      else:
+	return 'Authentication Failed'
+      return reply
     return 'Invalid Request'
   
   @Admin.route('/api/Admin/addProduct/', methods=['GET','POST'])
   def addproduct():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Admin':
+	if session['user'] == 'Super Admin':
 	  file = request.files.getlist('uploadedFile')
 	  for f in file:
 	    if not allowed_file(f.filename):
@@ -79,12 +92,12 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeProduct/', methods=['GET','POST'])
   def removeproduct():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	product = json.loads(request.args.get('product'))
 	del product['$$hashKey']
 	reply = removeProduct(product['Main Category'], product['Sub Category'], product['_id'])
 	if reply =='Registered':
-	  path = ProductImagePath(product['Main Category'], product['Sub Category'], product['_id'])
+	  path = ProductImagePath(product['_id'])
 	return reply
       return 'Authentication Failed'
     return 'Invalid Request'
@@ -92,7 +105,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/updateProduct/', methods=['GET','POST'])
   def Updateproduct():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	product = json.loads(request.args.get('product'))
 	return updateProduct(product, product['Main Category'], product['Sub Category'])
       return 'Authentication Failed'
@@ -107,11 +120,11 @@ def add_routes(app=None):
 	for f in file:
 	  f.save(os.path.join('/home/sahil/my/', secure_filename(f.filename)))
 	return 'Uploaded'
-	if session['user'] == 'Admin':
+	if session['user'] == 'Super Admin':
 	  file = request.files['file']
 	  if allowed_file(file.filename):
 	    product = json.loads(request.args.get('product'))
-	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], product['_id']) 
+	    path = ProductImagePath(product['_id']) 
 	    if not path == 'Unable to fetch':
 	      file.save(os.path.join(path, secure_filename(file.filename)))
 	      return 'Image Uploaded'
@@ -126,7 +139,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeBatch/', methods=['GET','POST'])
   def removeBatch():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Normal Admin':
 	pid = request.args.get('pid')
 	BatchID = request.args.get('bid')
 	reply = RemoveBatch(pid, BatchID)
@@ -137,7 +150,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/addatch/', methods=['GET','POST'])
   def addBatch():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Normal Admin':
 	reply = AddBatch(request.args.get('pid'), request.args.get('Batch'))
 	return reply
       return 'Authentication Failed'
@@ -146,7 +159,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/UpdateBatch/', methods=['GET','POST'])
   def updateBatch():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Normal Admin':
 	reply = UpdateBatch(request.args.get('pid'), request.args.get('Batch'))
 	return reply
       return 'Authentication Failed'
@@ -156,7 +169,7 @@ def add_routes(app=None):
   def addlevel1category():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Admin':
+	if session['user'] == 'Super Admin':
 	  reply = addlevel1Category(request.args.get('level1category'))
 	  return reply
 	return 'Authentication Failed'
@@ -168,7 +181,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removelevel1Category/', methods=['GET','POST'])
   def removelevel1category():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = removelevel1Category(request.args.get('level1category'))
 	return reply
       return 'Authentication Failed'
@@ -177,7 +190,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/addMainCategory/', methods=['GET','POST'])
   def addmainCategory():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = addMainCategory(request.args.get('level1category'), request.args.get('MainCategory'))
 	return reply
       return 'Authentication Failed'
@@ -186,7 +199,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeMainCategory/', methods=['GET','POST'])
   def removemainCategory():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = removeMainCategory(request.args.get('level1category'), request.args.get('MainCategory'))
 	return reply
       return 'Authentication Failed'
@@ -195,7 +208,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/addSubCategory/', methods=['GET','POST'])
   def addSubcategory():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = addSubCategory(request.args.get('level1category'), request.args.get('MainCategory'), request.args.get('subCategory'))
 	return reply
       return 'Authentication Failed'
@@ -204,7 +217,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeSubCategory/', methods=['GET','POST'])
   def removeSubcategory():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = removeSubCategory(request.args.get('level1category'), request.args.get('MainCategory'), request.args.get('subCategory'))
 	return reply
       return 'Authentication Failed'
@@ -221,7 +234,7 @@ def add_routes(app=None):
   def ReteriveProducts():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Admin':
+	if session['user'] == 'Normal Admin':
 	  reply = reteriveProducts(request.args.get('maincategory'), request.args.get('subcategory'))
 	  return reply
 	return 'Authentication Failed'
@@ -234,7 +247,7 @@ def add_routes(app=None):
   def reterivebatches():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Admin':
+	if session['user'] == 'Normal Admin':
 	  reply = reteriveBatches(request.args.get('pid'))
 	  return reply
 	return 'Authentication Failed'
@@ -247,7 +260,7 @@ def add_routes(app=None):
   def UpdateBatch():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Admin':
+	if session['user'] == 'Normal Admin':
 	  reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
 	  return reply
 	return 'Authentication Failed'
@@ -282,7 +295,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeDeliveryBoy/', methods=['GET','POST'])
   def RemoveDeliveryBoy():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Super Admin':
 	reply = removeDeliveryBoy(request.args.get('id'))
 	return reply
       return 'Authentication Failed'
@@ -291,7 +304,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/reterieveDeliveryBoys/', methods=['GET','POST'])
   def ReterieveDeliveryBoys():
     if request.method == 'POST':
-      if session['user'] == 'Admin':
+      if session['user'] == 'Normal Admin':
 	reply = reterieveDeliveryBoys()
 	return reply
       return 'Authentication Failed'
@@ -312,7 +325,7 @@ def add_routes(app=None):
       if session['user'] == 'Delivery Boy':
 	reply = FetchOrders('DeliveryBoy', session['id'])
 	return reply
-      elif session['user'] == 'Admin':
+      elif session['user'] == 'Normal Admin':
 	reply = FetchOrders('Admin', 'Orders')
 	return reply
       return 'Authentication Failed'

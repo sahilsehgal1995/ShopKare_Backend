@@ -1,5 +1,5 @@
 from flask import Blueprint, session, url_for, request
-from database import categoryProducts, newProducts, randomProducts, randomMainCategoryProducts, categoryProductDetail
+from database import categoryProducts, newProducts, randomProducts, randomMainCategoryProducts, categoryProductDetail, retrieveAllProducts
 import json, gc
 
 
@@ -25,6 +25,10 @@ def add_routes(app=None):
   @Product.route('/api/Product/getRandomMainCategoryProducts/')
   def getRandomMainCategoryProducts():
     return randomMainCategoryProducts(request.args.get('level1category'), request.args.get('mainCategory'))
+  
+  @Product.route('/api/Product/getAllProducts/')
+  def getAllProducts():
+    return retrieveAllProducts(request.args.get('level1category'))
   
   @Product.route('/api/Product/getRandomProducts/')
   def getRandomProducts():
