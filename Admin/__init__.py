@@ -139,7 +139,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/removeBatch/', methods=['GET','POST'])
   def removeBatch():
     if request.method == 'POST':
-      if session['user'] == 'Normal Admin':
+      if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	pid = request.args.get('pid')
 	BatchID = request.args.get('bid')
 	reply = RemoveBatch(pid, BatchID)
@@ -150,7 +150,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/addatch/', methods=['GET','POST'])
   def addBatch():
     if request.method == 'POST':
-      if session['user'] == 'Normal Admin':
+      if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	reply = AddBatch(request.args.get('pid'), request.args.get('Batch'))
 	return reply
       return 'Authentication Failed'
@@ -159,7 +159,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/UpdateBatch/', methods=['GET','POST'])
   def updateBatch():
     if request.method == 'POST':
-      if session['user'] == 'Normal Admin':
+      if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	reply = UpdateBatch(request.args.get('pid'), request.args.get('Batch'))
 	return reply
       return 'Authentication Failed'
@@ -234,7 +234,7 @@ def add_routes(app=None):
   def ReteriveProducts():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Normal Admin':
+	if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	  reply = reteriveProducts(request.args.get('maincategory'), request.args.get('subcategory'))
 	  return reply
 	return 'Authentication Failed'
@@ -247,7 +247,7 @@ def add_routes(app=None):
   def reterivebatches():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Normal Admin':
+	if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	  reply = reteriveBatches(request.args.get('pid'))
 	  return reply
 	return 'Authentication Failed'
@@ -260,7 +260,7 @@ def add_routes(app=None):
   def UpdateBatch():
     try:
       if request.method == 'POST':
-	if session['user'] == 'Normal Admin':
+	if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	  reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
 	  return reply
 	return 'Authentication Failed'
@@ -304,7 +304,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/reterieveDeliveryBoys/', methods=['GET','POST'])
   def ReterieveDeliveryBoys():
     if request.method == 'POST':
-      if session['user'] == 'Normal Admin':
+      if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	reply = reterieveDeliveryBoys()
 	return reply
       return 'Authentication Failed'
@@ -325,7 +325,7 @@ def add_routes(app=None):
       if session['user'] == 'Delivery Boy':
 	reply = FetchOrders('DeliveryBoy', session['id'])
 	return reply
-      elif session['user'] == 'Normal Admin':
+      elif session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
 	reply = FetchOrders('Admin', 'Orders')
 	return reply
       return 'Authentication Failed'
