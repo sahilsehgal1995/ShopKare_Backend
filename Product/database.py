@@ -21,6 +21,8 @@ def getProductImages(pid):
     if os.listdir(path):
       for f in os.listdir(path):
 	images.append("/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+f)
+    else:
+      images.append("/Product/static/Products/NA.jpg")
     return images
   except Exception as e:
     return []
