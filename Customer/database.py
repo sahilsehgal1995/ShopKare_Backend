@@ -59,18 +59,81 @@ def loginCustomer(user):
 
 def addToCart(cid, cartItem):
   try:
+    cityIndex = 0
     connection, db, collection = MongoDBconnection('Cart', cid)
     cartItem = json.loads(cartItem)
-    cartItem['Status'] = 'New Order'
-    iter = collection.find()
-    if iter.count():
-      print 'hello world'
-    connection.close()
-    gc.collect()
-    return ''
+    try:
+      if cartItem['$$hashKey']:
+	del cartItem['$$hashKey']
+	MainCategory = cartItem['Main Category'].replace(" ","_")
+	SubCategory = cartItem['Sub Category'].replace(" ","_")
+	product = connection[MainCategory][SubCategory].find({'_id':cartItem['ProductID']})
+	QuantityType = product[0]['Quantity'][cityIndex]['Quantities'][cartItem['QuantityIndex']][0]
+	cartItem['QuantityType']=QuantityType
+	cartItem['Price'] = product[0]['Quantity'][cityIndex]['Quantities'][cartItem['QuantityIndex']][1]
+	connection.close()
+	gc.collect()
+	connection, db, collection = MongoDBconnection('Cart', cid)
+	iter = collection.find({'$and':[{'ProductID':cartItem['ProductID']},{'QuantityType':cartItem['QuantityType']}]})
+	if iter.count():
+	  iter = collection.update({"_id":iter[0]['_id']},cartItem)
+	  connection.close()
+	  gc.collect()
+	  return 'Updated in cart'
+	else:
+	  collection.insert(cartItem)
+	connection.close()
+	gc.collect()
+	return 'Added to cart'
+    except Exception as e:
+      MainCategory = cartItem['Main Category'].replace(" ","_")
+      SubCategory = cartItem['Sub Category'].replace(" ","_")
+      product = connection[MainCategory][SubCategory].find({'_id':cartItem['ProductID']})
+      QuantityType = product[0]['Quantity'][cityIndex]['Quantities'][cartItem['QuantityIndex']][0]
+      cartItem['QuantityType']=QuantityType
+      cartItem['Price'] = product[0]['Quantity'][cityIndex]['Quantities'][cartItem['QuantityIndex']][1]
+      connection.close()
+      gc.collect()
+      connection, db, collection = MongoDBconnection('Cart', cid)
+      iter = collection.find({'$and':[{'ProductID':cartItem['ProductID']},{'QuantityType':cartItem['QuantityType']}]})
+      if iter.count():
+	iter = collection.update({"_id":iter[0]['_id']},cartItem)
+	connection.close()
+	gc.collect()
+	return 'Updated in cart'
+      else:
+	collection.insert(cartItem)
+      connection.close()
+      gc.collect()
+      return 'Added to cart'
   except Exception as e:
     print str(e)
     return 'Unable to Add to cart'
+
+def removeFromCart(cid, cartItem):
+  try:
+    connection, db, collection = MongoDBconnection('Cart', cid)
+    cartItem = json.loads(cartItem)
+    collection.remove({'$and':[{'ProductID':cartItem['ProductID']},{'QuantityIndex':cartItem['QuantityIndex']}]})
+    connection.close()
+    gc.collect()
+    return 'Removed from cart'
+  except Exception as e:
+    print str(e)
+    return 'Unable to remove from cart'
+
+def getCartItems(cid):
+  try:
+    connection, db, collection = MongoDBconnection('Cart', cid)
+    iter = collection.find({},{'_id':False})
+    if iter.count():
+      return str(json.dumps(tuple(iter)))
+    connection.close()
+    gc.collect()
+    return '[]'
+  except Exception as e:
+    print str(e)
+    return 'Unable to get cart items'
 
 def OrderPlacement(cartItems, cid):
   try:
@@ -135,5 +198,7 @@ def FetchOrders(cid):
 
 
 if __name__ == '__main__':
+  print getCartItems('C_1')
+  #print addToCart('C_1', '{ "QuantityType" : "Brown/shade 4 - 24ml + 16g", "Price" : 170, "Level1 Category" : "Grocery", "Main Category" : "Personal Care", "Sub Category" : "Hair Care", "product_name" : "Garnier Hair Colour Natural", "ProductID" : "P_1_1_1_1", "Quantity" : 2 }')
   #print registerCustomer('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
-  print loginCustomer('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
+  #print loginCustomer('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
