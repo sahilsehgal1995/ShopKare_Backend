@@ -18,13 +18,17 @@ def getProductImages(pid):
     ids = pid.split("_")
     path = os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"
     images = list()
-    if os.listdir(path):
-      for f in os.listdir(path):
-	images.append("/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+f)
+    if os.path.isdir(path):
+      if os.listdir(path) and os.listdir(path):
+	for f in os.listdir(path):
+	  images.append("/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+f)
+      else:
+	images.append("/Product/static/Products/NA.jpg")
     else:
       images.append("/Product/static/Products/NA.jpg")
     return images
   except Exception as e:
+    print str(e)
     return []
 
 def retrieveAllProducts(level1Category):
@@ -139,14 +143,39 @@ def randomMainCategoryProducts(id, mainCategory):
       mainCategoryIndex = index
       break
   subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
+  connection.close()
+  gc.collect()
   return categoryProducts(id, mainCategory, subCategory)
 
-def searchProduct(productName):
-  return ''
- 
+def searchProduct(level1Category, productName):
+  try:
+    connection, db, collection = MongoDBconnection('Admin', 'Categories')
+    iter = collection.find({"_id":level1Category})
+    results = list()
+    for index, mainCategory in enumerate(iter[0]['Categories']):
+      for c in mainCategory:
+	for subCategory in mainCategory[c]:
+	  connection.close()
+	  gc.collect()
+	  connection, db, collection = MongoDBconnection(c.replace(" ","_"), subCategory.replace(" ","_"))
+	  collection.create_index([('product_name','text')])
+	  iter = collection.find({"$text": {"$search": productName}})
+	  if iter.count():
+	    print subCategory, iter.count()
+	    for i in iter:
+	      i['images'] = getProductImages(i['_id'])
+	      print i['product_name']
+	      results.append(i)
+    connection.close()
+    gc.collect()
+    return json.dumps(results)
+  except Exception as e:
+    return '{"response":"Unable to Retrieve"}'
+
 if __name__ == "__main__":
   #print randomProducts('Grocery')
-  print retrieveAllProducts('Grocery')
+  searchProduct('Grocery', 'amul')
+  #print retrieveAllProducts('Grocery')
   #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
   #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
   #print newProducts('Grocery', 'Bakery', 'Cakes')
