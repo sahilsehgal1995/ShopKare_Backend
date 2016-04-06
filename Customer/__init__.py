@@ -76,7 +76,7 @@ def add_routes(app=None):
   @Customer.route('/api/Customer/addToCart/', methods=['GET','POST'])
   def addtoCart():
     if request.method == 'POST':
-      return addToCart('C_1', request.args.get('cartItem'))
+      #return addToCart('C_1', request.args.get('cartItem'))
       if session['user'] == 'Customer':
 	reply = addToCart(session['id'], request.args.get('cartItem'))
 	return reply
