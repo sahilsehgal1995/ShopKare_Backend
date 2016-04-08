@@ -107,7 +107,7 @@ def addToCart(cid, cartItem):
       gc.collect()
       return 'Added to cart'
   except Exception as e:
-    print str(e)
+    return str(e)
     return 'Unable to Add to cart'
 
 def removeFromCart(cid, cartItem):
@@ -130,6 +130,7 @@ def getCartItems(cid):
       return str(json.dumps(tuple(iter)))
     connection.close()
     gc.collect()
+    return 'Your Cart is empty'
     return '[]'
   except Exception as e:
     print str(e)

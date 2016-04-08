@@ -5,7 +5,7 @@
 				<ol class="breadcrumb">
 				  <li><a href="#">Home</a></li>
 				  <li class="active">Shopping Cart</li>
-				</ol>
+	{{Products}}			</ol>
 			</div>
 			<div ng-show="message">
 			<div class="table-responsive cart_info" >
@@ -22,27 +22,27 @@
 					</thead>
 					<tbody>
 						<tr ng-repeat ="p in Products">
-							
+
 							<td  width="150px" class="cart_product">
 							<img class="img" ng-src="http://shopkare.com{{p[0][0]}}" alt="{{p[0][0]}}" height="100px" width="100px">
-							</td>	
+							</td>
 							<td class="cart_price">
-								<p>{{p[1]}}</p>
+								<p>{{p.product_name}}</p>
 							</td>
 							<td class="cart_total">
-								<p>{{p[2]}}</p>
-								<p class="cart_total_price">Rs.{{p[3]}}</p>
-							</td>		
+								<p>{{p.QuantityType}}</p>
+								<p class="cart_total_price">Rs.{{p.Price}}</p>
+							</td>
 							<td class="cart_total">
 								<div class="cart_quantity_button">
 									<a class="cart_quantity_up"><button ng-click="addQuantity(p[5],$index)">+</button> </a>
-									<input class="cart_quantity_input" type="text" name="quantity" readonly value="1" ng-model="p[5]" size="2">
-									<a class="cart_quantity_up"><button ng-disabled="p[5]==1" ng-click="subQuantity(p[5],$index)">--</button> </a>
+									<input class="cart_quantity_input" type="text" name="quantity" readonly value="1" ng-model="p.Quantity" size="2">
+									<a class="cart_quantity_up"><button ng-disabled="p.Quantity==1" ng-click="subQuantity(p.,$index)">--</button> </a>
 								</div>
 							</td>
-							
+
 							<td class="cart_total">
-								<p class="cart_total_price">Rs.{{p[3]*p[5]}}</p>
+								<p class="cart_total_price">Rs.{{p.Price*p.Quantity}}</p>
 							</td>
 							<td class="cart_delete">
 								<a ng-click="removeFromcart(p,$index)" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
@@ -58,7 +58,7 @@
 <center> <button type="button" class="btn btn-success"  ng-show="!login"  data-toggle="modal" data-target="#myModal"> Finialise Your Order </button> </center>
 
 			</div>
-		
+
 	<div ng-hide="message">
 				<h2>Your Shopping Cart is empty.</h2>
 			<p>Your Shopping Cart lives to serve. Give it purpose--fill it with Items.
@@ -67,11 +67,11 @@
 			<p>
 				<a href="http://shopkare.com/static/index.html"><button class="btn btn-success" > Continue Shopping </button></a>  on the <a href="http://shopkare.com/static/home.html"> ShopKare.com</a> homepage, learn about today's deals and special offers....
 			</p>	<br>
-				
+
 			</div>
-		
+
 			<p>
-				The price and availability of items at Shopkare.com are subject to change. The shopping cart is a temporary place to store a list of your items and reflects each item's most recent price. 
+				The price and availability of items at Shopkare.com are subject to change. The shopping cart is a temporary place to store a list of your items and reflects each item's most recent price.
 				</p>
 		</div>
 	</div>

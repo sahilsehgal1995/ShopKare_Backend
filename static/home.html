@@ -36,33 +36,7 @@
       <script type="text/javascript" src="http://shopkare.com/static/js/angular/controllers/checkoutAngular.js"></script>   
      <script type="text/javascript" src="http://shopkare.com/static/js/angular/controllers/productsAngular.js"></script>   
      <script type="text/javascript" src="http://shopkare.com/static/js/angular/controllers/factoryAngular.js"></script>   
-                                               
-
-
-    <script>
-    $(document).ready(function(){
-    
-    $("#homelink").click(function(){
-       calcRotation(0);
-    });
-
-    $("#aboutLink").click(function(){
-      calcRotation(90);
-    });
-    
-    $("#newsLink").click(function(){
-       calcRotation(180);
-    });
-
-    $("#contactLink").click(function(){
-        calcRotation(270);
-    });
-    
-    function calcRotation(rot){
-           $("#cube").css("transform", "rotateY(-" + rot + "deg)");
-    }
-});
-</script>
+                                           
 
 
 
@@ -167,230 +141,199 @@ border: 3px solid #F7F7F5;
 </style>
 
 
-<body ng-controller="HEADctrl">
+<body ng-controller="HEADctrl" ng-cloak>
+
+
 <header id="header"><!--header-->
-    <div class="header_top"><!--header_top-->
-      <div class="container">
-        <div class="row">
-          
-          <div class="col-sm-12">
-            <div class="shop-menu pull-right">
-              <ul class="nav navbar-nav">
-                
-              <ul class="nav navbar-nav collapse navbar-collapse">
-                <li><a ui-sref=".main.home" class="active"><b>Home</b></a></li>
-                    <li ng-show='login'><a ui-sref=".checkout"><b>Checkout</b></a></li>    
-<li>
-  <a ui-sref=".cart" >
-    <span class = "badge">{{COUNTcartItems}}</span>   <span class="glyphicon glyphicon-shopping-cart"></span><b> Cart</b>
-        </a>
-</li>
-                <li class="dropdown"><a href="http://shopkare.com/static/#main/menu"><b>Section</b><i class="fa fa-angle-down"></i></a>
-            
-                    <ul role="menu" class="sub-menu">
-                    <li><a ui-sref=".main.home"><b>Grocery</b></a></li><br>
-                    <li><a ui-sref=".main.home"><b>Stationary</b></a></li> 
-                    
-                    <br><li><a href="http://shopkare.com/static/home.html#/medicines"><b>Medicine</b></a></li> <br>
-                    <li><a href="http://shopkare.com/static/home.html#/courier"><b>Courier</b></a></li> 
-                     
-                           </ul>
-                                </li> 
-             
-                <li><a ui-sref=".contactus"><b>Contact</b></a></li>
-              </ul>
-            
+    <div class="header_top" style="background-color: #4C4C4C; padding: 5px 0 5px 0; color:#fff !important;"><!--header_top-->
+        <div class="container">
+            <div class="row">
 
-            <div class="col-md-2 col-sm-2 col-xs-2">
-     
-     <button type="button" class="btn btn-success"  ng-show="!login"  data-toggle="modal" data-target="#myModal">Login</button> 
-  
-
-  <!-- Login Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog modal-sm">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Login</h4>
-        </div>
-        <div class="modal-body">
-                        <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
-                               <center><h4>{{messageLogin}}</h4></center> <br>
-                        <form id="loginform" class="form-horizontal" role="form">
-                                    
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                                        <input id="login-username" type="email" class="form-control" name="username" value="" placeholder="username or email" ng-model="ldata.Email">                                        
-                                    </div>
-                                                                          
-                            <div style="margin-bottom: 25px" class="input-group">
-                                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                                        <input id="login-password" type="password" class="form-control" name="password" placeholder="password"ng-model="ldata.Password">
-                                    </div>
-                                     
-                                
-                            <div class="input-group">
-                                      <div class="checkbox">
-                                        <label>
-                                          <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
-                                        </label>
-                                      </div>
-                                    </div>
-                                   <div style="margin-top:10px" class="form-group">
-                                    <!-- Button -->
-
-                                    <div class="col-sm-12 controls">
-                                    <a id="btn-login"  ng-disabled="!ldata.Email || !ldata.Password" ng-click="postldata()" class="btn btn-success">Login</a>
-                                      
-                                    </div>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <div class="col-md-12 control">
-                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                            Don't have an account! 
-                                        <a href="#signup" data-toggle="modal" data-target="#signup" onClick="$('#loginbox').hide(); $('#signupbox').show()">
-                                            Sign Up Here
-                                        </a>
-                                        </div>
-                                    </div>
-                                </div>    
-                            </form>     
-
-
-
-                        </div>                     
-
-        </div>
-      </div>
-    </div>
-  </div>
-     
- <!-- Login Modal -->
-  <div class="modal fade" id="signup" role="dialog">
-    <div class="modal-dialog modal-lg">
-      <div class="modal-content">
-        <div class="modal-header">
-     <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">SignUp</h4>
-        </div>
-        <div class="modal-body">
-                <center><h4>{{messageSignUP}}</h4></center> <br>                  
-                 <form id="signupform" class="form-horizontal" role="form">
-              <div class="top-margin">
-                <label>Full Name</label>
-                <input type="text" ng-model="rdata.Name" class="form-control" name="firstName">
-              </div>
-              <div class="top-margin">
-                <label>Email Address <span class="text-danger">*</span></label>
-                <input type="email" name="email" ng-model="rdata.Email" class="form-control">
-              </div>
-              
-              <div class="top-margin">
-                <label>Phone Number <span class="text-danger">*</span></label>
-                <input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">
-              </div>
-              
-              
-              <div class="row top-margin">
-                <div class="col-sm-6">
-                  <label>Password <span class="text-danger">*</span></label>
-                  <input type="password" ng-model="rdata.Password" class="form-control" name="password">
-                </div>
-                <div class="col-sm-6">
-                  <label>Confirm Password <span class="text-danger">*</span></label>
-                  <input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>
-                </div>
-                {{messagePASSWORD}}
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
-                  <label class="checkbox">
-                    <input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="page_terms.html">Terms and Conditions</a>
-                   </label>                        
-                </div><br>
-                
-                
-                    <div class="col-lg-3 col-md-5 col-sm-4  text-right">
-                  <button class="btn btn-success" ng-disabled="!rdata.Name || !rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2 || !checkboxChecked" ng-click="postrdata()"
-                  type="submit">Sign Up</button>
-                </div>
-              </div>
-             </form>
-        </div>
-      </div>
-    </div>
-  </div>
-<button type="button" class="btn btn-success" ng-show="login"  ng-click="logOUT()">Logout</button>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div><!--/header_top-->
-    
-         <div class="header-middle"><!--header-middle-->
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-3">
-            <div class="logo pull-left">
-              <a href="index.html"><img src="http://shopkare.com/static/images/home/logo.png" alt=""  width="200px" height="120px" /></a>
-            </div>
-            
-          </div>
-          <div class="row" >
-           
-            <div class="col-lg-3 col-lg-offset-6 col-md-4 col-md-offset-2 col-sm-4 col-sm-offset-5" >
-            <form> <div class="search_box">  <div class="input-group">
-      <input type="text" class="form-control" ng-model="searchKey" placeholder="Search for...">
-      <span class="input-group-btn">
-       <a ui-sref=".main.search" ><button class="btn btn-info" ng-disabled="!searchKey" ng-click="searchOperation()" type="SUBMIT">Go!</button></a>
-      </span>
-    </div><!-- /input-group -->
-
-           </div>
-</form>         </div>
-      
-        <br>
-      <div class="row">  
-  <br><br>&nbsp&nbsp&nbsp&nbsp&nbsp<input type="radio" name="gender" value="Hyderabad"><font color="#009973"> <b>Hyderabad </b></font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  
-  <input type="radio" name="gender" value="Chennai" disabled> <font color="#009973"> Chennai (coming soon)</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-  
-  <input type="radio" name="gender" value="Pune" disabled> <font color="#009973"> Pune (coming soon)</font> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
- </div>
-          </div>
-          
+                <div class="col-sm-12">
+                    <div class="pull-left">
+                        <h4>SHOPKARE</h4>
+                        <h6 style="margin-top: -10px">Anytime Anywhere</h6>
                     </div>
-                    
-          
-        </div>
-              
-        
-        </div><!--/header-middle-->
-  <div class="header-bottom"><!--header-bottom-->
-                        <div class="container">
-                                <div class="row">
+                    <div class="col-lg-6 hidden-md hidden-sm hidden-xs" style="margin-top: 8px; margin-left: 40px">
+                        <form class="form-inline">
+                            <div class="search_box">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" style="height:25px;" ng-model="searchKey" placeholder="Search Your Needs">
+                            <span class="input-group-btn">
+                                <a ui-sref=".main.search" ><button class="btn btn-default" style="height:25px; padding: 2px 5px; background-color: #a6a6a6; color:#fff;" ng-disabled="!searchKey" ng-click="searchOperation()" type="SUBMIT"><span class="glyphicon glyphicon-search"></span> </button></a>
+                            </span>
+                                </div><!-- /input-group -->
+                            </div>
+                        </form>
+                    </div>
+                    <div class="shop-menu pull-right" >
+                        <ul  class="nav navbar-nav">
+                            <ul class="nav navbar-nav collapse navbar-collapse">
+                                <li ng-show='login'><a ui-sref=".checkout"><b>Checkout</b></a></li>
+                                <li class="dropdown" ><a href="home.html#/main/home" style="color:#fff;"><b>Section</b><i class="fa fa-angle-down"></i></a>
 
-                                <div class="col-sm-9">
-                                </div>
+                                    <ul role="menu" class="sub-menu">
+                                        <li><a ui-sref=".main.home" style="color:#fff;"><b>Grocery</b></a></li><br>
+                                        <li><a ui-sref=".main.home" style="color:#fff;"><b>Stationary</b></a></li>
 
-                                        <div class="col-sm-3">
+                                        <br><li><a href="home.html#/medicines" style="color:#fff;"><b>Medicine</b></a></li> <br>
+                                        <li><a href="home.html#/courier" style="color:#fff;"><b>Courier</b></a></li>
+
+                                    </ul>
+                                </li>
+
+                                <li><a style="color:#fff;" ui-sref=".contactus"><b>Contact</b></a></li>
+                                <li>
+                                    <a ui-sref=".cart" >
+                                        <span class = "badge">{{COUNTcartItems}}</span>   <span STYLE="color: #FFF" class="glyphicon glyphicon-shopping-cart"></span>
+                                    </a>
+                                </li>
+                            </ul>
+
+
+                            <div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">
+
+                                <button type="button" class="btn btn-default" style="background-color: #4C4C4C; border-right: 0; border: 1px solid #fff; color: #fff; margin-top: 8px; padding: 2px 5px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal">Login</button>
+                            </div>
+                            <!--
+
+                             -->
+
+                            <!-- Login Modal -->
+                            <div class="modal fade" id="myModal" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Login</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
+                                            <center><b><h5>{{messageLogin}}<span style='color:red'> {{LOGINFIRSTMSG}}</span></h5></b></center> <br>
+                                            <form id="loginform" class="form-horizontal" role="form">
+
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                                                    <input id="login-username" type="email" class="form-control" name="username" value="" placeholder="username or email" ng-model="ldata.Email">
+                                                </div>
+
+                                                <div style="margin-bottom: 25px" class="input-group">
+                                                    <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                                                    <input id="login-password" type="password" class="form-control" name="password" placeholder="password"ng-model="ldata.Password">
+                                                </div>
+
+
+                                                <div class="input-group">
+                                                    <div class="checkbox">
+                                                        <label>
+                                                            <input id="login-remember" type="checkbox" name="remember" value="1"> Remember me
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                                <div style="margin-top:10px" class="form-group">
+                                                    <!-- Button -->
+
+                                                    <div class="col-sm-12 controls">
+                                                        <a id="btn-login"  ng-disabled="!ldata.Email || !ldata.Password" ng-click="postldata()" class="btn btn-success">Login</a>
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="form-group">
+                                                    <div class="col-md-12 control">
+                                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
+                                                            Don't have an account!
+                                                            <a href="#signup" data-toggle="modal" data-target="#signup" onClick="$('#loginbox').hide(); $('#signupbox').show()">
+                                                                Sign Up Here
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+
 
 
                                         </div>
+
+                                    </div>
                                 </div>
+                            </div>
+                    </div>
+
+                    <!-- Login Modal -->
+                    <div class="modal fade" id="signup" role="dialog">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">SignUp</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <center><h4>{{messageSignUP}}</h4></center> <br>
+                                    <form id="signupform" class="form-horizontal" role="form">
+                                        <div class="top-margin">
+                                            <label>Full Name</label>
+                                            <input type="text" ng-model="rdata.Name" class="form-control" name="firstName">
+                                        </div>
+                                        <div class="top-margin">
+                                            <label>Email Address <span class="text-danger">*</span></label>
+                                            <input type="email" name="email" ng-model="rdata.Email" class="form-control">
+                                        </div>
+
+                                        <div class="top-margin">
+                                            <label>Phone Number <span class="text-danger">*</span></label>
+                                            <input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">
+                                        </div>
+
+
+                                        <div class="row top-margin">
+                                            <div class="col-sm-6">
+                                                <label>Password <span class="text-danger">*</span></label>
+                                                <input type="password" ng-model="rdata.Password" class="form-control" name="password">
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label>Confirm Password <span class="text-danger">*</span></label>
+                                                <input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>
+                                            </div>
+                                            {{messagePASSWORD}}
+                                        </div>
+                                        <hr>
+                                        <div class="row">
+                                            <div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
+                                                <label class="checkbox">
+                                                    <input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="page_terms.html">Terms and Conditions</a>
+                                                </label>
+                                            </div><br>
+
+
+                                            <div class="col-lg-3 col-md-5 col-sm-4  text-right">
+                                                <button class="btn btn-success" ng-disabled="!rdata.Name || !rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2 || !checkboxChecked" ng-click="postrdata()"
+                                                        type="submit">Sign Up</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
-                </div><!--/header-bottom-->
- 
-    
-  </header><!--/header-->
+                    </div>
+                    <button type="button" class="btn btn-success" ng-show="login"  ng-click="logOUT()">Logout</button>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div><!--/header_top-->
+</header><!--/header-->
 
 
 
+
+
+
+
+<br>
+<br>
 
 
 
@@ -406,90 +349,101 @@ border: 3px solid #F7F7F5;
 
 
 
-
- <footer id="footer"><!--Footer-->
+<footer style="background-color:#4C4C4C !important;" id="footer"><!--Footer-->
     <div class="footer-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-2">
-            <div class="companyinfo">
-              <h2><span>Shop</span>-Kare</h2>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit,sed do eiusmod tempor</p>
-            </div>
-          </div>
-          <div class="col-sm-7">
-            
-            
-            <div class="col-sm-3">
-            </div>
-            
-            <div class="col-sm-6">
-              <div class="video-gallery text-center">
-                <a href="#">
-                  <div class="iframe-img">
-                    <img src="http://shopkare.com/static/images/home/paypal.jpg" alt=""  />
-                  </div>
-                  <div class="overlay-icon">
-                    <i class="fa fa-shopping-cart"></i>
-                  </div>
-                </a>
-              </div>
-            </div>
-            
-            
-          </div>
-          <div class="col-sm-3">
-            <div class="address">
-              <img src="http://shopkare.com/static/images/home/map.png" alt="" />
-              <p>Shopkare, Covering The Entire Nation. Shop With Us</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  
-    <div class="footer-widget" style="margin-left:90px ; margin-top:24px">
-      
-        <div class="row">
-          <div class="col-sm-2">
-            <div class="single-widget">
-              <h2>Service</h2>
-          
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="single-widget">
-              <h2>Quick Shop</h2>
-            
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="single-widget">
-              <h2>Policies</h2>
-              
-            </div>
-          </div>
-          <div class="col-sm-2">
-            <div class="single-widget">
-              <h2>About Shopkare</h2>
-            
-            </div>
-          </div>
-          
-        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="companyinfo">
+                        <h2 style="color:#fff;">ShopKare</h2>
+                        <h5 style="color:#fff;">Anytime Anywhere</h5>
+                        <p>
+                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                            consequat.
+                        </p>
+                        <p>Support: support@shopkare.com</p>
+                        <p>General: info@shopkare.com</p>
+                    </div>
+                </div>
+                <div class="col-sm-5">
 
-    </div>
-    
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row">
-        <p class="pull-left"><b>Copyright © 2016 Shopkare Inc. All rights reserved.</b></p>
-          <p class="pull-right"><b>Designed by <span>Creative Mammoth</b></span></p>
+
+                    <div class="col-sm-3">
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="row">
+                            <div style="margin-top: 57px">
+                                <div class="col-sm-5">
+                                    <h4 style="color:#fff;">Service</h4>
+                                    <div style="color:#e6e6e6; list-style: none;">
+                                        <li>Groceries</li>
+                                        <li>Medicine</li>
+                                        <li>Stationery</li>
+                                        <li>Courier</li>
+                                    </div>
+                                </div>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-5">
+                                    <h4 style="color:#fff;">Company</h4>
+                                    <div style="color:#e6e6e6;list-style: none;">
+                                        <li>About</li>
+                                        <li>FAQs</li>
+                                        <li>Press</li>
+                                        <li>Contact Us</li>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div style="margin-top: 0px">
+                                <div class="col-sm-12">
+                                    <h4 style="color:#fff;">Payment Method</h4>
+                                    <div style="margin-top: 0;" class="video-gallery text-center">
+                                        <a href="#">
+                                            <div class="iframe-img">
+                                                <img src="images/home/paypal2.jpg" alt=""  />
+                                            </div>
+                                            <div class="overlay-icon">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+                <div class="col-sm-3">
+                    <div class="address">
+                        <img src="images/home/map.png" alt="" />
+                        <p>Shopkare, Covering The Entire Nation. Shop With Us</p>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
-    
-  </footer><!--/Footer-->
+    <div class="footer-bottom" style="background-color:#4C4C4C !important; color: #fff !important; padding-bottom: 10px">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4"> Copyright © 2016 Shopkare Inc. All rights reserved.</div>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <li style="display: inline;"> &diamond; Privacy</li>&nbsp;
+                    <li style="display: inline;"> &diamond; Takedown Policy</li>&nbsp;
+                    <li style="display: inline;"> &diamond; Terms of Use</li>&nbsp;
+                </div>
+                <div class="col-sm-3">
+                    Designed by <span>Creative Mammoth</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</footer><!--/Footer-->
 
 
     <script src="http://shopkare.com/static/js/jquery.js"></script>

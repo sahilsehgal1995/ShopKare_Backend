@@ -42,8 +42,9 @@
 </script>
 
 </head>
-<body>
-    <div id="wrapper">
+<body ng-controller="add_new_product">
+   
+<div id="wrapper">
         <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
@@ -52,25 +53,25 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a  class="navbar-brand" href="products.html">Admin Portal
+                <a  class="navbar-brand" href="index.html">Admin Portal
 
                 </a>
             </div>
 
             <div class="notifications-wrapper">
-                <ul class="nav">
-               
-               
+<ul class="nav">
+
+
                 <li class="dropdown navbar-right">
                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
                         <i class="fa fa-user-plus"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user" >
-                        
-                       
+
+
                         <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
-                    </ul>
+                                        </ul>
                 </li>
             </ul>
             </div>
@@ -83,45 +84,49 @@
                         <div class="user-img-div">
                             <img src="http://shopkare.com/Admin/static/assets/img/user.png" class="img-circle" />
 
-                           
+
                         </div>
 
                     </li>
                      <li>
                         <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
                     </li>
-                    <li>
-                        <a href="products.html"><i class="fa fa-sitemap "></i>Products</a>
-                        
-                    </li>
-                    
-                    <li>
-                        <a  href="orders.html"><i class="fa fa-bolt "></i>Orders</a>
-                        
-                    </li>
-                   
-                    <li>
-                        <a  href="feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
-                    </li>
-<li>
-                        <a   href="addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
-                    </li>
-							<li>
-                        <a    href="batches.html"><i class="fa fa-dashcube "></i>Batches</a>
-                    </li>
-                   
-                </ul>
-            </div>
 
-        </nav>
-</div>
-		 <div id="page-wrapper" class="pageadd_new_product-wrapper-cls">
+                    <li>
+                        <a class="active-menu" href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
+
+                    </li>
+     <li>
+                        <a href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
+
+                    </li>
+
+                    <li>
+                        <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
+                    </li>
+
+                                        <li>
+                        <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
+                    </li>
+
+                                        <li>
+                        <a    href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
+                    </li>
+                 <li> 
+                     <a href="http://shopkare.com/Admin/static/addDeliveryboy.html"><i class="fa fa-bolt "></i>Add Delivery Boy</a>
+                    </li>
+
+
+                </ul>
+            
+
+        </nav>        <!-- /. SIDEBAR MENU (navbar-side) -->
+
+ <div id="page-wrapper" class="pageadd_new_product-wrapper-cls">
              <div class="row">
-                    <div class="col-md-12 offset">
-                        <h1 class="page-head-line">Add Product</h1>
-		
- <div class="container"  ng-controller="add_new_product" >    
-        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">                    
+                    <div class="col-md-10 col-md-offset-2 col-sm-offset-3">
+                        <h1 class="page-head-line">Add Product</h1>   
+        <div id="loginbox" style="margin-top:30px;" class="mainbox col-md-10  col-sm-10 ">                    
             <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Add Product</div>
@@ -137,6 +142,10 @@
     <option value="{{city}}" ng-repeat="city in categories">{{category._id}} </option>
     </select>
 -->
+  <fieldset class="form-group">
+    <label for="text">Product Category</label>
+    <input type="text" class="form-control" id="text" placeholder="Product Category" ng-model="Product.Product_Category">
+  </fieldset>
   <fieldset class="form-group">
     <label for="text">Product Name</label>
     <input type="text" class="form-control" id="text" placeholder="Product Name" ng-model="Product.product_name">
@@ -167,16 +176,18 @@
     </select>
 </div> 
    <br>
-    <fieldset class="form-group">
+  <fieldset class="form-group">
     <label for="number">Enter Quantities And Price :<br></label><br>
     <div id="Add_New" ng-repeat="q in quantities">  
-  <input type="text" id="text" placeholder="Product Quantity" ng-model="q.Quantity[0]" value="{{q.Quantity[0]}}">
-    <input type="number" id="text" placeholder="Product Price"  ng-model="q.Quantity[1]" value="{{q.Quantity[1]}}"><br>  
+  <input type="text" id="text" placeholder="Product Quantity" ng-model="q[0]" value="{{q[0]}}">
+    <input type="number" id="text" placeholder="Product Selling Price"  ng-model="q[1]" value="{{q[1]}}">  
+  <input type="number" id="text" placeholder="Product Orignal Price" ng-model="q[2]" value="{{q[2]}}">
+  <input type="number" id="text" placeholder="Discount" ng-model="q[3]" value="{{q[3]}}">
+ <select class="btn btn-default dropdown-toggle" type="button" ng-init="q[4]='Available'" ng-model="q[4]">  
+<option value="{{option}}" ng-repeat="option in key4Quantities">{{option}}</option>
+    </select>
     </div>
-
 <button ng-click="button_function(q)"> Add More Quantities</button>
-<button ng-click="ShowQuantity()"> ShowData</button>
-
   </fieldset>
 <fieldset>
     <div>
@@ -184,17 +195,14 @@
             onchange="angular.element(this).scope().getFileDetails(this)" />
 
         <!--ADD A PROGRESS BAR ELEMENT.-->
-        <p>{{status}}</p>
+        
     </div>
 </fieldset>
-  <label>{{reply}} <br></label>
   <button class="btn btn-primary" ng-click="uploadFiles()">Submit</button>
-   <!-->
-    
-    </div></div></div></div></div></div>      		
-			</div>
-					 <footer >
-          <b> &copy; Admin Portal | By : Creative Mammoth  </b>
+  
+    <label>{{status}} <br></label>
+    </div></div></div></div>			</div> </div> </div>		 <footer >
+ <b> &copy; Admin Portal | By : Creative Mammoth  </b>
     </footer>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->

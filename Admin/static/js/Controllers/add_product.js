@@ -1,27 +1,45 @@
-(function() {
+
+
+
+(function(){
   var app = angular.module('ShopKare_Backend-master', []);
-//   var base = 'http://127.0.0.1:5000';
+
   var base = 'http://shopkare.com';
 
   var categories = [];
   var level1keys= [];
-  var ProductQuantityArray= [];
-    app.controller('add_new_product',['$scope', '$http',function($scope,$http){
-      console.log("CONtroller Working");
-     
+  var ProductQuantityArray= {};
+  app.controller('add_new_product',['$scope', '$http','$window',function($scope,$http,$window){
+
+var AdminType=localStorage.getItem("ShopkareAdminType");
+console.log(AdminType);
+if(AdminType=='Super Admin'){
+$scope.AdminSuper=true;
+}
+else{
+$scope.AdminSuper=false;
+}
+
+
+        
       /*$http.post("GETSESSIONCITY")
-      .success(function(response){
+tate
         $scope.city=response;
       })
       .error(function(response){
         console.log("response");
       });
-*/  
-      $scope.city="Hyderabad";
+*/
+ 
+
+  $scope.key4Quantities=["Available","Coming Soon","Out of Stock"];  
+  $scope.city="Hyderabad";
       $scope.Product={};
       $scope.index1=0;
-      $scope.quantities=[{"Quantity":["",""]}];
-      console.log($scope.city);
+      $scope.TestQuantity=["","","","",""];
+	   $scope.quantities=new Array();
+	$scope.quantities.push($scope.TestQuantity);
+	   console.log($scope.city);
       $http.get(base+"/api/Admin/addProduct?user="+JSON.stringify($scope.Product))
        .then(function(response){
         $scope.main_level_products=response['data'];
@@ -30,8 +48,8 @@
        $scope.button_function=function(){
         console.log("Function Called Successfully");
         $scope.index1=$scope.index1+1;
-	$scope.dataa={"Quantity": [" "," "]};
-        $scope.quantities.push($scope.dataa);
+	$scope.dataa= ["",0,0,0,""];
+       $scope.quantities.push($scope.dataa);
        };
 
 	$scope.getFileDetails = function (e) {
@@ -63,21 +81,20 @@
             objXhr.addEventListener("load", transferComplete, false);
 	    
 	  //add Product details in Product
-	    var quant = {
-	      "City":$scope.city,
-	      'Quantities': $scope.quantities
-	    };
-	    ProductQuantityArray.push(quant);  
+	  
+	ProductQuantityArray=[{"City":"Hyderabad","Quantities":$scope.quantities}];	
 	//console.log(getproducts());  
 	$scope.Product['_id'] = getproducts();
 	$scope.Product['Quantity']=ProductQuantityArray;
 	$scope.Product['Level1 Category'] = JSON.parse($scope.l1category)._id;
 	$scope.Product['Main Category'] = $scope.mainCategories[$scope.mainCategory];
 	$scope.Product['Sub Category'] = $scope.subcategories[$scope.subcategoryindex];
-	
-            // SEND FILE DETAILS TO THE API.
+           
+console.log($scope.Product);
+
+ // SEND FILE DETAILS TO THE API.
             objXhr.open("POST", base+"/api/Admin/addProduct/?product="+JSON.stringify($scope.Product));
-            objXhr.send(data);
+           objXhr.send(data);
         }
 
         // UPDATE PROGRESS BAR.
@@ -90,7 +107,8 @@
 
         // CONFIRMATION.
         function transferComplete(e) {
-            $scope.status=e.currentTarget.response;
+	    alert(e.currentTarget.response);
+	   $window.location.href=base+'/Admin/static/add.html';
         }
                
      
@@ -129,16 +147,8 @@
 	
 	
       };
-       $scope.gettablenames=function(){
-        console.log("function Called Successfully");
-       	$http.post("php/getTablename.php",{"category1":$scope.level_2_category})
-       	.then(function(response){
-       		$scope.getTablenames=response['data'];
-                  console.log("php page Called Successfully");
-       	})
-
-       };
        
+    
       $http.post(base+'/api/Admin/reteriveCategories/')
  	.success(function(data){
  	  categories = data;
@@ -155,7 +165,7 @@
  	.error(function(err){
  	  console.log(err);
  	});
-	$scope.mainCategories = [];
+ 	$scope.mainCategories = [];
     $scope.selectLevel1Category = function()
     {
       $scope.mainCategories=[];
@@ -185,6 +195,6 @@
       var id = level1keys.indexOf(JSON.parse($scope.l1category)._id).toString() +'_'+ $scope.mainCategory.toString() + '_'+ $scope.subcategoryindex.toString();
       return id;
     };
-   
+
     }]);
 })();

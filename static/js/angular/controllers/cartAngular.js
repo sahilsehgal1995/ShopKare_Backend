@@ -4,19 +4,15 @@ app4.controller('cartItems',['$scope','$http','$rootScope',function($scope,$http
 $scope.message=false;
 $scope.Products=[];
 var storedData = localStorage.getItem("product");
-
-if(JSON.parse(storedData)){
-  $scope.CartProducts = JSON.parse(storedData);
-  for(var i in $scope.CartProducts){
-    console.log($scope.CartProducts[i]);
-    $scope.Products.push($scope.CartProducts[i]);  
-  }
-
-  console.log($scope.Products);
-  if($scope.CartProducts.length!=0){
-    $scope.message=true;
-  }  
-}
+$http.post(base+'/api/Customer/getCartItems/')
+.success(function(data){
+console.log(data);
+$scope.Products=data;
+$scope.message=true;
+})
+.error(function(response){
+console.log(response);
+});
 
 
 $scope.removeFromcart=function(id,index){

@@ -95,7 +95,7 @@ var app = angular.module('Shopkare', ['ui.router','courier_medicine','HeaderOper
               }
             },
            
-	   controller: function($scope, $stateParams,cartService,$rootScope) {
+	   controller: function($scope, $http,$stateParams,cartService,$rootScope) {
             $scope.initialImage=0;
             var p = $stateParams.pID;
             $scope.ProductDT=JSON.parse(p);
@@ -103,34 +103,43 @@ var app = angular.module('Shopkare', ['ui.router','courier_medicine','HeaderOper
               $scope.changeImage=function(id){
                 $scope.initialImage=id;
               }
-              $scope.addCart=function(id,k){
-                var pic=$scope.ProductDT.images[0].replace(/%/g,"/");
-                for(var po=0;po<pic.length;po++){      
-                  if(pic[po]=='/'){
-                    pic=pic.slice(0,po+1)+pic.slice(po+3);    
-                    }
-                  }
-               
-                var picCart=Array();
-                picCart.push(pic);
-                var z=[ picCart , id.product_name , id.Qwt[k] , id.Qrs[k], id.description,1 ]; 
-                console.log(z);
-                var p=cartService.addProduct(z);
-                if(p){
-                  $rootScope.COUNTcartItems=$rootScope.COUNTcartItems+1;
-                  console.log($rootScope.COUNTcartItems);
-                }
-                $scope.ProductDT.cart[k]="Added in Your Cart";
-                $scope.COUNTcartItems=$scope.COUNTcartItems+1;
-    
+         
 
-            //    var Quantities=id.Quantity[0].Quantities;
-            //    var selectedQunatity=id.Quantity[0].Quantities[k];
-            //    var productindex=Quantities.indexOf(selectedQunatity);
-            //    console.log(productindex);
-                
-                };
+	$scope.addCart=function(id,k){
+        var cartItem={};
+        console.log(id,k);
+        cartItem=id;
+	
+        cartItem["QuantityType"]=id.Quantity[0].Quantities[k][0];
+        cartItem["Price"]=id.Quantity[0].Quantities[k][1];
+        cartItem["QuantityIndex"]=k;
+        cartItem["cartQuantity"]=id.cartQty[k];
+        console.log(cartItem);
 
+        $http.post(base+'/api/Customer/addToCart/?cartItem='+JSON.stringify(cartItem))
+        .success(function(data){
+        console.log(data);
+        $scope.ProductDT.cart[k]="Added in Your Cart";
+        })
+        .error(function(response){
+        console.log(response);
+        })
+
+        $rootScope.COUNTcartItems=$rootScope.COUNTcartItems+1;
+        };
+
+$scope.loginError=function(){
+$rootScope.LOGINFIRSTMSG="To Continue You Have to Login First";
+}
+
+
+	     $scope.addQuantity=function(index){
+		$scope.ProductDT.cartQty[index]++;
+	    };
+		
+		$scope.subQuantity=function(index){
+		$scope.ProductDT.cartQty[index]--;
+		};
 
             }
              

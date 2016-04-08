@@ -1,21 +1,38 @@
-	 <div id="contact-page" class="container">
+	 <div id="contact-page" class="card container" style="font-family: 'Roboto', sans-serif">
     	<div class="bg">
-	    	<div class="row">    		
-	    		<div class="col-sm-12">    			   			
-					<h2 class="title text-center">Contact <strong>Us</strong></h2>    	<br>		    				    				
-				
-				</div>			 		
-			</div>    	
-    		<div class="row">  	
+	    	<div class="row">
+	    		<div class="col-sm-12">
+					<div><span style="font-weight: 500;font-size: 20px;">CONTACT US</span></div>
+					<br>
+
+					<br>
+
+				</div>
+			</div>
+			<style>
+				#contact-page .form-control{
+					background-color: #efefef;
+					/* border: 1px solid #ddd; */
+					/* color: #696763; */
+					height: 46px;
+					padding: 6px 12px;
+					width: 100%;
+					font-size: 16px;
+					/* border-radius: 4px; */
+					/* box-shadow: inherit; */
+				}
+			</style>
+    		<div class="row">
 	    		<div class="col-sm-8">
 	    			<div class="contact-form">
-	    				<h2 class="title text-center">Get In Touch</h2>
+	    				<div><span style="font-size: 20px;">GET IN TOUCH</span></div>
+						<br>
 	    				<div class="status alert alert-success" style="display: none"></div>
 				    	<form id="main-contact-form" class="contact-form row" name="contact-form" method="post">
-				            <div class="form-group col-md-6">
-				                <input type="text" name="name" class="form-control" required="required" placeholder="Name">
+				            <div class="form-group col-md-12">
+				                <input type="text" name="name" class="form-control " required="required" placeholder="Name">
 				            </div>
-				            <div class="form-group col-md-6">
+				            <div class="form-group col-md-12">
 				                <input type="email" name="email" class="form-control" required="required" placeholder="Email">
 				            </div>
 				            <div class="form-group col-md-12">
@@ -23,44 +40,52 @@
 				            </div>
 				            <div class="form-group col-md-12">
 				                <textarea name="message" id="message" required="required" class="form-control" rows="8" placeholder="Your Message Here"></textarea>
-				            </div>                        
+				            </div>
 				            <div class="form-group col-md-12">
-				                <input type="submit" name="submit" class="btn btn-primary pull-right" value="Submit">
+								<button class="btn btn-lg pull-right" style="background-color: lightgreen" ><span style="color: white">SEND</span></button>
+				                <!--<input type="submit" name="submit" class="btn-lg  pull-right"  style="background-color: lightgreen" value="Send">-->
 				            </div>
 				        </form>
 	    			</div>
 	    		</div>
 	    		<div class="col-sm-4">
 	    			<div class="contact-info">
-	    				<h2 class="title text-center">Contact Info</h2>
+						<div><span style="font-size: 20px;">CONTACT INFO</span></div> <br>
 	    				<address>
+							<div style="font-size: 15px;">
 	    					<p>Corporate Office:</p>
 							<p>Creative Mammoth Limited ,</p>
 							<p>ES-11 Jawahar Bhawan, IIT Roorkee -247667</p>
 							<p>Mobile: +91 8791156224,</p>
 							<p>Fax: 123-56-789</p>
 							<p>Email: hello@creativemammoth.com</p>
+							</div>
 	    				</address>
-	    				<div class="social-networks">
-	    					<h2 class="title text-center">Social Networking</h2>
-							<ul>
-								<li>
-									<a href="#"><i class="fa fa-facebook"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-twitter"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-google-plus"></i></a>
-								</li>
-								<li>
-									<a href="#"><i class="fa fa-youtube"></i></a>
-								</li>
-							</ul>
+	    				<div  style="padding: 0 0 0 0;margin: 0 0 0 0 ">
+							<div><span style="font-size: 20px;">FOLLOW US ON</span></div> <br>
+							<div>
+								<span  style="font-size: 20px;" class="fa-stack fa-lg">
+  													<i  style="color:lightgray" class="fa fa-circle fa-stack-2x"></i>
+ 										            <i style="color: blue" class="fa fa-facebook fa-stack-1x "></i>
+												</span>
+								<span  style="font-size: 20px;" class="fa-stack fa-lg">
+  													<i  style="color:lightgray" class="fa fa-circle fa-stack-2x"></i>
+ 										            <i style="color: deepskyblue" class="fa fa-twitter fa-stack-1x "></i>
+												</span>
+									<span  style="font-size: 20px;" class="fa-stack fa-lg">
+  													<i  style="color:lightgray" class="fa fa-circle fa-stack-2x"></i>
+ 										            <i style="color: darkred" class="fa fa-google-plus fa-stack-1x "></i>
+												</span>
+									<span  style="font-size: 20px;" class="fa-stack fa-lg">
+  													<i  style="color:lightgray" class="fa fa-circle fa-stack-2x"></i>
+ 										            <i style="color: red" class="fa fa-youtube-play fa-stack-1x "></i>
+												</span>
+
+							</div>
 	    				</div>
 	    			</div>
-    			</div>    			
-	    	</div>  
-    	</div>	
+    			</div>
+	    	</div>
+    	</div>
     </div><!--/#contact-page-->
 	

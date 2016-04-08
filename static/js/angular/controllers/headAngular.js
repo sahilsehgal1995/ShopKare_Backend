@@ -11,7 +11,6 @@ var base = 'http://shopkare.com';
 $scope.login=false;
 $scope.ProdtmessageError=true;
 $scope.CartProductsCheck=true;
-
 $rootScope.COUNTcartItems=0;
 $rootScope.COUNTcartItems=cartService.cartQuantity();
 
@@ -23,6 +22,8 @@ if (JSON.parse(userData)){
 
 // Retrieve Categories
 
+//var p=cartService.allCategories();
+//console.log(p);
 $scope.level1Categories=[];
 var categories = [];
 var level1keys= [];
@@ -67,10 +68,29 @@ $scope.level3Categories=[];
 
 
       $scope.searchOperation=function(){
+	var level1category="Grocery";
         console.log($scope.searchKey);
-	$http.post(base+'Url?pid='+$scope.searchKey)
+	$http.get(base+'/api/Product/searchProduct/?level1category='+level1category+'&query='+$scope.searchKey)
 	.success(function(data){
-		console.log(data);
+	$scope.products=data;	
+	 console.log(data);
+	if($scope.products.length>0){
+		$scope.ProdtmessageError=false;
+
+       for(var i in $scope.products){
+                 $scope.products[i]['cart']=[];
+     	         $scope.products[i]['cartQty']=[];
+       	 var QArray=JSON.parse(JSON.stringify($scope.products[i].Quantity));                var Qarray=QArray[0].Quantities;
+                for(var z in Qarray){
+                 $scope.products[i]['cart'].push("Add to Cart");
+                 $scope.products[i]['cartQty'].push(1);
+                 }
+		}
+	   }
+	else {
+		$scope.ProdtmessageError=true;	
+        	$scope.searchKey="";
+	   }
 	})
 	.error(function(response){
 	console.log(response);
@@ -95,6 +115,7 @@ $scope.level3Categories=[];
           $scope.messageLogin=response; 
           if(response=='Login Success'){
             $scope.login=true;
+		$scope.LOGINFIRSTMSG="";
             localStorage.setItem("SHOPKAREuser",  JSON.stringify($scope.ldata));
             if(localStorage.setItem("SHOPKAREuser",  JSON.stringify($scope.ldata))){
             $window.location.href = 'home.html';
@@ -155,58 +176,32 @@ $scope.level3Categories=[];
 
         $scope.GETProducts=function(c1,c2){
           var category1=c1;
+	$scope.searchKey="";
           var category2=c2;
-          $scope.products=[];
-          
-         var storedData = localStorage.getItem("product");
-              if (JSON.parse(storedData)){
-                  storedData= JSON.parse(storedData);
-                  if(storedData.length>0){
-                    $scope.CartProductsCheck=false;  
-                  } 
-              }
+          $scope.products=[]; 
 
         $http.get("http://shopkare.com/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+category1+"&SubCategory="+category2)
         .success(function(response){
+	console.log(response);
           $scope.Pindex=0;  
-          $scope.prodt=response;
+	console.log(response.length);    
+      $scope.prodt=response;
           if(response.length>0){
 
             for(var i in $scope.prodt){
-              $scope.prodt[i]['Qwt']=[];
-              $scope.prodt[i]['Qrs']=[];
-              $scope.prodt[i]['cart']=[];
-              $scope.prodt[i]['Availablity']=[];
-              $scope.prodt[i]['orgPrice']=[];
-              $scope.prodt[i]['discount']=[];
-              var QArray=JSON.parse(JSON.stringify($scope.prodt[i].Quantity[0].Quantities));
+	$scope.prodt[i]['cart']=[];
+	$scope.prodt[i]['cartQty']=[];
+	 var QArray=JSON.parse(JSON.stringify($scope.prodt[i].Quantity));           
+        var Qarray=QArray[0].Quantities;
 
-              for(var z in QArray) {
-                $scope.prodt[i]['Qwt'].push(QArray[z].Quantity[0]);
-                $scope.prodt[i]['Qrs'].push(QArray[z].Quantity[1]);
-                $scope.prodt[i]['Availablity'].push(QArray[z].Quantity[4]);
-                $scope.prodt[i]['orgPrice'].push(QArray[z].Quantity[2]);
-                $scope.prodt[i]['discount'].push(QArray[z].Quantity[3]);
-                $scope.prodt[i]['cart'].push("Add to Cart"); 
-              }
+                for(var z in Qarray){
+                 $scope.prodt[i]['cart'].push("Add to Cart");
+              	 $scope.prodt[i]['cartQty'].push(1);
+		 }
+
             $scope.products.push($scope.prodt[i]);  
           }
-          if(storedData){
-          if(storedData.length>0){
-          for(var z in storedData){
-                for(var i in $scope.products){
-                     if($scope.products[i].product_name==storedData[z][1]){
-                               for(var x in $scope.products[i].Qwt){
-                                   if($scope.products[i].Qwt[x]==storedData[z][2]){
-                                      $scope.products[i]['cart'][x]="Already in Cart";
-                                   }
-                                   
-                               }
-                        }
-                     }
-                  }
-               }
-              }
+        
                $scope.ProdtmessageError=false;
           }
 
@@ -234,6 +229,29 @@ $scope.level3Categories=[];
       };
 
 
+$scope.loginError=function(){
+$rootScope.LOGINFIRSTMSG="To Continue You Have to Login First";
+}
+	
+
+
+$scope.NormalLogin=function(){
+$scope.LOGINFIRSTMSG="";
+}
+	
+ $scope.addQuantity=function(id,k){
+ var x=$scope.products.indexOf(id);
+ console.log(x);
+ $scope.products[x].cartQty[k]=$scope.products[x].cartQty[k]+1;
+
+}
+
+$scope.subQuantity=function(id,k){
+ var x=$scope.products.indexOf(id);
+ $scope.products[x].cartQty[k]--;
+}
+
+
 
  $scope.pdetail=function(id){
         console.log(id);
@@ -249,20 +267,30 @@ $scope.level3Categories=[];
             console.log($scope.Productsindex);
         }
 
-$scope.addCart=function(id,k){        
-        var z=[ id.images , id.product_name , id.Qwt[k] , id.Qrs[k], id.description,1 ]; 
-        var p=cartService.addProduct(z);
-        for(var i in $scope.products){
+$scope.addCart=function(id,k){ 
+	var cartItem={};
+	console.log(id,k);
+	cartItem=id;
+	cartItem["QuantityType"]=id.Quantity[0].Quantities[k][0];
+	cartItem["Price"]=id.Quantity[0].Quantities[k][1];       
+	cartItem["QuantityIndex"]=k;
+	cartItem["cartQuantity"]=id.cartQty[k];
+	cartItem["ProductID"]=id._id;
+		console.log(cartItem);
+        
+	$http.post(base+'/api/Customer/addToCart/?cartItem='+JSON.stringify(cartItem))
+	.success(function(data){
+	console.log(data);	
+	for(var i in $scope.products){
             if (id.product_name == $scope.products[i].product_name) {
             $scope.products[i].cart[k]="Added in Your Cart";
           }
         }
-       // var Quantities=id.Quantity[0].Quantities;
-       // var selectedQunatity=id.Quantity[0].Quantities[k];
-       // var productindex=Quantities.indexOf(selectedQunatity);
-       // console.log(productindex);
-        
-        
+	})
+	.error(function(response){
+	console.log(response);
+	})
+	
         $rootScope.COUNTcartItems=$rootScope.COUNTcartItems+1;
         };
 

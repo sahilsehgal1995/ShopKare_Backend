@@ -1,10 +1,9 @@
 var app7=angular.module('CheckoutHandler',[]);
 
 
-app7.controller('checkout',['$scope','$http','$window',function($scope,$http,$window){
+app7.controller('checkout',['$scope','$http','$window','$rootScope',function($scope,$http,$window,$rootScope){
       $scope.messageEmptyCart=false;
       $scope.checkoutMessage=false;
-
       $scope.order={};
       var storedData =localStorage.getItem("product");
         if(storedData){
@@ -27,6 +26,8 @@ app7.controller('checkout',['$scope','$http','$window',function($scope,$http,$wi
       $scope.checkOutFunction=function(){
         console.log("function called");
            localStorage.removeItem("product");
+		$rootScope.COUNTcartItems=0;
+
         $scope.checkoutMessage=true;
       }
 
