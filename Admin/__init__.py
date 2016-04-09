@@ -255,6 +255,28 @@ def add_routes(app=None):
     except Exception as e:
       print str(e)
       return 'Unable to Fetch'
+    
+  @Admin.route('/api/Admin/javaretbatches/', methods=['GET','POST'])
+  def javaretbatches():
+    try:
+      if request.args.get('secretkey') == 'cmclogo':
+	reply = reteriveBatches(request.args.get('pid'))
+	return reply
+      return 'Authentication Failed'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
+  
+  @Admin.route('/api/Admin/javaupdateBatch/', methods=['GET','POST'])
+  def javaUpdateBatch():
+    try:
+      if request.args.get('secretkey') == 'cmclogo':
+	reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
+	return reply
+      return 'Authentication Failed'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Retrieve'
 
   @Admin.route('/api/Admin/updateBatch/', methods=['GET','POST'])
   def UpdateBatch():
