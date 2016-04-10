@@ -73,9 +73,9 @@ def registerProduct(MainCategory, SubCategory, product):
     MainCategory = MainCategory.replace(" ","_")
     SubCategory = SubCategory.replace(" ","_")
     product = json.loads(product)
-    for index,val in enumerate(product['Quantity']):
-      for i,val in enumerate(product['Quantity'][index]["Quantities"]):
-	del product['Quantity'][index]["Quantities"][i]["$$hashKey"]
+    #for index,val in enumerate(product['Quantity']):
+      #for i,val in enumerate(product['Quantity'][index]["Quantities"]):
+	#del product['Quantity'][index]["Quantities"][i]["$$hashKey"]
     connection, db, collection = MongoDBconnection(MainCategory, SubCategory)
     iter = collection.find()
     if not iter.count():
@@ -101,6 +101,7 @@ def registerBulkProduct(level1Category,fileName):
     records = get_data(fileName)
     i = 1
     while i < len(records) and i<1098:
+      #print records[i], i
       product = {'Level1 Category':records[i][1], 'Main Category': records[i][2], 'Sub Category': records[i][3], 'product_name': records[i][5], 'Product Category': records[i][4], 'Quantity': [{'City':'Hyderabad', 'Quantities':[]}]}
       product['_id']='1_'+str(MainCategories.index(records[i][2]))+'_'
       product['_id']='1_' + str(MainCategories.index(records[i][2])) + '_' + str(categories[MainCategories.index(records[i][2])][records[i][2]].index(records[i][3]))
@@ -513,12 +514,21 @@ def FetchOrders(userMode, Did):
     print str(e)
     return 'Unable to Fetch'
 
+def unregisteredProduct():
+  f = open('haircare','r')
+  connection, db, collection = MongoDBconnection('Personal_Care', 'Hair_Care')
+  for f in f.readlines():
+    f = json.loads(f)
+    collection.insert(f)
+  return ''
+
 def testing():
   connection, db, collection = MongoDBconnection('Admin', 'Orders')
   connection.admin.command('copydb', fromdb='sample', todb='newsam')
   return '' 
 
 if __name__ == '__main__':
+  print unregisteredProduct()
   #print testing()
   #print registerBulkProduct('Grocery','Prodduct List new.xlsx')
   #print editMainCategory('Medicines', 'Corosin', 'Antibiotics')
@@ -540,5 +550,5 @@ if __name__ == '__main__':
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
   #print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
   #print loginAdmin('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
-  print registerProduct('Snacks Beverages','Cold Drinks','')
+  #print registerProduct('Snacks Beverages','Cold Drinks','{"_id":"1_1","Name":"Coke", "Brand":"CocaCola"}')
   #print removeProduct('Snacks Beverages','Cold Drinks','P_1_1_1')
