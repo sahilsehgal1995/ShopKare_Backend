@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, updateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, UpdateBatch, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, UpdateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
 import json, os
 from werkzeug import secure_filename
 
@@ -271,25 +271,12 @@ def add_routes(app=None):
   def javaUpdateBatch():
     try:
       if request.args.get('secretkey') == 'cmclogo':
-	reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
+	reply = UpdateBatch(request.args.get('pid'), request.args.get('batch'))
 	return reply
       return 'Authentication Failed'
     except Exception as e:
       print str(e)
       return 'Unable to Retrieve'
-
-  @Admin.route('/api/Admin/updateBatch/', methods=['GET','POST'])
-  def UpdateBatch():
-    try:
-      if request.method == 'POST':
-	if session['user'] == 'Normal Admin' or session['user'] == 'Super Admin':
-	  reply = updateBatch(request.args.get('pid'), request.args.get('batch'))
-	  return reply
-	return 'Authentication Failed'
-      return 'Invalid Request'
-    except Exception as e:
-      print str(e)
-      return 'Unable to Fetch'
     
   @Admin.route('/api/Admin/DeliveryBoylogin/', methods=['GET','POST'])
   def DeliveryBoylogin():
