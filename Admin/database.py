@@ -169,7 +169,9 @@ def UpdateBatch(pid, Batch):
   try:
     Batch = json.loads(Batch)
     connection, db, collection = MongoDBconnection('Batches', pid)
-    iter = collection.update({"_id":pid},Batch)
+    print collection.replace_one({"_id":Batch['_id']},Batch)
+    connection.close()
+    gc.collect()
     return "Updated"
   except Exception as e:
     print str(e)
