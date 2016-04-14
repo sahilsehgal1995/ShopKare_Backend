@@ -1,0 +1,29 @@
+<center><h4><i class="fa fa-tag "></i>Popular Categories</h4></center>
+ <!-- Sidebar -->
+        
+<hr>
+<div id="sidebar-wrapper">
+  <ul class="sidebar-nav" ng-repeat="(key,data) in allCategories" class="sidebar-brand">
+    <aclass="sidebar-brand" ng-repeat="(mainCategory,d) in data" style="font-size:1.2em">
+    <b>{{mainCategory}} <i class="fa fa-plus " ng-show="expanded" ng-click="expandCategory('')"></i><i class="fa fa-minus " ng-hide="expanded"></i>
+    <ul class="sidebar-nav">
+      <a ng-repeat="subcat in d" class="sidebar-brand" ng-hide="expanded" ng-click="showCategoryProducts(mainCategory,subcat)">
+      {{subcat}}
+      <br>
+      </a>
+    </ul>
+    </b>
+    </a>
+  </ul>
+</div><!--
+{{k}} &nbsp;<span class="glyphicon glyphicon-plus"></span>&nbsp;<span class="glyphicon glyphicon-minus"></span>
+<ul class="sidebar-nav">
+<li ng-repeat="subcat in d" class="sidebar-brand">
+{{subcat}}
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>-->
+<hr>

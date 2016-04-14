@@ -1,0 +1,112 @@
+<div>
+ <div class="recommended_items" ><!--hot_deals-->    <!-- subcategory 1-->
+        <div>
+            <span style="font-family: 'Roboto', sans-serif;font-size:20px;font-weight:700;">Trending Items</span>
+            <hr style="padding: 0 0 0 0 ;margin-top: 5px;">
+            <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
+                <div class="carousel-inner">
+                    <div class="item active" style="margin-left:5px; margin-right:5px;">
+                        <div class="col-sm-3" ng-if="$index >= 0" ng-repeat="(index,product) in trendingProducts | limitTo:4">
+                            <div class="product-image-wrapper1">
+                                <div class="single-products">
+                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                    {{product}}
+                                        <div><img ng-src="http://shopkare.com/{{product.images[0]}}" width="100%" height="110px" alt="" /></div>
+                                        <div style="margin-top: 5px;">
+                                            <div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
+                                            <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
+                                           <select  ng-model='index' ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
+					    </select>
+					    <br>
+					    <div class="container">
+					      <div class="row">
+						<div class="col-2">
+						<button type="button" class="btn button-outline" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-minus" aria-hidden="true" ng-click="DecreaseTrendingQuantity($index, index)"></span>
+						</button>
+						</div>
+						<div class="col-8">
+						  <form ng-submit="AddToTrendingCart($index, index)">
+						  <input type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="width: 100%; float: left; margin-left:4px;" value=1>
+						  </form>
+						</div>
+						<div class="col-2">
+						<button type="button" class="btn button-outline" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-plus" ng-click="IncreaseTrendingQuantity($index, index)" aria-hidden="true"></span>
+						</button>
+						</div>
+					      </div>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+			  </div>
+                        </div>   
+                    </div>
+
+                    <div class="item">
+                        <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                            <div class="product-image-wrapper1">
+                                <div class="single-products">
+                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                        <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                        <div style="margin-top: 5px;">
+                                            <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                            <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                            <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                            <select>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <br>
+                                            <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                       
+                    </div>
+
+                </div>
+
+                <a class="recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                    <i class="fa fa-angle-left" style="margin-left:-5px;"></i>
+                </a>
+                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+            </div><!--/hot_deals-->
+            
+
+</div>
+  <span style="font-family: 'Roboto', sans-serif;font-size:20px;font-weight:700;">Available Products</span>
+  <hr style="padding: 0 0 0 0 ;margin-top: 5px;">
+  <div class="row">
+    <div class="col-md-3">
+      <div class="card product">
+        <img ng-src="images/my/test.jpg" width="100%" height="200px" alt="" />
+        <div class="card-block">
+          <h4 class="card-title">Maggi</h4>
+          <p class="card-text">Sriram Sarad</p>
+          <span class="" style="padding-bottom:8px;font-size: 20px; color: #136D13">Rs 100 </span>
+        </div>
+        <select class="list-group list-group-flush quan-box">
+          <option>180 ML</option>
+          <option>200 ML</option>
+          <option>500 ML</option>
+          <option>1000 ML</option>
+        </select>
+        <div class="card-block">
+          <a href="#" class="btn btn-lg cart card-link pull-left">
+            <span class="glyphicon glyphicon-shopping-cart"></span>  Add To Cart
+          </a>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
