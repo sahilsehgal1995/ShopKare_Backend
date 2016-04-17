@@ -7,7 +7,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
 
     .state('index',{
       url : '/index',
-      'templateUrl' : 'partial-index.html',
+      'templateUrl' : 'static/partial-index.html',
       'controller' : 'indexController'
     })
 
@@ -15,25 +15,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/home',
       views: {
 
-          '': { templateUrl: 'home.html' },
+          '': { templateUrl: 'static/home.html' },
 
           'header@home': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@home': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
 
           'products@home': { 
-            templateUrl : '/templates/indexProduct.html',
+            templateUrl : 'static/templates/indexProduct.html',
             controller : 'productsMainController'
           },
 
           'sidebar@home': { 
-            templateUrl : '/templates/sidebar.html',
+            templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           }
         },
@@ -45,20 +45,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/grocery',
       views: {
 
-          '': { templateUrl: 'home.html' },
+          '': { templateUrl: 'static/home.html' },
 
           'header@grocery': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@grocery': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
 
          'content@grocery': {
-            templateUrl : '/templates/content.html',
+            templateUrl : 'static/templates/content.html',
             controller : ''
           }
         },
@@ -68,7 +68,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/grocery',
       views: {
          'sidebar@grocery': {
-            templateUrl : '/templates/sidebar.html',
+            templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           }
         },
@@ -78,7 +78,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/products',
       views: {
           'products@grocery': { 
-            templateUrl : '/templates/groceryProduct.html',
+            templateUrl : 'static/templates/groceryProduct.html',
             controller : 'productsGroceryController'
           }
         }
@@ -87,7 +87,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/search?query',
       views: {
           'products@grocery': { 
-            templateUrl : '/templates/searchProduct.html',
+            templateUrl : 'static/templates/searchProduct.html',
             controller : 'searchController'
           }
         }
@@ -96,7 +96,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/categoryproducts?level1Category&mainCategory&subcategory',
       views: {
           'products@grocery': { 
-            templateUrl : '/templates/CategoryProducts.html',
+            templateUrl : 'static/templates/CategoryProducts.html',
             controller : 'CategoryProductsController'
           }
         }
@@ -106,25 +106,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/stationary',
       views: {
 
-          '': { templateUrl: 'home.html' },
+          '': { templateUrl: 'static/home.html' },
 
           'header@stationary': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@stationary': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
 
          'sidebar@stationary': { 
-            templateUrl : '/templates/sidebar.html',
+            templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           },
         
           'products@stationary': { 
-            templateUrl : '/templates/groceryProduct.html',
+            templateUrl : 'static/templates/groceryProduct.html',
             controller : 'productsStationaryController'
           }
         },
@@ -137,25 +137,25 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/courier',
       views: {
 
-          '': { templateUrl: 'home.html' },
+          '': { templateUrl: 'static/home.html' },
 
           'header@courier': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@courier': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
 
          'sidebar@courier': { 
-            templateUrl : '/templates/sidebar.html',
+            templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           },
 
           'products@courier': { 
-            templateUrl : '/templates/courierProduct.html',
+            templateUrl : 'static/templates/courierProduct.html',
             controller : 'productsCourierController'
           }
         },
@@ -168,20 +168,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
       url : '/medicine',
       views: {
 
-          '': { templateUrl: 'templates/medicine.html' },
+          '': { templateUrl: 'static/templates/medicine.html' },
 
           'header@medicine': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@medicine': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
 
          'sidebar@medicine': { 
-            templateUrl : '/templates/sidebar.html',
+            templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           }
         },
@@ -192,15 +192,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
    .state('cart',{
       url : '/cart',
       views: {
-          '': { templateUrl: '/templates/cart.html'},
+          '': { templateUrl: 'static/templates/cart.html'},
 
           'header@cart': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@cart': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
         },
@@ -210,15 +210,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
    .state('checkout',{
       url : '/checkout',
       views: {
-          '': { templateUrl: '/templates/cart.html'},
+          '': { templateUrl: 'static/templates/cart.html'},
 
           'header@cart': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@cart': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
         },
@@ -228,15 +228,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
    .state('contact',{
       url : '/contact',
       views: {
-          '': { templateUrl: '/templates/contact-us.html'},
+          '': { templateUrl: 'static/templates/contact-us.html'},
 
           'header@contact': { 
-            templateUrl : '/templates/header.html',
+            templateUrl : 'static/templates/header.html',
             controller : 'headerController'
           },
 
           'footer@contact': { 
-            templateUrl : '/templates/footer.html',
+            templateUrl : 'static/templates/footer.html',
             controller : 'footerController'
           },
         },
