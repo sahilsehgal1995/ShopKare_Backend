@@ -1,4 +1,4 @@
-var app2=angular.module('HeaderOperation',['FactoryHandler']);
+var app2=angular.module('HeaderOperation',['FactoryHandler','angularBootstrapNavTree']);
 
 app2.controller('HEADctrl',['$scope','$state','$http','$window','cartService','$rootScope',function($scope,$state,$http,$window,cartService,$rootScope){
 
@@ -6,6 +6,27 @@ $scope.ldata={};
 $scope.rdata={};
 $scope.messageLogin="";
 //   var base = 'http://127.0.0.1:5000';
+
+
+$scope.$on('$viewContentLoaded', function(){
+  // $('label.tree-toggler').click(function () {
+  //   $(this).parent().children('ul.tree').toggle(300);
+  // });
+  // $('label.tree-toggler').parent().children('ul.tree').toggle(100);
+});
+
+$scope.cat = [
+      {label : "Baby Products", children :[ "Baby Food", "Baby Hygiene", "Baby Care" ] },
+      {label :"Cereals and Spreads" , children : [ "Canned Food", "Jams and Honey", "Ready to Eat", "Cereals" ]},
+      {label :"Beverages and Drinks" , children : [ "Cold Drinks", "Tea and Coffee", "Health Drinks", "Other" ] },
+      {label :"Personal Care" , children : [ "Oral Care", "Hair Care", "Skin Care", "Hand and Body Wash", "Fragrances", "Feminine Needs", "Male Grooming" ]},
+      {label : "Biscuits and Snacks" , children : [ "Chips and Namkeen", "Cookies", "Bakery Products", "Other" ]},
+      {label :"Chocolates and Candy" , children : [ "Candy", "Chocolates" ]},
+      {label :"Cleaning and Hygiene" , children : [ "Laundry", "Cleaning", "Pet Care", "Pest Control", "Air Freshners" ]},
+      {label :"Staples" , children : [ "Pulses and Grains", "Masala and Spices" ]},
+      {label : "Pickles and Sauces" , children : [ "Pickles", "Sauces" ]},
+      {label :"Home Care" , children : [ "Pooja Items" ]}
+    ];
 
 var base = 'http://shopkare.com';
 $scope.login=false;

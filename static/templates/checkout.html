@@ -1,178 +1,132 @@
-<style type="text/css">
-.cart_total_quantity{
-	padding-left: 40px;
-}
+<!--<div ui-view="header"></div>-->
 
-</style>
-<section id="cart_items" ng-controller="checkout">
-	<div class="card col-sm-8 col-sm-offset-2">
-		<div class="card-title"><font size="4">SHOPPING CART (1 Item)</font></div>
-		<br>
-		<div class="row" id="heading_row" style="font-size:12px;color:darkgrey">
-			<div class="col-sm-3">Item Details</div>
-			<div class="col-sm-2">Price</div>
-			<div class="col-sm-1">Discount</div>
-			<div class="col-sm-1">Quantity</div>
-			<div class="col-sm-3">Delivery Details</div>
-			<div class="col-sm-2">Subtotal</div>
-		</div>
+<div>
+  <section id="cart_items">
+    <div class="container cart-page">
+     
 
-		<hr>
+      <div ng-show="message">
+        <h2>Shopping Cart</h2>
+        <div class="table-responsive cart_info">
+          <table class="table table-condensed">
+            <thead>
+              <tr class="cart_menu">
+		<td class="name">Product Name</td>
+                <td class="price">Quantity Unit</td>
+                <td class="quantity">Price</td>
+                <td class="total">Quantity</td>
+                <td class="price">Total Price</td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="item in items">
 
-		<div class="row" id="heading_item" style="font-size:14px;">
-			<div class="col-sm-3"><div style="height:150px;width:180px"><img src="../1.png" style="height:150px;width:200px"></div></div>
-			<div class="col-sm-2">Rs 2000.00</div>
-			<div class="col-sm-1">2% Off</div>
-			<div class="col-sm-1">1</div>
-			<div class="col-sm-3">AB_104 Harihar nagar Lucknow Indira Nagar 229019</div>
-			<div class="col-sm-2">Rs 1960.00</div>
-		</div>
+                <td class="cart_product">
+                  {{item.product_name}}
+                </td>
+                <td class="cart_price">
+                  <p>{{item.QuantityType}}</p>
+                </td>
+                <td class="cart_total">
+                  <p>{{item.Price}}</p>
+                </td>
+                <td class="cart_total">
+                  <p>{{item.Quantity}}</p>
+                </td>
 
+                <td class="cart_total">
+                  <p class="cart_total_price">Rs.{{item.totalPrice*item.Quantity}}</p>
+                </td>
+              </tr>
 
-		<hr>
+            </tbody>
+          </table>
+        </div>
+        <br>
+      </div>
 
+      
+  </section>
 
-		<div class="row" id="heading_item" style="font-size:14px;">
-			<div class="col-sm-3"><div style="height:150px;width:180px"><img src="../1.png" style="height:150px;width:200px"></div></div>
-			<div class="col-sm-2">Rs 2000.00</div>
-			<div class="col-sm-1">2% Off</div>
-			<div class="col-sm-1">1</div>
-			<div class="col-sm-3">AB_104 Harihar nagar Lucknow Indira Nagar 229019</div>
-			<div class="col-sm-2">Rs 1960.00</div>
-		</div>
-
-
-		<hr>
-
-
-		<div class="row" id="Total" style="font-size:14px;">
-			<div class="col-sm-3 col-sm-offset-7" style="color:darkgrey">Total</div> <div class="col-sm-2">Rs 4000.00</div>
-			<div class="col-sm-3 col-sm-offset-7" style="color:darkgrey">Total Discount</div> <div class="col-sm-2">Rs 3920.00</div>
-			<div class="col-sm-3 col-sm-offset-7" style="color:darkgrey">Delivery Charges</div> <div class="col-sm-2">Rs 35.00</div>
-		</div>
-		<hr>
-		<div class="row" style="font-size:18px;"><div class="col-sm-3 col-sm-offset-7"><b>Total Amount</b></div> <div class="col-sm-2"><b>Rs 3955.00</b></div></div>
-
-		<div class="row">
-			<br><br><br><br>
-			<div class="col-sm-7 col-sm-offset-5">
-				<a href="#" class="btn" style="background: #e6e6e6;width:200px;" >Continue Shopping</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="btn btn-success" style="width:200px;">Place Order</a>
+  <br>
+  <!--
+	<section id="do_action"  ng-controller="cartItems" ng-show="message">
+		<div class="container">
+			<div class="heading">
+				<h3>What would you like to do next?</h3>
+				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
+			</div>
+			<div class="row">
+				<div class="col-sm-6">
+					<div class="chose_area">
+						<ul class="user_option">
+							<li>
+								<input type="checkbox">
+								<label>Use Coupon Code</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Use Gift Voucher</label>
+							</li>
+							<li>
+								<input type="checkbox">
+								<label>Estimate Shipping & Taxes</label>
+							</li>
+						</ul>
+						<ul class="user_info">
+							<li class="single_field">
+								<label>Country:</label>
+								<select>
+									<option>United States</option>
+									<option>Bangladesh</option>
+									<option>UK</option>
+									<option>India</option>
+									<option>Pakistan</option>
+									<option>Ucrane</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+								
+							</li>
+							<li class="single_field">
+								<label>Region / State:</label>
+								<select>
+									<option>Select</option>
+									<option>Dhaka</option>
+									<option>London</option>
+									<option>Dillih</option>
+									<option>Lahore</option>
+									<option>Alaska</option>
+									<option>Canada</option>
+									<option>Dubai</option>
+								</select>
+							
+							</li>
+							<li class="single_field zip-field">
+								<label>Zip Code:</label>
+								<input type="text">
+							</li>
+						</ul>
+						<a class="btn btn-default update" href="">Get Quotes</a>
+						<a class="btn btn-default check_out" href="">Continue</a>
+					</div>
+				</div>
+				<div class="col-sm-6">
+					<div class="total_area">
+						<ul>
+							<li>Cart Sub Total <span>Rs.59</span></li>
+							<li>Extra Tax <span>Rs.2</span></li>
+							<li>Shipping Cost <span>Free</span></li>
+							<li>Total <span>Rs.61</span></li>
+						</ul>
+							<a class="btn btn-default update" href="">Update</a>
+							<a class="btn btn-default check_out" href="">Check Out</a>
+					</div>
+				</div>
 			</div>
 		</div>
-		<br>
-	</div>
+	</section>-->
+  <!--/#do_action-->
+</div>
 
-	<!--<div class="container">-->
-			<!--<div class="breadcrumbs">-->
-				<!--<ol class="breadcrumb">-->
-				  <!--<li><a href="#">Home</a></li>-->
-				  <!--<li class="active">Check out</li>-->
-				<!--</ol>-->
-			<!--</div>&lt;!&ndash;/breadcrums&ndash;&gt;-->
-			<!--<div ng-show="!checkoutMessage" ng-hide="messageEmptyCart">-->
-
-			<!--<center><h2> Finaliase Your Order </h2></center>-->
-			<!--<br>-->
-			<!---->
- <!--<br><form id="loginform" class="form-horizontal" role="form">-->
-                                    <!---->
-                            <!--<div style="margin-bottom: 25px" class="input-group">-->
-                                    <!--<span class="input-group-addon"></span>-->
-                                    <!--<input id="number" type="number" class="form-control" placeholder="Contact Number" ng-model="order.Mobile">                                        -->
-                                    <!--</div>-->
-                                  <!---->
-                            <!--<div style="margin-bottom: 25px" class="input-group">-->
-                                        <!--<span class="input-group-addon"></i></span>-->
-                                        <!--<input id="address" type="text" class="form-control"  placeholder="Enter Your Delivery Address" ng-model="order.Address">-->
-                                    <!--</div>-->
-                          <!---->
-
-
-
-	<!--<section id="cart_items"  ng-controller="cartItems">-->
-		<!--<div class="container">-->
-			<!--<div class="table-responsive cart_info" ng-show="message">-->
-				<!--<table class="table table-condensed">-->
-					<!--<thead>-->
-						<!--<tr class="cart_menu">-->
-							<!--<td class="image">Item</td>-->
-							<!--<td class="price">Name</td>-->
-							<!--<td class="total">Price</td>-->
-							<!--<td class="price">No Of Quantity</td>-->
-							<!--<td class="price">Total Price</td>-->
-						<!--</tr>-->
-					<!--</thead>-->
-					<!--<tbody>-->
-<!--<tr ng-repeat ="p in Products">-->
-							<!---->
-							<!--<td class="cart_product">-->
-							<!--<a href=""><img class="img" ng-src="http://shopkare.com{{p[0][0]}}" alt="{{p[0][0]}}" height="100px" width="150px"></a>-->
-							<!--</td>	-->
-							<!--<td class="cart_price">-->
-								<!--<p>{{p[1]}}</p>-->
-							<!--</td>-->
-							<!--<td class="cart_total">-->
-								<!--<p>{{p[2]}}</p>-->
-								<!--<p class="cart_total_price">Rs.{{p[3]}}</p>-->
-							<!--</td>		-->
-							<!--<td class="cart_price">-->
-								<!--<p class="cart_total_quantity">{{p[5]}}</p>-->
-							<!--</td>-->
-							<!---->
-							<!--<td class="cart_total">-->
-								<!--<p class="cart_total_price">Rs.{{p[3]*p[5]}}</p>-->
-							<!--</td>-->
-							<!---->
-						<!--</tr>-->
-						<!--<tr class="cart">-->
-							<!--<td class="image"></td>-->
-							<!--<td class="description"></td>-->
-							<!--<td class="total"></td>-->
-							<!--<td class="price"><h4>Total Price</h4></td>-->
-							<!--<td  class="price"><h4>{{TotalPrice}}</h4></td>-->
-							<!---->
-						<!--</tr>-->
-
-					<!--</tbody>-->
-				<!--</table>-->
-			<!--</div>-->
-		<!--</div>-->
-	<!--</section> &lt;!&ndash;/#cart_items&ndash;&gt;-->
-
-
-
-
-						<!--<div style="margin-top:10px" class="form-group">-->
-                                    <!--&lt;!&ndash; Button &ndash;&gt;-->
-
-                                  <!--<center>  <div class="col-sm-12 controls">-->
-                                    <!--<a id="btn-login" ng-disabled="!order.Mobile || !order.Address || !acTiveButton" ng-click="checkOutFunction()" class="btn btn-success">Final Your Order [SUBMIT]</a>-->
-                                      <!---->
-                                    <!--</div></center>-->
-                                <!--</div>-->
-
-
-
-
-                            <!--</div>-->
-                        <!--<div ng-show="checkoutMessage">-->
-                        	<!--<br>-->
-                        	<!--<h3>-->
-                        	<!--Your Order is registred successfully-->
-                        	<!--You Will be Contact Soon-->
-                        	<!--</h3>-->
-                        	<!--<br>-->
-                        <!--</div>-->
-
-                  <!--<div ng-show="messageEmptyCart">-->
-				<!--<br><h4> Cart is Empty...-->
-					<!--<br> Buy Some Products in Your Cart</h4>-->
-					<!--<br>-->
-			<!--</div>-->
-
-
-				<!--</div>-->
-	</section> <!--/#cart_items-->
-
-	<br>
-
+<!-- <div ui-view="footer"></div> -->
