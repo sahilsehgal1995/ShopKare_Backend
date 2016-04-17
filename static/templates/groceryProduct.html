@@ -5,8 +5,8 @@
             <hr style="padding: 0 0 0 0 ;margin-top: 5px;">
             <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
                 <div class="carousel-inner">
-                    <div class="item active" style="margin-left:5px; margin-right:5px;">
-                        <div class="col-sm-3" ng-if="$index >= 0" ng-repeat="(index,product) in trendingProducts | limitTo:4">
+                    <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4" id="recommended-item-carousel">
+                        <div class="col-sm-3" ng-if="$index >= 0" >
                             <div class="product-image-wrapper1">
                                 <div class="single-products">
                                     <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
@@ -43,7 +43,44 @@
 			  </div>
                         </div>   
                     </div>
-
+		    <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4">
+                        <div class="col-sm-3" ng-if="$index >= 0" >
+                            <div class="product-image-wrapper1">
+                                <div class="single-products">
+                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                    {{product}}
+                                        <div><img ng-src="http://shopkare.com/{{product.images[0]}}" width="100%" height="110px" alt="" /></div>
+                                        <div style="margin-top: 5px;">
+                                            <div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
+                                            <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
+                                           <select  ng-model='index' ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
+					    </select>
+					    <br>
+					    <div class="container">
+					      <div class="row">
+						<div class="col-2">
+						<button type="button" class="btn button-outline" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-minus" aria-hidden="true" ng-click="DecreaseTrendingQuantity($index, index)"></span>
+						</button>
+						</div>
+						<div class="col-8">
+						  <form ng-submit="AddToTrendingCart($index, index)">
+						  <input type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="width: 100%; float: left; margin-left:4px;" value=1>
+						  </form>
+						</div>
+						<div class="col-2">
+						<button type="button" class="btn button-outline" aria-label="Left Align">
+						  <span class="glyphicon glyphicon-plus" ng-click="IncreaseTrendingQuantity($index, index)" aria-hidden="true"></span>
+						</button>
+						</div>
+					      </div>
+                                             </div>
+                                    </div>
+                                </div>
+                            </div>
+			  </div>
+                        </div>   
+                    </div>
                     <div class="item">
                         <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
                             <div class="product-image-wrapper1">
