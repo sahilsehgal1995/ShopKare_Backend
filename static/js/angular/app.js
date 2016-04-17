@@ -1,7 +1,7 @@
 var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers']);
 
 app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/index');
+  $urlRouterProvider.otherwise('/grocery/home/products');
 
   $stateProvider
 
@@ -65,7 +65,7 @@ app.config(function($stateProvider, $urlRouterProvider) {
         controller : 'groceryController'
     })
     .state('grocery.home',{
-      url : '/grocery',
+      url : '/home',
       views: {
          'sidebar@grocery': {
             templateUrl : 'static/templates/sidebar.html',
