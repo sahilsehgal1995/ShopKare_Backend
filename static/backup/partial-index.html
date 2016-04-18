@@ -1,0 +1,270 @@
+<div class="row">
+
+  <!-- Carousel -->
+  <div id="carousel-example-generic" style="padding-left:0px;" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" style="padding-left:0px;" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" style="padding-left:0px;" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" style="padding-left:0px;" data-slide-to="2"></li>
+    </ol>
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active" style="padding:0px;background:black;">
+        <img src="http://shopkare.com/static/image1.jpg" alt="First slide" style="opacity:0.4;">
+        <!-- Static Header -->
+        <div class="header-text hidden-xs">
+          <div class="col-md-12 text-center">
+            <h1>Groceries at your Doorstep</h1>
+            <h5>Shop grocery products online with exciting offers</h5>
+            <br>
+            <br>
+            <a href="" class="btn carousel-btn"><b>SHOP NOW</b></a>
+          </div>
+        </div>
+        <!-- /header-text -->
+      </div>
+
+      <div class="item" style="padding:0px;background:black;">
+        <img src="http://shopkare.com/static/image2.jpg" alt="Second slide" style="opacity:0.4;">
+        <!-- Static Header -->
+        <div class="header-text hidden-xs">
+          <div class="col-md-12 text-center">
+            <h1>Groceries at your Doorstep</h1>
+            <h5>Shop grocery products online with exciting offers</h5>
+
+
+          </div>
+        </div>
+        <!-- /header-text -->
+      </div>
+
+      <div class="item" style="padding:0px;background:black;">
+        <img src="http://shopkare.com/static/image1.jpg" alt="Third slide" style="opacity:0.4;">
+        <!-- Static Header -->
+        <div class="header-text hidden-xs">
+          <div class="col-md-12 text-center">
+            <h1>Groceries at your Doorstep</h1>
+            <h5>Shop grocery products online with exciting offers</h5>
+          </div>
+        </div>
+        <!-- /header-text -->
+      </div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev"></a>
+    <a class="right carousel-control" href="#carousel-example-generic" data-slide="next"></a>
+  </div>
+  <!-- /carousel -->
+
+
+</div>
+
+
+
+<!-- <body ng-controller="HEADctrl" ng-cloak> -->
+
+  <div id="fixed" clas="container" style="position:absolute;top:10px;width:100%;color:white;font-size:18px;">
+
+    <div class="pull-left col-md-3"><img class="img-responsive" src="http://shopkare.com/static/images/logo-white.png">
+    </div>
+    <div id="section" class="dropdown" style="position:absolute;right:550px;top:10px;">
+      <div id="sectionInner" class="dropdown-toggle" type="button" data-toggle="dropdown">SECTIONS
+        <span class="caret"></span>
+      </div>
+      <ul class="dropdown-menu" style="background:rgba(0,0,0,0.7) ;font-size:14px;">
+        <li><a ui-sref="grocery" style="background: transparent;color:white;">Grocery</a>
+        </li>
+        <li><a ui-sref="stationary" style="background: transparent;color:white;">Stationary</a>
+        </li>
+        <li><a ui-sref="medicine" style="background: transparent;color:white;">Medicine</a>
+        </li>
+        <li><a ui-sref="courier" style="background: transparent;color:white;">Courier</a>
+        </li>
+      </ul>
+    </div>
+    <div id="contact" style="position:absolute;right:400px;top:10px;"><a ui-sref="contact">CONTACT</a>
+    </div>
+    <div id="bucket" style="position:absolute;right:320px;"><a ui-sref="cart"><i class="fa-2x fa fa-shopping-cart"></i></a>
+    </div>
+    <div id="login" style="position:absolute;right:80px;top:10px;" ng-show="!login" data-toggle="modal" data-target="#myModal">
+      <a class="btn btn-theme btn-sm btn-min-block" href="#"><b>LOGIN</b></a>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+      <div class="modal-dialog login-modal">
+
+        <!-- Modal content-->
+        <div class="row">
+          <div class="col-md-7 col-xs-7 modal-text">
+            <div class="modal-content">
+
+              <div class="modal-header">
+                <center>
+                  <h4>SIGN UP</h4>
+                </center>
+                
+                  <a href="#" class="btn fb-signup">
+                    <span class="glyphicon"></span>  SIGN UP WITH FACEBOOK
+                  </a>
+                  <br>
+                  <a href="#" class="btn g-signup">
+                    <span class="glyphicon"></span>  SIGN UP WITH GOOGLE
+                  </a>
+              </div>
+              <div class="modal-body">
+                <div class="login-form-1">
+                  <form id="register-form" class="text-left">
+                    <input type="text" class="form-control" id="usr" placeholder=" Your Name">
+                    <input type="email" class="form-control" id="email" placeholder=" Your Email">
+                    <input type="password" class="form-control" id="pwd" placeholder=" Create Password">
+                    <center>
+                      <button type="button" class="btn btn-default signup" data-dismiss="modal"><span class="glyphicon"></span>  SIGN UP NOW >
+                      </button>
+                    </center>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <center>
+                  <a href="#" class="btn btn-lg ">
+                      <span class="glyphicon"></span>  Already a user? Login Now 
+                  </a>
+                </center>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-5 col-xs-5 modal-img">
+            <img class="img-responsive" ng-src="http://shopkare.com/static/images/my/login.jpg">
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- </head> -->
+
+  <body class="home-page">
+
+
+    <div class="container feat-prods">
+      <div class="row">
+        <center>
+          <h3>FEATURED PRODUCTS</h3>
+        </center>
+      </div>
+      <div class="row">
+        <div class="col-md-5">
+          <img class="img-responsive" src="http://shopkare.com/static/images/my/fruits.jpg">
+        </div>
+
+        <div class="col-md-2">
+          <div class="row">
+            <img class="img-responsive" src="http://shopkare.com/static/images/my/med.jpg">
+          </div>
+          <div class="row">
+            <img class="img-responsive" src="http://shopkare.com/static/images/my/stat.jpg">
+          </div>
+        </div>
+
+        <div class="col-md-5">
+          <img class="img-responsive" src="http://shopkare.com/static/images/my/veg.jpg">
+        </div>
+      </div>
+    </div>
+
+
+    <footer style="background-color:#000000 !important;" id="footer">
+      <!--Footer-->
+      <div class="footer-top">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="companyinfo">
+                <img class="img-responsive" src="http://shopkare.com/static/images/logo.png">
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+                </p>
+                <p>Support: support@shopkare.com</p>
+                <p>General: info@shopkare.com</p>
+              </div>
+            </div>
+            <div class="col-sm-5">
+
+
+              <div class="col-sm-3">
+              </div>
+
+              <div class="col-sm-6">
+                <div class="row">
+                  <div style="margin-top: 57px">
+                    <div class="col-sm-5">
+                      <h4 style="color:#fff;">Service</h4>
+                      <div style="color:#e6e6e6; list-style: none;">
+                        <li>Groceries</li>
+                        <li>Medicine</li>
+                        <li>Stationery</li>
+                        <li>Courier</li>
+                      </div>
+                    </div>
+                    <div class="col-sm-2"></div>
+                    <div class="col-sm-5">
+                      <h4 style="color:#fff;">Company</h4>
+                      <div style="color:#e6e6e6;list-style: none;">
+                        <li>About</li>
+                        <li>FAQs</li>
+                        <li>Press</li>
+                        <li>Contact Us</li>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <div style="margin-top: 0px">
+                    <div class="col-sm-12">
+                      <h4 style="color:#fff;">Payment Method</h4>
+                      <div style="margin-top: 0;" class="video-gallery text-center">
+                        <a href="#">
+                          <div class="iframe-img">
+                            <img src="http://shopkare.com/static/images/home/paypal2.JPG" alt="" />
+                          </div>
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+
+            </div>
+            <div class="col-sm-3">
+              <div class="address">
+                <img src="http://shopkare.com/static/images/my/india.png" alt="" />
+                <h5>Shopkare, Covering The Entire Nation.<p>Shop With Us</p></h5>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom" style="background-color:#000000 !important; color: #fff !important; padding-bottom: 10px">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-4"> Copyright © 2016 Shopkare Inc. All rights reserved.</div>
+            <div class="col-sm-4 col-sm-offset-1">
+              <li style="display: inline;"> &diamond; Privacy</li>&nbsp;
+              <li style="display: inline;"> &diamond; Takedown Policy</li>&nbsp;
+              <li style="display: inline;"> &diamond; Terms of Use</li>&nbsp;
+            </div>
+            <div class="col-sm-3">
+              Designed by <span>Creative Mammoth</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </footer>
+    <!--/Footer-->

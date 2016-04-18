@@ -1,136 +1,170 @@
-var factoryApp=angular.module('FactoryHandler',[]);
+   var base ="http://www.shopkare.com";
+//   var base ='http://0.0.0.0:5000';
 
+angular.module('Data.factory', [])
 
-
-factoryApp.service('cartService', function($http) {
-var y=[];
- var cartItems=0;
- var storedData = localStorage.getItem("product");
-
-  if (JSON.parse(storedData)){
-          y= JSON.parse(storedData);
-  }
-
-
-
-
-  var addProduct = function(newObj) {
-      y.push(newObj);
-      localStorage.setItem("product",  JSON.stringify(y));
-        if(localStorage.setItem("product",  JSON.stringify(y))){
-          cartQuantity();
-          return true; 
-        }
-      return true;
+.factory('LSFactory', [function(){
+  var LSAPI = {
+    clear: function(){
+      localStorage.clear();
+    },
+    
+    get: function(key){
+      return JSON.parse(localStorage.getItem(key));
+    },
+    
+    set: function(key, data){
+      return localStorage.setItem(key, JSON.stringify(data));
+    },
+    
+    delete: function(key){
+      return localStorage.removeItem(key);
+    },
   };
+  
+  return LSAPI;
+}])
 
-
-  var cartQuantity = function() {
-      cartitems=y.length;
-      console.log(y.length); 
-      return cartitems;
+.factory('UserFactory', ['$http', 'AuthFactory', function($http, AuthFactory){
+  
+  var UserAPI = {
+    
+    login: function(user){
+       return $http.post(base+'/api/Customer/login/?user='+user);
+    },
+    
+    register: function(user){
+      return $http.post(base+'/api/Customer/signup/?user='+user);
+    },
+    
+    logout: function(){
+      return $http.post(base+'/api/Customer/logout/');
+    }
   };
+  return UserAPI;
+}])
 
+.factory('ProductFactory', ['$http', function($http){
+  var Products = {
+    
+    getProducts: function(category, MainCategory, SubCategory){
+       return $http.get(base + '/api/Product/getCategoryProducts/?level1Category='+category+'&MainCategory='+MainCategory+'&SubCategory='+SubCategory);
+    },
+    getRandomMainCategoryProducts: function(level1category, MainCategory){
+       return $http.get(base + '/api/Product/getRandomMainCategoryProducts/?level1category='+level1category+'&mainCategory='+MainCategory);
+    },
+    getRandomProducts: function(level1category){
+       console.log(level1category);
+      var reply = $http.get(base + '/api/Product/getRandomProducts/?level1category='+level1category);
+       console.log(JSON.stringify(reply));
+       return reply;
+    },
+    searchProduct: function (level1Category, query){
+      return $http.get(base+'/api/Product/searchProduct/?level1category='+level1Category+'&query='+query);
+    }
+    };
+  return Products;
+}])
 
+.factory('CartFactory', ['$http', 'LSFactory', function($http, LSFactory){
+  var cartKey='CartKey';
+  var Items = {
+    
+    addToCart: function(product){
+	return $http.post(base + '/api/Customer/addToCart/?cartItem='+JSON.stringify(product));
+    },
+    
+    getCartItems: function(){
+      return $http.post(base + '/api/Customer/getCartItems/');
+    },
+    
+    removeCartItem: function(product){
+      return $http.post(base + '/api/Customer/removeFromCart/?cartItem='+JSON.stringify(product));
+    },
+    newCourierOrder: function(order){
+      return $http.post(base+'/api/Customer/NewCourierOrder/?order='+JSON.stringify(order));
+    }
+    };
+  return Items;
+}])
 
- var allCategories= function() {
+.factory('FaqFactory', [function(){
+  var faq = {
+    
+    
+    };
+  return faq;
+}])
 
-	var level1Categories=[];
-	var level2Categories=[];
-	var level3Categories=[];
-	var level2CategoriesWTF=[];
-var categories = [];
-var level1keys= [];
-$http.post(base+'/api/Admin/reteriveCategories/')
-    .success(function(data){
-	console.log(data);
-              categories = data;
-              level1keys = Object.keys(data)
-              for (key in level1keys)
-              {
-                level1keys[key] = data[key]._id;
-                if(data[key]._id=='Grocery'){
-                   level1Categories.push(data[key]._id);
-                   var obj=data[key].Categories;
-                  for(x in obj){
-                       result = Object.keys(obj[x]);
-                       var z=obj[x];
-                       for(var t in z){
-                           level3Categories.push(z[t]);
-                       }
-                       level2Categories.push(result[0]);
-                  }
-                }
-              }
-              for (var z in level2Categories){
-               level2CategoriesWTF.push((level2Categories[z].replace(/\s/g,'')));
-              }
-	console.log(level2Categories);          
-      })
-  .error(function(err){
-      console.log(err);
-  });
+.factory('AuthFactory', ['LSFactory', function(LSFactory){
+  var userKey = 'user';
+  var emailKey = 'email';
+  var passwordKey = 'password';
+  
+  var AuthAPI = {
+    
+    isLoggedIn : function(){
+      return this.getUser() === null ? false: true;
+    },
+    
+    setUser: function(user){
+      return LSFactory.set(userKey, user);
+    },
+    
+    getUser: function(){
+      return LSFactory.get(userKey);
+    },
+    
+    getEmail: function(){
+      return LSFactory.get(emailKey);
+    },
+    
+    setEmail: function(email){
+      return LSFactory.set(emailKey, email);
+    },
 
-
-return level2Categories;
-}
-
-
-  return {
-    addProduct: addProduct,
-    cartQuantity:cartQuantity,
-    allCategories:allCategories
-     
-};
-});
-
-
-/*
-factoryApp.service('retrieveAllCategories', function() {
-
-
-  var categories=[];
- var level1keys=[];
-var level1Categories=[];
-var level2Categories=[];
-var level3Categories=[];
-var level2CategoriesWTF=[];
-
-  var allCategories= function() {
-$http.post(base+'/api/Admin/reteriveCategories/')
-    .success(function(data){
-              categories = data;
-              level1keys = Object.keys(data)
-              for (key in level1keys)
-              {
-                level1keys[key] = data[key]._id;
-                if(data[key]._id=='Grocery'){
-                   level1Categories.push(data[key]._id);
-                   var obj=data[key].Categories;
-                  for(x in obj){
-                       result = Object.keys(obj[x]);
-                       var z=obj[x];
-                       for(var t in z){
-                           level3Categories.push(z[t]);
-                       }
-                       level2Categories.push(result[0]);
-                  }
-                }
-              }
-              for (var z in level2Categories){
-               level2CategoriesWTF.push((level2Categories[z].replace(/\s/g,'')));
-              }
-          
-      })
-  .error(function(err){
-      console.log(err);
-  });
-
-return true;
-}
-
-return {
-allCategories:allCategories
-}
-});
-*/
+    getPassword: function(){
+      return LSFactory.get(passwordKey);
+    },
+    
+    setPassword: function(password){
+      return LSFactory.set(passwordKey, password);
+    },
+    
+    deleteAuth: function(){
+      LSFactory.delete(userKey);
+      LSFactory.delete(passwordKey);
+      LSFactory.delete(emailKey);
+    }
+  };
+  
+  return AuthAPI;
+}])
+.factory('Categories', ['$http', function($http){
+  var  categories = {
+    getSubCategories: function(level1category, mainCategory){
+    var cat={ 
+      'Grocery':{
+	"Baby Products" : [ "Baby Food", "Baby Hygiene", "Baby Care" ] ,
+	"Cereals and Spreads" : [ "Canned Food", "Jams and Honey", "Ready to Eat", "Cereals" ],
+	"Beverages and Drinks" : [ "Cold Drinks", "Tea and Coffee", "Health Drinks", "Other" ] ,
+	"Personal Care" : [ "Oral Care", "Hair Care", "Skin Care", "Hand and Body Wash", "Fragrances", "Feminine Needs", "Male Grooming" ],
+	 "Biscuits and Snacks" : [ "Chips and Namkeen", "Cookies", "Bakery Products", "Other" ],
+	"Chocolates and Candy" : [ "Candy", "Chocolates" ],
+	"Cleaning and Hygiene" : [ "Laundry", "Cleaning", "Pet Care", "Pest Control", "Air Freshners" ],
+	"Staples" : [ "Pulses and Grains", "Masala and Spices" ],
+	 "Pickles and Sauces" : [ "Pickles", "Sauces" ],
+	 "Home Care" : [ "Pooja Items" ]
+     }
+    };
+      return cat[level1category][mainCategory];
+    },
+    getCategories: function(){
+      var categories = [{"Beverages and Drinks":["Cold Drinks","Tea and Coffee","Health Drinks","Other"]},{"Personal Care":["Oral Care","Hair Care","Skin Care","Hand and Body Wash","Fragrances","Feminine Needs","Male Grooming"]},{"Baby Products":["Baby Food","Baby Hygiene","Baby Care"]},{"Cleaning and Hygiene":["Laundry","Cleaning","Pet Care","Pest Control","Air Freshners"]},{"Chocolates and Candy":["Candy","Chocolates"]},{"Biscuits and Snacks":["Chips and Namkeen","Cookies","Bakery Products","Other"]},{"Staples":["Pulses and Grains","Masala and Spices"]},{"Cereals and Spreads":["Canned Food","Jams and Honey","Ready to Eat","Cereals"]},{"Pickles and Sauces":["Pickles","Sauces"]},{"Home Care":["Pooja Items"]}];
+      return categories;
+    }
+  };
+  
+  return categories;
+}])
+;

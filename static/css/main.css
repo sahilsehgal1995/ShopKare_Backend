@@ -16,7 +16,16 @@ body {
 ul li {
   list-style: none;
 }
-
+.li-hover-cmc:hover{
+background-color:transparent !important;
+}
+.li-hover-cmc{
+background-color:transparent !important;
+}
+.btn-cmc:hover{
+background-color:white !important;
+color:black !important;
+}
 a:hover {
 outline: none;
 text-decoration:none;
@@ -67,9 +76,9 @@ a#scrollUp i{
 *******Header CSS******
 **************************/
 
-.header_top {
+/*.header_top {
   background: none repeat scroll 0 0 #00b386;
-}
+}*/
 
 .contactinfo ul li:first-child{
     margin-left: -15px;
@@ -200,11 +209,11 @@ a#scrollUp i{
 .shop-menu ul li a {
   color: #696763;
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 15px;
+  font-weight: 400;
   padding:0;
   padding-right: 0;
-  margin-top: 10px;
+  margin-top: 12px;
 }
 
 
@@ -251,22 +260,21 @@ a#scrollUp i{
 }
 
 .search_box input {
-  background: #F0F0E9;
+  background-color: #ffffff !important;
   border: medium none;
   color: #001a13;
   font-family: 'roboto';
   font-size: 14px;
-  font-weight: 800;
+  font-weight: 300;
   height: 35px;
   opacity:0.5;
   outline: medium none;
   padding-left: 10px;
   width: 205px;
-  background-image: url(../images/home/searchicon.png);
-  background-repeat: no-repeat;
-  background-position: 180px;
 }
-
+.form-control{
+border-radius:2px !important;
+}
 
 
 /*  Dropdown menu*/
@@ -2519,5 +2527,4 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #00b386;
 }
-
-
+Ã

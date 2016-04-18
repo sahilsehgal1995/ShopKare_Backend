@@ -1,187 +1,250 @@
-var app = angular.module('Shopkare', ['ui.router','courier_medicine','HeaderOperation','CartHandler','CheckoutHandler','ProductsHandler','FactoryHandler']);
+var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers']);
 
-    app.config(function($stateProvider, $urlRouterProvider) {
-         $urlRouterProvider.otherwise('/main/home');
 
-         $stateProvider
-         .state('app',{
-          url:'/app',
-          templateUrl:'templates/index1.html'
-         })
-        .state('/courier',{
-          url:'/courier',
-          templateUrl:'templates/courier.html',
-	  controller:'courierCtrl'	 
-	 })
-        .state('/medicines',{
-          url:'/medicines',
-          templateUrl:'templates/medicine.html',
-      	 controller:'courierCtrl'
-           })
-         .state('main',{
-          url:'/main',
-          templateUrl:'templates/main.html'
-         })
-         .state('main.slider',{
-          url:'/slider',
-          views:{
-            'slider':{
-            templateUrl:'templates/slider.html'
-              }
-            }
-           })
-       
-         .state('main.leftAdd',{
-          url:'/adds',
-          views:{
-            'leftAdd':{
-              templateUrl:'templates/leftAdds.html'    
-            }
-          }
-         })
-         
-         .state('main.indexProd',{
-          url:'/productsIndex',
-          views:{
-            'indexProducts':{
-              templateUrl:'templates/indexProduct.html'    
-            }
+app.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('/index');
+  $stateProvider
+
+    .state('index',{
+      url : '/index',
+      'templateUrl' : 'static/partial-index.html',
+      'controller' : 'indexController'
+    })
+
+    .state('home',{
+      url : '/home',
+      views: {
+
+          '': { templateUrl: 'static/home.html' },
+
+          'header@home': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
           },
-          controller:'indexProducts'
-         })
 
-
-         .state('main.home',{
-          url:'/home',
-          views:{
-            'leftAdd':{
-              templateUrl:'templates/leftAdds.html'    
-            },
-            'slider':{
-                templateUrl:'templates/sliderPrev.html'    
-            },
-            'indexProducts':{
-              templateUrl:'templates/indexProduct.html'
-            }
+          'footer@home': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
           },
-         })
 
-         .state('main.products',{
-          url:'/products',
-          views:{
-            'slider':{
-              templateUrl:'templates/shop.html'
-            },
-            'menuOtherOption':{
-              templateUrl:'templates/menuBottom.html'
-            }
+          'products@home': { 
+            templateUrl : 'static/templates/indexProduct.html',
+            controller : 'productsMainController'
+          },
+
+          'sidebar@home': { 
+            templateUrl : 'static/templates/sidebar.html',
+            controller : 'sidebarController'
           }
-         })
+        },
 
-	  .state('main.search',{
-          url:'/search',
-          views:{
-            'slider':{
-              templateUrl:'templates/shop.html'
-         	   }
-              }
-       	   })
+        controller : 'homeController'
+    })
 
-	 .state('main.pdetails',{
-            url:'/pdetails/:pID',
-            views:{
-              'slider':{
-                templateUrl:'templates/productdetails.html'
-              }
-            },
-           
-	   controller: function($scope, $http,$stateParams,cartService,$rootScope) {
-            $scope.initialImage=0;
-            var p = $stateParams.pID;
-            $scope.ProductDT=JSON.parse(p);
+    .state('grocery',{
+      url : '/grocery',
+      views: {
 
-              $scope.changeImage=function(id){
-                $scope.initialImage=id;
-              }
-         
+          '': { templateUrl: 'static/home.html' },
 
-	$scope.addCart=function(id,k){
-        var cartItem={};
-        console.log(id,k);
-        cartItem=id;
-	
-        cartItem["QuantityType"]=id.Quantity[0].Quantities[k][0];
-        cartItem["Price"]=id.Quantity[0].Quantities[k][1];
-        cartItem["QuantityIndex"]=k;
-        cartItem["cartQuantity"]=id.cartQty[k];
-        console.log(cartItem);
+          'header@grocery': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
 
-        $http.post(base+'/api/Customer/addToCart/?cartItem='+JSON.stringify(cartItem))
-        .success(function(data){
-        console.log(data);
-        $scope.ProductDT.cart[k]="Added in Your Cart";
-        })
-        .error(function(response){
-        console.log(response);
-        })
+          'footer@grocery': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
 
-        $rootScope.COUNTcartItems=$rootScope.COUNTcartItems+1;
-        };
-
-$scope.loginError=function(){
-$rootScope.LOGINFIRSTMSG="To Continue You Have to Login First";
-}
-
-
-	     $scope.addQuantity=function(index){
-		$scope.ProductDT.cartQty[index]++;
-	    };
-		
-		$scope.subQuantity=function(index){
-		$scope.ProductDT.cartQty[index]--;
-		};
-
-            }
-             
-          })
-/*         .state('main.menu.home',{
-          url:'/home',
-          views:{
-            'hotdeals':{
-                templateUrl:'templates/hotdeals.html'    
-            },
-            'categorywise':{
-              templateUrl:'templates/bestcategoryProducts.html'
-            },
-            'featured':{
-              templateUrl:'templates/featured.html'
-            },
-            'recommended':{
-              templateUrl:'templates/recommended.html'
-            }
+         'content@grocery': {
+            templateUrl : 'static/templates/content.html',
+            controller : ''
           }
-        })  */
-         .state('checkout',{
-          url:'/checkout',
-          templateUrl:'templates/checkout.html'
-         })
-         .state('cart',{
-          url:'/cart',
-          templateUrl:'templates/cart.html'
-         })
-         .state('contactus',{
-          url:'/contactus',
-          templateUrl:'templates/contact-us.html'
-         })
-         /* .state('product',{
-          url:'/product',
-          templateUrl:'templates/shop.html'
-         })
-          .state('product.menu',{
-          url:'/a',
-          templateUrl:'templates/rightmenu.html'
-         }) */
-       });
+        },
+        controller : 'groceryController'
+    })
+    .state('grocery.home',{
+      url : '/home',
+      views: {
+         'sidebar@grocery': {
+            templateUrl : 'static/templates/sidebar.html',
+            controller : 'sidebarController'
+          }
+        },
+        controller : 'groceryController'
+    })
+    .state('grocery.home.products',{
+      url : '/products',
+      views: {
+          'products@grocery': { 
+            templateUrl : 'static/templates/groceryProduct.html',
+            controller : 'productsGroceryController'
+          }
+        }
+    })
+    .state('grocery.home.search',{
+      url : '/search?query',
+      views: {
+          'products@grocery': { 
+            templateUrl : 'static/templates/searchProduct.html',
+            controller : 'searchController'
+          }
+        }
+    })
+    .state('grocery.home.CategoryProducts',{
+      url : '/categoryproducts?level1Category&mainCategory&subcategory',
+      views: {
+          'products@grocery': { 
+            templateUrl : 'static/templates/CategoryProducts.html',
+            controller : 'CategoryProductsController'
+          }
+        }
+    })
+
+    .state('stationary',{
+      url : '/stationary',
+      views: {
+
+          '': { templateUrl: 'static/home.html' },
+
+          'header@stationary': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@stationary': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+
+         'sidebar@stationary': { 
+            templateUrl : 'static/templates/sidebar.html',
+            controller : 'sidebarController'
+          },
+        
+          'products@stationary': { 
+            templateUrl : 'static/templates/groceryProduct.html',
+            controller : 'productsStationaryController'
+          }
+        },
+
+
+        controller : 'stationaryController'
+    })
+
+    .state('courier',{
+      url : '/courier',
+      views: {
+
+          '': { templateUrl: 'static/home.html' },
+
+          'header@courier': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@courier': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+
+         'sidebar@courier': { 
+            templateUrl : 'static/templates/sidebar.html',
+            controller : 'sidebarController'
+          },
+
+          'products@courier': { 
+            templateUrl : 'static/templates/courierProduct.html',
+            controller : 'productsCourierController'
+          }
+        },
+
+        controller : 'courierController'
+    })
+
+
+    .state('medicine',{
+      url : '/medicine',
+      views: {
+
+          '': { templateUrl: 'static/templates/medicine.html' },
+
+          'header@medicine': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@medicine': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+
+         'sidebar@medicine': { 
+            templateUrl : 'static/templates/sidebar.html',
+            controller : 'sidebarController'
+          }
+        },
+
+        controller : 'medicineController'
+    })
+
+   .state('cart',{
+      url : '/cart',
+      views: {
+          '': { templateUrl: 'static/templates/cart.html'},
+
+          'header@cart': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@cart': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+        },
+      controller : 'cartController'
+    })
+   
+   .state('checkout',{
+      url : '/checkout',
+      views: {
+          '': { templateUrl: 'static/templates/cart.html'},
+
+          'header@cart': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@cart': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+        },
+      controller : 'cartController'
+    })
+   
+   .state('contact',{
+      url : '/contact',
+      views: {
+          '': { templateUrl: 'static/templates/contact-us.html'},
+
+          'header@contact': { 
+            templateUrl : 'static/templates/header.html',
+            controller : 'headerController'
+          },
+
+          'footer@contact': { 
+            templateUrl : 'static/templates/footer.html',
+            controller : 'footerController'
+          },
+        },
+      controller : 'contactController'
+    })
+
+  });
+
 
 
 

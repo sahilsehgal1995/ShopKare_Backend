@@ -169,7 +169,9 @@ def UpdateBatch(pid, Batch):
   try:
     Batch = json.loads(Batch)
     connection, db, collection = MongoDBconnection('Batches', pid)
-    collection.update({"_id":pid},Batch)
+    print collection.replace_one({"_id":Batch['_id']},Batch)
+    connection.close()
+    gc.collect()
     return "Updated"
   except Exception as e:
     print str(e)
@@ -519,8 +521,9 @@ def testing():
   return '' 
 
 if __name__ == '__main__':
+  print UpdateBatch('P_1_0_0_12', '{"Cost_Price":30,"StoreId":"store_1","Quantity":{"type":"600 ml","value":20},"_id":"B_1","Selling_Price":60,"DateOfPurchase":"04/04/2016","DateOfExpiry":"04/04/2017"}')
   #print testing()
-  print registerBulkProduct('Grocery','Prodduct List new.xlsx')
+  #print registerBulkProduct('Grocery','Prodduct List new.xlsx')
   #print editMainCategory('Medicines', 'Corosin', 'Antibiotics')
   #print ProductImagePath('P_1_0_1_1')
   #print removeDeliveryBoy('D_1')
@@ -540,5 +543,5 @@ if __name__ == '__main__':
   #print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
   #print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
   #print loginAdmin('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
-  #print registerProduct('Snacks Beverages','Cold Drinks','{"_id":"1_1","Name":"Coke", "Brand":"CocaCola"}')
+  #print registerProduct('Snacks Beverages','Cold Drinks','')
   #print removeProduct('Snacks Beverages','Cold Drinks','P_1_1_1')
