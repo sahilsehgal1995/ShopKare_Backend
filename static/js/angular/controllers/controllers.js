@@ -1,8 +1,7 @@
 angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'])
 
-.controller('indexController', function($scope, $cacheFactory, UserFactory, AuthFactory){
+.controller('indexController', function($scope, UserFactory, AuthFactory){
 	console.log("index controller");
-  $cacheFactory.get('$http').destroy();
   $scope.showLogin=true;
   $scope.toggleshowLogin = function()
   {
@@ -50,9 +49,8 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   };
 })
 
-.controller('headerController',['$scope','$http', '$state', 'UserFactory', 'AuthFactory', '$cacheFactory', function($scope, $http, $state, UserFactory, AuthFactory, $cacheFactory){
+.controller('headerController',['$scope','$http', '$state', 'UserFactory', 'AuthFactory', function($scope, $http, $state, UserFactory, AuthFactory){
   console.log('header');
-  console.log($cacheFactory.info());
   $scope.Login = function()
   {
     $scope.messageLogin = '';
@@ -130,6 +128,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
    $scope.showCategories=[];
     $scope.expandCategory = function(index)
     {
+      console.log(index);
       $scope.showCategories = Array($scope.showCategories.length).fill(false);
       $scope.showCategories[index]=true;
     }
