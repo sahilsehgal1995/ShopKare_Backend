@@ -1,8 +1,10 @@
 var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers']);
 
-app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/index');
 
+app.config(function($stateProvider, $urlRouterProvider, $cacheFactory) {
+  $urlRouterProvider.otherwise('/index');
+  console.log($cacheFactory.info());
+$cacheFactory.destroy();
   $stateProvider
 
     .state('index',{

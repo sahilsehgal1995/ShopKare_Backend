@@ -3,10 +3,11 @@
         
 <hr>
 <div id="sidebar-wrapper">
-  <ul class="sidebar-nav" ng-repeat="(key,data) in allCategories" class="sidebar-brand">
+  <ul class="sidebar-nav" ng-repeat="(key,data) in allCategories" class="sidebar-brand" >
     <aclass="sidebar-brand" ng-repeat="(mainCategory,d) in data" style="font-size:1.2em">
-    <b>{{mainCategory}} <i class="fa fa-plus " ng-show="expanded" ng-click="expandCategory('')"></i><i class="fa fa-minus " ng-hide="expanded"></i>
-    <ul class="sidebar-nav">
+    <b><button ng-click="expandCategory($parent.$index)" class="btn btn-inverse" ng-init="showCategories[$parent.$index]=false">{{mainCategory}} <i class="fa fa-plus " ng-hide="showCategories[$parent.$index]"></i>
+    </button>
+    <ul class="sidebar-nav" ng-if="showCategories[$parent.$index]">
       <a ng-repeat="subcat in d" class="sidebar-brand" ng-hide="expanded" ng-click="showCategoryProducts(mainCategory,subcat)">
       {{subcat}}
       <br>

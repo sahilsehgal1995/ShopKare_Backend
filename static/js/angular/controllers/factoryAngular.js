@@ -1,5 +1,5 @@
-    var base ="http://www.shopkare.com";
-//  var base ='http://0.0.0.0:5000';
+   var base ="http://www.shopkare.com";
+//   var base ='http://0.0.0.0:5000';
 
 angular.module('Data.factory', [])
 

@@ -1,11 +1,58 @@
 angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'])
 
-.controller('indexController', function($scope){
-	console.log("index");
+.controller('indexController', function($scope, $cacheFactory, UserFactory, AuthFactory){
+	console.log("index controller");
+  $cacheFactory.get('$http').destroy();
+  $scope.showLogin=true;
+  $scope.toggleshowLogin = function()
+  {
+    $scope.showLogin = !$scope.showLogin;
+    $scope.messageSignup = '';
+    $scope.messageLogin = '';
+  };
+  $scope.Login = function()
+  {
+    $scope.messageLogin = '';
+    console.log(JSON.stringify($scope.user));
+    UserFactory.login(JSON.stringify($scope.user))
+    .success(function(resp){
+      $scope.messageLogin =  resp; 
+      if (resp=='Login Success')
+       {
+ 	 location.reload();
+       }
+       else{
+	 $scope.messageLogin =  resp;
+       }
+    })
+     .error(function(error){
+       console.log(JSON.stringify(error));
+       $scope.messageLogin =  'Unable to Login. Try again later';
+    });
+  };
+  $scope.signup = function()
+  {
+    $scope.messageSignup = '';
+    UserFactory.register(JSON.stringify($scope.rdata))
+    .success(function(resp){
+      $scope.messageSignup = resp;
+      console.log(resp);
+      if (resp == 'Registration Successfull')
+      {
+	AuthFactory.setUser($scope.rdata.Name);
+	AuthFactory.setEmail($scope.rdata.Email);
+	location.reload();
+      }
+    })
+    .error(function(err){
+      $scope.messageSignup = 'Unable to Login Please try after sometime';
+    })
+  };
 })
 
-.controller('headerController',['$scope','$http', '$state', 'UserFactory', 'AuthFactory', function($scope, $http, $state, UserFactory, AuthFactory){
+.controller('headerController',['$scope','$http', '$state', 'UserFactory', 'AuthFactory', '$cacheFactory', function($scope, $http, $state, UserFactory, AuthFactory, $cacheFactory){
   console.log('header');
+  console.log($cacheFactory.info());
   $scope.Login = function()
   {
     $scope.messageLogin = '';
@@ -80,6 +127,12 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 	    subcategory : subCategory
 	  });
 	};
+   $scope.showCategories=[];
+    $scope.expandCategory = function(index)
+    {
+      $scope.showCategories = Array($scope.showCategories.length).fill(false);
+      $scope.showCategories[index]=true;
+    }
 	$scope.Categories =['Baby Products', 'Food'];
 	$scope.categories = {
 		'grocery' : [ {label : "Baby Products", children :[ "Baby Food", "Baby Hygiene", "Baby Care" ] ,
