@@ -32,9 +32,7 @@ def add_routes(app=None):
   
   @Product.route('/api/Product/getRandomProducts/')
   def getRandomProducts():
-    reply = randomProducts(request.args.get('level1category'))
-    print reply
-    return reply
+    return randomProducts(request.args.get('level1category'))
   
   @Product.route('/api/Product/searchProduct/')
   def SearchProduct():

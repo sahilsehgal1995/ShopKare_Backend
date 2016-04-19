@@ -3,23 +3,14 @@
         <div>
             <span style="font-family: 'Roboto', sans-serif;font-size:20px;font-weight:700;">Trending Items</span>
             <hr style="padding: 0 0 0 0 ;margin-top: 5px;">
-<<<<<<< HEAD
-            <div id="recommended-item-carousel" class="carousel slide" data-ride="carousel"  >
-                <div class="carousel-inner">
-                    <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4" id="slider1">
-=======
             <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
                 <div class="carousel-inner">
                     <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4" id="recommended-item-carousel">
->>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                         <div class="col-sm-3" ng-if="$index >= 0" >
                             <div class="product-image-wrapper1">
                                 <div class="single-products">
                                     <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
-<<<<<<< HEAD
-=======
                                     {{product}}
->>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                                         <div><img ng-src="http://shopkare.com/{{product.images[0]}}" width="100%" height="110px" alt="" /></div>
                                         <div style="margin-top: 5px;">
                                             <div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
@@ -52,20 +43,12 @@
 			  </div>
                         </div>   
                     </div>
-<<<<<<< HEAD
-		    <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4" id="slider2">
-                        <div class="col-sm-3" ng-if="$index >= 4" >
-                            <div class="product-image-wrapper1">
-                                <div class="single-products">
-                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
-=======
 		    <div class="item active" style="margin-left:5px; margin-right:5px;" ng-repeat="(index,product) in trendingProducts | limitTo:4">
                         <div class="col-sm-3" ng-if="$index >= 0" >
                             <div class="product-image-wrapper1">
                                 <div class="single-products">
                                     <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
                                     {{product}}
->>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                                         <div><img ng-src="http://shopkare.com/{{product.images[0]}}" width="100%" height="110px" alt="" /></div>
                                         <div style="margin-top: 5px;">
                                             <div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
@@ -130,11 +113,7 @@
                 <a class="recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
                     <i class="fa fa-angle-left" style="margin-left:-5px;"></i>
                 </a>
-<<<<<<< HEAD
-                <a class="right recommended-item-control" href="slider2" data-slide="next">
-=======
                 <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
->>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                     <i class="fa fa-angle-right"></i>
                 </a>
             </div><!--/hot_deals-->
