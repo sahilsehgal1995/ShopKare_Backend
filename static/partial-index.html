@@ -19,7 +19,11 @@
             <h5>Shop grocery products online with exciting offers</h5>
             <br>
             <br>
+<<<<<<< HEAD
             <a href="" class="btn carousel-btn"><b>SHOP NOW</b></a>
+=======
+            <a ui-sref="grocery.home.products"  class="btn carousel-btn"><b>SHOP NOW</b></a>
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
           </div>
         </div>
         <!-- /header-text -->
@@ -32,7 +36,13 @@
           <div class="col-md-12 text-center">
             <h1>Groceries at your Doorstep</h1>
             <h5>Shop grocery products online with exciting offers</h5>
+<<<<<<< HEAD
 
+=======
+            <br>
+            <br>
+            <a ui-sref="grocery.home.products"  class="btn carousel-btn"><b>SHOP NOW</b></a>
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
 
           </div>
         </div>
@@ -46,6 +56,12 @@
           <div class="col-md-12 text-center">
             <h1>Groceries at your Doorstep</h1>
             <h5>Shop grocery products online with exciting offers</h5>
+<<<<<<< HEAD
+=======
+            <br>
+            <br>
+            <a ui-sref="grocery.home.products"  class="btn carousel-btn"><b>SHOP NOW</b></a>
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
           </div>
         </div>
         <!-- /header-text -->
@@ -67,9 +83,15 @@
 
   <div id="fixed" clas="container" style="position:absolute;top:10px;width:100%;color:white;font-size:18px;">
 
+<<<<<<< HEAD
     <div class="pull-left col-md-3"><img class="img-responsive" src="http://shopkare.com/static/images/logo-white.png">
     </div>
     <div id="section" class="dropdown" style="position:absolute;right:550px;top:10px;">
+=======
+    <div class="pull-left col-md-3"><a ui-sref="index"><img class="img-responsive" style="max-width: 75%;" src="http://shopkare.com/static/images/logo-white.png"></a>
+    </div>
+    <div id="section" class="dropdown" style="position:absolute;right:550px;top:16px;cursor: pointer;">
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
       <div id="sectionInner" class="dropdown-toggle" type="button" data-toggle="dropdown">SECTIONS
         <span class="caret"></span>
       </div>
@@ -84,20 +106,31 @@
         </li>
       </ul>
     </div>
+<<<<<<< HEAD
     <div id="contact" style="position:absolute;right:400px;top:10px;"><a ui-sref="contact">CONTACT</a>
     </div>
     <div id="bucket" style="position:absolute;right:320px;"><a ui-sref="cart"><i class="fa-2x fa fa-shopping-cart"></i></a>
+=======
+    <div id="contact" style="position:absolute;right:400px;top:16px;"><a ui-sref="contact">CONTACT</a>
+    </div>
+    <div id="bucket" style="position:absolute;right:320px;top: 12px;"><a ui-sref="cart"><i class="fa-2x fa fa-shopping-cart"></i></a>
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
     </div>
     <div id="login" style="position:absolute;right:80px;top:10px;" ng-show="!login" data-toggle="modal" data-target="#myModal">
       <a class="btn btn-theme btn-sm btn-min-block" href="#"><b>LOGIN</b></a>
     </div>
     <!-- Modal -->
+<<<<<<< HEAD
     <div class="modal fade" id="myModal" role="dialog">
+=======
+ <div class="modal fade" id="myModal" role="dialog">
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
       <div class="modal-dialog login-modal">
 
         <!-- Modal content-->
         <div class="row">
           <div class="col-md-7 col-xs-7 modal-text">
+<<<<<<< HEAD
             <div class="modal-content">
 
               <div class="modal-header">
@@ -121,18 +154,73 @@
                     <input type="password" class="form-control" id="pwd" placeholder=" Create Password">
                     <center>
                       <button type="button" class="btn btn-default signup" data-dismiss="modal"><span class="glyphicon"></span>  SIGN UP NOW >
+=======
+            <div class="modal-content lgin-cmc-hght">
+
+              <div class="modal-header" ng-hide="showLogin">
+                <center>
+                  <h4>SIGN UP</h4>
+                </center>
+                {{messageSignup}}
+              </div>
+              <div class="modal-body" ng-hide="showLogin">
+                <div class="login-form-1">
+                  <form id="register-form" class="text-left" ng-submit="signup()">
+                    <input type="number" class="form-control" id="usr" ng-model="rdata.Mobile" ng-init="rdata.Mobile=''" placeholder=" Your Mobile">
+                    <input type="email" class="form-control" id="email" ng-model="rdata.Email" ng-init="rdata.Email=''" placeholder=" Your Email">
+                    <input type="password" class="form-control" id="pwd" ng-init="rdata.Password=''" ng-model="rdata.Password" placeholder="Your Password">
+                    <center>
+                      <button type="submit" class="btn btn-default signup"><span class="glyphicon"></span>  SIGN UP NOW >
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                       </button>
                     </center>
                   </form>
                 </div>
               </div>
+<<<<<<< HEAD
               <div class="modal-footer">
                 <center>
                   <a href="#" class="btn btn-lg ">
+=======
+              <div class="modal-footer" ng-hide="showLogin">
+                <center>
+                  <a href="#" class="btn btn-lg " ng-click="toggleshowLogin()">
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
                       <span class="glyphicon"></span>  Already a user? Login Now 
                   </a>
                 </center>
               </div>
+<<<<<<< HEAD
+=======
+              <div class="modal-header" ng-show="showLogin">
+                <center>
+                  <h4>Login</h4>
+                </center>
+                {{messageLogin}}
+              </div>
+              <div class="modal-body" ng-show="showLogin">
+                <div class="login-form-1">
+                  <form id="register-form" class="text-left" ng-submit="Login()">
+                    <input type="number" class="form-control" id="usr" ng-model="user.Mobile" ng-init="user.Mobile=''" placeholder=" Your Mobile">
+                    <center>OR</center>
+                    <input type="email" class="form-control" id="email" ng-model="user.Email" ng-init="user.Email=''" placeholder=" Your Email">
+                    <br>
+                    <input type="password" class="form-control" id="pwd" ng-init="rdata.Password=''" ng-model="user.Password" placeholder="Your Password">
+                    <center>
+                      <button type="submit" class="btn btn-default signup"><span class="glyphicon"></span>  Login
+                      </button>
+                    </center>
+                  </form>
+                </div>
+              </div>
+              <div class="modal-footer" ng-show="showLogin">
+                <center>
+                  <a href="#" class="btn btn-lg " ng-click="toggleshowLogin()">
+                      <span class="glyphicon"></span>  Not a user? Signup Now 
+                  </a>
+                </center>
+              </div>
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
             </div>
           </div>
           <div class="col-md-5 col-xs-5 modal-img">
@@ -142,7 +230,10 @@
 
       </div>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
   </div>
 
 
@@ -267,4 +358,8 @@
       </div>
 
     </footer>
+<<<<<<< HEAD
     <!--/Footer-->
+=======
+    <!--/Footer-->
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526

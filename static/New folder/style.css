@@ -553,11 +553,20 @@ border: 3px solid #F7F7F5;
 .modal-content {
 	color : black !important;
 	border-radius: 0px !important;
+<<<<<<< HEAD
 	height: 460px !important;
 
 }
 
 
+=======
+	height: 590px;
+
+}
+.lgin-cmc-hght{
+height:461px !important;
+}
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
 .modal-text {
 	padding-right: 0px !important;
 }
@@ -656,4 +665,8 @@ li.active a{
 	background-color: #ffffff !important;
 	color : black !important;
 	border-bottom: 4px solid #6B5402 !important;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> e4a744c160cd213a4dfbf0937b9e90bb320fa526
