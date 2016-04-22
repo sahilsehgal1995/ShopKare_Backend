@@ -576,21 +576,21 @@ ul.sub-menu {
 **************************/
 
 
-#slider {
-  padding-bottom: 45px;
-}
+/*#slider {*/
+  /*padding-bottom: 45px;*/
+/*}*/
 
-.carousel-indicators li {
-  background: #C4C4BE;
-}
+/*.carousel-indicators li {*/
+  /*background: #C4C4BE;*/
+/*}*/
 
-.carousel-indicators li.active {
-	  background: #00b386;
-}
+/*.carousel-indicators li.active {*/
+	  /*background: #00b386;*/
+/*}*/
 
-.item {
-  padding-left: 100px;
-}
+/*.item {*/
+  /*padding:40px;*/
+/*}*/
 
 
 .pricing {
@@ -2527,4 +2527,4 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #00b386;
 }
-Ã
+ï¿½

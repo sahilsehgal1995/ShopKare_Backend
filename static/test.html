@@ -1,0 +1,2711 @@
+<div ng-controller="HOT_DEALS">
+
+
+    <!--<style>-->
+    <!--.nav-tabs { border-bottom: 2px solid #DDD; }-->
+    <!--.nav-tabs > li.active > a, .nav-tabs > li.active > a:focus, .nav-tabs > li.active > a:hover { border-width: 0; }-->
+    <!--.nav-tabs > li > a { border: none; color: #666; }-->
+    <!--.nav-tabs > li.active > a, .nav-tabs > li > a:hover { border: none; color: #4285F4 !important; background: transparent; }-->
+    <!--.nav-tabs > li > a::after { content: ""; background: #4285F4; height: 2px; position: absolute; width: 100%; left: 0px; bottom: -1px; transition: all 250ms ease 0s; transform: scale(0); }-->
+    <!--.nav-tabs > li.active > a::after, .nav-tabs > li:hover > a::after { transform: scale(1); }-->
+    <!--.tab-nav > li > a::after { background: #21527d none repeat scroll 0% 0%; color: #fff; }-->
+    <!--.tab-pane { padding: 15px 0; }-->
+    <!--.tab-content{padding:20px}-->
+
+
+    <!--</style>-->
+
+    <!--<div class="container-fluid">-->
+    <!--<div class="row">-->
+    <!--<div class="col-md-12">-->
+    <!--&lt;!&ndash; Nav tabs &ndash;&gt;<div class="card">-->
+    <!--<ul class="nav nav-tabs" role="tablist">-->
+    <!--<li role="presentation" class="active"><a href="#Stationery" aria-controls="Stationery" role="tab" data-toggle="tab">Stationery</a></li>-->
+    <!--<li role="presentation"><a href="#Medicine" aria-controls="Medicine" role="tab" data-toggle="tab">Medicine</a></li>-->
+    <!--<li role="presentation"><a href="#Courier" aria-controls="Courier" role="tab" data-toggle="tab">Courier</a></li>-->
+    <!--<li role="presentation"><a href="#Groceries" aria-controls="Groceries" role="tab" data-toggle="tab">Groceries</a></li>-->
+    <!--</ul>-->
+
+    <!--&lt;!&ndash; Tab panes &ndash;&gt;-->
+    <!--<div class="tab-content">-->
+    <!--<div  role="tabpanel" class="tab-pane active container-fluid" id="Stationery">-->
+    <!--<div class="row  ">-->
+
+    <!--<div class="col-md-3 " style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-6" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:100px; width:100%;background-color: greenyellow;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQZlDBWU34pIa6JvB7cywG7SUDrk4bec8jjczigprb2ew6dAh3vbQ">-->
+    <!--</div>-->
+    <!--<div class="col-md-12" style="height:200px; width:100%;background-color: lightblue;margin-bottom: 10px;">-->
+
+    <!--<img height="100%" width="100%" src="http://www.chosenthemes.com/wp-content/uploads/2016/02/f30a8bb3027ac7d2b195911ae8284e0c.jpg">-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-3" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--<div  role="tabpanel" class="tab-pane  container-fluid" id="Medicine" >-->
+    <!--<div class="row  ">-->
+
+    <!--<div class="col-md-3 " style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-6" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:100px; width:100%;background-color: greenyellow;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQZlDBWU34pIa6JvB7cywG7SUDrk4bec8jjczigprb2ew6dAh3vbQ">-->
+    <!--</div>-->
+    <!--<div class="col-md-12" style="height:200px; width:100%;background-color: lightblue;margin-bottom: 10px;">-->
+
+    <!--<img height="100%" width="100%" src="http://www.chosenthemes.com/wp-content/uploads/2016/02/f30a8bb3027ac7d2b195911ae8284e0c.jpg">-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-3" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--<div  role="tabpanel" class="tab-pane  container-fluid" id="Courier" >-->
+    <!--<div class="row  ">-->
+
+    <!--<div class="col-md-3 " style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-6" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:100px; width:100%;background-color: greenyellow;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQZlDBWU34pIa6JvB7cywG7SUDrk4bec8jjczigprb2ew6dAh3vbQ">-->
+    <!--</div>-->
+    <!--<div class="col-md-12" style="height:200px; width:100%;background-color: lightblue;margin-bottom: 10px;">-->
+
+    <!--<img height="100%" width="100%" src="http://www.chosenthemes.com/wp-content/uploads/2016/02/f30a8bb3027ac7d2b195911ae8284e0c.jpg">-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-3" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--<div  role="tabpanel" class="tab-pane  container-fluid" id="Groceries" >-->
+    <!--<div class="row  ">-->
+
+    <!--<div class="col-md-3 " style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-6" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:100px; width:100%;background-color: greenyellow;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://encrypted-tbn2.gstatic.com/images?q=tbn:ANd9GcQZlDBWU34pIa6JvB7cywG7SUDrk4bec8jjczigprb2ew6dAh3vbQ">-->
+    <!--</div>-->
+    <!--<div class="col-md-12" style="height:200px; width:100%;background-color: lightblue;margin-bottom: 10px;">-->
+
+    <!--<img height="100%" width="100%" src="http://www.chosenthemes.com/wp-content/uploads/2016/02/f30a8bb3027ac7d2b195911ae8284e0c.jpg">-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="col-md-3" style="padding-left: 5px;padding-right: 5px;">-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: #00b386;margin-bottom: 10px;">-->
+    <!--<img  height="100%" width="100%" src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRc127YnvTROQRHnAcuGOVU3szHg-fwJaFZ1mA3bvcvDIFnRNOO">-->
+
+    <!--</div>-->
+    <!--<div class="col-md-12" style=" padding-left: 0px;padding-right: 0px;height:150px; width:100%;background-color: lightcoral;margin-bottom: 10px;">-->
+    <!--<img height="100%" width="100%" src="https://wallpaperscraft.com/image/iphone_4_iphone_phone_apple_mobile_icon_92315_3840x2160.jpg" />-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+
+
+    <!--tabs baaner -->
+
+
+
+    <div class="recommended_items" ><!--hot_deals-->    <!-- subcategory 1-->
+        <div>
+            <span style="font-family: 'Roboto', sans-serif;font-size:20px;font-weight:700;">Available Products</span>
+            <hr style="padding: 0 0 0 0 ;margin-top: 5px;">
+            <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
+                <div class="carousel-inner">
+                    <div class="item active">
+                        <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                            <div class="product-image-wrapper1">
+                                <div class="single-products">
+                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                        <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                        <div style="margin-top: 5px;">
+                                            <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                            <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                            <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                            <select>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <br>
+                                            <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="product-image-wrapper1">-->
+                            <!--<div class="single-products">-->
+                            <!--<div class="productinfo text-center">-->
+                            <!---->
+                            <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                            <!--<p>{{p.product_name}}</p>-->
+
+                            <!--<select ng-model="k" ng-init="k='0'">-->
+                            <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                            <!--</select>-->
+                            <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                            <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                            <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                            <!--</P>-->
+
+
+                            <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                            <!--<span ng-show="login">-->
+                            <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                            <!--</span>-->
+                            <!--</div>-->
+                            <!---->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                    </div>
+
+                    <div class="item">
+                        <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                            <div class="product-image-wrapper1">
+                                <div class="single-products">
+                                    <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                        <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                        <div style="margin-top: 5px;">
+                                            <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                            <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                            <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                            <select>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                                <option>Category</option>
+                                            </select>
+                                            <br>
+                                            <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--<div class="product-image-wrapper1">-->
+                            <!--<div class="single-products">-->
+                            <!--<div class="productinfo text-center">-->
+                            <!---->
+                            <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                            <!--<p>{{p.product_name}}</p>-->
+
+                            <!--<select ng-model="k" ng-init="k='0'">-->
+                            <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                            <!--</select>-->
+                            <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                            <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                            <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                            <!--</P>-->
+
+
+                            <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                            <!--<span ng-show="login">-->
+                            <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                            <!--</span>-->
+                            <!--</div>-->
+                            <!---->
+                            <!--</div>-->
+                            <!--</div>-->
+                        </div>
+                        <!--<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">-->
+                        <!--<div class="product-image-wrapper1">-->
+                        <!--<div class="single-products">-->
+                        <!--<div class="productinfo text-center">-->
+
+
+                        <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                        <!--<p>{{p.product_name}}</p>-->
+
+                        <!--<select ng-model="k" ng-init="k='0'">-->
+                        <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                        <!--</select>-->
+                        <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                        <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                        <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                        <!--</P>-->
+
+
+                        <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                        <!--<span ng-show="login">-->
+
+                        <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                        <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                        <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                        <!--</span>-->
+
+                        <!--</div>-->
+
+                        <!--</div>-->
+                        <!--</div>-->
+                        <!--</div>-->
+
+                    </div>
+
+                </div>
+
+                <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+
+
+
+                <div ng-show ="!HotDeals">
+                    <br>
+                    <h2 class="title text-center">Coming Soon</h2>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+            </div><!--/hot_deals-->
+            <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
+                <!--<div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >-->
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                                <div class="product-image-wrapper1">
+                                    <div class="single-products">
+                                        <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                            <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                            <div style="margin-top: 5px;">
+                                                <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                                <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                                <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                                <select>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                </select>
+                                                <br>
+                                                <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="product-image-wrapper1">-->
+                                <!--<div class="single-products">-->
+                                <!--<div class="productinfo text-center">-->
+                                <!---->
+                                <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                                <!--<p>{{p.product_name}}</p>-->
+
+                                <!--<select ng-model="k" ng-init="k='0'">-->
+                                <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                                <!--</select>-->
+                                <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                                <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                                <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                                <!--</P>-->
+
+
+                                <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                                <!--<span ng-show="login">-->
+                                <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                                <!--</span>-->
+                                <!--</div>-->
+                                <!---->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                                <div class="product-image-wrapper1">
+                                    <div class="single-products">
+                                        <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                            <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                            <div style="margin-top: 5px;">
+                                                <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                                <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                                <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                                <select>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                </select>
+                                                <br>
+                                                <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="product-image-wrapper1">-->
+                                <!--<div class="single-products">-->
+                                <!--<div class="productinfo text-center">-->
+                                <!---->
+                                <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                                <!--<p>{{p.product_name}}</p>-->
+
+                                <!--<select ng-model="k" ng-init="k='0'">-->
+                                <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                                <!--</select>-->
+                                <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                                <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                                <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                                <!--</P>-->
+
+
+                                <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                                <!--<span ng-show="login">-->
+                                <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                                <!--</span>-->
+                                <!--</div>-->
+                                <!---->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                            <!--<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">-->
+                            <!--<div class="product-image-wrapper1">-->
+                            <!--<div class="single-products">-->
+                            <!--<div class="productinfo text-center">-->
+
+
+                            <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                            <!--<p>{{p.product_name}}</p>-->
+
+                            <!--<select ng-model="k" ng-init="k='0'">-->
+                            <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                            <!--</select>-->
+                            <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                            <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                            <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                            <!--</P>-->
+
+
+                            <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                            <!--<span ng-show="login">-->
+
+                            <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                            <!--</span>-->
+
+                            <!--</div>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+
+                    </div>
+
+                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+
+
+                    <div ng-show ="!HotDeals">
+                        <br>
+                        <h2 class="title text-center">Coming Soon</h2>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div><!--/hot_deals-->
+            <div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                                <div class="product-image-wrapper1">
+                                    <div class="single-products">
+                                        <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                            <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                            <div style="margin-top: 5px;">
+                                                <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                                <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                                <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                                <select>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                </select>
+                                                <br>
+                                                <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="product-image-wrapper1">-->
+                                <!--<div class="single-products">-->
+                                <!--<div class="productinfo text-center">-->
+                                <!---->
+                                <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                                <!--<p>{{p.product_name}}</p>-->
+
+                                <!--<select ng-model="k" ng-init="k='0'">-->
+                                <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                                <!--</select>-->
+                                <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                                <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                                <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                                <!--</P>-->
+
+
+                                <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                                <!--<span ng-show="login">-->
+                                <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                                <!--</span>-->
+                                <!--</div>-->
+                                <!---->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                        </div>
+
+                        <div class="item">
+                            <div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">
+                                <div class="product-image-wrapper1">
+                                    <div class="single-products">
+                                        <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+                                            <div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>
+                                            <div style="margin-top: 5px;">
+                                                <div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>
+                                                <div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>
+                                                <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs 100 </span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">500</span></div>
+                                                <select>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                    <option>Category</option>
+                                                </select>
+                                                <br>
+                                                <button style="margin-top: 10px;" class="btn btn-block btn-success"><i class="fa fa-shopping-cart"></i> <span style="color: white">Add to Cart</span></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--<div class="product-image-wrapper1">-->
+                                <!--<div class="single-products">-->
+                                <!--<div class="productinfo text-center">-->
+                                <!---->
+                                <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                                <!--<p>{{p.product_name}}</p>-->
+
+                                <!--<select ng-model="k" ng-init="k='0'">-->
+                                <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                                <!--</select>-->
+                                <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                                <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                                <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                                <!--</P>-->
+
+
+                                <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                                <!--<span ng-show="login">-->
+                                <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                                <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                                <!--</span>-->
+                                <!--</div>-->
+                                <!---->
+                                <!--</div>-->
+                                <!--</div>-->
+                            </div>
+                            <!--<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">-->
+                            <!--<div class="product-image-wrapper1">-->
+                            <!--<div class="single-products">-->
+                            <!--<div class="productinfo text-center">-->
+
+
+                            <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                            <!--<p>{{p.product_name}}</p>-->
+
+                            <!--<select ng-model="k" ng-init="k='0'">-->
+                            <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                            <!--</select>-->
+                            <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                            <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                            <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                            <!--</P>-->
+
+
+                            <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                            <!--<span ng-show="login">-->
+
+                            <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                            <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                            <!--</span>-->
+
+                            <!--</div>-->
+
+                            <!--</div>-->
+                            <!--</div>-->
+                            <!--</div>-->
+
+                        </div>
+
+                    </div>
+
+                    <a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                    <a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+
+
+
+                    <div ng-show ="!HotDeals">
+                        <br>
+                        <h2 class="title text-center">Coming Soon</h2>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+                </div><!--/hot_deals-->
+
+                <!----
+                other catgory are commented
+                --->
+                <div>
+                    <!--<div class="category-tab" >&lt;!&ndash;category-tab&ndash;&gt;-->
+                    <!--<div class="col-sm-12">-->
+                    <!--<ul class="nav nav-tabs">-->
+                    <!--<li class="active" ng-click="getProducts('NewProduct')"><a href="#newProduct" data-toggle="tab">New Products</a></li>-->
+                    <!--<li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>-->
+                    <!--</ul>-->
+                    <!--</div>-->
+                    <!--<div class="tab-content">-->
+                    <!--<div class="tab-pane fade active in" id="newProduct" ng-show="!clickAction" >-->
+                    <!--<div class="col-sm-3" ng-repeat ="p in McategoryProducts|limitTo :4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;-->
+                    <!--<div class="product-image-wrapper">-->
+
+                    <!--<div class="single-products">-->
+                    <!--<div class="productinfo text-center">-->
+                    <!--<a ng-click="pdetail(p)">      <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                    <!--<p>{{p.product_name}}</p>-->
+
+                    <!--<select ng-model="k" ng-init="k='0'">-->
+                    <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                    <!--</select>-->
+                    <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                    <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                    <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs 	{{p.Quantity[0].Quantities[k][3]}} </span>-->
+                    <!--</P>-->
+
+                    <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                    <!--<span ng-show="login">-->
+
+                    <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                    <!--</span>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+
+                    <!--<div class="tab-pane fade active in" id="data" ng-show="clickAction" >-->
+                    <!--<div class="col-sm-3" ng-repeat ="p in McategoryProducts |limitTo:4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;-->
+                    <!--<div class="product-image-wrapper">-->
+                    <!--<div class="single-products">-->
+                    <!--<div class="productinfo text-center">-->
+
+
+                    <!--<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                    <!--<p>{{p.product_name}}</p>-->
+
+                    <!--<select ng-model="k" ng-init="k='0'">-->
+                    <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                    <!--</select>-->
+                    <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                    <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                    <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                    <!--</P>-->
+
+                    <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                    <!--<span ng-show="login">-->
+                    <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--</span>-->
+
+
+
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>&lt;!&ndash;/category-tab&ndash;&gt;-->
+
+                    <!--<div class="features_items">&lt;!&ndash;features_items&ndash;&gt;-->
+                    <!--<h2 class="title text-center">Featured Items</h2>-->
+                    <!--<div class="col-sm-4" ng-show="Featured_Products" ng-repeat="p in Featured_Products | limitTo:6">-->
+                    <!--<div class="product-image-wrapper">-->
+                    <!--<div class="single-products">-->
+                    <!--<div class="productinfo text-center">-->
+
+                    <!--<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                    <!--<p>{{p.product_name}}</p>-->
+
+                    <!--<select ng-model="k" ng-init="k='0'">-->
+                    <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                    <!--</select>-->
+                    <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                    <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                    <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                    <!--</P>-->
+
+
+                    <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                    <!--<span ng-show="login">-->
+                    <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'Featured_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--</span>-->
+
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--<div class="choose">-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div ng-show="!Featured_Products">-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<h2 class="title text-center">Coming Soon</h2>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--</div>-->
+
+
+                    <!--</div>&lt;!&ndash;features_items&ndash;&gt;-->
+
+
+
+                    <!--<div class="recommended_items">&lt;!&ndash;recommended_items&ndash;&gt;-->
+
+
+                    <!--<h2 class="title text-center">NEW RELEASES</h2>-->
+                    <!--<div id="recommended-item-carousel" ng-show="New_Products" class="carousel slide" data-ride="carousel"  >-->
+                    <!--<div class="carousel-inner">-->
+                    <!--<div class="item active">-->
+                    <!--<div class="col-sm-3" ng-repeat="p in New_Products | limitTo:4">-->
+                    <!--<div class="product-image-wrapper1">-->
+                    <!--<div class="single-products">-->
+                    <!--<div class="productinfo text-center">-->
+
+                    <!--<a ng-click="pdetail(p)">   <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                    <!--<p>{{p.product_name}}</p>-->
+
+                    <!--<select ng-model="k" ng-init="k='0'">-->
+                    <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                    <!--</select>-->
+                    <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                    <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                    <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                    <!--</P>-->
+                    <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                    <!--<span ng-show="login">-->
+
+                    <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--</span>-->
+
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="item">-->
+                    <!--<div class="col-sm-3" ng-repeat="p in New_Products |limitTo:4:5">-->
+                    <!--<div class="product-image-wrapper1">-->
+                    <!--<div class="single-products">-->
+                    <!--<div class="productinfo text-center">-->
+
+
+                    <!--<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>-->
+                    <!--<p>{{p.product_name}}</p>-->
+
+                    <!--<select ng-model="k" ng-init="k='0'">-->
+                    <!--<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>-->
+                    <!--</select>-->
+                    <!--<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>-->
+                    <!--<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">-->
+                    <!--Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>-->
+                    <!--</P>-->
+                    <!--<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+                    <!--<span ng-show="login">-->
+
+                    <!--<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+
+                    <!--<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>-->
+
+                    <!--</span>-->
+
+                    <!--</div>-->
+
+                    <!--</div>-->
+                    <!--</div>-->
+                    <!--</div>-->
+
+                    <!--</div>-->
+
+                    <!--</div>-->
+
+                    <!--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">-->
+                    <!--<i class="fa fa-angle-left"></i>-->
+                    <!--</a>-->
+                    <!--<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">-->
+                    <!--<i class="fa fa-angle-right"></i>-->
+                    <!--</a>-->
+                    <!--</div>-->
+
+
+
+                    <!--<div ng-show="!New_Products">-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<h2 class="title text-center">Coming Soon..!!</h2>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+                    <!--<br>-->
+
+                    <!--</div>-->
+                    <!--</div>&lt;!&ndash;/recommended_items&ndash;&gt;-->
+                </div>
+            </div>
+        </div>
+
+
+        <!--categories 1 to 4 -->
+        <!--other codes are commented-->
+
+
+        <!--&lt;!&ndash; <div class="recommended_items" >&lt;!&ndash;hot_deals&ndash;&gt;    &lt;!&ndash; subcategory 1&ndash;&gt;-->
+        <!--<div>-->
+        <!--<span style="font-family: 'Roboto', sans-serif;font-size:large;">SubCategory  1</span>-->
+        <!--<hr style="padding: 0 0 0 0 ;margin-top: 5px;">-->
+        <!--<div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >-->
+        <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">-->
+        <!--<i class="fa fa-angle-left"></i>-->
+        <!--</a>-->
+        <!--<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--</a>-->
+
+
+
+        <!--<div ng-show ="!HotDeals">-->
+        <!--<br>-->
+        <!--<h2 class="title text-center">Coming Soon</h2>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash;/hot_deals&ndash;&gt;-->
+
+        <!--&lt;!&ndash;&#45;&#45;-->
+        <!--other catgory are commented-->
+        <!-- -&ndash;&gt;-->
+        <!--<div>-->
+        <!--&lt;!&ndash;<div class="category-tab" >&lt;!&ndash;category-tab&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+        <!--&lt;!&ndash;<ul class="nav nav-tabs">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="active" ng-click="getProducts('NewProduct')"><a href="#newProduct" data-toggle="tab">New Products</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="newProduct" ng-show="!clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts|limitTo :4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">      <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs 	{{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="data" ng-show="clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts |limitTo:4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/category-tab&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="features_items">&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Featured Items</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-4" ng-show="Featured_Products" ng-repeat="p in Featured_Products | limitTo:6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'Featured_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="choose">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div ng-show="!Featured_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</div>&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div class="recommended_items">&lt;!&ndash;recommended_items&ndash;&gt;&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<h2 class="title text-center">NEW RELEASES</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="recommended-item-carousel" ng-show="New_Products" class="carousel slide" data-ride="carousel"  >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="carousel-inner">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products | limitTo:4">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">   <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-left"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-right"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div ng-show="!New_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon..!!</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/recommended_items&ndash;&gt;&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="recommended_items" >&lt;!&ndash;hot_deals&ndash;&gt;    &lt;!&ndash; subcategory 2&ndash;&gt;-->
+        <!--<div>-->
+        <!--<span style="font-family: 'Roboto', sans-serif;font-size:large;">SubCategory  2</span>-->
+        <!--<hr style="padding: 0 0 0 0 ;margin-top: 5px;">-->
+        <!--<div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >-->
+        <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">-->
+        <!--<i class="fa fa-angle-left"></i>-->
+        <!--</a>-->
+        <!--<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--</a>-->
+
+
+
+        <!--<div ng-show ="!HotDeals">-->
+        <!--<br>-->
+        <!--<h2 class="title text-center">Coming Soon</h2>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash;/hot_deals&ndash;&gt;-->
+
+        <!--&lt;!&ndash;&#45;&#45;-->
+        <!--other catgory are commented-->
+        <!-- -&ndash;&gt;-->
+        <!--<div>-->
+        <!--&lt;!&ndash;<div class="category-tab" >&lt;!&ndash;category-tab&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+        <!--&lt;!&ndash;<ul class="nav nav-tabs">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="active" ng-click="getProducts('NewProduct')"><a href="#newProduct" data-toggle="tab">New Products</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="newProduct" ng-show="!clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts|limitTo :4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">      <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs 	{{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="data" ng-show="clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts |limitTo:4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/category-tab&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="features_items">&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Featured Items</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-4" ng-show="Featured_Products" ng-repeat="p in Featured_Products | limitTo:6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'Featured_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="choose">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div ng-show="!Featured_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</div>&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div class="recommended_items">&lt;!&ndash;recommended_items&ndash;&gt;&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<h2 class="title text-center">NEW RELEASES</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="recommended-item-carousel" ng-show="New_Products" class="carousel slide" data-ride="carousel"  >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="carousel-inner">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products | limitTo:4">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">   <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-left"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-right"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div ng-show="!New_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon..!!</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/recommended_items&ndash;&gt;&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <!--<div class="recommended_items" >&lt;!&ndash;hot_deals&ndash;&gt;    &lt;!&ndash; subcategory 3&ndash;&gt;-->
+        <!--<div>-->
+        <!--<span style="font-family: 'Roboto', sans-serif;font-size:large;">SubCategory  3</span>-->
+        <!--<hr style="padding: 0 0 0 0 ;margin-top: 5px;">-->
+        <!--<div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >-->
+        <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">-->
+        <!--<i class="fa fa-angle-left"></i>-->
+        <!--</a>-->
+        <!--<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--</a>-->
+
+
+
+        <!--<div ng-show ="!HotDeals">-->
+        <!--<br>-->
+        <!--<h2 class="title text-center">Coming Soon</h2>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash;/hot_deals&ndash;&gt;-->
+
+        <!--&lt;!&ndash;&#45;&#45;-->
+        <!--other catgory are commented-->
+        <!-- -&ndash;&gt;-->
+        <!--<div>-->
+        <!--&lt;!&ndash;<div class="category-tab" >&lt;!&ndash;category-tab&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+        <!--&lt;!&ndash;<ul class="nav nav-tabs">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="active" ng-click="getProducts('NewProduct')"><a href="#newProduct" data-toggle="tab">New Products</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="newProduct" ng-show="!clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts|limitTo :4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">      <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs 	{{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="data" ng-show="clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts |limitTo:4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/category-tab&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="features_items">&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Featured Items</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-4" ng-show="Featured_Products" ng-repeat="p in Featured_Products | limitTo:6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'Featured_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="choose">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div ng-show="!Featured_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</div>&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div class="recommended_items">&lt;!&ndash;recommended_items&ndash;&gt;&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<h2 class="title text-center">NEW RELEASES</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="recommended-item-carousel" ng-show="New_Products" class="carousel slide" data-ride="carousel"  >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="carousel-inner">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products | limitTo:4">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">   <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-left"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-right"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div ng-show="!New_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon..!!</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/recommended_items&ndash;&gt;&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+
+        <!--<div class="recommended_items" >&lt;!&ndash;hot_deals&ndash;&gt;    &lt;!&ndash; subcategory 4&ndash;&gt;-->
+        <!--<div>-->
+        <!--<span style="font-family: 'Roboto', sans-serif;font-size:large;">SubCategory  3</span>-->
+        <!--<hr style="padding: 0 0 0 0 ;margin-top: 5px;">-->
+        <!--<div id="recommended-item-carousel" ng-show="HotDeals" class="carousel slide" data-ride="carousel"  >-->
+        <!--<div class="carousel-inner">-->
+        <!--<div class="item active">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--<div class="item">-->
+        <!--<div class="col-sm-3" ng-repeat="p in HotDeals | limitTo:4">-->
+        <!--<div class="product-image-wrapper1">-->
+        <!--<div class="single-products">-->
+        <!--<div style="box-shadow: 1px 1px 0px #b2b2b2 ">-->
+        <!--<div><img ng-src="https://i.ytimg.com/vi/T3E9Wjbq44E/hqdefault.jpg?custom=true&w=196&h=110&stc=true&jpg444=true&jpgq=90&sp=68&sigh=trOY0wLXHiEC0n9lZsrTBdtXXIs" width="100%" height="110px" alt="" /></div>-->
+        <!--<div style="margin-top: 5px;">-->
+        <!--<div><span  style="margin-left:8px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{p.product_name | limitTo :20}}</span></div>-->
+        <!--<div><span class=" " style="margin-left:8px;font-size: 12px; font-family: 'Roboto', sans-serif ;color: lightgray">{{p.product_name | limitTo :20}} </span></div>-->
+        <!--<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 15px; color: lightgreen">Rs 100 </span></div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in HotDeals |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'HotDeals')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <!--<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">-->
+        <!--<i class="fa fa-angle-left"></i>-->
+        <!--</a>-->
+        <!--<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">-->
+        <!--<i class="fa fa-angle-right"></i>-->
+        <!--</a>-->
+
+
+
+        <!--<div ng-show ="!HotDeals">-->
+        <!--<br>-->
+        <!--<h2 class="title text-center">Coming Soon</h2>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--<br>-->
+        <!--</div>-->
+        <!--</div>&lt;!&ndash;/hot_deals&ndash;&gt;-->
+
+        <!--&lt;!&ndash;&#45;&#45;-->
+        <!--other catgory are commented-->
+        <!-- -&ndash;&gt;-->
+        <!--<div>-->
+        <!--&lt;!&ndash;<div class="category-tab" >&lt;!&ndash;category-tab&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-12">&ndash;&gt;-->
+        <!--&lt;!&ndash;<ul class="nav nav-tabs">&ndash;&gt;-->
+        <!--&lt;!&ndash;<li class="active" ng-click="getProducts('NewProduct')"><a href="#newProduct" data-toggle="tab">New Products</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;<li ng-repeat="data in level2Categories |limitTo :4 |orderBy:random " ng-click="getProducts(data)"><a href="#data" data-toggle="tab">{{data}}</a></li>&ndash;&gt;-->
+        <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="newProduct" ng-show="!clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts|limitTo :4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">      <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs 	{{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="tab-pane fade active in" id="data" ng-show="clickAction" >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat ="p in McategoryProducts |limitTo:4">  &lt;!&ndash; ng-repeat="p in products"&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'McategoryProducts')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/category-tab&ndash;&gt;&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="features_items">&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Featured Items</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-4" ng-show="Featured_Products" ng-repeat="p in Featured_Products | limitTo:6">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">	 <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'Featured_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="choose">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div ng-show="!Featured_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</div>&lt;!&ndash;features_items&ndash;&gt;&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div class="recommended_items">&lt;!&ndash;recommended_items&ndash;&gt;&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<h2 class="title text-center">NEW RELEASES</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<div id="recommended-item-carousel" ng-show="New_Products" class="carousel slide" data-ride="carousel"  >&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="carousel-inner">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="item active">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products | limitTo:4">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)">   <img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<div class="item">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="col-sm-3" ng-repeat="p in New_Products |limitTo:4:5">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="product-image-wrapper1">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="single-products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<div class="productinfo text-center">&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<a ng-click="pdetail(p)"><img ng-src="http://shopkare.com{{p.images[0]}}" width="200px" height="200px" alt="" /></a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p>{{p.product_name}}</p>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<select ng-model="k" ng-init="k='0'">&ndash;&gt;-->
+        <!--&lt;!&ndash;<option value ="{{$index}}" ng-repeat="qty in p.Quantity[0].Quantities">{{qty[0]}}</option>&ndash;&gt;-->
+        <!--&lt;!&ndash;</select>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p> Rs {{p.Quantity[0].Quantities[k][1]}}</p>&ndash;&gt;-->
+        <!--&lt;!&ndash;<p ng-show="p.Quantity[0].Quantities[k][3]"><br><span  ng-show="p.Quantity[0].Quantities[k][2]"ng-hide="p.Quantity[0].Quantities[k][3]==0" > Price : <span class="orgPrice">&ndash;&gt;-->
+        <!--&lt;!&ndash;Rs {{p.Quantity[0].Quantities[k][2]}} </span></span>&nbsp;  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span ng-show="p.Quantity[0].Quantities[k][3]" >You Save :  Rs  {{p.Quantity[0].Quantities[k][3]}} </span>&ndash;&gt;-->
+        <!--&lt;!&ndash;</P>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a  ng-show="!login"  ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<span ng-show="login">&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a ng-show="p.cart[k]=='Add to Cart'" ng-click="addCart(p,k,'New_Products')"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</a>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Already in Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+
+        <!--&lt;!&ndash;<span ng-show="p.cart[k]=='Added in Your Cart'" ng-disable="p.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{p.cart[k]}}</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</span>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;<a class="left recommended-item-control" href="#recommended-item-carousel" data-slide="prev">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-left"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;<a class="right recommended-item-control" href="#recommended-item-carousel" data-slide="next">&ndash;&gt;-->
+        <!--&lt;!&ndash;<i class="fa fa-angle-right"></i>&ndash;&gt;-->
+        <!--&lt;!&ndash;</a>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+        <!--&lt;!&ndash;<div ng-show="!New_Products">&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<h2 class="title text-center">Coming Soon..!!</h2>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+        <!--&lt;!&ndash;<br>&ndash;&gt;-->
+
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&lt;!&ndash;/recommended_items&ndash;&gt;&ndash;&gt;-->
+        <!--</div>-->
+        <!--</div>-->
+        <!--</div>&ndash;&gt;-->
+
+    </div>

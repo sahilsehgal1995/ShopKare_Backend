@@ -49,7 +49,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   };
 })
 
-.controller('headerController',['$scope','$http', '$state', 'UserFactory', 'AuthFactory', function($scope, $http, $state, UserFactory, AuthFactory){
+.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory){
   console.log('header');
   $scope.Login = function()
   {
@@ -89,7 +89,67 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.messageLogin = err;
     })
   };
-  $scope.searchProduct = function()
+
+      $scope.states = [];
+      console.log($scope.states);
+
+      $scope.searchProduct1 = function()
+      {
+
+        ProductFactory.searchProduct('Grocery', $scope.query)
+            .success(function(reply){
+              if (reply == 'Unable to Fetch')
+              {
+                console.log("afa");
+                $scope.message = 'Sorry Unable to fetch Products right now.';
+              }
+              else if(Object.keys(reply).length == 0)
+              {
+                console.log("afa2");
+                $scope.message = 'No Results found. Try something else';
+              }
+              else{
+                for (var i=0; i< Object.keys(reply).length; i++)
+                {
+                  $scope.states.push(reply[i].product_name);
+                }
+                console.log($scope.states);
+
+              }
+            })
+            .error(function(error){
+              $scope.message ='Unable to Search Results';
+            });
+      };
+
+      ProductFactory.searchProduct('Grocery', $stateParams.query)
+          .success(function(reply){
+            if (reply == 'Unable to Fetch')
+            {
+              $scope.message = 'Sorry Unable to fetch Products right now.';
+            }
+            else if(Object.keys(reply).length == 0)
+            {
+              $scope.message = 'No Results found. Try something else';
+            }
+            else{
+              $scope.products=['None'];
+              for (var i=0; i< Object.keys(reply).length; i++)
+              {
+                $scope.products.push(reply[i]);
+                $scope.products[i].quantity=0;
+              }
+
+            }
+          })
+          .error(function(error){
+            $scope.message ='Unable to Search Results';
+          });
+
+      $scope.query = "";
+      // END point for quesring productlist
+
+      $scope.searchProduct = function()
   {
     $state.go('grocery.home.search', {query:$scope.query});
   };
@@ -132,6 +192,12 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.showCategories = Array($scope.showCategories.length).fill(false);
       $scope.showCategories[index]=true;
     }
+      $scope.collapseCategory = function(index)
+      {
+        console.log(index);
+        $scope.showCategories = Array($scope.showCategories.length).fill(false);
+        $scope.showCategories[index]=false;
+      }
 	$scope.Categories =['Baby Products', 'Food'];
 	$scope.categories = {
 		'grocery' : [ {label : "Baby Products", children :[ "Baby Food", "Baby Hygiene", "Baby Care" ] ,
@@ -299,7 +365,9 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 
 
 .controller('productsGroceryController',['$scope','$http','$rootScope', 'ProductFactory', 'CartFactory',function($scope,$http,$rootScope, ProductFactory, CartFactory){
-  
+
+
+
   $scope.IncreaseTrendingQuantity = function(productindex, quantity)
   {
     var cityIndex = 0;
@@ -319,6 +387,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
        if (response == 'Updated in cart' || response == 'Added to cart')
        {
 	 $scope.trendingProducts[productindex].quantity = $scope.trendingProducts[productindex].quantity+1;
+	 
        }
        console.log(response,2000);
     }).error(function(error){
@@ -385,21 +454,21 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   {
     var cityIndex = 0;
       var product={
-        ProductID: $scope.trendingProducts[productindex]._id,
+        ProductID: $scope.newProducts[productindex]._id,
 	QuantityType: quantity[0],
-	QuantityIndex: $scope.trendingProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	QuantityIndex: $scope.newProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
 	Price: quantity[1],
-	Quantity:$scope.trendingProducts[productindex].quantity+1,
-	product_name: $scope.trendingProducts[productindex].product_name,
-	'Main Category': $scope.trendingProducts[productindex]['Main Category'],
-	'Sub Category': $scope.trendingProducts[productindex]['Sub Category'],
-	'Level1 Category': $scope.trendingProducts[productindex]['Level1 Category']
+	Quantity:$scope.newProducts[productindex].quantity+1,
+	product_name: $scope.newProducts[productindex].product_name,
+	'Main Category': $scope.newProducts[productindex]['Main Category'],
+	'Sub Category': $scope.newProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.newProducts[productindex]['Level1 Category']
      };
      CartFactory.addToCart(product)
      .success(function(response){
        if (response == 'Updated in cart' || response == 'Added to cart')
        {
-	 $scope.trendingProducts[productindex].quantity = $scope.trendingProducts[productindex].quantity+1;
+	 $scope.newProducts[productindex].quantity = $scope.newProducts[productindex].quantity+1;
        }
        console.log(response);
     }).error(function(error){
@@ -409,24 +478,24 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   };
   $scope.DecreaseNewQuantity = function(productindex, quantity)
   {
-    if($scope.trendingProducts[productindex].quantity){
+    if($scope.newProducts[productindex].quantity){
       var cityIndex = 0;
       var product={
-        ProductID: $scope.trendingProducts[productindex]._id,
+        ProductID: $scope.newProducts[productindex]._id,
 	QuantityType: quantity[0],
-	QuantityIndex: $scope.trendingProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	QuantityIndex: $scope.newProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
 	Price: quantity[1],
-	Quantity:$scope.trendingProducts[productindex].quantity-1,
-	product_name: $scope.trendingProducts[productindex].product_name,
-	'Main Category': $scope.trendingProducts[productindex]['Main Category'],
-	'Sub Category': $scope.trendingProducts[productindex]['Sub Category'],
-	'Level1 Category': $scope.trendingProducts[productindex]['Level1 Category']
+	Quantity:$scope.newProducts[productindex].quantity-1,
+	product_name: $scope.newProducts[productindex].product_name,
+	'Main Category': $scope.newProducts[productindex]['Main Category'],
+	'Sub Category': $scope.newProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.newProducts[productindex]['Level1 Category']
      };
      CartFactory.addToCart(product)
      .success(function(response){
        if (response == 'Updated in cart' || response == 'Added to cart')
        {
-	 $scope.trendingProducts[productindex].quantity = $scope.trendingProducts[productindex].quantity-1;
+	 $scope.newProducts[productindex].quantity = $scope.newProducts[productindex].quantity-1;
        }
        console.log(response);
     }).error(function(error){
@@ -434,25 +503,107 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       console.log(error);
     });
     }
-    else if($scope.trendingProducts[productindex].quantity==0)
+    else if($scope.newProducts[productindex].quantity==0)
     {
      var cityIndex = 0;
       var product={
-        ProductID: $scope.trendingProducts[productindex]._id,
+        ProductID: $scope.newProducts[productindex]._id,
 	QuantityType: quantity[0],
-	QuantityIndex: $scope.trendingProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	QuantityIndex: $scope.newProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
 	Price: quantity[1],
 	Quantity:0,
-	product_name: $scope.trendingProducts[productindex].product_name,
-	'Main Category': $scope.trendingProducts[productindex]['Main Category'],
-	'Sub Category': $scope.trendingProducts[productindex]['Sub Category'],
-	'Level1 Category': $scope.trendingProducts[productindex]['Level1 Category']
+	product_name: $scope.newProducts[productindex].product_name,
+	'Main Category': $scope.newProducts[productindex]['Main Category'],
+	'Sub Category': $scope.newProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.newProducts[productindex]['Level1 Category']
      };
       CartFactory.removeCartItem(product)
     .success(function(response){
       if (response == 'Removed from cart')
       {
-	$scope.trendingProducts[productindex].quantity=0;
+	$scope.newProducts[productindex].quantity=0;
+      }
+      console.log(response);
+    })
+    .error(function(error){
+      console.log(error);
+    }); 
+    }
+    
+  };
+  
+  $scope.IncreaseRecomendedQuantity = function(productindex, quantity)
+  {
+    var cityIndex = 0;
+      var product={
+        ProductID: $scope.recomendedProducts[productindex]._id,
+	QuantityType: quantity[0],
+	QuantityIndex: $scope.recomendedProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	Price: quantity[1],
+	Quantity:$scope.recomendedProducts[productindex].quantity+1,
+	product_name: $scope.recomendedProducts[productindex].product_name,
+	'Main Category': $scope.recomendedProducts[productindex]['Main Category'],
+	'Sub Category': $scope.recomendedProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.recomendedProducts[productindex]['Level1 Category']
+     };
+     CartFactory.addToCart(product)
+     .success(function(response){
+       if (response == 'Updated in cart' || response == 'Added to cart')
+       {
+	 $scope.recomendedProducts[productindex].quantity = $scope.recomendedProducts[productindex].quantity+1;
+       }
+       console.log(response);
+    }).error(function(error){
+      console.log('Unable to add. Please try after sometime');
+      console.log(error);
+    });
+  };
+  $scope.DecreaseRecomendedQuantity = function(productindex, quantity)
+  {
+    if($scope.recomendedProducts[productindex].quantity){
+      var cityIndex = 0;
+      var product={
+        ProductID: $scope.recomendedProducts[productindex]._id,
+	QuantityType: quantity[0],
+	QuantityIndex: $scope.recomendedProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	Price: quantity[1],
+	Quantity:$scope.recomendedProducts[productindex].quantity-1,
+	product_name: $scope.recomendedProducts[productindex].product_name,
+	'Main Category': $scope.recomendedProducts[productindex]['Main Category'],
+	'Sub Category': $scope.recomendedProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.recomendedProducts[productindex]['Level1 Category']
+     };
+     CartFactory.addToCart(product)
+     .success(function(response){
+       if (response == 'Updated in cart' || response == 'Added to cart')
+       {
+	 $scope.recomendedProducts[productindex].quantity = $scope.recomendedProducts[productindex].quantity-1;
+       }
+       console.log(response);
+    }).error(function(error){
+      console.log('Unable to add. Please try after sometime');
+      console.log(error);
+    });
+    }
+    else if($scope.recomendedProducts[productindex].quantity==0)
+    {
+     var cityIndex = 0;
+      var product={
+        ProductID: $scope.recomendedProducts[productindex]._id,
+	QuantityType: quantity[0],
+	QuantityIndex: $scope.recomendedProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	Price: quantity[1],
+	Quantity:0,
+	product_name: $scope.recomendedProducts[productindex].product_name,
+	'Main Category': $scope.recomendedProducts[productindex]['Main Category'],
+	'Sub Category': $scope.recomendedProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.recomendedProducts[productindex]['Level1 Category']
+     };
+      CartFactory.removeCartItem(product)
+    .success(function(response){
+      if (response == 'Removed from cart')
+      {
+	$scope.recomendedProducts[productindex].quantity=0;
       }
       console.log(response);
     })
@@ -463,15 +614,16 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
     
   };
   $scope.viewTrendingProduct = function(index){
+    console.log(JSON.stringify($scope.trendingProducts[index]));
     $state.go('app.product',{
+
       product:JSON.stringify($scope.trendingProducts[index])
+
     });
   };
-  $scope.viewNewReleaseProduct = function(index){
-    $state.go('app.product',{
-      product:JSON.stringify($scope.newProducts[index])
-    });
-  };  
+
+
+
   $scope.AddToNewReleasesCart = function(productindex, quantity)
   {
     console.log('Add to cart');
@@ -518,6 +670,29 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       console.log(error);
     });
   };
+  $scope.AddTorecomendedCart = function(productindex, quantity)
+  {
+    console.log('Add to cart');
+    var cityIndex = 0;
+      var product={
+        ProductID: $scope.recomendedProducts[productindex]._id,
+	QuantityType: quantity[0],
+	QuantityIndex: $scope.recomendedProducts[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+	Price: quantity[1],
+	Quantity:1,
+	product_name: $scope.recomendedProducts[productindex].product_name,
+	'Main Category': $scope.recomendedProducts[productindex]['Main Category'],
+	'Sub Category': $scope.recomendedProducts[productindex]['Sub Category'],
+	'Level1 Category': $scope.recomendedProducts[productindex]['Level1 Category']
+     };
+     CartFactory.addToCart(product)
+     .success(function(response){
+       console.log(response);
+    }).error(function(error){
+      console.log('Unable to add. Please try after sometime');
+      console.log(error);
+    });
+  };
   ProductFactory.getRandomProducts('Grocery')
   .success(function(resp){
     if (Object.keys(resp).length == 0 )
@@ -546,19 +721,36 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
     }
     else{
       $scope.trendingProducts=[];
-      for (var i=0; i< Object.keys(data).length; i++)
+      for (var i=0; i< Math.min(Object.keys(data).length,4); i++)
       {
 	console.log(JSON.stringify(data[i]));
 	$scope.trendingProducts.push(data[i]);
       }
+      $scope.trendingProducts[0].message='sss';
+      console.log($scope.trendingProducts);
     }
   })
   .error(function(error){
     console.log(error);
     console.log('Unable to Fetch Products. Try again later');
   });
-	
-}])
+  ProductFactory.getRandomProducts('Grocery')
+  .success(function(resp){
+    if (Object.keys(resp).length == 0 )
+    {
+      console.log('Sorry no new products are available');
+    }
+    else{
+      $scope.recomendedProducts=resp;
+    }
+  })
+  .error(function(error){
+    console.log(error);
+    console.log('Unable to Fetch Products. Try again later');
+  });
+
+
+    }])
 
 .controller('CategoryProductsController',['$scope','$http','$rootScope', '$stateParams', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, ProductFactory, CartFactory){
   console.log('CategoryProductsControllerproducts');
@@ -806,7 +998,8 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
     });
   };
   $scope.quantity='';
-  $scope.products=[];
+  $scope.products=['wine'];
+
   ProductFactory.searchProduct('Grocery', $stateParams.query)
    .success(function(reply){
     if (reply == 'Unable to Fetch')
@@ -824,6 +1017,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 	  $scope.products.push(reply[i]);
 	  $scope.products[i].quantity=0;
 	}
+
     }
   })
   .error(function(error){

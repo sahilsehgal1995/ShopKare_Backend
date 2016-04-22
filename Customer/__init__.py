@@ -76,21 +76,25 @@ def add_routes(app=None):
   @Customer.route('/api/Customer/addToCart/', methods=['GET','POST'])
   def addtoCart():
     if request.method == 'POST':
-      return addToCart('C_1', request.args.get('cartItem'))
-      if session['user'] == 'Customer':
-	reply = addToCart(session['id'], request.args.get('cartItem'))
-	return reply
-      return 'User Not Logged IN'
+      #return addToCart('C_1', request.args.get('cartItem'))
+      try:
+	if session['user'] == 'Customer':
+	  reply = addToCart(session['id'], request.args.get('cartItem'))
+	  return reply
+	return 'User Not Logged IN'
+      except Exception as e:
+	return 'User Not Logged IN'
     return 'Invalid Request'
   
   @Customer.route('/api/Customer/removeFromCart/', methods=['GET','POST'])
   def RemoveFromCart():
     if request.method == 'POST':
-      return removeFromCart('C_1', request.args.get('cartItem'))
-      if session['user'] == 'Customer':
-	reply = removeFromCart(session['id'], request.args.get('cartItem'))
-	return reply
-      return 'User Not Logged IN'
+      try:
+	if session['user'] == 'Customer':
+	  reply = removeFromCart(session['id'], request.args.get('cartItem'))
+	  return reply
+      except Exception as e:
+	return 'User Not Logged IN'
     return 'Invalid Request'
   
   @Customer.route('/api/Customer/getCartItems/', methods=['GET','POST'])

@@ -1,207 +1,629 @@
-<header id="header"><!--header-->
-		<div class="header_top" style="background-color: #000000; padding: 5px 0 5px 0; color:#fff !important;"><!--header_top-->
-				<div class="container">
-						<div class="row">
 
-								<div class="col-sm-12">
-										<div class="pull-left col-sm-2 col-md-2">
-												<img src="http://shopkare.com/static/images/logo.png" class="img-responsive" style="cursor: pointer;"  ui-sref="index">
-										</div>
-										<div class="col-lg-6 hidden-md hidden-sm hidden-xs" style="margin-top: 8px; margin-left: 40px">
-		<form class="form-inline" ng-submit="searchProduct()">
-														<div class="search_box">
-																  <div class="input-group">
-	  <input type="text" class="form-control" style="height:34px;" ng-model="query"  placeholder="Search Your Needs">
+
+<!--<header id="header">&lt;!&ndash;header&ndash;&gt;-->
+		<!--<div class="header_top" style="background-color: #000000; padding: 5px 0 5px 0; color:#fff !important;">&lt;!&ndash;header_top&ndash;&gt;-->
+				<!--<div class="container">-->
+						<!--<div class="row">-->
+
+								<!--&lt;!&ndash;<div class="col-md-12 col-sm-12">&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="pull-left col-sm-12 col-md-2">&ndash;&gt;-->
+												<!--&lt;!&ndash;<img src="images/logo.png" class="img-responsive" style="cursor: pointer;"  ui-sref="index">&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																	<!--&lt;!&ndash;<div class="col-md-6 col-sm-12 hidden-xs" style="margin-top: 8px; margin-left: 40px">&ndash;&gt;-->
+										<!--&lt;!&ndash;<form class="form-inline" ng-submit="searchProduct()">&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="search_box">&ndash;&gt;-->
+												<!--&lt;!&ndash;<div class="input-group">&ndash;&gt;-->
+													<!--&lt;!&ndash;<input type="text" class="form-control"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control">&ndash;&gt;-->
+	  <!--&lt;!&ndash;<span class="input-group-btn">&ndash;&gt;-->
+	  <!--&lt;!&ndash;<button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="SUBMIT"><span class="glyphicon glyphicon-search"></span>&ndash;&gt;-->
+	  <!--&lt;!&ndash;</button>&ndash;&gt;-->
+	  <!--&lt;!&ndash;</span>&ndash;&gt;-->
+												<!--&lt;!&ndash;</div>&lt;!&ndash; /input-group &ndash;&gt;&ndash;&gt;-->
+											<!--&lt;!&ndash;</div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</form>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;<div class="shop-menu pull-right  " style="font-family: 'Open Sans', sans-serif !important;" >&ndash;&gt;-->
+										<!--&lt;!&ndash;<ul  class="nav navbar-nav">&ndash;&gt;-->
+											<!--&lt;!&ndash;<ul class="nav navbar-nav collapse navbar-collapse">&ndash;&gt;-->
+												<!--&lt;!&ndash;<li ng-show='login'><a class="li-hover-cmc" ui-sref=".checkout"><b>Checkout</b></a></li>&ndash;&gt;-->
+												<!--&lt;!&ndash;<li class="dropdown" ><a style="color:#fff;" class="li-hover-cmc"><span>Section</span><i class="fa fa-angle-down"></i></a>&ndash;&gt;-->
+
+													<!--&lt;!&ndash;<ul role="menu" class="sub-menu" style="background: black;">&ndash;&gt;-->
+														<!--&lt;!&ndash;<li><a ui-sref="grocery.home.products" style="color:#ffffff;"><span>Grocery</span></a></li><br>&ndash;&gt;-->
+														<!--&lt;!&ndash;<li><a ui-sref="stationary" style="color:#ffffff;"><span>Stationary</span></a></li>&ndash;&gt;-->
+
+														<!--&lt;!&ndash;<br><li><a ui-sref="medicine" style="color:#ffffff;"><span>Medicine</span></a></li> <br>&ndash;&gt;-->
+														<!--&lt;!&ndash;<li><a ui-sref="courier" style="color:#ffffff;"><span>Courier</span></a></li>&ndash;&gt;-->
+
+													<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+												<!--&lt;!&ndash;</li>&ndash;&gt;-->
+
+												<!--&lt;!&ndash;<li><a class="li-hover-cmc" style="color:#fff;" ui-sref="contact"><span>Contact</span></a></li>&ndash;&gt;-->
+												<!--&lt;!&ndash;<li>&ndash;&gt;-->
+													<!--&lt;!&ndash;<a class="li-hover-cmc"  ui-sref="cart" >&ndash;&gt;-->
+														<!--&lt;!&ndash;<span class = "badge">{{COUNTcartItems}}</span>   <span STYLE="color: #FFF" class="glyphicon glyphicon-shopping-cart"></span>&ndash;&gt;-->
+													<!--&lt;!&ndash;</a>&ndash;&gt;-->
+												<!--&lt;!&ndash;</li>&ndash;&gt;-->
+											<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+
+
+											<!--&lt;!&ndash;<div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">&ndash;&gt;-->
+
+												<!--&lt;!&ndash;<button type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal"><span style="font-weight:400 !important;">Login</span></button>&ndash;&gt;-->
+											<!--&lt;!&ndash;</div>&ndash;&gt;-->
+											<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+											<!--&lt;!&ndash;&lt;!&ndash;&ndash;&gt;-->
+
+                                             <!--&lt;!&ndash;&ndash;&gt;&ndash;&gt;-->
+
+											<!--&lt;!&ndash;&lt;!&ndash; Login Modal &ndash;&gt;&ndash;&gt;-->
+											<!--&lt;!&ndash;<div class="modal fade" id="myModal" role="dialog" ng-model="myModal">&ndash;&gt;-->
+												<!--&lt;!&ndash;<div class="modal-dialog modal-sm">&ndash;&gt;-->
+													<!--&lt;!&ndash;<div class="modal-content">&ndash;&gt;-->
+														<!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+															<!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal">&times;</button>&ndash;&gt;-->
+															<!--&lt;!&ndash;<h4 class="modal-title">Login</h4>&ndash;&gt;-->
+														<!--&lt;!&ndash;</div>&ndash;&gt;-->
+														<!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+															<!--&lt;!&ndash;<form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">&ndash;&gt;-->
+																<!--&lt;!&ndash;<div style="margin-bottom: 25px" class="input-group">&ndash;&gt;-->
+																	<!--&lt;!&ndash;<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>&ndash;&gt;-->
+																	<!--&lt;!&ndash;<input  type="email" class="form-control" name="username" value="" placeholder="email" ng-model="user.Email">&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+																<!--&lt;!&ndash;<div style="margin-bottom: 25px" class="input-group">&ndash;&gt;-->
+																	<!--&lt;!&ndash;<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>&ndash;&gt;-->
+																	<!--&lt;!&ndash;<input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="user.Password">&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																<!--&lt;!&ndash;<div style="margin-top:10px" class="form-group">&ndash;&gt;-->
+																	<!--&lt;!&ndash;&lt;!&ndash; Button &ndash;&gt;&ndash;&gt;-->
+
+																	<!--&lt;!&ndash;<div class="col-sm-12 controls">&ndash;&gt;-->
+																		<!--&lt;!&ndash;<button id="btn-login" type="submit" ng-disabled="!user.Email || !user.Password" ng-click="Login()" class="btn btn-success">Login</button>&ndash;&gt;-->
+																		<!--&lt;!&ndash;<center><span style='color:red'> {{messageLogin}}</span></center>&ndash;&gt;-->
+																	<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+															<!--&lt;!&ndash;</form>&ndash;&gt;-->
+															<!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+																<!--&lt;!&ndash;<div class="col-md-12 control">&ndash;&gt;-->
+																	<!--&lt;!&ndash;<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >									Don't have an account!&ndash;&gt;-->
+																		<!--&lt;!&ndash;<a data-toggle="modal">																		Sign Up Here&ndash;&gt;-->
+																		<!--&lt;!&ndash;</a>&ndash;&gt;-->
+																	<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																	<!--&lt;!&ndash;<center><h4>{{messageSignUP}}</h4></center> <br>&ndash;&gt;-->
+																	<!--&lt;!&ndash;<form id="signupform" class="form-horizontal" role="form" ng-submit="signup()">&ndash;&gt;-->
+																		<!--&lt;!&ndash;<div class="top-margin">&ndash;&gt;-->
+																			<!--&lt;!&ndash;<label>Email Address <span class="text-danger">*</span></label>&ndash;&gt;-->
+																			<!--&lt;!&ndash;<input type="email" name="email" ng-model="rdata.Email" class="form-control">&ndash;&gt;-->
+																		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+																		<!--&lt;!&ndash;<div class="top-margin">&ndash;&gt;-->
+																			<!--&lt;!&ndash;<label>Phone Number <span class="text-danger">*</span></label>&ndash;&gt;-->
+																			<!--&lt;!&ndash;<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">&ndash;&gt;-->
+																		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+																		<!--&lt;!&ndash;<div class="row top-margin">&ndash;&gt;-->
+																			<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+																				<!--&lt;!&ndash;<label>Password <span class="text-danger">*</span></label>&ndash;&gt;-->
+																				<!--&lt;!&ndash;<input type="password" ng-model="rdata.Password" class="form-control" name="password">&ndash;&gt;-->
+																			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																			<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+																				<!--&lt;!&ndash;<label>Confirm Password <span class="text-danger">*</span></label>&ndash;&gt;-->
+																				<!--&lt;!&ndash;<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>&ndash;&gt;-->
+																			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																			<!--&lt;!&ndash;{{messagePASSWORD}}&ndash;&gt;-->
+																		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																		<!--&lt;!&ndash;<hr>&ndash;&gt;-->
+																		<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+																			<!--&lt;!&ndash;<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">&ndash;&gt;-->
+																				<!--&lt;!&ndash;<label class="checkbox">&ndash;&gt;-->
+																					<!--&lt;!&ndash;<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="http://shopkare.com/staticpage_terms.html">Terms and Conditions</a>&ndash;&gt;-->
+																				<!--&lt;!&ndash;</label>&ndash;&gt;-->
+																			<!--&lt;!&ndash;</div><br>&ndash;&gt;-->
+
+
+																			<!--&lt;!&ndash;<div class="col-lg-3 col-md-5 col-sm-4  text-right">&ndash;&gt;-->
+																				<!--&lt;!&ndash;<button class="btn btn-success" ng-disabled="!rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2" ng-click="signup()"&ndash;&gt;-->
+																						<!--&lt;!&ndash;type="submit">Sign Up</button>&ndash;&gt;-->
+																			<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																		<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																	<!--&lt;!&ndash;</form>&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+															<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+
+
+														<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+													<!--&lt;!&ndash;</div>&ndash;&gt;-->
+												<!--&lt;!&ndash;</div>&ndash;&gt;-->
+											<!--&lt;!&ndash;</div>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+										<!--&lt;!&ndash;&lt;!&ndash; Login Modal &ndash;&gt;&ndash;&gt;-->
+										<!--&lt;!&ndash;<div class="modal fade" id="signup" role="dialog">&ndash;&gt;-->
+												<!--&lt;!&ndash;<div class="modal-dialog modal-lg">&ndash;&gt;-->
+														<!--&lt;!&ndash;<div class="modal-content">&ndash;&gt;-->
+																<!--&lt;!&ndash;<div class="modal-header">&ndash;&gt;-->
+																		<!--&lt;!&ndash;<button type="button" class="close" data-dismiss="modal">&times;</button>&ndash;&gt;-->
+																		<!--&lt;!&ndash;<h4 class="modal-title">SignUp</h4>&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																<!--&lt;!&ndash;<div class="modal-body">&ndash;&gt;-->
+																		<!--&lt;!&ndash;<center><h4>{{messageSignUP}}</h4></center> <br>&ndash;&gt;-->
+																		<!--&lt;!&ndash;<form id="signupform" class="form-horizontal" role="form">&ndash;&gt;-->
+																				<!--&lt;!&ndash;<div class="top-margin">&ndash;&gt;-->
+																						<!--&lt;!&ndash;<label>Full Name</label>&ndash;&gt;-->
+																						<!--&lt;!&ndash;<input type="text" ng-model="rdata.Name" class="form-control" name="firstName">&ndash;&gt;-->
+																				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																				<!--&lt;!&ndash;<div class="top-margin">&ndash;&gt;-->
+																						<!--&lt;!&ndash;<label>Email Address <span class="text-danger">*</span></label>&ndash;&gt;-->
+																						<!--&lt;!&ndash;<input type="email" name="email" ng-model="rdata.Email" class="form-control">&ndash;&gt;-->
+																				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+																				<!--&lt;!&ndash;<div class="top-margin">&ndash;&gt;-->
+																						<!--&lt;!&ndash;<label>Phone Number <span class="text-danger">*</span></label>&ndash;&gt;-->
+																						<!--&lt;!&ndash;<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">&ndash;&gt;-->
+																				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+
+																				<!--&lt;!&ndash;<div class="row top-margin">&ndash;&gt;-->
+																						<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+																								<!--&lt;!&ndash;<label>Password <span class="text-danger">*</span></label>&ndash;&gt;-->
+																								<!--&lt;!&ndash;<input type="password" ng-model="rdata.Password" class="form-control" name="password">&ndash;&gt;-->
+																						<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																						<!--&lt;!&ndash;<div class="col-sm-6">&ndash;&gt;-->
+																								<!--&lt;!&ndash;<label>Confirm Password <span class="text-danger">*</span></label>&ndash;&gt;-->
+																								<!--&lt;!&ndash;<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>&ndash;&gt;-->
+																						<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																						<!--&lt;!&ndash;{{messagePASSWORD}}&ndash;&gt;-->
+																				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																				<!--&lt;!&ndash;<hr>&ndash;&gt;-->
+																				<!--&lt;!&ndash;<div class="row">&ndash;&gt;-->
+																						<!--&lt;!&ndash;<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">&ndash;&gt;-->
+																								<!--&lt;!&ndash;<label class="checkbox">&ndash;&gt;-->
+																										<!--&lt;!&ndash;<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="page_terms.html">Terms and Conditions</a>&ndash;&gt;-->
+																								<!--&lt;!&ndash;</label>&ndash;&gt;-->
+																						<!--&lt;!&ndash;</div><br>&ndash;&gt;-->
+
+
+																						<!--&lt;!&ndash;<div class="col-lg-3 col-md-5 col-sm-4  text-right">&ndash;&gt;-->
+																								<!--&lt;!&ndash;<button class="btn btn-success" ng-disabled="!rdata.Name || !rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2 || !checkboxChecked" ng-click="postrdata()"&ndash;&gt;-->
+																												<!--&lt;!&ndash;type="submit">Sign Up</button>&ndash;&gt;-->
+																						<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																				<!--&lt;!&ndash;</div>&ndash;&gt;-->
+																		<!--&lt;!&ndash;</form>&ndash;&gt;-->
+																<!--&lt;!&ndash;</div>&ndash;&gt;-->
+														<!--&lt;!&ndash;</div>&ndash;&gt;-->
+												<!--&lt;!&ndash;</div>&ndash;&gt;-->
+										<!--&lt;!&ndash;</div>&ndash;&gt;-->
+										<!--&lt;!&ndash;<button type="button" class="btn btn-success" ng-show="login"  ng-click="logOUT()">Logout</button>&ndash;&gt;-->
+										<!--&lt;!&ndash;</ul>&ndash;&gt;-->
+									<!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+							 <!--<div class="pull-left col-sm-12 col-md-2" style="left:20px;padding-right: 35px;">-->
+								 <!--<img src="images/logo.png" class="img-responsive" style="cursor: pointer;"  ui-sref="index">-->
+							 <!--</div>-->
+							<!--<div class="col-md-6 col-sm-12 " style="margin-top: 8px; margin-left: 5px">-->
+								<!--<form class="form-inline" ng-submit="searchProduct()">-->
+									<!--<div class="search_box">-->
+										<!--<div class="input-group">-->
+											<!--<input type="text" class="form-control"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control">-->
+	  <!--<span class="input-group-btn">-->
+	  <!--<button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="SUBMIT"><span class="glyphicon glyphicon-search"></span>-->
+	  <!--</button>-->
+	  <!--</span>-->
+										<!--</div>&lt;!&ndash; /input-group &ndash;&gt;-->
+									<!--</div>-->
+								<!--</form>-->
+							<!--</div>-->
+							<!--<div class="col-md-4 col-sm-12 col-xs-12 shop-menu pull-right" style="margin-left:-15px;font-family: 'Open Sans', sans-serif !important;" >-->
+
+									<!--<ul class="nav navbar-nav collapse navbar-collapse">-->
+										<!--<li ng-show='login'><a class="li-hover-cmc" ui-sref=".checkout"><b>Checkout</b></a></li>-->
+										<!--<li class="dropdown" ><a style="color:#fff;" class="li-hover-cmc"><span>Section</span><i class="fa fa-angle-down"></i></a>-->
+
+											<!--<ul role="menu" class="sub-menu" style="background: black;">-->
+												<!--<li><a ui-sref="grocery.home.products" style="color:#ffffff;"><span>Grocery</span></a></li><br>-->
+												<!--<li><a ui-sref="stationary" style="color:#ffffff;"><span>Stationary</span></a></li>-->
+
+												<!--<br><li><a ui-sref="medicine" style="color:#ffffff;"><span>Medicine</span></a></li> <br>-->
+												<!--<li><a ui-sref="courier" style="color:#ffffff;"><span>Courier</span></a></li>-->
+
+											<!--</ul>-->
+										<!--</li>-->
+
+										<!--<li><a class="li-hover-cmc" style="color:#fff;" ui-sref="contact"><span>Contact</span></a></li>-->
+										<!--<li>-->
+											<!--<a class="li-hover-cmc"  ui-sref="cart" >-->
+												<!--<span class = "badge">{{COUNTcartItems}}</span>   <span STYLE="color: #FFF" class="glyphicon glyphicon-shopping-cart"></span>-->
+											<!--</a>-->
+										<!--</li>-->
+									<!--</ul>-->
+
+
+									<!--<div class="col-md-2 col-sm-2 col-xs-2 ">-->
+
+
+
+<!--<div>-->
+										<!--<button  type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal"><span style="font-weight:400 !important;">Login</span></button>-->
+									<!--</div>-->
+
+								<!--&lt;!&ndash;-->
+
+                                 <!--&ndash;&gt;-->
+
+								<!--&lt;!&ndash; Login Modal &ndash;&gt;-->
+								<!--<div class="modal fade" id="myModal" role="dialog" ng-model="myModal">-->
+									<!--<div class="modal-dialog modal-sm">-->
+										<!--<div class="modal-content">-->
+											<!--<div class="modal-header">-->
+												<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+												<!--<h4 class="modal-title">Login</h4>-->
+											<!--</div>-->
+											<!--<div class="modal-body">-->
+												<!--<form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">-->
+													<!--<div style="margin-bottom: 25px" class="input-group">-->
+														<!--<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>-->
+														<!--<input  type="email" class="form-control" name="username" value="" placeholder="email" ng-model="user.Email">-->
+													<!--</div>-->
+
+													<!--<div style="margin-bottom: 25px" class="input-group">-->
+														<!--<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>-->
+														<!--<input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="user.Password">-->
+													<!--</div>-->
+													<!--<div style="margin-top:10px" class="form-group">-->
+														<!--&lt;!&ndash; Button &ndash;&gt;-->
+
+														<!--<div class="col-sm-12 controls">-->
+															<!--<button id="btn-login" type="submit" ng-disabled="!user.Email || !user.Password" ng-click="Login()" class="btn btn-success">Login</button>-->
+															<!--<center><span style='color:red'> {{messageLogin}}</span></center>-->
+														<!--</div>-->
+													<!--</div>-->
+
+
+												<!--</form>-->
+												<!--<div class="form-group">-->
+													<!--<div class="col-md-12 control">-->
+														<!--<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >									Don't have an account!-->
+															<!--<a data-toggle="modal">																		Sign Up Here-->
+															<!--</a>-->
+														<!--</div>-->
+														<!--<center><h4>{{messageSignUP}}</h4></center> <br>-->
+														<!--<form id="signupform" class="form-horizontal" role="form" ng-submit="signup()">-->
+															<!--<div class="top-margin">-->
+																<!--<label>Email Address <span class="text-danger">*</span></label>-->
+																<!--<input type="email" name="email" ng-model="rdata.Email" class="form-control">-->
+															<!--</div>-->
+
+															<!--<div class="top-margin">-->
+																<!--<label>Phone Number <span class="text-danger">*</span></label>-->
+																<!--<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">-->
+															<!--</div>-->
+
+
+															<!--<div class="row top-margin">-->
+																<!--<div class="col-sm-6">-->
+																	<!--<label>Password <span class="text-danger">*</span></label>-->
+																	<!--<input type="password" ng-model="rdata.Password" class="form-control" name="password">-->
+																<!--</div>-->
+																<!--<div class="col-sm-6">-->
+																	<!--<label>Confirm Password <span class="text-danger">*</span></label>-->
+																	<!--<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>-->
+																<!--</div>-->
+																<!--{{messagePASSWORD}}-->
+															<!--</div>-->
+															<!--<hr>-->
+															<!--<div class="row">-->
+																<!--<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">-->
+																	<!--<label class="checkbox">-->
+																		<!--<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="http://shopkare.com/staticpage_terms.html">Terms and Conditions</a>-->
+																	<!--</label>-->
+																<!--</div><br>-->
+
+
+																<!--<div class="col-lg-3 col-md-5 col-sm-4  text-right">-->
+																	<!--<button class="btn btn-success" ng-disabled="!rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2" ng-click="signup()"-->
+																			<!--type="submit">Sign Up</button>-->
+																<!--</div>-->
+															<!--</div>-->
+														<!--</form>-->
+													<!--</div>-->
+												<!--</div>-->
+
+
+
+
+											<!--</div>-->
+
+										<!--</div>-->
+									<!--</div>-->
+								<!--</div>-->
+							<!--</div>-->
+					<!--<div class="modal fade" id="signup" role="dialog">-->
+						<!--<div class="modal-dialog modal-lg">-->
+							<!--<div class="modal-content">-->
+								<!--<div class="modal-header">-->
+									<!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+									<!--<h4 class="modal-title">SignUp</h4>-->
+								<!--</div>-->
+								<!--<div class="modal-body">-->
+									<!--<center><h4>{{messageSignUP}}</h4></center> <br>-->
+									<!--<form id="signupform" class="form-horizontal" role="form">-->
+										<!--<div class="top-margin">-->
+											<!--<label>Full Name</label>-->
+											<!--<input type="text" ng-model="rdata.Name" class="form-control" name="firstName">-->
+										<!--</div>-->
+										<!--<div class="top-margin">-->
+											<!--<label>Email Address <span class="text-danger">*</span></label>-->
+											<!--<input type="email" name="email" ng-model="rdata.Email" class="form-control">-->
+										<!--</div>-->
+
+										<!--<div class="top-margin">-->
+											<!--<label>Phone Number <span class="text-danger">*</span></label>-->
+											<!--<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">-->
+										<!--</div>-->
+
+
+										<!--<div class="row top-margin">-->
+											<!--<div class="col-sm-6">-->
+												<!--<label>Password <span class="text-danger">*</span></label>-->
+												<!--<input type="password" ng-model="rdata.Password" class="form-control" name="password">-->
+											<!--</div>-->
+											<!--<div class="col-sm-6">-->
+												<!--<label>Confirm Password <span class="text-danger">*</span></label>-->
+												<!--<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>-->
+											<!--</div>-->
+											<!--{{messagePASSWORD}}-->
+										<!--</div>-->
+										<!--<hr>-->
+										<!--<div class="row">-->
+											<!--<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">-->
+												<!--<label class="checkbox">-->
+													<!--<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="page_terms.html">Terms and Conditions</a>-->
+												<!--</label>-->
+											<!--</div><br>-->
+
+
+											<!--<div class="col-lg-3 col-md-5 col-sm-4  text-right">-->
+												<!--<button class="btn btn-success" ng-disabled="!rdata.Name || !rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2 || !checkboxChecked" ng-click="postrdata()"-->
+														<!--type="submit">Sign Up</button>-->
+											<!--</div>-->
+										<!--</div>-->
+									<!--</form>-->
+								<!--</div>-->
+							<!--</div>-->
+						<!--</div>-->
+					<!--</div>-->
+					<!--<button type="button" class="btn btn-success" ng-show="login"  ng-click="logOUT()">Logout</button>-->
+					<!--</ul>-->
+				<!--</div>-->
+						<!--</div>-->
+				<!--</div>-->
+		<!--</div>-->
+		<!--</div>&lt;!&ndash;/header_top&ndash;&gt;-->
+<!--</header>&lt;!&ndash;/header&ndash;&gt;-->
+<head>
+<style>
+	@media (max-width: 992px) {
+		.navbar-header {
+			float: none;
+		}
+		.navbar-left,.navbar-right {
+			float: none !important;
+		}
+		.navbar-toggle {
+			display: block;
+		}
+		.navbar-collapse {
+			border-top: 1px solid transparent;
+			box-shadow: inset 0 1px 0 rgba(255,255,255,0.1);
+		}
+		.navbar-fixed-top {
+			top: 0;
+			border-width: 0 0 1px;
+		}
+		.navbar-collapse.collapse {
+			display: none!important;
+		}
+		.navbar-nav {
+			float: none!important;
+			margin-top: 7.5px;
+		}
+		.navbar-nav>li {
+			float: none;
+		}
+		.navbar-nav>li>a {
+			padding-top: 10px;
+			padding-bottom: 10px;
+		}
+		.collapse.in{
+			display:block !important;
+		}
+
+		.dropdown{
+			display:none;
+		}
+	}
+</style>
+</head>
+
+
+
+
+
+<nav class="navbar navbar-default" style="background-color:black">
+	<div class="container">
+		<!-- Brand and toggle get grouped for better mobile display -->
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="#">
+				<img src="images/logo.png" height="40px;" width="150px;" class="img-responsive" style="cursor: pointer;"  ui-sref="index">
+
+			</a>
+		</div>
+
+		<!-- Collect the nav links, forms, and other content for toggling -->
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav" style="width: 40%;margin-top: 20px;">
+				<div class="search_box">
+					<div class="input-group">
+						<form ng-submit="searchProduct()">
+						<input type="text" class="form-control" ng-change="searchProduct1()"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control"></form>
 	  <span class="input-group-btn">
-	  <button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="SUBMIT"><span class="glyphicon glyphicon-search"></span> 
+	  <button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="Button"><span class="glyphicon glyphicon-search"></span>
 	  </button>
 	  </span>
-																  </div><!-- /input-group -->
-																</div>
-												</form>
-										</div>
-										<div class="shop-menu pull-right" style="font-family: 'Open Sans', sans-serif !important;" >
-												<ul  class="nav navbar-nav">
-														<ul class="nav navbar-nav collapse navbar-collapse">
-																<li ng-show='login'><a class="li-hover-cmc" ui-sref=".checkout"><b>Checkout</b></a></li>
-																<li class="dropdown" ><a style="color:#fff;" class="li-hover-cmc"><span>Section</span><i class="fa fa-angle-down"></i></a>
-
-																		<ul role="menu" class="sub-menu" style="background: black;">
-																				<li><a ui-sref="grocery.home.products" style="color:#ffffff;"><span>Grocery</span></a></li><br>
-																				<li><a ui-sref="stationary" style="color:#ffffff;"><span>Stationary</span></a></li>
-
-																				<br><li><a ui-sref="medicine" style="color:#ffffff;"><span>Medicine</span></a></li> <br>
-																				<li><a ui-sref="courier" style="color:#ffffff;"><span>Courier</span></a></li>
-
-																		</ul>
-																</li>
-
-																<li><a class="li-hover-cmc" style="color:#fff;" ui-sref="contact"><span>Contact</span></a></li>
-																<li>
-																		<a class="li-hover-cmc"  ui-sref="cart" >
-																				<span class = "badge">{{COUNTcartItems}}</span>   <span STYLE="color: #FFF" class="glyphicon glyphicon-shopping-cart"></span>
-																		</a>
-																</li>
-														</ul>
-
-
-														<div class="col-md-2 col-sm-2 col-xs-2 hidden-xs">
-
-																<button type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal"><span style="font-weight:400 !important;">Login</span></button>
-														</div>
-														<!--
-
-														 -->
-
-														<!-- Login Modal -->
-<div class="modal fade" id="myModal" role="dialog" ng-model="myModal">
-																<div class="modal-dialog modal-sm">
-																		<div class="modal-content">
-																				<div class="modal-header">
-																						<button type="button" class="close" data-dismiss="modal">&times;</button>
-																						<h4 class="modal-title">Login</h4>
-																				</div>
-																				<div class="modal-body">
-																	<form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">
-																	  <div style="margin-bottom: 25px" class="input-group">
-																	    <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-																	    <input  type="email" class="form-control" name="username" value="" placeholder="email" ng-model="user.Email">
-																	  </div>
-
-																				  <div style="margin-bottom: 25px" class="input-group">
-																						  <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-																						  <input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="user.Password">
-																				  </div>
-																				  <div style="margin-top:10px" class="form-group">
-																						  <!-- Button -->
-
-																						  <div class="col-sm-12 controls">
-																								  <button id="btn-login" type="submit" ng-disabled="!user.Email || !user.Password" ng-click="Login()" class="btn btn-success">Login</button>
-<center><span style='color:red'> {{messageLogin}}</span></center>
-																						  </div>
-																				  </div>
-
-
-	  </form>
-	  <div class="form-group">
-																										<div class="col-md-12 control">
-																										<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >									Don't have an account!
-		<a data-toggle="modal">																		Sign Up Here
-		</a>
-		</div>
-		<center><h4>{{messageSignUP}}</h4></center> <br>
-																		<form id="signupform" class="form-horizontal" role="form" ng-submit="signup()">
-																				<div class="top-margin">
-																						<label>Email Address <span class="text-danger">*</span></label>
-																						<input type="email" name="email" ng-model="rdata.Email" class="form-control">
-																				</div>
-
-																				<div class="top-margin">
-																						<label>Phone Number <span class="text-danger">*</span></label>
-																						<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">
-																				</div>
-
-
-																				<div class="row top-margin">
-																						<div class="col-sm-6">
-																								<label>Password <span class="text-danger">*</span></label>
-																								<input type="password" ng-model="rdata.Password" class="form-control" name="password">
-																						</div>
-																						<div class="col-sm-6">
-																								<label>Confirm Password <span class="text-danger">*</span></label>
-																								<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>
-																						</div>
-																						{{messagePASSWORD}}
-																				</div>
-																				<hr>
-																				<div class="row">
-																						<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
-																								<label class="checkbox">
-																										<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="http://shopkare.com/staticpage_terms.html">Terms and Conditions</a>
-																								</label>
-																						</div><br>
-
-
-																						<div class="col-lg-3 col-md-5 col-sm-4  text-right">
-																								<button class="btn btn-success" ng-disabled="!rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2" ng-click="signup()"
-																												type="submit">Sign Up</button>
-																						</div>
-																				</div>
-																		</form>
-																										</div>
-																								</div>
-																						
-
-
-
-																				</div>
-
-																		</div>
-																</div>
-														</div>
-										</div>
-
-										<!-- Login Modal -->
-										<div class="modal fade" id="signup" role="dialog">
-												<div class="modal-dialog modal-lg">
-														<div class="modal-content">
-																<div class="modal-header">
-																		<button type="button" class="close" data-dismiss="modal">&times;</button>
-																		<h4 class="modal-title">SignUp</h4>
-																</div>
-																<div class="modal-body">
-																		<center><h4>{{messageSignUP}}</h4></center> <br>
-																		<form id="signupform" class="form-horizontal" role="form">
-																				<div class="top-margin">
-																						<label>Full Name</label>
-																						<input type="text" ng-model="rdata.Name" class="form-control" name="firstName">
-																				</div>
-																				<div class="top-margin">
-																						<label>Email Address <span class="text-danger">*</span></label>
-																						<input type="email" name="email" ng-model="rdata.Email" class="form-control">
-																				</div>
-
-																				<div class="top-margin">
-																						<label>Phone Number <span class="text-danger">*</span></label>
-																						<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">
-																				</div>
-
-
-																				<div class="row top-margin">
-																						<div class="col-sm-6">
-																								<label>Password <span class="text-danger">*</span></label>
-																								<input type="password" ng-model="rdata.Password" class="form-control" name="password">
-																						</div>
-																						<div class="col-sm-6">
-																								<label>Confirm Password <span class="text-danger">*</span></label>
-																								<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>
-																						</div>
-																						{{messagePASSWORD}}
-																				</div>
-																				<hr>
-																				<div class="row">
-																						<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
-																								<label class="checkbox">
-																										<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="http://shopkare.com/static/page_terms.html">Terms and Conditions</a>
-																								</label>
-																						</div><br>
-
-
-																						<div class="col-lg-3 col-md-5 col-sm-4  text-right">
-																								<button class="btn btn-success" ng-disabled="!rdata.Name || !rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2 || !checkboxChecked" ng-click="postrdata()"
-																												type="submit">Sign Up</button>
-																						</div>
-																				</div>
-																		</form>
-																</div>
-														</div>
-												</div>
-										</div>
-										<button type="button" class="btn btn-success" ng-show="login"  ng-click="logOUT()">Logout</button>
-										</ul>
-								</div>
-						</div>
+					</div><!-- /input-group -->
 				</div>
+			</ul>
+			<form class="navbar-nav navbar-left" role="search" >
+
+
+			</form>
+			<ul class="nav navbar-nav navbar-right" style="margin-top: 15px;">
+
+					<li ng-show='login'><a class="li-hover-cmc" ui-sref=".checkout"><b>Checkout</b></a></li>
+					<li class="dropdown" >
+						<a style="color:#fff;" class="li-hover-cmc"><span>Section</span><i class="fa fa-angle-down"></i></a>
+
+						<ul role="menu" class="sub-menu" style="background: black;">
+							<li><a ui-sref="grocery.home.products" style="color:#ffffff;"><span>Grocery</span></a></li><br>
+							<li><a ui-sref="stationary" style="color:#ffffff;"><span>Stationary</span></a></li>
+
+							<br><li><a ui-sref="medicine" style="color:#ffffff;"><span>Medicine</span></a></li> <br>
+							<li><a ui-sref="courier" style="color:#ffffff;"><span>Courier</span></a></li>
+
+						</ul>
+					</li>
+
+					<li><a class="li-hover-cmc" style="color:#fff;" ui-sref="contact"><span>Contact</span></a></li>
+					<li>
+						<a class="li-hover-cmc"  ui-sref="cart" >
+							<span class = "badge">{{COUNTcartItems}}</span>   <span STYLE="color: #FFF" class="glyphicon glyphicon-shopping-cart"></span>
+						</a>
+					</li>
+				<li>
+					<button  type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal"><span style="font-weight:400 !important;">Login</span></button>
+
+				</li>
+
+				<!--<li><a href="#">Link</a></li>-->
+				<!--<li class="dropdown">-->
+					<!--<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>-->
+					<!--<ul class="dropdown-menu">-->
+						<!--<li><a href="#">Action</a></li>-->
+						<!--<li><a href="#">Another action</a></li>-->
+						<!--<li><a href="#">Something else here</a></li>-->
+						<!--<li role="separator" class="divider"></li>-->
+						<!--<li><a href="#">Separated link</a></li>-->
+					<!--</ul>-->
+				<!--</li>-->
+			</ul>
+
+
+
+		</div><!-- /.navbar-collapse -->
+	</div><!-- /.container-fluid -->
+</nav>
+
+<!-- Login Modal -->
+<div class="modal fade" id="myModal" role="dialog" ng-model="myModal">
+	<div class="modal-dialog modal-sm">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal">&times;</button>
+				<h4 class="modal-title">Login</h4>
+			</div>
+			<div class="modal-body">
+				<form id="loginform" class="form-horizontal" role="form" ng-submit="Login()">
+					<div style="margin-bottom: 25px" class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+						<input  type="email" class="form-control" name="username" value="" placeholder="email" ng-model="user.Email">
+					</div>
+
+					<div style="margin-bottom: 25px" class="input-group">
+						<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+						<input id="login-password" type="password" class="form-control" name="password" placeholder="password" ng-model="user.Password">
+					</div>
+					<div style="margin-top:10px" class="form-group">
+						<!-- Button -->
+
+						<div class="col-sm-12 controls">
+							<button id="btn-login" type="submit" ng-disabled="!user.Email || !user.Password" ng-click="Login()" class="btn btn-success">Login</button>
+							<center><span style='color:red'> {{messageLogin}}</span></center>
+						</div>
+					</div>
+
+
+				</form>
+				<div class="form-group">
+					<div class="col-md-12 control">
+						<div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >									Don't have an account!
+							<a data-toggle="modal">																		Sign Up Here
+							</a>
+						</div>
+						<center><h4>{{messageSignUP}}</h4></center> <br>
+						<form id="signupform" class="form-horizontal" role="form" ng-submit="signup()">
+							<div class="top-margin">
+								<label>Email Address <span class="text-danger">*</span></label>
+								<input type="email" name="email" ng-model="rdata.Email" class="form-control">
+							</div>
+
+							<div class="top-margin">
+								<label>Phone Number <span class="text-danger">*</span></label>
+								<input type="number" name="phonenumber" ng-model="rdata.Mobile" class="form-control">
+							</div>
+
+
+							<div class="row top-margin">
+								<div class="col-sm-6">
+									<label>Password <span class="text-danger">*</span></label>
+									<input type="password" ng-model="rdata.Password" class="form-control" name="password">
+								</div>
+								<div class="col-sm-6">
+									<label>Confirm Password <span class="text-danger">*</span></label>
+									<input type="password" class="form-control" ng-model="password2" name="confirmpassword" required>
+								</div>
+								{{messagePASSWORD}}
+							</div>
+							<hr>
+							<div class="row">
+								<div class="col-lg-8 col-lg-offset-1 col-md-6 col-md-offset-1 col-sm-8 col-sm-offset-1 col-xs-12 col-xs-offset-1">
+									<label class="checkbox">
+										<input type="checkbox" ng-model="checkboxChecked"> I've read the <a href="http://shopkare.com/staticpage_terms.html">Terms and Conditions</a>
+									</label>
+								</div><br>
+
+
+								<div class="col-lg-3 col-md-5 col-sm-4  text-right">
+									<button class="btn btn-success" ng-disabled="!rdata.Email || !rdata.Mobile  || !rdata.Password  || !password2" ng-click="signup()" type="button">Sign Up</button>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+
+
+
+
+			</div>
+
 		</div>
-		</div><!--/header_top-->
-</header><!--/header-->
+	</div>
+</div>
+<script type="text/ng-template" id="customTemplate.html">
+	<a>
+		<span bind-html-unsafe="match.label | typeaheadHighlight:query"></span>
+
+	</a>
+</script>
