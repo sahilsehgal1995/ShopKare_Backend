@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":1,"key":{"_id":1},"name":"_id_","ns":"Personal_Care.Oral_Care"},{"v":1,"key":{"_fts":"text","_ftsx":1},"name":"product_name_text","ns":"Personal_Care.Oral_Care","weights":{"product_name":1},"default_language":"english","language_override":"language","textIndexVersion":3}]}
