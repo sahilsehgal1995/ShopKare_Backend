@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, UpdateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, reteriveAllBatches, UpdateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
 import json, os
 from werkzeug import secure_filename
 
@@ -261,6 +261,17 @@ def add_routes(app=None):
     try:
       if request.args.get('secretkey') == 'cmclogo':
 	reply = reteriveBatches(request.args.get('pid'))
+	return reply
+      return 'Authentication Failed'
+    except Exception as e:
+      print str(e)
+      return 'Unable to Fetch'
+  
+  @Admin.route('/api/Admin/javaretallbatches/', methods=['GET','POST'])
+  def javaretallbatches():
+    try:
+      if request.args.get('secretkey') == 'cmclogo':
+	reply = reteriveAllBatches()
 	return reply
       return 'Authentication Failed'
     except Exception as e:

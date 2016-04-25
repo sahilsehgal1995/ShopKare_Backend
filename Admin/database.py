@@ -372,6 +372,20 @@ def reteriveBatches(pid):
     print str(e)
     return 'Unable to Remove'
 
+def reteriveAllBatches():
+  try:
+    connection, db, collection = MongoDBconnection('Batches', 'Sample')
+    results = list()
+    for collection in  db.collection_names():
+      iter = db[collection].find()
+      results.append(tuple(iter))
+    connection.close()
+    gc.collect()
+    return str(json.dumps(results))
+  except Exception as e:
+    print str(e)
+    return 'Unable to Remove'
+
 def updateProduct(product, MainCategory, SubCategory):
   try:
     MainCategory = MainCategory.replace(" ","_")
@@ -521,7 +535,8 @@ def testing():
   return '' 
 
 if __name__ == '__main__':
-  print UpdateBatch('P_1_0_0_12', '{"Cost_Price":30,"StoreId":"store_1","Quantity":{"type":"600 ml","value":20},"_id":"B_1","Selling_Price":60,"DateOfPurchase":"04/04/2016","DateOfExpiry":"04/04/2017"}')
+  print reteriveAllBatches()
+  #print UpdateBatch('P_1_0_0_12', '{"Cost_Price":30,"StoreId":"store_1","Quantity":{"type":"600 ml","value":20},"_id":"B_1","Selling_Price":60,"DateOfPurchase":"04/04/2016","DateOfExpiry":"04/04/2017"}')
   #print testing()
   #print registerBulkProduct('Grocery','Prodduct List new.xlsx')
   #print editMainCategory('Medicines', 'Corosin', 'Antibiotics')
