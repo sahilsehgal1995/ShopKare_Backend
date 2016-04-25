@@ -376,9 +376,11 @@ def reteriveAllBatches():
   try:
     connection, db, collection = MongoDBconnection('Batches', 'Sample')
     results = list()
-    for collection in  db.collection_names():
+    for collection in db.collection_names():
       iter = db[collection].find()
-      results.append(tuple(iter))
+      for index, item in enumerate(iter):
+	item['productid'] = collection
+	results.append(item)
     connection.close()
     gc.collect()
     return str(json.dumps(results))
