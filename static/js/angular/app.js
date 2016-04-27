@@ -93,11 +93,20 @@ app.config(function($stateProvider, $urlRouterProvider) {
         }
     })
     .state('grocery.home.CategoryProducts',{
-      url : '/categoryproducts?level1Category&mainCategory&subcategory',
+      url : '/categoryproducts?level1Category&mainCategory',
       views: {
           'products@grocery': { 
             templateUrl : 'static/templates/CategoryProducts.html',
             controller : 'CategoryProductsController'
+          }
+        }
+    })
+    .state('grocery.home.SubCategoryProducts',{
+      url : '/subcategoryproducts?level1Category&mainCategory&subcategory',
+      views: {
+          'products@grocery': { 
+            templateUrl : 'static/templates/SubCategoryProducts.html',
+            controller : 'SubCategoryProductsController'
           }
         }
     })

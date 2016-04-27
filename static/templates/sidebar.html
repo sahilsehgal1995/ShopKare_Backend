@@ -8,12 +8,16 @@
     <button  style="width:90%; padding: 0px; background-color: #4c4c4c !important;color:white;font-size: 16px !important;" class="btn btn-inverse" ng-init="showCategories[$parent.$index]=false">
 
       <div class="row">
-       <div class="col-md-9" style="text-align:left;"> {{mainCategory}} </div> <div class="col-md-2"><i class="fa fa-minus " ng-click="collapseCategory($parent.$index)"  ng-show="showCategories[$parent.$index]"></i><i class="fa fa-plus " ng-click="expandCategory($parent.$index)" ng-hide="showCategories[$parent.$index]"></i></div>
-  </div>  </button>
+        <div class="col-md-9" ng-click="showCategoryProducts(mainCategory)" style="text-align:left;"> {{mainCategory}} </div>
+        <div class="col-md-2">
+          <i class="fa fa-minus " ng-click="collapseCategory($parent.$index)"  ng-show="showCategories[$parent.$index]"></i>
+          <i class="fa fa-plus " ng-click="expandCategory($parent.$index)" ng-hide="showCategories[$parent.$index]"></i>
+        </div>
+      </div>
+    </button>
     <ul class="sidebar-nav" ng-if="showCategories[$parent.$index]">
-      <a ng-repeat="subcat in d" class="sidebar-brand" ng-hide="expanded" ng-click="showCategoryProducts(mainCategory,subcat)">
-      {{subcat}}
-      <br>
+      <a ng-repeat="subcat in d" class="sidebar-brand" ng-hide="expanded" ng-click="showSubCategoryProducts(mainCategory,subcat)" style="cursor: pointer;">
+        {{subcat}}<br>
       </a>
     </ul>
 
