@@ -449,6 +449,87 @@
 			display:none;
 		}
 	}
+	.search-dropdown{
+		position: absolute;
+		z-index: 10;
+	    margin-top: 2px;
+	    width: 100%;
+	    max-width: 100%;
+	    background-color: white;
+    	border-radius: 4px;
+    	padding: 0px 5px;
+    	border: 1px solid #ddd;
+    	max-height: 411px;
+    	overflow-y: auto;
+	}
+	.search-dropdown .search-item-list{
+		width: 100%;
+	}
+	.search-dropdown .search-item-list:not(:last-child){
+		border-bottom: 1px solid #ddd;
+	}
+	.search-dropdown .search-item:not(:last-child){
+		border-bottom: 1px solid #ddd;
+	}
+	.search-dropdown .search-item{
+		height: 41px;
+    	overflow: hidden;
+	}
+	.search-dropdown .item-quantity{
+		/**/
+	}
+	.search-dropdown .item-image-head{
+		width: 40px;
+	    height: 39px;
+	    display: inline-block;
+	    position: absolute;
+	    overflow: hidden;
+	    padding-top: 2px;
+	}
+	.search-dropdown .item-image{
+		max-width: 40px;
+		max-height: 35px;
+	}
+	.search-dropdown .item-name{
+		display: inline-block;
+	    padding: 5px 0px 0px 40px;
+	    height: 100%;
+	}
+	.search-dropdown .cart-quantity{
+		width: 26px;
+	    height: 20px;
+	    line-height: 20px;
+	    padding: 0px;
+	    text-align: center;
+	    font-size: 13px;
+	    color: #333;
+	    opacity: initial;
+	    display: block;
+	}
+	.search-dropdown .left-side{
+		display: inline-block;
+	    width: 50%;
+	    max-height: 100%;
+	    vertical-align: middle;
+	    height: 100%;
+	}
+	.search-dropdown .right-side{
+		display: inline-block;
+		width: 49%;
+		text-align: right;
+		height: 100%;
+	}
+	.search-dropdown .right-side>span{
+		margin-right: 10px;
+	}
+	.search-dropdown .right-side>div{
+		margin-right: 10px;
+	}
+	.no-spinner::-webkit-inner-spin-button,
+	.no-spinner::-webkit-outer-spin-button {
+		-webkit-appearance: none; 
+		margin: 0; 
+	}
 </style>
 </head>
 
@@ -477,8 +558,29 @@
 			<ul class="nav navbar-nav" style="width: 40%;margin-top: 20px;">
 				<div class="search_box">
 					<div class="input-group">
-						<form ng-submit="searchProduct()">
-						<input type="text" class="form-control" ng-change="searchProduct1()"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control"></form>
+						<form ng-submit="searchProduct()" outside-click="hide_popup()">
+							<!-- <input type="text" class="form-control" ng-change="searchProduct1()"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control"> -->
+							<input type="text" class="form-control" ng-change="searchProduct1();show_popup();items='';" ng-click="show_popup();" ng-model="query" placeholder="Search Your Needs">
+							<div class="search-dropdown" ng-show="items.length&&show_result" ng-click="$event.stopPropagation();">
+								<div class="search-item-list" ng-repeat="item in items">
+									<div class="search-item" ng-repeat="(index,quantity) in item.Quantity[0].Quantities">
+										<div class="left-side">
+										<div class="item-image-head"><img class="item-image" src="http://www.shopkare.com{{item.images[0]}}"></div>
+										<span class="item-name">{{item.product_name}}</span>
+										</div>
+										<div class="right-side">
+										<span class="item-quantity">{{quantity[0]}}</span>
+										<span class="item-quantity">Rs {{quantity[1]}}</span>
+										<div class="btn-group" role="group" aria-label="...">
+											<span class="btn btn-default btn-xs">Qty</span>
+											<span class="btn btn-default" style="padding: 0px;"><input type="number" class="form-control input-sm cart-quantity no-spinner" ng-model="quantity.selected_quantity" ng-init="quantity.selected_quantity=1" min="1"></span>
+										</div>
+										<button type="button" class="btn btn-success btn-xs" ng-click="$event.stopPropagation();addToCart(item, quantity);">Add</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
 	  <span class="input-group-btn">
 	  <button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="Button"><span class="glyphicon glyphicon-search"></span>
 	  </button>

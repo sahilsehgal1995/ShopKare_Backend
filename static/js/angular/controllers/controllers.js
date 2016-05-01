@@ -63,7 +63,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   });
 })
 
-.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory){
+.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory){
   console.log('header');
   $scope.Login = function()
   {
@@ -123,6 +123,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
         $scope.message = 'No Results found. Try something else';
       }
       else{
+        $scope.items = reply;
         for (var i=0; i< Object.keys(reply).length; i++)
         {
           $scope.states.push(reply[i].product_name);
@@ -135,6 +136,13 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.message ='Unable to Search Results';
     });
   };
+  $scope.show_result = false;
+  $scope.hide_popup = function(){
+    $scope.show_result = false;
+  }
+  $scope.show_popup = function(){
+    $scope.show_result = true;
+  }
 
   ProductFactory.searchProduct('Grocery', $stateParams.query)
   .success(function(reply){
@@ -167,6 +175,28 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   {
     $state.go('grocery.home.search', {query:$scope.query});
   };
+  $scope.addToCart = function(product_data, quantity){
+    console.log('Add to cart');
+    var cityIndex = 0;
+    var product={
+      ProductID: product_data._id,
+      QuantityType: quantity[0],
+      QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
+      Price: quantity[1],
+      Quantity:quantity.selected_quantity,
+      product_name: product_data.product_name,
+      'Main Category': product_data['Main Category'],
+      'Sub Category': product_data['Sub Category'],
+      'Level1 Category': product_data['Level1 Category']
+    };
+    CartFactory.addToCart(product)
+    .success(function(response){
+      console.log(response);
+    }).error(function(error){
+      console.log('Unable to add. Please try after sometime');
+      console.log(error);
+    });
+  }
 }])
 
 .controller('footerController',['$scope','$http',function($scope,$http){
