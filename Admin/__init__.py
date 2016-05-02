@@ -1,5 +1,5 @@
 from flask import Blueprint, session, request, send_from_directory
-from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, reteriveAllBatches, UpdateBatch, loginDeliveryBoy, registerDeliveryBoy, updateOrderStatus, FetchOrders, VerifyOrder, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
+from database import loginAdmin, registerAdmin, registerProduct, removeProduct, ProductImagePath, RemoveBatch, AddBatch, addlevel1Category, removelevel1Category, addMainCategory, removeMainCategory, addSubCategory, removeSubCategory, reteriveCategories, reteriveProducts, reteriveBatches, reteriveAllBatches, UpdateBatch, loginDeliveryBoy, registerDeliveryBoy, removeImage, updateOrderStatus, FetchOrders, VerifyOrder, updateProduct, reterieveDeliveryBoys, removeDeliveryBoy
 import json, os
 from werkzeug import secure_filename
 
@@ -114,7 +114,7 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/imageUpload/', methods=['GET','POST'])
   def imageUpload():
     try:
-      if request.method == 'POST' and request.args.get('pid'):
+      if request.method == 'POST' and request.args.get('pid') and session['user'] == 'Super Admin':
 	path = ProductImagePath(pid) 
         if not path == 'Unable to fetch':
           file = request.files.getlist('uploadedFile')
@@ -122,6 +122,16 @@ def add_routes(app=None):
             f.save(os.path.join(path, secure_filename(f.filename)))
           return "Images uploaded"
 	return 'Authentication Failed'
+      return 'Invalid Request'
+    except Exception as e:
+      print str(e)
+      return str(e)
+  
+  @Admin.route('/api/Admin/imageremove/', methods=['GET','POST'])
+  def imageremove():
+    try:
+      if request.method == 'POST' and request.args.get('pid') and session['user'] == 'Super Admin':
+	return removeImage(request.args.get('pid'), request.args.get('fileName'))
       return 'Invalid Request'
     except Exception as e:
       print str(e)

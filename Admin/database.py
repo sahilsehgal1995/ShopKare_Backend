@@ -531,13 +531,17 @@ def FetchOrders(userMode, Did):
     print str(e)
     return 'Unable to Fetch'
 
-def testing():
-  connection, db, collection = MongoDBconnection('Admin', 'Orders')
-  connection.admin.command('copydb', fromdb='sample', todb='newsam')
-  return '' 
+def removeImage(pid, fileName):
+  ids = pid.split("_")
+  fileName = os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+fileName
+  if os.path.isfile(fileName):
+    os.remove(fileName)
+    return 'Image Removed'
+  return 'Image Not Found'
 
 if __name__ == '__main__':
-  print reteriveAllBatches()
+  print removeImage('pid', 'fileName')
+  #print reteriveAllBatches()
   #print UpdateBatch('P_1_0_0_12', '{"Cost_Price":30,"StoreId":"store_1","Quantity":{"type":"600 ml","value":20},"_id":"B_1","Selling_Price":60,"DateOfPurchase":"04/04/2016","DateOfExpiry":"04/04/2017"}')
   #print testing()
   #print registerBulkProduct('Grocery','Prodduct List new.xlsx')
