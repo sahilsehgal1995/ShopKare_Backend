@@ -185,8 +185,8 @@ def searchProduct(level1Category, productName):
     return '{"response":"Unable to Retrieve"}'
 
 if __name__ == "__main__":
-  print randomProducts('Grocery')
   #searchProduct('Grocery', 'amul')
+  print randomProducts('Grocery')
   #print retrieveAllProducts('Grocery')
   #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
   #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
