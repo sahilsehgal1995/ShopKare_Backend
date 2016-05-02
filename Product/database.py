@@ -136,16 +136,30 @@ def randomProducts(id):
   return categoryProducts(id, mainCategory, subCategory)
 
 def randomMainCategoryProducts(id, mainCategory):
-  connection, db, collection = MongoDBconnection('Admin', 'Categories')
-  iter = collection.find({"_id":id})
-  for index, category in enumerate(iter[0]['Categories']):
-    if mainCategory == category.keys()[0]:
-      mainCategoryIndex = index
-      break
-  subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
+  connection, db, collection = MongoDBconnection(mainCategory.replace(" ","_"), 'Categories')
+  products = list()
+  for subCategory in db.collection_names():
+    iter = db[subCategory].find().limit(3)
+    for i in iter:
+      i['images'] = getProductImages(i['_id'])
+      products.append(i)
+  print str(json.dumps(products))
   connection.close()
   gc.collect()
+  return ''
   return categoryProducts(id, mainCategory, subCategory)
+
+#def randomMainCategoryProducts(id, mainCategory):
+  #connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  #iter = collection.find({"_id":id})
+  #for index, category in enumerate(iter[0]['Categories']):
+    #if mainCategory == category.keys()[0]:
+      #mainCategoryIndex = index
+      #break
+  #subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
+  #connection.close()
+  #gc.collect()
+  #return categoryProducts(id, mainCategory, subCategory)
 
 def searchProduct(level1Category, productName):
   try:
@@ -173,9 +187,9 @@ def searchProduct(level1Category, productName):
     return '{"response":"Unable to Retrieve"}'
 
 if __name__ == "__main__":
-  #print randomProducts('Grocery')
-  searchProduct('Grocery', 'amul')
+  #randomProducts('Grocery')
+  #searchProduct('Grocery', 'amul')
   #print retrieveAllProducts('Grocery')
-  #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
+  randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
   #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
   #print newProducts('Grocery', 'Bakery', 'Cakes')

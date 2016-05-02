@@ -44,7 +44,7 @@ def add_routes(app=None):
 	if reply == 'Login Sucess':
 	  session['id'] = user['_id']
 	  session['Email'] = user['Email']
-	  session['user'] = 'Normal Admin'
+	  session['user'] = 'Super Admin'
 	  user['response']='Login Successfull'
 	  return json.dumps(user)
 	return reply
@@ -75,7 +75,7 @@ def add_routes(app=None):
 	  product = json.loads(request.args.get('product'))
 	  reply, pid = registerProduct(product['Main Category'], product['Sub Category'], request.args.get('product'))
 	  if reply == 'Registered':
-	    path = ProductImagePath(product['Level1 Category'], product['Main Category'], product['Sub Category'], pid) 
+	    path = ProductImagePath(pid) 
 	    if not path == 'Unable to fetch':
 	      file = request.files.getlist('uploadedFile')
 	      for f in file:
@@ -114,22 +114,13 @@ def add_routes(app=None):
   @Admin.route('/api/Admin/imageUpload/', methods=['GET','POST'])
   def imageUpload():
     try:
-      if request.method == 'POST':
-	file = request.files.getlist('uploadedFile')
-	print request.args.get('Product')
-	for f in file:
-	  f.save(os.path.join('/home/sahil/my/', secure_filename(f.filename)))
-	return 'Uploaded'
-	if session['user'] == 'Super Admin':
-	  file = request.files['file']
-	  if allowed_file(file.filename):
-	    product = json.loads(request.args.get('product'))
-	    path = ProductImagePath(product['_id']) 
-	    if not path == 'Unable to fetch':
-	      file.save(os.path.join(path, secure_filename(file.filename)))
-	      return 'Image Uploaded'
-	    return 'Unable to Upload'
-	  return 'Invalid Image format'
+      if request.method == 'POST' and request.args.get('pid'):
+	path = ProductImagePath(pid) 
+        if not path == 'Unable to fetch':
+          file = request.files.getlist('uploadedFile')
+          for f in file:
+            f.save(os.path.join(path, secure_filename(f.filename)))
+          return "Images uploaded"
 	return 'Authentication Failed'
       return 'Invalid Request'
     except Exception as e:
