@@ -150,6 +150,8 @@ def randomMainCategoryProducts(id, mainCategory):
   connection, db, collection = MongoDBconnection(mainCategory.replace(" ","_"), 'Categories')
   products = list()
   for subCategory in db.collection_names():
+    if subCategory == 'system.indexes':
+      continue
     iter = db[subCategory].find().limit(3)
     for i in iter:
       i['images'] = getProductImages(i['_id'])
