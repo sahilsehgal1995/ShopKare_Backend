@@ -4,6 +4,7 @@ import os
 import gc
 from os import walk
 from random import randint
+import random
 
 base='http://www.filterlady.com/'
 
@@ -131,9 +132,19 @@ def randomCategory(id):
   return mainCategory.keys()[0], randnumber, subCategory, subCategoryIndex
 
 def randomProducts(id):
-  mainCategory, mainCategoryIndex, subCategory, subCategoryIndex = randomCategory(id)
-  print mainCategory, mainCategoryIndex, subCategory, subCategoryIndex
-  return categoryProducts(id, mainCategory, subCategory)
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  products = list()
+  for index,keys in enumerate(iter[0]['Categories']):
+    for subCategory in keys[keys.keys()[0]]:
+      iter = connection[keys.keys()[0].replace(" ","_")][subCategory.replace(" ","_")]
+      for i in iter.find().limit(2):
+        i['images'] = getProductImages(i['_id'])
+        products.append(i)
+  connection.close()
+  gc.collect()
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 def randomMainCategoryProducts(id, mainCategory):
   connection, db, collection = MongoDBconnection(mainCategory.replace(" ","_"), 'Categories')
@@ -143,23 +154,10 @@ def randomMainCategoryProducts(id, mainCategory):
     for i in iter:
       i['images'] = getProductImages(i['_id'])
       products.append(i)
-  print str(json.dumps(products))
   connection.close()
   gc.collect()
-  return ''
-  return categoryProducts(id, mainCategory, subCategory)
-
-#def randomMainCategoryProducts(id, mainCategory):
-  #connection, db, collection = MongoDBconnection('Admin', 'Categories')
-  #iter = collection.find({"_id":id})
-  #for index, category in enumerate(iter[0]['Categories']):
-    #if mainCategory == category.keys()[0]:
-      #mainCategoryIndex = index
-      #break
-  #subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
-  #connection.close()
-  #gc.collect()
-  #return categoryProducts(id, mainCategory, subCategory)
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 def searchProduct(level1Category, productName):
   try:
@@ -187,9 +185,9 @@ def searchProduct(level1Category, productName):
     return '{"response":"Unable to Retrieve"}'
 
 if __name__ == "__main__":
-  #randomProducts('Grocery')
+  print randomProducts('Grocery')
   #searchProduct('Grocery', 'amul')
   #print retrieveAllProducts('Grocery')
-  randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
+  #print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
   #print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
   #print newProducts('Grocery', 'Bakery', 'Cakes')
