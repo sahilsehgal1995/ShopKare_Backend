@@ -1,6 +1,7 @@
 from flask import Blueprint, session, url_for, request
 from database import categoryProducts, newProducts, randomProducts, randomMainCategoryProducts, categoryProductDetail, retrieveAllProducts, searchProduct
-import json, gc
+import json
+import gc
 
 
 def add_routes(app=None):
