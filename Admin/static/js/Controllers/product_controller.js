@@ -101,11 +101,12 @@ $scope.AdminSuper=false;
     $http.get("http://shopkare.com/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+$scope.MAINCATEGORY+"&SubCategory="+$scope.SUBCATEGORY)
 	.success(function(response){
 	$scope.ImageDATA=response;
+  console.log(response);
 	})
 	.error(function(response){
 	console.log(response);
 	})
-	 $http.post("/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
+	 $http.post("http://shopkare.com/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
      .success(function(response) {
       $scope.products=response;
               
@@ -114,8 +115,21 @@ $scope.AdminSuper=false;
        $scope.error=error;
     });
    };
-   
-   
+  // Delete Image 
+   $scope.delete_image=function  (index) {
+
+     filename=$scope.products[index].images[index].split('/');
+     $http.post("/api/Admin/imageremove/?pid="+JSON.stringify($scope.products[index])&+"&fileName="+filename[filename.length-1])
+        .success(function(response){
+          // alert(response);
+            $("#"+JSON.stringify($scope.products[index])+'and'+index).hide();
+        })
+        .error(function(response){
+          console.log(response);
+          // alert(response);
+   });
+  };
+
    $scope.delete_Product=function(index){
     console.log(JSON.stringify($scope.products[index]));
     $http.post("/api/Admin/removeProduct/?product="+JSON.stringify($scope.products[index]))
