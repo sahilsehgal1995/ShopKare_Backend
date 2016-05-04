@@ -120,6 +120,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
     })
+    .state('grocery.home.AllSubCategoryProducts',{
+      url : '/allsubcategoryproducts?level1Category&mainCategory&subcategory',
+      views: {
+          'products@grocery': {
+            templateUrl : 'static/templates/allSubCategoryProducts.html',
+            controller : 'AllSubCategoryProductsController'
+          }
+        }
+    })
+    .state('grocery.home.Product',{
+      url : '/product:product',
+      views: {
+        'products@grocery': {
+          templateUrl : 'static/templates/productdetails.html',
+          controller : 'ProductDetailsController'
+        }
+      }
+    })
 
     .state('stationary',{
       url : '/stationary',

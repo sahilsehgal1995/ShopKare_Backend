@@ -206,23 +206,25 @@
         <div class="list-inline" style="margin: 0px;">
             <div class="DocumentItem" ng-repeat="product in trendingProducts track by $index " style="margin-right: 20px;height: auto;min-height: 200px;border: none;display: inline-block;">
                 <div class="single-products" style="width: 200px;">
+                    <div ng-click="viewProduct(product);" style="cursor: pointer;">
                     <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
                     <div style="margin-top: 1px;">
                         <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                         <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
-                        <select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
-                        </select>
-                        <div class="cart_quantity_button">
-                            <a class="cart_quantity_up" style="float: none;">
-                                <button ng-click="IncreaseTrendingQuantity($index, index)">+</button>
-                            </a>
-                            <form ng-submit="AddToTrendingCart($index, index)" style="display: inline-block;width: 35%;padding: 0px 1px;">
-                                <input class="cart_quantity_input" type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="max-width: 100%;" ng-change="AddToTrendingCart($index, index)">
-                            </form>
-                            <a class="cart_quantity_up" style="float: none;">
-                                <button ng-click="DecreaseTrendingQuantity($index, index)">--</button>
-                            </a>
-                        </div>
+                    </div>
+                    </div>
+                    <select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
+                    </select>
+                    <div class="cart_quantity_button">
+                        <a class="cart_quantity_up" style="float: none;">
+                            <button ng-click="IncreaseTrendingQuantity($index, index)">+</button>
+                        </a>
+                        <form ng-submit="AddToTrendingCart($index, index)" style="display: inline-block;width: 35%;padding: 0px 1px;">
+                            <input class="cart_quantity_input" type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="max-width: 100%;" ng-change="AddToTrendingCart($index, index)">
+                        </form>
+                        <a class="cart_quantity_up" style="float: none;">
+                            <button ng-click="DecreaseTrendingQuantity($index, index)">--</button>
+                        </a>
                     </div>
                 </div>
             </div>
