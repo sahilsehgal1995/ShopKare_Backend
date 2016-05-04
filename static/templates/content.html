@@ -1,6 +1,9 @@
-<div class="col-md-3 sidebar">
-			<div ui-view="sidebar"></div>
-		</div>
-		<div class="col-md-9">
-			<div ui-view='products'></div>
-		</div>
+<div class="col-md-3">
+	<div ui-view="dropdownmenu" style="padding-bottom: 10px;"></div>
+	<div class="sidebar">
+		<div ui-view="sidebar"></div>
+	</div>
+</div>
+<div class="col-md-9">
+	<div ui-view='products'></div>
+</div>

@@ -35,6 +35,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           'sidebar@home': { 
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@home': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
 
@@ -70,6 +75,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
          'sidebar@grocery': {
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@grocery': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
         controller : 'groceryController'
@@ -131,6 +141,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
           },
+
+          'dropdownmenu@stationary': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
+          },
         
           'products@stationary': { 
             templateUrl : 'static/templates/groceryProduct.html',
@@ -163,6 +178,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller : 'sidebarController'
           },
 
+          'dropdownmenu@courier': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
+          },
+
           'products@courier': { 
             templateUrl : 'static/templates/courierProduct.html',
             controller : 'productsCourierController'
@@ -192,6 +212,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
          'sidebar@medicine': { 
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@medicine': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
 

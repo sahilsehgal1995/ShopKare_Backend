@@ -196,7 +196,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       console.log('Unable to add. Please try after sometime');
       console.log(error);
     });
-  }
+  };
 }])
 
 .controller('footerController',['$scope','$http',function($scope,$http){
@@ -690,13 +690,6 @@ $scope.cat = $scope.categories[$scope.path];
       else{
         var name = $scope.removeSpace(reply[0]['Sub Category']);
         $scope.productsData[name] = reply;
-        // $scope.products=[];
-        // for (var i=0; i< Object.keys(reply).length; i++)
-        // {
-        //   console.log(JSON.stringify(reply[i]));
-        //   $scope.products.push(reply[i]);
-        //   $scope.products[i].quantity=0;
-        // }
       }
     });
   }
@@ -706,107 +699,107 @@ $scope.cat = $scope.categories[$scope.path];
   console.log('CategoryProductsControllerproducts');
   $scope.mainCategory = $stateParams.mainCategory;
   $scope.subcategory = $stateParams.subcategory; 
-  $scope.AddQuantity = function(productindex, quantity)
+  $scope.IncreaseQuantity = function(product_data, quantity)
   {
     var cityIndex = 0;
     var product={
-      ProductID: $scope.products[productindex]._id,
+      ProductID: product_data._id,
       QuantityType: quantity[0],
-      QuantityIndex: $scope.products[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+      QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:$scope.products[productindex].quantity+1,
-      product_name: $scope.products[productindex].product_name,
-      'Main Category': $scope.products[productindex]['Main Category'],
-      'Sub Category': $scope.products[productindex]['Sub Category'],
-      'Level1 Category': $scope.products[productindex]['Level1 Category']
+      Quantity:product_data.quantity+1,
+      product_name: product_data.product_name,
+      'Main Category': product_data['Main Category'],
+      'Sub Category': product_data['Sub Category'],
+      'Level1 Category': product_data['Level1 Category']
     };
     CartFactory.addToCart(product)
     .success(function(response){
       if (response == 'Updated in cart' || 'Added to cart')
       {
-        $scope.products[productindex].quantity = $scope.products[productindex].quantity+1;
+        product_data.quantity = product_data.quantity+1;
       }
-      $scope.products[productindex].message = response;
+      product_data.message = response;
     }).error(function(error){
-      $scope.products[productindex].message = 'Unable to add. Please try after sometime';
+      product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
   };
-  $scope.RemoveQuantity = function(productindex, quantity)
+  $scope.DecreaseQuantity = function(product_data, quantity)
   {
-    if($scope.products[productindex].quantity){
+    if(product_data.quantity){
       var cityIndex = 0;
       var product={
-        ProductID: $scope.products[productindex]._id,
+        ProductID: product_data._id,
         QuantityType: quantity[0],
-        QuantityIndex: $scope.products[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+        QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
         Price: quantity[1],
-        Quantity:$scope.products[productindex].quantity-1,
-        product_name: $scope.products[productindex].product_name,
-        'Main Category': $scope.products[productindex]['Main Category'],
-        'Sub Category': $scope.products[productindex]['Sub Category'],
-        'Level1 Category': $scope.products[productindex]['Level1 Category']
+        Quantity:product_data.quantity-1,
+        product_name: product_data.product_name,
+        'Main Category': product_data['Main Category'],
+        'Sub Category': product_data['Sub Category'],
+        'Level1 Category': product_data['Level1 Category']
       };
       CartFactory.addToCart(product)
       .success(function(response){
         if (response == 'Updated in cart' || 'Added to cart')
         {
-          $scope.products[productindex].quantity = $scope.products[productindex].quantity-1;
+          product_data.quantity = product_data.quantity-1;
         }
-        $scope.products[productindex].message = response;
+        product_data.message = response;
       }).error(function(error){
-        $scope.products[productindex].message = 'Unable to add. Please try after sometime' ;
+        product_data.message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
     }
-    else if($scope.products[productindex].quantity==0)
+    else if(product_data.quantity==0)
     {
       var cityIndex = 0;
       var product={
-        ProductID: $scope.products[productindex]._id,
+        ProductID: product_data._id,
         QuantityType: quantity[0],
-        QuantityIndex: $scope.products[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+        QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
         Price: quantity[1],
         Quantity:0,
-        product_name: $scope.products[productindex].product_name,
-        'Main Category': $scope.products[productindex]['Main Category'],
-        'Sub Category': $scope.products[productindex]['Sub Category'],
-        'Level1 Category': $scope.products[productindex]['Level1 Category']
+        product_name: product_data.product_name,
+        'Main Category': product_data['Main Category'],
+        'Sub Category': product_data['Sub Category'],
+        'Level1 Category': product_data['Level1 Category']
       };
       CartFactory.removeCartItem(product)
       .success(function(response){
         if (response == 'Removed from cart')
         {
-          $scope.products[productindex].quantity=0;
+          product_data.quantity=0;
         }
-        $scope.products[productindex].message = response;
+        product_data.message = response;
       })
       .error(function(error){
         console.log(error);
-        $scope.products[productindex].message = 'Unable to add';
+        product_data.message = 'Unable to add';
       }); 
     }
   };
-  $scope.AddToTrendingCart = function(productindex, quantity)
+  $scope.AddToCart = function(product_data, quantity)
   {
     console.log('Add to cart');
     var cityIndex = 0;
     var product={
-      ProductID: $scope.products[productindex]._id,
+      ProductID: product_data._id,
       QuantityType: quantity[0],
-      QuantityIndex: $scope.products[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
+      QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
       Quantity:1,
-      product_name: $scope.products[productindex].product_name,
-      'Main Category': $scope.products[productindex]['Main Category'],
-      'Sub Category': $scope.products[productindex]['Sub Category'],
-      'Level1 Category': $scope.products[productindex]['Level1 Category']
+      product_name: product_data.product_name,
+      'Main Category': product_data['Main Category'],
+      'Sub Category': product_data['Sub Category'],
+      'Level1 Category': product_data['Level1 Category']
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      $scope.products[productindex].message = response;
+      product_data.message = response;
     }).error(function(error){
-      $scope.products[productindex].message = 'Unable to add. Please try after sometime';
+      product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
   };
@@ -815,8 +808,9 @@ $scope.cat = $scope.categories[$scope.path];
       product:JSON.stringify($scope.products[index])
     });
   };
-  $scope.quantity='';
-  $scope.products=[];
+
+  $scope.products = {};
+
   ProductFactory.getProducts($stateParams.level1Category, $stateParams.mainCategory, $stateParams.subcategory)
   .success(function(reply){
     if (reply == 'Unable to Fetch')
@@ -824,16 +818,29 @@ $scope.cat = $scope.categories[$scope.path];
       console.log('Sorry Unable to fetch Products right now.');
     }
     else{
-      $scope.products=[];
-      for (var i=0; i< Object.keys(reply).length; i++)
-      {
-        console.log(JSON.stringify(reply[i]));
-        $scope.products.push(reply[i]);
-        $scope.products[i].quantity=0;
-      }
+      $scope.products.trending_products = reply;
     }
-  })
-
+  });
+  ProductFactory.getProducts($stateParams.level1Category, $stateParams.mainCategory, $stateParams.subcategory)
+  .success(function(reply){
+    if (reply == 'Unable to Fetch')
+    {
+      console.log('Sorry Unable to fetch Products right now.');
+    }
+    else{
+      $scope.products.new_products = reply;
+    }
+  });
+  ProductFactory.getProducts($stateParams.level1Category, $stateParams.mainCategory, $stateParams.subcategory)
+  .success(function(reply){
+    if (reply == 'Unable to Fetch')
+    {
+      console.log('Sorry Unable to fetch Products right now.');
+    }
+    else{
+      $scope.products.try_products = reply;
+    }
+  });
 }])
 
 .controller('searchController',['$scope','$http','$rootScope', '$stateParams' , 'ProductFactory', 'CartFactory',function($scope,$http,$rootScope, $stateParams, ProductFactory, CartFactory){
@@ -985,6 +992,30 @@ $scope.cat = $scope.categories[$scope.path];
 
 }])
 
-;
-
-
+.controller('dropdownMenuController',['$scope','$http','$rootScope', '$location', '$state', 'Categories', function($scope, $http, $rootScope, $location, $state, Categories){
+  console.log('dropdown menu');
+  var temp = Categories.getCategories(), obj;
+  $scope.allCategories = {};
+  for(var i = 0; i < temp.length; i++){
+    obj = Object.keys(temp[i])[0];
+    $scope.allCategories[obj] = temp[i][obj];
+  }
+  $scope.showCategoryProducts = function(mainCategory)
+  {
+    console.log(mainCategory);
+    $state.go('grocery.home.CategoryProducts',{
+      level1Category : 'Grocery',
+      mainCategory : mainCategory
+    });
+  };
+  $scope.showSubCategoryProducts = function(mainCategory,subCategory)
+  {
+    console.log(mainCategory);
+    console.log(subCategory);
+    $state.go('grocery.home.SubCategoryProducts',{
+      level1Category : 'Grocery',
+      mainCategory : mainCategory,
+      subcategory : subCategory
+    });
+  };
+}]);

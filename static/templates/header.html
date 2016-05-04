@@ -453,13 +453,13 @@
 		position: absolute;
 		z-index: 10;
 	    margin-top: 2px;
-	    width: 100%;
-	    max-width: 100%;
+	    width: 110%;
+	    max-width: 110%;
 	    background-color: white;
     	border-radius: 4px;
     	padding: 0px 5px;
     	border: 1px solid #ddd;
-    	max-height: 411px;
+    	max-height: 421px;
     	overflow-y: auto;
 	}
 	.search-dropdown .search-item-list{
@@ -572,8 +572,9 @@
 										<span class="item-quantity">{{quantity[0]}}</span>
 										<span class="item-quantity">Rs {{quantity[1]}}</span>
 										<div class="btn-group" role="group" aria-label="...">
-											<span class="btn btn-default btn-xs">Qty</span>
+											<button type="button" class="btn btn-default btn-xs" ng-click="quantity.selected_quantity=quantity.selected_quantity+1">+</button>
 											<span class="btn btn-default" style="padding: 0px;"><input type="number" class="form-control input-sm cart-quantity no-spinner" ng-model="quantity.selected_quantity" ng-init="quantity.selected_quantity=1" min="1"></span>
+											<button type="button" class="btn btn-default btn-xs" ng-click="quantity.selected_quantity=quantity.selected_quantity-1" ng-disabled="quantity.selected_quantity==1">--</button>
 										</div>
 										<button type="button" class="btn btn-success btn-xs" ng-click="$event.stopPropagation();addToCart(item, quantity);">Add</button>
 										</div>
