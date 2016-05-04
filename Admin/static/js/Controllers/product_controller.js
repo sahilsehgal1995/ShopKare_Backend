@@ -122,7 +122,9 @@ $scope.AdminSuper=false;
      $http.post("/api/Admin/imageremove/?pid="+JSON.stringify($scope.products[index])&+"&fileName="+filename[filename.length-1])
         .success(function(response){
           // alert(response);
-            $("#"+JSON.stringify($scope.products[index])+'and'+index).hide();
+          delete $scope.products[index].images[index];
+          $("#"+JSON.stringify($scope.products[index])+'and'+index).hide();
+
         })
         .error(function(response){
           console.log(response);
@@ -200,7 +202,7 @@ $scope.AdminSuper=false;
 	$scope.edit=product;
 	$scope.editIndex=index;
 };
- 
+
 
    $scope.getFileDetails = function (e) {
 
@@ -273,6 +275,25 @@ $scope.AdminSuper=false;
 	console.log(response);
 	});
 	};
+
+  //save batches
+  $scope.saveBatch=function(b){
+
+  console.log(b);
+
+  delete b['$$hashKey'];
+
+  $http.post(base+'/api/Admin/UpdateBatch/?pid='++$scope.p_id+'&batch='+JSON.stringify(b))
+    .success(function(data){
+      console.log(data);
+      $scope.Batches.splice($scope.editIndex,1,$scope.edit);
+      $scope.edit={};
+      $scope.editD={};
+    })
+    .error(function(response){
+      console.log(response);
+      });
+  };
 
 
 	$scope.deleteQuantity=function(data,key){

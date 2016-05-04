@@ -175,14 +175,38 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="batch in Batches">
-        <td>{{batch.StoreId}}</td>
-        <td>{{batch}}</td>
-	<td>{{batch.DateOfExpiry}}</td>
-        <td>{{batch.Quantity.type}}: Rs {{batch.Quantity.value}}</td>
-        <td>{{batch.Cost_Price}}</td>
-        <td>{{batch.Selling_Price}}</td>
-        <td><button type="button" class="btn btn-primary" ng-click="RemoveBatch($index)">Remove Batch</button></td>
+      <tr ng-repeat="batch in Batches track by $index">
+        <td>
+          <p>{{batch.StoreId}}</p>
+          <input type="number" ng-show='edit==b' ng-model="edit.StoreId">
+        </td>
+        <td>
+          <p>{{batch.DateOfPurchase}}</p>
+          <input type="text" placeholder='DD/MM/YYYY' ng-show='edit==b' ng-model="edit.DateOfPurchase">
+        </td>
+	     <td>
+          <p>{{batch.DateOfExpiry}}</p>
+          <input type="text" placeholder='DD/MM/YYYY' ng-show='edit==b' ng-model="edit.DateOfExpiry">
+        </td>
+        <td>
+          <p>{{batch.Quantity.type}}: Rs {{batch.Quantity.value}}</p>
+          <p> Batch Quantity Type :<input type="text"  ng-show='edit==b' ng-model="edit.Quantity.type"> </p>
+          <p> Batch Quantity Value :<input type="text"  ng-show='edit==b' ng-model="edit.Quantity.value"> </p>
+        </td>
+        <td>
+          <p>{{batch.Cost_Price}}</p>
+          <input type="text" ng-show='edit==b' ng-model="edit.Cost_Price">
+        </td>
+
+        <td>
+          <p>{{batch.Selling_Price}}</p>
+          <input type="text"  ng-show='edit==b' ng-model="edit.Selling_Price">
+        </td>
+        <td>
+          <button type="button" class="btn btn-primary" ng-hide='edit==b' ng-click="set_edit(b,$index)">Edit Batch</button>
+          <button type='button' class='btn btn-primary' ng-show='edit==b' ng-click='saveBatch(batch)'>Save</button>
+          <button type="button" class="btn btn-danger" ng-click="RemoveBatch($index)">Remove Batch</button>
+        </td>
       </tr>
     </tbody>
   </table>
