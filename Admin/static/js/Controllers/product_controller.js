@@ -116,14 +116,18 @@ $scope.AdminSuper=false;
     });
    };
   // Delete Image 
-   $scope.delete_image=function  (index) {
-
-     filename=$scope.products[index].images[index].split('/');
-     $http.post("/api/Admin/imageremove/?pid="+JSON.stringify($scope.products[index])&+"&fileName="+filename[filename.length-1])
+   $scope.delete_image=function  (productindex, imageindex, image) {
+     console.log($scope.products[productindex]._id);
+     filename=image.split('/');
+    console.log(filename);
+    file = filename.pop().replace("&","%26");
+    $http.post(base+"/api/Admin/imageremove/?pid="+$scope.products[productindex]._id+"&fileName="+file)
         .success(function(response){
-          // alert(response);
-          delete $scope.products[index].images[index];
-          $("#"+JSON.stringify($scope.products[index])+'and'+index).hide();
+           alert(response);
+          if (response == "Image Removed")
+	  {
+		$scope.ImageDATA[productindex].images.splice(imageindex,1);
+	  }
 
         })
         .error(function(response){
@@ -283,7 +287,7 @@ $scope.AdminSuper=false;
 
   delete b['$$hashKey'];
 
-  $http.post(base+'/api/Admin/UpdateBatch/?pid='++$scope.p_id+'&batch='+JSON.stringify(b))
+  $http.post(base+'/api/Admin/UpdateBatch/?pid='+$scope.p_id+'&batch='+JSON.stringify(b))
     .success(function(data){
       console.log(data);
       $scope.Batches.splice($scope.editIndex,1,$scope.edit);

@@ -165,13 +165,14 @@
       <tr ng-repeat="p in products track by $index">
 	<td>
         <div ng-repeat='i in ImageDATA[$index].images' style='margin:10px 10px 10px 0; float:left;' id='{{ImageDATA[$index].images[i]}}and{{i}}'>
-            <img ng-src="http://shopkare.com{{ImageDATA[$index].images[i]}}" height="100px" width="100 px" style='display:block'>
-            <button type='button' ng-show="edit==p" class='btn btn-danger' ng-click='delete_image(i)' style='width:100px;font-size:12px; margin-top:4px;'>Delete Image</button>
+            <img ng-src="http://shopkare.com{{i}}" height="100px" width="100 px" style='display:block'>
+   	    <button type='button' ng-show="edit==p" class='btn btn-danger' ng-click='delete_image($parent.$index, $index, i)' style='width:100px;font-size:12px; margin-top:4px;'>Delete Image</button>
         </div>
         <div style='clear:both;'></div>
         <span ng-show="edit==p"><br><b>Change Pic : </b>
             <input type="file" id="file" name="file" multiple
                 onchange="angular.element(this).scope().getFileDetails(this)" />
+	<button type="button" ng-click="">Upload Pic</button>
         </span>
     </td>
 	
