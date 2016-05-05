@@ -35,6 +35,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           'sidebar@home': { 
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@home': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
 
@@ -70,6 +75,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
          'sidebar@grocery': {
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@grocery': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
         controller : 'groceryController'
@@ -110,6 +120,24 @@ app.config(function($stateProvider, $urlRouterProvider) {
           }
         }
     })
+    .state('grocery.home.AllSubCategoryProducts',{
+      url : '/allsubcategoryproducts?level1Category&mainCategory&subcategory',
+      views: {
+          'products@grocery': {
+            templateUrl : 'static/templates/allSubCategoryProducts.html',
+            controller : 'AllSubCategoryProductsController'
+          }
+        }
+    })
+    .state('grocery.home.Product',{
+      url : '/product:product',
+      views: {
+        'products@grocery': {
+          templateUrl : 'static/templates/productdetails.html',
+          controller : 'ProductDetailsController'
+        }
+      }
+    })
 
     .state('stationary',{
       url : '/stationary',
@@ -130,6 +158,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
          'sidebar@stationary': { 
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@stationary': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           },
         
           'products@stationary': { 
@@ -163,6 +196,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
             controller : 'sidebarController'
           },
 
+          'dropdownmenu@courier': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
+          },
+
           'products@courier': { 
             templateUrl : 'static/templates/courierProduct.html',
             controller : 'productsCourierController'
@@ -192,6 +230,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
          'sidebar@medicine': { 
             templateUrl : 'static/templates/sidebar.html',
             controller : 'sidebarController'
+          },
+
+          'dropdownmenu@medicine': { 
+            templateUrl : 'static/templates/dropdownMenu.html',
+            controller : 'dropdownMenuController'
           }
         },
 

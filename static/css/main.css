@@ -2527,4 +2527,8 @@ h2.title {
 .contact-info .social-networks ul li a:hover{
   color: #00b386;
 }
-�
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none; 
+  margin: 0; 
+}
