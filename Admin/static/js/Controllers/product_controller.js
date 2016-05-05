@@ -101,11 +101,12 @@ $scope.AdminSuper=false;
     $http.get("http://shopkare.com/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+$scope.MAINCATEGORY+"&SubCategory="+$scope.SUBCATEGORY)
 	.success(function(response){
 	$scope.ImageDATA=response;
+  console.log(response);
 	})
 	.error(function(response){
 	console.log(response);
 	})
-	 $http.post("/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
+	 $http.post("http://shopkare.com/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
      .success(function(response) {
       $scope.products=response;
               
@@ -114,8 +115,23 @@ $scope.AdminSuper=false;
        $scope.error=error;
     });
    };
-   
-   
+  // Delete Image 
+   $scope.delete_image=function  (index) {
+
+     filename=$scope.products[index].images[index].split('/');
+     $http.post("/api/Admin/imageremove/?pid="+JSON.stringify($scope.products[index])&+"&fileName="+filename[filename.length-1])
+        .success(function(response){
+          // alert(response);
+          delete $scope.products[index].images[index];
+          $("#"+JSON.stringify($scope.products[index])+'and'+index).hide();
+
+        })
+        .error(function(response){
+          console.log(response);
+          // alert(response);
+   });
+  };
+
    $scope.delete_Product=function(index){
     console.log(JSON.stringify($scope.products[index]));
     $http.post("/api/Admin/removeProduct/?product="+JSON.stringify($scope.products[index]))
@@ -186,7 +202,7 @@ $scope.AdminSuper=false;
 	$scope.edit=product;
 	$scope.editIndex=index;
 };
- 
+
 
    $scope.getFileDetails = function (e) {
 
@@ -259,6 +275,25 @@ $scope.AdminSuper=false;
 	console.log(response);
 	});
 	};
+
+  //save batches
+  $scope.saveBatch=function(b){
+
+  console.log(b);
+
+  delete b['$$hashKey'];
+
+  $http.post(base+'/api/Admin/UpdateBatch/?pid='++$scope.p_id+'&batch='+JSON.stringify(b))
+    .success(function(data){
+      console.log(data);
+      $scope.Batches.splice($scope.editIndex,1,$scope.edit);
+      $scope.edit={};
+      $scope.editD={};
+    })
+    .error(function(response){
+      console.log(response);
+      });
+  };
 
 
 	$scope.deleteQuantity=function(data,key){
