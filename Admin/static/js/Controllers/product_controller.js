@@ -131,9 +131,8 @@ $scope.AdminSuper=false;
     
     // Upload image
     	// NOW UPLOAD THE FILES.
-        $scope.uploadFiles = function (index) {
-	    console.log(index); 
-            /*
+        $scope.uploadFiles = function (product, index) {
+            console.log('Uploading images Please wait');
             $scope.status="Please while the products are being Uploaded..."
             //FILL FormData WITH FILE DETAILS.
 	    console.log("File Upload function");
@@ -147,12 +146,10 @@ $scope.AdminSuper=false;
             var objXhr = new XMLHttpRequest();
             objXhr.addEventListener("progress", updateProgress, false);
             objXhr.addEventListener("load", transferComplete, false);
-	    
-	  //add Product details in Product
 	  
  // SEND FILE DETAILS TO THE API.
-            objXhr.open("POST", base+"/api/Admin/addProduct/?product="+JSON.stringify($scope.Product));
-           objXhr.send(data);*/
+            objXhr.open("POST", base+"/api/Admin/imageUpload/?pid="+product._id);
+           objXhr.send(data);
         }
    
   // Delete Image 
@@ -260,23 +257,18 @@ $scope.AdminSuper=false;
 
             });
         };
-
-   // UPDATE PROGRESS BAR.
-        function updateProgress(e) {
-//             if (e.lengthComputable) {
-//                 document.getElementById('pro').setAttribute('value', e.loaded);
-//                 document.getElementById('pro').setAttribute('max', e.total);
-//             }
-        }
+        // UPDATE PROGRESS BAR.
+                function updateProgress(e) {
+        //             if (e.lengthComputable) {
+        //                 document.getElementById('pro').setAttribute('value', e.loaded);
+        //                 document.getElementById('pro').setAttribute('max', e.total);
+        //             }
+                }
 
         // CONFIRMATION.
         function transferComplete(e) {
-         $scope.products.splice($scope.editIndex,1,$scope.edit);
-        $scope.edit={};
-        $scope.editD={};
-
+	    alert(e.currentTarget.response);
         }
-
 
 	$scope.saveData=function(p){
 
