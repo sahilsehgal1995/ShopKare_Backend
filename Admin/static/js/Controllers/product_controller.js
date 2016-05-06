@@ -115,6 +115,46 @@ $scope.AdminSuper=false;
        $scope.error=error;
     });
    };
+   // Change images to be uploaded 
+   $scope.getFileDetails = function (e) {
+
+        $scope.files = [];
+        $scope.$apply(function () {
+
+            // STORE THE FILE OBJECT IN AN ARRAY.
+            for (var i = 0; i < e.files.length; i++) {
+                $scope.files.push(e.files[i])
+            }
+
+        });
+    };
+    
+    // Upload image
+    	// NOW UPLOAD THE FILES.
+        $scope.uploadFiles = function (index) {
+	    console.log(index); 
+            /*
+            $scope.status="Please while the products are being Uploaded..."
+            //FILL FormData WITH FILE DETAILS.
+	    console.log("File Upload function");
+            var data = new FormData();
+            console.log($scope.files);
+            for (var i in $scope.files) {
+                data.append("uploadedFile", $scope.files[i]);
+            }
+
+            // ADD LISTENERS.
+            var objXhr = new XMLHttpRequest();
+            objXhr.addEventListener("progress", updateProgress, false);
+            objXhr.addEventListener("load", transferComplete, false);
+	    
+	  //add Product details in Product
+	  
+ // SEND FILE DETAILS TO THE API.
+            objXhr.open("POST", base+"/api/Admin/addProduct/?product="+JSON.stringify($scope.Product));
+           objXhr.send(data);*/
+        }
+   
   // Delete Image 
    $scope.delete_image=function  (productindex, imageindex, image) {
      console.log($scope.products[productindex]._id);
@@ -220,32 +260,6 @@ $scope.AdminSuper=false;
 
             });
         };
-
-
-
-	  $scope.uploadFiles = function (p) {
-	
-		console.log(p);
-		delete p['$$hashKey'];
-             $scope.status="Please while the products are being Uploaded..."
-            //FILL FormData WITH FILE DETAILS.
-            console.log("Sumitted");
-            var data = new FormData();
-            console.log($scope.files);
-            for (var i in $scope.files) {
-		console.log($scope.files[i]);
-                data.append("uploadedFile", $scope.files[i]);
-            }
-		console.log(data);
-            // ADD LISTENERS.
-         /*   var objXhr = new XMLHttpRequest();
-            objXhr.addEventListener("progress", updateProgress, false);
-            objXhr.addEventListener("load", transferComplete, false);
-
- // SEND FILE DETAILS TO THE API.
-            objXhr.open("POST", base+"/api/Admin/updateProduct/?product="+JSON.stringify(p));
-           objXhr.send(data);
-       */ }
 
    // UPDATE PROGRESS BAR.
         function updateProgress(e) {
