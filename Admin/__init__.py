@@ -115,7 +115,7 @@ def add_routes(app=None):
   def imageUpload():
     try:
       if request.method == 'POST' and request.args.get('pid') and session['user'] == 'Super Admin':
-	path = ProductImagePath(pid) 
+	path = ProductImagePath(request.args.get('pid')) 
         if not path == 'Unable to fetch':
           file = request.files.getlist('uploadedFile')
           for f in file:
