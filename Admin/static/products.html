@@ -172,7 +172,11 @@
         <span ng-show="edit==p"><br><b>Change Pic : </b>
             <input type="file" id="file" name="file" multiple
                 onchange="angular.element(this).scope().getFileDetails(this)" />
+<<<<<<< HEAD
 	<button type="button" ng-click="">Upload Pic</button>
+=======
+	<button type="button" ng-click="uploadFiles(p)">Upload Pic</button>
+>>>>>>> 2fa18708a2b50e21ce9e0075352af2f0c0514632
         </span>
     </td>
 	
@@ -181,17 +185,17 @@
         <td>  
 	<p ng-repeat ="k in p.Quantity[0].Quantities">
         {{k[0]}} :- <b>RS {{k[1]}}</b>
-	<span ng-show="edit==p"><br>Quanitity<input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][0]">
-	<span ng-show="edit==p"><br>Price :<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][1]"></span>
-	<br>Orignal Price:<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][2]">
-	<br>Discount<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][3]">
-	<select ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][4]">
-	<option value="{{k}}" ng-repeat="k in OptionsProduct">{{k}}</option>
-	
-	</select>
+	   <span ng-show="edit==p"><br>Quanitity<input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][0]">
+	   <span ng-show="edit==p"><br>Price :<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][1]"></span>
+    	<br>Orignal Price:<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][2]">
+    	<br>Discount<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][3]">
+    	<select ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][4]">
+    	   <option value="{{k}}" ng-repeat="k in OptionsProduct">{{k}}</option>
+        </select>
 
-
-
+        <br>
+        Barcode : <input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][5]" > 
+       
        <button ng-show="edit==p" class='btn btn-xs btn-danger' ng-click="deleteQuantity(p,$index)">x</button>
 	 </p>
 	<button ng-show="edit ==p" class='btn btn-primary' ng-click='addNewQuantity(p)'>Add New Quantity</button>
