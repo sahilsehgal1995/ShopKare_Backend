@@ -157,7 +157,6 @@
         <th width="100 px">Product Name</th>
         <th>Selling Price</th>
 	<th>Description</th>
-    <th>Bar Code</th>
 	<th>Options</th>
 	</tr>
     </thead>
@@ -172,11 +171,7 @@
         <span ng-show="edit==p"><br><b>Change Pic : </b>
             <input type="file" id="file" name="file" multiple
                 onchange="angular.element(this).scope().getFileDetails(this)" />
-<<<<<<< HEAD
-	<button type="button" ng-click="">Upload Pic</button>
-=======
 	<button type="button" ng-click="uploadFiles(p)">Upload Pic</button>
->>>>>>> 2fa18708a2b50e21ce9e0075352af2f0c0514632
         </span>
     </td>
 	
