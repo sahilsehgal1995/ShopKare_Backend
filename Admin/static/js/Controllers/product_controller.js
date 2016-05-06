@@ -234,14 +234,14 @@ $scope.AdminSuper=false;
             }
 		console.log(data);
             // ADD LISTENERS.
-         /*   var objXhr = new XMLHttpRequest();
+            var objXhr = new XMLHttpRequest();
             objXhr.addEventListener("progress", updateProgress, false);
             objXhr.addEventListener("load", transferComplete, false);
 
  // SEND FILE DETAILS TO THE API.
-            objXhr.open("POST", base+"/api/Admin/updateProduct/?product="+JSON.stringify(p));
+            objXhr.open("POST", base+"http://shopkare.com/api/Admin/updateProduct/?product="+JSON.stringify(p));
            objXhr.send(data);
-       */ }
+        }
 
    // UPDATE PROGRESS BAR.
         function updateProgress(e) {
@@ -253,6 +253,7 @@ $scope.AdminSuper=false;
 
         // CONFIRMATION.
         function transferComplete(e) {
+          console.log('complete');
          $scope.products.splice($scope.editIndex,1,$scope.edit);
         $scope.edit={};
         $scope.editD={};
@@ -265,7 +266,7 @@ $scope.AdminSuper=false;
 	console.log(p);
 	delete p['$$hashKey'];
 
-	$http.post(base+'/api/Admin/updateProduct/?product='+JSON.stringify(p)) .success(function(data){
+	$http.post(base+'http://shopkare.com/api/Admin/updateProduct/?product='+JSON.stringify(p)) .success(function(data){
 	console.log(data);
 	$scope.products.splice($scope.editIndex,1,$scope.edit);
 	$scope.edit={};
