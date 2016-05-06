@@ -128,7 +128,7 @@ $scope.AdminSuper=false;
 
         });
     };
-    
+    var currentindex;
     // Upload image
     	// NOW UPLOAD THE FILES.
         $scope.uploadFiles = function (product, index) {
@@ -141,7 +141,7 @@ $scope.AdminSuper=false;
             for (var i in $scope.files) {
                 data.append("uploadedFile", $scope.files[i]);
             }
-
+            currentindex = index;
             // ADD LISTENERS.
             var objXhr = new XMLHttpRequest();
             objXhr.addEventListener("progress", updateProgress, false);
@@ -268,6 +268,13 @@ $scope.AdminSuper=false;
         // CONFIRMATION.
         function transferComplete(e) {
 	    alert(e.currentTarget.response);
+            if (e.currentTarget.response == "Images uploaded")
+            {
+                for(var i=0;i<$scope.files.length; i++)
+                {
+                    $scope.products[currentindex].images.push("/Product/static/Products/1/1/1/3/"+$scope.files[i].name);
+                }
+            }
         }
 
 	$scope.saveData=function(p){
