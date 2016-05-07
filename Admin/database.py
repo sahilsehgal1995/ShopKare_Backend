@@ -377,6 +377,8 @@ def reteriveAllBatches():
     connection, db, collection = MongoDBconnection('Batches', 'Sample')
     results = list()
     for collection in db.collection_names():
+      if collection == "system.indexes":
+        continue
       iter = db[collection].find()
       for index, item in enumerate(iter):
 	item['productid'] = collection
