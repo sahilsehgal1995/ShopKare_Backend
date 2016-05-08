@@ -115,7 +115,6 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 
   $scope.searchProduct1 = function()
   {
-
     ProductFactory.searchProduct('Grocery', $scope.query)
     .success(function(reply){
       if (reply == 'Unable to Fetch')
@@ -130,18 +129,13 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       }
       else{
         $scope.items = reply;
-        for (var i=0; i< Object.keys(reply).length; i++)
-        {
-          $scope.states.push(reply[i].product_name);
-        }
-        console.log($scope.states);
-
       }
     })
     .error(function(error){
       $scope.message ='Unable to Search Results';
     });
   };
+  $scope.show_length = 5;
   $scope.show_result = false;
   $scope.hide_popup = function(){
     $scope.show_result = false;
@@ -203,6 +197,19 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       console.log(error);
     });
   };
+  $scope.viewProduct = function(product){
+    $state.go('grocery.home.Product',{
+      product: JSON.stringify(product)
+    });
+  };
+  $scope.showSubCategoryProducts = function(mainCategory,subCategory)
+  {
+    $state.go('grocery.home.SubCategoryProducts',{
+      level1Category : 'Grocery',
+      mainCategory : mainCategory,
+      subcategory : subCategory
+    });
+  };
 }])
 
 .controller('footerController',['$scope','$http',function($scope,$http){
@@ -220,7 +227,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 
 }])
 
-.controller('sidebarController', function($scope,$location, $state, Categories){
+.controller('sidebarController', function($scope,$location, $state, $location, $rootScope, Categories){
   console.log("sidebar");
 
   $scope.path = $location.path().slice(1);
@@ -256,6 +263,32 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
     $scope.showCategories = Array($scope.showCategories.length).fill(false);
     $scope.showCategories[index]=false;
   }
+  $scope.$on('show_filter', function(event, show_filter){
+    $scope.show_filter = show_filter;
+  });
+  $scope.$on('brand_filters', function(event, data){
+    $scope.brand_filters = data;
+  });
+  $scope.selected_filters = [];
+  $scope.manage_filter = function(val){
+    var i = $scope.selected_filters.indexOf(val);
+    if(i === -1)
+      $scope.selected_filters.push(val);
+    else
+      $scope.selected_filters.splice(i, 1);
+    $rootScope.$broadcast('selected_filters', $scope.selected_filters);
+  };
+  $scope.check_filter = function(val){
+    var i = $scope.selected_filters.indexOf(val);
+    if(i === -1)
+      return false;
+    else
+      return true;
+  };
+  $scope.reset_filter = function(){
+    $scope.selected_filters = [];
+    $rootScope.$broadcast('selected_filters', $scope.selected_filters);
+  };
   $scope.Categories =['Baby Products', 'Food'];
   $scope.categories = {
     'grocery' : [ {label : "Baby Products", children :[ "Baby Food", "Baby Hygiene", "Baby Care" ] ,
@@ -285,8 +318,9 @@ $scope.cat = $scope.categories[$scope.path];
 })
 
 
-.controller('cartController', function($scope, CartFactory){
+.controller('cartController', function($scope, $rootScope, CartFactory){
   console.log("cart");
+  $rootScope.$broadcast('show_filter', false);
   $scope.items=[];
   $scope.totalammount=0;
   CartFactory.getCartItems()
@@ -423,7 +457,7 @@ $scope.cat = $scope.categories[$scope.path];
 
 
 .controller('productsGroceryController',['$scope', '$http', '$rootScope', '$state', 'ProductFactory', 'CartFactory', 'Categories', function($scope, $http, $rootScope, $state, ProductFactory, CartFactory, Categories){
-
+  $rootScope.$broadcast('show_filter', false);
   $scope.IncreaseQuantity = function(product_data, quantity)
   {
     var cityIndex = 0;
@@ -536,7 +570,6 @@ $scope.cat = $scope.categories[$scope.path];
       product: JSON.stringify(product)
     });
   };
-
   $scope.removeSpace = function(value){
     if (value)
       return value.replace(/ /g, '_');
@@ -564,6 +597,7 @@ $scope.cat = $scope.categories[$scope.path];
 
 .controller('CategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'Categories', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, Categories){
   console.log('CategoryProductsControllerproducts');
+  $rootScope.$broadcast('show_filter', false);
   $scope.mainCategory = $stateParams.mainCategory;
   $scope.subCategories = Categories.getSubCategories($stateParams.level1Category, $stateParams.mainCategory);
   $scope.showallSubCategoryProducts = function(mainCategory, subCategory)
@@ -683,7 +717,7 @@ $scope.cat = $scope.categories[$scope.path];
       product: JSON.stringify(product)
     });
   };
-
+  $rootScope.$broadcast('show_filter', false);
   $scope.removeSpace = function(value){
     if (value)
       return value.replace(/ /g, '_');
@@ -710,6 +744,7 @@ $scope.cat = $scope.categories[$scope.path];
 
 .controller('SubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
   console.log('CategoryProductsControllerproducts');
+  $rootScope.$broadcast('show_filter', false);
   $scope.mainCategory = $stateParams.mainCategory;
   $scope.subCategory = $stateParams.subcategory;
   $scope.showallSubCategoryProducts = function()
@@ -866,6 +901,7 @@ $scope.cat = $scope.categories[$scope.path];
 
 .controller('searchController',['$scope','$http','$rootScope', '$stateParams' , 'ProductFactory', 'CartFactory',function($scope,$http,$rootScope, $stateParams, ProductFactory, CartFactory){
   console.log($stateParams.query);
+  $rootScope.$broadcast('show_filter', true);
   $scope.AddQuantity = function(productindex, quantity)
   {
     var cityIndex = 0;
@@ -975,8 +1011,15 @@ $scope.cat = $scope.categories[$scope.path];
       product:JSON.stringify($scope.products[index])
     });
   };
+  $scope.selected_filters = [];
+  $scope.$on('selected_filters', function(event, data){
+    $scope.selected_filters = data;
+  });
+  $scope.filter_results = function(item){
+    if(!$scope.selected_filters.length || $scope.selected_filters.indexOf(item['Product Category']) !== -1)
+      return true;
+  }
   $scope.quantity='';
-  $scope.products=['wine'];
 
   ProductFactory.searchProduct('Grocery', $stateParams.query)
   .success(function(reply){
@@ -990,12 +1033,15 @@ $scope.cat = $scope.categories[$scope.path];
     }
     else{
       $scope.products=[];
+      var brand_filters = [];
       for (var i=0; i< Object.keys(reply).length; i++)
       {
         $scope.products.push(reply[i]);
         $scope.products[i].quantity=0;
+        if(brand_filters.indexOf(reply[i]['Product Category']) === -1)
+          brand_filters.push(reply[i]['Product Category']);
       }
-
+      $rootScope.$broadcast('brand_filters', brand_filters);
     }
   })
   .error(function(error){
@@ -1040,6 +1086,7 @@ $scope.cat = $scope.categories[$scope.path];
 }])
 .controller('AllSubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
   console.log('CategoryProductsControllerproducts');
+  $rootScope.$broadcast('show_filter', true);
   $scope.mainCategory = $stateParams.mainCategory;
   $scope.subCategory = $stateParams.subcategory;
   $scope.IncreaseQuantity = function(product_data, quantity)
@@ -1151,7 +1198,14 @@ $scope.cat = $scope.categories[$scope.path];
       product: JSON.stringify(product)
     });
   };
-
+  $scope.selected_filters = [];
+  $scope.$on('selected_filters', function(event, data){
+    $scope.selected_filters = data;
+  });
+  $scope.filter_results = function(item){
+    if(!$scope.selected_filters.length || $scope.selected_filters.indexOf(item['Product Category']) !== -1)
+      return true;
+  }
   ProductFactory.getProducts($stateParams.level1Category, $stateParams.mainCategory, $stateParams.subcategory)
   .success(function(reply){
     if (reply == 'Unable to Fetch')
@@ -1160,11 +1214,18 @@ $scope.cat = $scope.categories[$scope.path];
     }
     else{
       $scope.products = reply;
+      var brand_filters = [];
+      for(var i = 0; i < reply.length; i++){
+        if(brand_filters.indexOf(reply[i]['Product Category']) === -1)
+            brand_filters.push(reply[i]['Product Category']);
+      }
+      $rootScope.$broadcast('brand_filters', brand_filters);
     }
   });
 }])
 .controller('ProductDetailsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
   console.log('ProductDetailsController');
+  $rootScope.$broadcast('show_filter', false);
   $scope.product_data = JSON.parse($stateParams.product);
   console.log($scope.product_data);
 

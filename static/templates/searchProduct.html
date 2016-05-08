@@ -3,7 +3,7 @@
 <span style="font-family: 'Roboto', sans-serif;font-size:15px;font-weight:300;">
 {{message}}
 </span>
-<div class="col-sm-3" ng-if="$index >= 0" ng-repeat="(index,product) in products">
+<div class="col-sm-3" ng-if="$index >= 0" ng-repeat="(index,product) in products | filter:filter_results">
   <div class="product-image-wrapper1">
       <div class="single-products">
 	  <div style="box-shadow: 1px 1px 0px #b2b2b2 ">

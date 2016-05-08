@@ -183,4 +183,21 @@ angular.module('Data.factory', [])
     }
   }
 }])
-;
+.directive('isolateScrolling', function () {
+  // prevent parent scrolling if current element has scroll
+  return {
+    restrict: 'A',
+    link: function (scope, element, attr) {
+      element.bind('mousewheel', function (e) {
+        e.deltaY = e.deltaY != undefined ? e.deltaY : e.originalEvent.deltaY;
+        if (this.clientHeight != this.scrollHeight && ((e.deltaY > 0 && this.clientHeight + this.scrollTop == this.scrollHeight) ||
+          (e.deltaY < 0 && this.scrollTop == 0))) {
+          e.stopPropagation();
+        e.preventDefault();
+        return false;
+      }
+      return true;
+    });
+    }
+  };
+});

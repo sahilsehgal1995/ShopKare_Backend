@@ -494,6 +494,17 @@
 		display: inline-block;
 	    padding: 5px 0px 0px 40px;
 	    height: 100%;
+	    max-width: 100%;
+	}
+	.search-dropdown .item-name span:first-child{
+		white-space: nowrap;
+    	max-width: 100%;
+	}
+	.search-dropdown .item-name span:last-child{
+		white-space: nowrap;
+    	max-width: 100%;
+    	color: #7B7BFF;
+    	font-size: 11px;
 	}
 	.search-dropdown .cart-quantity{
 		width: 26px;
@@ -508,14 +519,16 @@
 	}
 	.search-dropdown .left-side{
 		display: inline-block;
-	    width: 50%;
+	    width: 53%;
 	    max-height: 100%;
 	    vertical-align: middle;
 	    height: 100%;
+	    cursor: pointer;
+	    overflow: hidden;
 	}
 	.search-dropdown .right-side{
 		display: inline-block;
-		width: 49%;
+		width: 46%;
 		text-align: right;
 		height: 100%;
 	}
@@ -524,6 +537,15 @@
 	}
 	.search-dropdown .right-side>div{
 		margin-right: 10px;
+	}
+	.search-dropdown .search-last-item{
+		text-align: center;
+	    height: 24px;
+	    line-height: 24px;
+	    font-weight: bold;
+	}
+	.search-dropdown .search-last-item span{
+		cursor: pointer;
 	}
 </style>
 </head>
@@ -553,15 +575,18 @@
 			<ul class="nav navbar-nav" style="width: 40%;margin-top: 20px;">
 				<div class="search_box">
 					<div class="input-group">
-						<form ng-submit="searchProduct()" outside-click="hide_popup()">
+						<form ng-submit="searchProduct();hide_popup();" outside-click="hide_popup()">
 							<!-- <input type="text" class="form-control" ng-change="searchProduct1()"  ng-model="query" placeholder="Search Your Needs" typeahead="c as c for c in states | filter:$viewValue | limitTo:10" typeahead-min-length='1' typeahead-on-select='onSelectPart($item, $model, $label)' typeahead-template-url="customTemplate.html" class="form-control"> -->
 							<input type="text" class="form-control" ng-change="searchProduct1();show_popup();items='';" ng-click="show_popup();" ng-model="query" placeholder="Search Your Needs">
 							<div class="search-dropdown" ng-show="items.length&&show_result" ng-click="$event.stopPropagation();">
-								<div class="search-item-list" ng-repeat="item in items">
+								<div class="search-item-list" ng-repeat="item in items track by $index" ng-if="$index<show_length">
 									<div class="search-item" ng-repeat="(index,quantity) in item.Quantity[0].Quantities">
-										<div class="left-side">
+										<div class="left-side" ng-click="viewProduct(item);hide_popup();">
 										<div class="item-image-head"><img class="item-image" src="http://www.shopkare.com{{item.images[0]}}"></div>
-										<span class="item-name">{{item.product_name}}</span>
+										<span class="item-name">
+											<span>{{item.product_name}}</span><br>
+											<span ng-click="$event.stopPropagation();showSubCategoryProducts(item['Main Category'], item['Sub Category']);hide_popup();">{{item['Sub Category']}}</span>
+										</span>
 										</div>
 										<div class="right-side">
 										<span class="item-quantity">{{quantity[0]}}</span>
@@ -575,10 +600,11 @@
 										</div>
 									</div>
 								</div>
+								<div class="search-last-item" ng-click="searchProduct();hide_popup();"><span>View All</span></div>
 							</div>
 						</form>
 	  <span class="input-group-btn">
-	  <button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct()" type="Button"><span class="glyphicon glyphicon-search"></span>
+	  <button class="btn btn-default" style="height:34px; padding: 3px 18px;border: none; background-color: #a6a6a6; color:#fff;" ng-disabled="!query" ng-click="searchProduct();hide_popup();" type="Button"><span class="glyphicon glyphicon-search"></span>
 	  </button>
 	  </span>
 					</div><!-- /input-group -->
