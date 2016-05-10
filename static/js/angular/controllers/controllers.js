@@ -69,7 +69,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   });
 })
 
-.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory){
+.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', 'toastr', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory, toastr){
   console.log('header');
   $scope.Login = function()
   {
@@ -81,7 +81,9 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.messageLogin =  resp; 
       if (resp=='Login Success')
       {
-        $state.go('grocery.home.CategoryProducts');
+        angular.element(document.getElementById('myModal')).modal('hide');
+        toastr.success("Logged In Successfully");
+        // $state.go('grocery.home.CategoryProducts');
       }
       else{
         $scope.messageLogin =  resp;
@@ -456,7 +458,7 @@ $scope.cat = $scope.categories[$scope.path];
 })
 
 
-.controller('productsGroceryController',['$scope', '$http', '$rootScope', '$state', 'ProductFactory', 'CartFactory', 'Categories', function($scope, $http, $rootScope, $state, ProductFactory, CartFactory, Categories){
+.controller('productsGroceryController',['$scope', '$http', '$rootScope', '$state', 'ProductFactory', 'CartFactory', 'Categories', 'toastr', function($scope, $http, $rootScope, $state, ProductFactory, CartFactory, Categories, toastr){
   $rootScope.$broadcast('show_filter', false);
   $scope.IncreaseQuantity = function(product_data, quantity)
   {
@@ -476,11 +478,15 @@ $scope.cat = $scope.categories[$scope.path];
     .success(function(response){
       if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         product_data.quantity = product_data.quantity+1;
 
       }
+      else
+        toastr.error(response);
       console.log(response,2000);
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       console.log('Unable to add. Please try after sometime');
       console.log(error);
     });
@@ -505,10 +511,14 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
+        else
+          toastr.error(response);
         console.log(response);
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log('Unable to add. Please try after sometime');
         console.log(error);
       });
@@ -531,11 +541,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           product_data.quantity=0;
         }
+        else
+          toastr.error(response);
         console.log(response);
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
       }); 
     }
@@ -558,8 +572,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       console.log(response);
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       console.log('Unable to add. Please try after sometime');
       console.log(error);
     });
@@ -595,7 +611,7 @@ $scope.cat = $scope.categories[$scope.path];
   }
 }])
 
-.controller('CategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'Categories', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, Categories){
+.controller('CategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'Categories', 'toastr', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, Categories, toastr){
   console.log('CategoryProductsControllerproducts');
   $rootScope.$broadcast('show_filter', false);
   $scope.mainCategory = $stateParams.mainCategory;
@@ -626,10 +642,14 @@ $scope.cat = $scope.categories[$scope.path];
     .success(function(response){
       if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         product_data.quantity = product_data.quantity+1;
       }
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -653,10 +673,14 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         product_data.message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
@@ -679,11 +703,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           product_data.quantity=0;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
         product_data.message = 'Unable to add';
       }); 
@@ -706,8 +734,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -742,7 +772,7 @@ $scope.cat = $scope.categories[$scope.path];
   }
 }])
 
-.controller('SubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
+.controller('SubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'toastr', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, toastr){
   console.log('CategoryProductsControllerproducts');
   $rootScope.$broadcast('show_filter', false);
   $scope.mainCategory = $stateParams.mainCategory;
@@ -771,12 +801,16 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      if (response == 'Updated in cart' || 'Added to cart')
+      if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         product_data.quantity = product_data.quantity+1;
       }
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -798,12 +832,16 @@ $scope.cat = $scope.categories[$scope.path];
       };
       CartFactory.addToCart(product)
       .success(function(response){
-        if (response == 'Updated in cart' || 'Added to cart')
+        if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         product_data.message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
@@ -826,11 +864,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           product_data.quantity=0;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
         product_data.message = 'Unable to add';
       }); 
@@ -853,8 +895,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -899,7 +943,7 @@ $scope.cat = $scope.categories[$scope.path];
   });
 }])
 
-.controller('searchController',['$scope','$http','$rootScope', '$stateParams' , 'ProductFactory', 'CartFactory',function($scope,$http,$rootScope, $stateParams, ProductFactory, CartFactory){
+.controller('searchController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'toastr', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, toastr){
   console.log($stateParams.query);
   $rootScope.$broadcast('show_filter', true);
   $scope.AddQuantity = function(productindex, quantity)
@@ -918,12 +962,16 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      if (response == 'Updated in cart' || 'Added to cart')
+      if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         $scope.products[productindex].quantity = $scope.products[productindex].quantity+1;
       }
+      else
+        toastr.error(response);
       $scope.products[productindex].message = response;
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       $scope.products[productindex].message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -945,12 +993,16 @@ $scope.cat = $scope.categories[$scope.path];
       };
       CartFactory.addToCart(product)
       .success(function(response){
-        if (response == 'Updated in cart' || 'Added to cart')
+        if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           $scope.products[productindex].quantity = $scope.products[productindex].quantity-1;
         }
+        else
+          toastr.error(response);
         $scope.products[productindex].message = response;
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         $scope.products[productindex].message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
@@ -973,11 +1025,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           $scope.products[productindex].quantity=0;
         }
+        else
+          toastr.error(response);
         $scope.products[productindex].message = response;
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
         $scope.products[productindex].message = 'Unable to add';
       }); 
@@ -1000,14 +1056,16 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       $scope.products[productindex].message = response;
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       $scope.products[productindex].message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
   };
   $scope.viewProduct = function(index){
-    $state.go('app.product',{
+    $state.go('grocery.home.Product',{
       product:JSON.stringify($scope.products[index])
     });
   };
@@ -1067,6 +1125,9 @@ $scope.cat = $scope.categories[$scope.path];
     obj = Object.keys(temp[i])[0];
     $scope.allCategories[obj] = temp[i][obj];
   }
+  $scope.$on('show_filter', function(event, show_filter){
+    $scope.show_filter = show_filter;
+  });
   $scope.showCategoryProducts = function(mainCategory)
   {
     console.log(mainCategory);
@@ -1084,7 +1145,7 @@ $scope.cat = $scope.categories[$scope.path];
     });
   };
 }])
-.controller('AllSubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
+.controller('AllSubCategoryProductsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'toastr', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, toastr){
   console.log('CategoryProductsControllerproducts');
   $rootScope.$broadcast('show_filter', true);
   $scope.mainCategory = $stateParams.mainCategory;
@@ -1107,10 +1168,14 @@ $scope.cat = $scope.categories[$scope.path];
     .success(function(response){console.log(response)
       if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         product_data.quantity = product_data.quantity+1;
       }
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -1134,10 +1199,14 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         product_data.message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
@@ -1160,11 +1229,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           product_data.quantity=0;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
         product_data.message = 'Unable to add';
       }); 
@@ -1187,8 +1260,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -1223,7 +1298,7 @@ $scope.cat = $scope.categories[$scope.path];
     }
   });
 }])
-.controller('ProductDetailsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory){
+.controller('ProductDetailsController',['$scope','$http','$rootScope', '$stateParams', '$state', 'ProductFactory', 'CartFactory', 'toastr', function($scope,$http,$rootScope, $stateParams, $state, ProductFactory, CartFactory, toastr){
   console.log('ProductDetailsController');
   $rootScope.$broadcast('show_filter', false);
   $scope.product_data = JSON.parse($stateParams.product);
@@ -1247,10 +1322,14 @@ $scope.cat = $scope.categories[$scope.path];
     .success(function(response){console.log(response)
       if (response == 'Updated in cart' || response == 'Added to cart')
       {
+        toastr.success(response);
         product_data.quantity = product_data.quantity+1;
       }
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to update. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });
@@ -1274,10 +1353,14 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Updated in cart' || response == 'Added to cart')
         {
+          toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       }).error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         product_data.message = 'Unable to add. Please try after sometime' ;
         console.log(error);
       });
@@ -1300,11 +1383,15 @@ $scope.cat = $scope.categories[$scope.path];
       .success(function(response){
         if (response == 'Removed from cart')
         {
+          toastr.success(response);
           product_data.quantity=0;
         }
+        else
+          toastr.error(response);
         product_data.message = response;
       })
       .error(function(error){
+        toastr.error('Unable to update. Please try after sometime');
         console.log(error);
         product_data.message = 'Unable to add';
       }); 
@@ -1327,8 +1414,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
+      toastr.success(response);
       product_data.message = response;
     }).error(function(error){
+      toastr.error('Unable to add. Please try after sometime');
       product_data.message = 'Unable to add. Please try after sometime';
       console.log(error);
     });

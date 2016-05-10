@@ -1,53 +1,35 @@
 <span style="font-family: 'Roboto', sans-serif;font-size:20px;font-weight:700;">Search Results</span>
 <hr>
 <span style="font-family: 'Roboto', sans-serif;font-size:15px;font-weight:300;">
-{{message}}
+	{{message}}
 </span>
 <div class="col-sm-3" ng-if="$index >= 0" ng-repeat="(index,product) in products | filter:filter_results">
-  <div class="product-image-wrapper1">
-      <div class="single-products">
-	  <div style="box-shadow: 1px 1px 0px #b2b2b2 ">
-	      <div><img ng-src="http://shopkare.com/{{product.images[0]}}" width="100%" height="110px" alt="" /></div>
-	      <div style="margin-top: 5px;">
-		  <div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
-		  <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
-		  <select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
-		  </select>
-		  <br><center>
-		  <div class="container">
-		    <div class="row">
-		    <div class="cart_quantity_button">
-                    <a class="cart_quantity_up">
-                      <button ng-click="AddQuantity($index, index)">+</button>
-                    </a>
-                    <form ng-submit="AddToTrendingCart($index, index)">
-                    <input class="cart_quantity_input" type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="width: 5%; float: left; margin-left:4px;" value=1>
-                    </form>
-                    <a class="cart_quantity_up">
-                      <button ng-click="RemoveQuantity($index, index)">--</button>
-                    </a>
-                  </div>
-                  </center>
-		      <!--<div class="col">
-		      <button type="button" class="btn button-outline" aria-label="Left Align">
-			<span class="glyphicon glyphicon-minus" aria-hidden="true" ng-click="RemoveQuantity($index, index)"></span>
-		      </button>
-		      </div>
-		      <div class="col">
-			<form ng-submit="AddToTrendingCart($index, index)">
-			<input type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="width: 100%; float: left; margin-left:4px;" value=1>
-			</form>
-		      </div>
-		      <div class="col">
-		      <button type="button" class="btn button-outline" aria-label="Left Align">
-			<span class="glyphicon glyphicon-plus" ng-click="AddQuantity($index, index)" aria-hidden="true"></span>
-		      </button>
-		      </div>-->
-		    </div>
-		    {{product.message}}
-		    </div>
-	    </div>
+	<div class="product-image-wrapper1">
+		<div class="single-products">
+			<div style="box-shadow: 1px 1px 0px #b2b2b2 ">
+				<div ng-click="viewProduct($index);" style="cursor: pointer;">
+					<div class="text-center"><img style="max-width: 150px;max-height: 200px;height: auto;width: auto;" ng-src="http://shopkare.com/{{product.images[0]}}" alt="" /></div>
+					<div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
+					<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
+				</div>
+				<div style="margin-top: 5px;">
+					<select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
+					</select>
+					<div class="cart_quantity_button" style="display: flex;flex-direction: row;align-items: center;">
+						<a class="cart_quantity_up">
+							<button ng-click="AddQuantity($index, index)">+</button>
+						</a>
+						<form ng-submit="AddToTrendingCart($index, index)" style="display: inline-block;width: 30%;padding: 0px 1px;">
+							<input class="cart_quantity_input" type="number" ng-model="product.quantity" ng-init='product.quantity=0' style="max-width: 100%;" ng-change="AddToTrendingCart($index, index)">
+						</form>
+						<a class="cart_quantity_up">
+							<button ng-click="RemoveQuantity($index, index)">--</button>
+						</a>
+						<span style="padding-left: 3px;">{{index[4]}}</span>
+					</div>
+					<div style="height: 35px;">{{product.message}}</div>
+				</div>
+			</div>
+		</div>
 	</div>
-    </div>
-  </div>
-</div> 
+</div>
