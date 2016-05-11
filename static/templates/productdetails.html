@@ -12,8 +12,8 @@
 <div class="product-details">
     <!--product-details-->
     <div class="col-sm-5">
-        <div class="view-product" ng-init="selectedImageId=0;">
-            <img ng-src="http://shopkare.com/{{product_data.images[selectedImageId]}}" alt="" />
+        <div class="view-product" ng-init="selectedImageId=0;" style="width: 320px;height: 380px;text-align: center;">
+            <img style="max-width: 320px;max-height: 380px;width: auto;height: auto;" ng-src="http://shopkare.com/{{product_data.images[selectedImageId]}}" alt="" />
         </div>
         <div id="similar-product" ng-if="product_data.images[1]" class="carousel slide" data-ride="carousel">
             <!-- Wrapper for slides -->
@@ -101,7 +101,7 @@
         <div class="DocumentItem" ng-repeat="product in similar_products track by $index " style="margin-right: 20px;height: auto;min-height: 200px;border: none;display: inline-block;">
             <div class="single-products" style="width: 200px;">
                 <div ng-click="viewProduct(product);" style="cursor: pointer;">
-                <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
+                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" /></div>
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
@@ -109,7 +109,7 @@
                 </div>
                 <select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
                 </select>
-                <div class="cart_quantity_button">
+                <div class="cart_quantity_button" style="display: flex;flex-direction: row;align-items: center;">
                     <a class="cart_quantity_up" style="float: none;">
                         <button ng-click="IncreaseQuantity(product, index)">+</button>
                     </a>
@@ -119,6 +119,7 @@
                     <a class="cart_quantity_up" style="float: none;">
                         <button ng-click="DecreaseQuantity(product, index)">--</button>
                     </a>
+                    <span style="padding-left: 5px;">{{index[4]}}</span>
                 </div>
             </div>
         </div>
@@ -132,7 +133,7 @@
         <div class="DocumentItem" ng-repeat="product in try_products track by $index " style="margin-right: 20px;height: auto;min-height: 200px;border: none;display: inline-block;">
             <div class="single-products" style="width: 200px;">
                 <div ng-click="viewProduct(product);" style="cursor: pointer;">
-                <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
+                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" /></div>
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
@@ -140,7 +141,7 @@
                 </div>
                 <select  ng-model='index' ng-change="product.message=''" ng-init="index=product.Quantity[0].Quantities[0]" ng-options="Quant[0] for Quant in product.Quantity[0].Quantities" style="background: -webkit-linear-gradient(white, white); width:90%">
                 </select>
-                <div class="cart_quantity_button">
+                <div class="cart_quantity_button" style="display: flex;flex-direction: row;align-items: center;">
                     <a class="cart_quantity_up" style="float: none;">
                         <button ng-click="IncreaseQuantity(product, index)">+</button>
                     </a>
@@ -150,6 +151,7 @@
                     <a class="cart_quantity_up" style="float: none;">
                         <button ng-click="DecreaseQuantity(product, index)">--</button>
                     </a>
+                    <span style="padding-left: 5px;">{{index[4]}}</span>
                 </div>
             </div>
         </div>

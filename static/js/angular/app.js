@@ -1,8 +1,8 @@
-var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers','ui.bootstrap']);
+var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers','ui.bootstrap', 'toastr']);
 
 
-app.config(function($stateProvider, $urlRouterProvider) {
-  $urlRouterProvider.otherwise('/index');
+app.config(function($stateProvider, $urlRouterProvider, toastrConfig) {
+  $urlRouterProvider.otherwise('/grocery/home/products');
   $stateProvider
 
     .state('index',{
@@ -293,39 +293,11 @@ app.config(function($stateProvider, $urlRouterProvider) {
           },
         },
       controller : 'contactController'
-    })
+    });
 
+    angular.extend(toastrConfig, {
+      positionClass: 'toast-top-center',
+      preventOpenDuplicates: true,
+      timeOut: 5000
+    });
   });
-
-
-
-
-
-
-
-
-
-
-
-
-    
-    
-   
- 
- 
-   
-  
-   
-   
-
-
-
-
-
-
- 
-
-          
-
- 
-

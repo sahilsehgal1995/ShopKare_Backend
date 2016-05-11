@@ -41,13 +41,13 @@
   <hr>
   <div id="sidebar-wrapper">
     <ul class="sidebar-nav" ng-repeat="(key,data) in allCategories" class="sidebar-brand" >
-      <li class="sidebar-brand" ng-repeat="(mainCategory,d) in data" style="font-size:1.2em">
+      <li class="sidebar-brand" ng-repeat="(mainCategory,d) in data" ng-mouseleave="collapseCategory($parent.$index)" style="font-size:1.2em">
         <button  style="width:90%; padding: 0px; background-color: #4c4c4c !important;color:white;font-size: 16px !important;" class="btn btn-inverse" ng-init="showCategories[$parent.$index]=false">
           <div class="row">
             <div class="col-md-9" ng-click="showCategoryProducts(mainCategory)" style="text-align:left;"> {{mainCategory}} </div>
             <div class="col-md-2">
-              <i class="fa fa-minus " ng-click="collapseCategory($parent.$index)"  ng-show="showCategories[$parent.$index]"></i>
-              <i class="fa fa-plus " ng-click="expandCategory($parent.$index)" ng-hide="showCategories[$parent.$index]"></i>
+              <i class="fa fa-minus" ng-show="showCategories[$parent.$index]"></i>
+              <i class="fa fa-plus" ng-mouseover="expandCategory($parent.$index)" ng-hide="showCategories[$parent.$index]"></i>
             </div>
           </div>
         </button>
