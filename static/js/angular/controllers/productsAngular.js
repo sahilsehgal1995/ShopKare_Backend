@@ -1,6 +1,6 @@
 var app9=angular.module('ProductsHandler',['FactoryHandler']);
 
-var base="http://shopkare.com";
+var base="";
 app9.controller('HOT_DEALS',['$scope','$http','$rootScope',function($scope,$http,$rootScope){
 $http.get(base+'/api/Product/getRandomProducts/?level1category=Grocery')
 .success(function(data){

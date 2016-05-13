@@ -28,7 +28,7 @@ $scope.cat = [
       {label :"Home Care" , children : [ "Pooja Items" ]}
     ];
 
-var base = 'http://shopkare.com';
+var base = '';
 $scope.login=false;
 $scope.ProdtmessageError=true;
 $scope.CartProductsCheck=true;
@@ -201,7 +201,7 @@ $scope.level3Categories=[];
           var category2=c2;
           $scope.products=[]; 
 
-        $http.get("http://shopkare.com/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+category1+"&SubCategory="+category2)
+        $http.get("/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+category1+"&SubCategory="+category2)
         .success(function(response){
 	console.log(response);
           $scope.Pindex=0;  

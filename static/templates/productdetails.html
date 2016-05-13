@@ -2,7 +2,7 @@
   <!--product-details-->
   <div class="col-sm-5">
     <div class="view-product">
-      <img ng-src="http://shopkare.com/{{ProductDT.images[initialImage]}}" alt="" />
+      <img ng-src="/{{ProductDT.images[initialImage]}}" alt="" />
 
     </div>
     <div id="similar-product" ng-show="ProductDT.images[2]" class="carousel slide" data-ride="carousel">
@@ -10,27 +10,27 @@
       <!-- Wrapper for slides -->
       <div class="carousel-inner">
         <div class="item active" style='padding-left:30px'>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
           </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
           </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
-          </a>
-        </div>
-        <div class="item" style='padding-left:30px'>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
-          </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
-          </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
           </a>
         </div>
         <div class="item" style='padding-left:30px'>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
           </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
           </a>
-          <a href=""><img ng-src="http://shopkare.com/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
+          <a href=""><img ng-src="/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
+          </a>
+        </div>
+        <div class="item" style='padding-left:30px'>
+          <a href=""><img ng-src="/{{ProductDT.images[2]}}" ng-click="changeImage(2)" alt="" width="60px" />
+          </a>
+          <a href=""><img ng-src="/{{ProductDT.images[3]}}" ng-click="changeImage(3)" alt="" width="60px" />
+          </a>
+          <a href=""><img ng-src="/{{ProductDT.images[1]}}" ng-click="changeImage(1)" alt="" width="60px" />
           </a>
         </div>
 
@@ -69,9 +69,9 @@
 
       <a ng-show="!login" ng-click="loginError()" data-toggle="modal" data-target="#myModal" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>
 
-      <span ng-show="login">						
+      <span ng-show="login">
 
-	
+
 <a ng-show="ProductDT.cart[k]=='Add to Cart'" ng-click="addCart(ProductDT,k)"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>
 
 										<a ng-show="ProductDT.cart[k]=='Already in Cart'" ng-disable="ProductDT.cart[k]=='Already in Cart'"class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>{{ProductDT.cart[k]}}</a>

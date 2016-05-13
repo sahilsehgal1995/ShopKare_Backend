@@ -1,4 +1,4 @@
-    var base ="http://www.shopkare.com";
+    var base ="";
 //    var base ='http://0.0.0.0:5000';
 
 angular.module('Data.factory', [])
@@ -26,7 +26,7 @@ angular.module('Data.factory', [])
 }])
 
 .factory('UserFactory', ['$http', 'AuthFactory', function($http, AuthFactory){
-      var base ="http://www.shopkare.com";
+      var base ="";
   
   var UserAPI = {
     
@@ -46,7 +46,7 @@ angular.module('Data.factory', [])
 }])
 
 .factory('ProductFactory', ['$http', function($http){
-      var base ="http://www.shopkare.com";
+      var base ="";
   var Products = {
     
     getProducts: function(category, MainCategory, SubCategory){

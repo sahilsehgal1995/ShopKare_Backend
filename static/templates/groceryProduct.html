@@ -162,25 +162,25 @@
                     <!--<div class="container-fluid" >-->
                         <!--<div class="row">-->
                             <!--<div class="col-md-3">-->
-                            <!--<img ng-src="http://shopkare.com/{{product.images[0]}}">-->
+                            <!--<img ng-src="http:///{{product.images[0]}}">-->
                             <!--<div class="carousel-caption">-->
                                 <!--<h4 style="background: #b4b4b4 ;padding:10px;border-radius:5px;">{{product.product_name}}</h4>-->
                             <!--</div>-->
                             <!--</div>-->
                             <!--<div class="col-md-3">-->
-                                <!--<img ng-src="http://shopkare.com/{{product.images[0]}}">-->
+                                <!--<img ng-src="http:///{{product.images[0]}}">-->
                                 <!--<div class="carousel-caption">-->
                                     <!--<h4 style="background: #b4b4b4 ;padding:10px;border-radius:5px;">{{product.product_name}}</h4>-->
                                 <!--</div>-->
                             <!--</div>-->
                             <!--<div class="col-md-3">-->
-                                <!--<img ng-src="http://shopkare.com/{{product.images[0]}}">-->
+                                <!--<img ng-src="http:///{{product.images[0]}}">-->
                                 <!--<div class="carousel-caption">-->
                                     <!--<h4 style="background: #b4b4b4 ;padding:10px;border-radius:5px;">{{product.product_name}}</h4>-->
                                 <!--</div>-->
                             <!--</div>-->
                             <!--<div class="col-md-3">-->
-                                <!--<img ng-src="http://shopkare.com/{{product.images[0]}}">-->
+                                <!--<img ng-src="http:///{{product.images[0]}}">-->
                                 <!--<div class="carousel-caption">-->
                                     <!--<h4 style="background: #b4b4b4 ;padding:10px;border-radius:5px;">{{product.product_name}}</h4>-->
                                 <!--</div>-->
@@ -200,7 +200,7 @@
         <li class="DocumentItem" ng-repeat="product in trendingProducts track by $index " style="margin-right: 20px;height: 250px;border: none;">
             <div class="single-products" style="width: 200px;">
 
-                <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
+                <img ng-src="http:///{{product.images[0]}}" width="150px;" height="200px" alt="" />
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
@@ -236,9 +236,9 @@
                           <span class="glyphicon glyphicon-plus" ng-click="AddQuantity($index, index)" aria-hidden="true"></span>
                             </button>
                             </div>-->
-                        
+
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
@@ -256,7 +256,7 @@
         <li class="DocumentItem" ng-repeat="product in newProducts track by $index " style="margin-right: 20px;height: 250px;border: none;">
             <div class="single-products" style="width: 200px;">
 
-                    <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
+                    <img ng-src="http:///{{product.images[0]}}" width="150px;" height="200px" alt="" />
                     <div style="margin-top: 1px;">
                         <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                         <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
@@ -312,7 +312,7 @@
         <li class="DocumentItem" ng-repeat="product in recomendedProducts track by $index " style="margin-right: 20px;height: 250px;border: none;">
             <div class="single-products" style="width: 200px;">
 
-                <img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" />
+                <img ng-src="http:///{{product.images[0]}}" width="150px;" height="200px" alt="" />
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: lightgreen">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>

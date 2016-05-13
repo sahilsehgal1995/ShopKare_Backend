@@ -2,7 +2,7 @@
 (function() {
   var app = angular.module('ShopKare_Backend-master', []);
    // var base = 'http://127.0.0.1:55240';
-   var base = 'http://shopkare.com';
+   var base = '';
 
 
 	app.controller('DBboy_Store',function($scope,$http){

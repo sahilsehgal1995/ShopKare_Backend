@@ -1,7 +1,7 @@
 (function(){
 
 var app=angular.module('ShopKare_Backend-master',[]);
-  var base = 'http://shopkare.com';
+  var base = '';
 
 
 

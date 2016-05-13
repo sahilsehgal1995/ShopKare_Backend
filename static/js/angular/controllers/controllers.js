@@ -227,7 +227,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 })
 
 
-.controller('cartController', function($scope, CartFactory){
+.controller('cartController', function($scope, CartFactory, $http){
   console.log("cart");
   $scope.items=[];
   $scope.totalammount=0;
@@ -338,7 +338,10 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   $scope.confirmOrder = false;
   $scope.ConfirmOrder = function()
   {
-    $scope.confirmOrder = !$scope.confirmOrder;
+    // $scope.confirmOrder = !$scope.confirmOrder;
+      $http.post('/api/Customer/OrderPlacement/', $scope.items).then(function successCallback(response) {
+          console.log(response);
+      })
   };
 })
 
