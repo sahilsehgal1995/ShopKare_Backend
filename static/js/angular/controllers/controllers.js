@@ -320,7 +320,7 @@ $scope.cat = $scope.categories[$scope.path];
 })
 
 
-.controller('cartController', function($scope, $rootScope, CartFactory, toastr){
+.controller('cartController', function($scope, $rootScope, CartFactory, OrderPlaceFactory, toastr){
   console.log("cart");
   $rootScope.$broadcast('show_filter', false);
   $scope.items=[];
@@ -477,6 +477,15 @@ $scope.cat = $scope.categories[$scope.path];
   $scope.confirmOrder = function(){
     console.log($scope.addressData);
     console.log($scope.items);
+    var data = {items: $scope.items, address: $scope.addressData};
+    OrderPlaceFactory.placeOrder(data).success(function(response){
+      if(response == 'Order Placed')
+        toastr.success(response);
+      else
+        toastr.error(response);
+    }).error(function(error){
+      toastr.error('Unable to place order. Please try after sometime');
+    });
   }
 })
 

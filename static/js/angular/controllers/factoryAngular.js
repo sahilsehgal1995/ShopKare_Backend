@@ -90,6 +90,15 @@ angular.module('Data.factory', [])
   return Items;
 }])
 
+.factory('OrderPlaceFactory', ['$http', 'LSFactory', function($http, LSFactory){
+  var response = {
+    placeOrder: function(data){
+      return $http.post(base + '/api/Customer/OrderPlacement/?cartItem='+JSON.stringify(data));
+    }
+  };
+  return response;
+}])
+
 .factory('FaqFactory', [function(){
   var faq = {
     
