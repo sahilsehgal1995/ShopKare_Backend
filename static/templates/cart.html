@@ -1,111 +1,136 @@
 <div ui-view="header"></div>
 
-<div>
-  <section id="cart_items">
+<section id="cart_items">
     <div class="container cart-page">
-     <!--  <div class="breadcrumbs">
-        <ol class="breadcrumb">
-          <li><a href="#">Home</a>
-          </li>
-          <li class="active">Shopping Cart</li>
-          {{Products}} </ol>
-      </div> -->
+        <!--  <div class="breadcrumbs">
+            <ol class="breadcrumb">
+                <li><a href="#">Home</a>
+                </li>
+                <li class="active">Shopping Cart</li>
+            {{Products}} </ol>
+        </div> -->
 
-      <div ng-show="message">
-        <h2>Shopping Cart</h2>
-        <div class="table-responsive cart_info">
-          <table class="table table-condensed">
-            <thead>
-              <tr class="cart_menu">
-		<td class="name">Product Name</td>
-                <td class="price">Quantity Unit</td>
-                <td class="quantity">Price</td>
-                <td class="total">Quantity</td>
-                <td class="price">Total Price</td>
-                <td>Delete</td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr ng-repeat="item in items">
+        <div ng-show="message">
+            <h2>Shopping Cart</h2>
+            <div class="table-responsive cart_info">
+                <table class="table table-condensed">
+                    <thead>
+                        <tr class="cart_menu">
+                            <td class="name">Product Name</td>
+                            <td class="price">Quantity Unit</td>
+                            <td class="quantity">Price</td>
+                            <td class="total">Quantity</td>
+                            <td class="price">Total Price</td>
+                            <td ng-hide="placeOrder">Delete</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in items">
 
-                <td class="cart_product">
-                  {{item.product_name}}
-                </td>
-                <td class="cart_price">
-                  <p>{{item.QuantityType}}</p>
-                </td>
-                <td class="cart_total">
-                  <p>{{item.Price}}</p>
-                </td>
-                <td class="cart_total">
-                  <p ng-show="confirmOrder">{{item.Price}}</p>
-                  <div class="cart_quantity_button" ng-hide="confirmOrder">
-                    <a class="cart_quantity_up">
-                      <button ng-click="IncreaseQuantity($index)">+</button>
-                    </a>
-                    <form ng-submit="ChangeQuantity($index)">
-                    <input class="cart_quantity_input" style="width:20%;" type="text" name="quantity" ng-model="item.Quantity" value="{{item.Quantity}}">
-                    </form>
-                    <a class="cart_quantity_up">
-                      <button ng-disabled="p.Quantity==1" ng-click="DecreaseQuantity($index)">--</button>
-                    </a>
-                  </div>
-                </td>
+                            <td class="cart_product">
+                                {{item.product_name}}
+                            </td>
+                            <td class="cart_price">
+                                <p>{{item.QuantityType}}</p>
+                            </td>
+                            <td class="cart_total">
+                                <p>{{item.Price}}</p>
+                            </td>
+                            <td class="cart_total">
+                                <p ng-show="placeOrder">{{item.Quantity}}</p>
+                                <div class="cart_quantity_button" ng-hide="placeOrder">
+                                    <a class="cart_quantity_up">
+                                        <button ng-click="item.Quantity=item.Quantity+1;IncreaseQuantity($index)">+</button>
+                                    </a>
+                                    <form ng-submit="ChangeQuantity($index)">
+                                        <input class="cart_quantity_input no-spinner" style="width:20%;" type="number" min="0" name="quantity" ng-model="item.Quantity" ng-init="item.oldQuantity=item.Quantity">
+                                    </form>
+                                    <a class="cart_quantity_up">
+                                        <button ng-disabled="item.Quantity==0" ng-click="item.Quantity=item.Quantity-1;DecreaseQuantity($index)">--</button>
+                                    </a>
+                                </div>
+                            </td>
 
-                <td class="cart_total">
-                  <p class="cart_total_price">Rs.{{item.totalPrice*item.Quantity}}</p>
-                </td>
-                <td class="cart_delete">
-                  <a ng-click="RemoveItem($index)" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
-                  {{item.message}}
-                </td>
-              </tr>
+                            <td class="cart_total">
+                                <p class="cart_total_price">Rs.{{item.Price*item.Quantity}}</p>
+                            </td>
+                            <td class="cart_delete" ng-hide="placeOrder">
+                                <a ng-click="RemoveItem($index)" class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+                            </td>
+                        </tr>
 
-            </tbody>
-          </table>
+                    </tbody>
+                </table>
+            </div>
+            <br>
+
         </div>
-        <br>
-
-      </div>
-      <div class="row tot-cost" ng-show="message">
-        <div class="col-md-4 pull-right">
-          <h4> Bill ammount: {{totalammount}}</h4>
-          <h4> Delivery Charges: Rs. 50</h4>
-          <hr>
-          <h4>Total Amount : Rs. {{totalammount + 50}}</h4>
+        <div class="row">
+            <div class="col-md-8">
+                <form ng-show="placeOrder" ng-submit="confirmOrder()">
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" ng-model="addressData.name" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label>Address</label>
+                            <input type="text" ng-model="addressData.address" class="form-control" placeholder="Address">
+                        </div>
+                        <div class="form-group">
+                            <label>City</label>
+                            <input type="text" ng-model="addressData.city" class="form-control" placeholder="City">
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <div class="form-group">
+                            <label>State</label>
+                            <input type="text" ng-model="addressData.state" class="form-control" placeholder="State">
+                        </div>
+                        <div class="form-group">
+                            <label>Pin Code</label>
+                            <input type="number" ng-model="addressData.pincode" class="form-control no-spinner" placeholder="Pin Code">
+                        </div>
+                        <div class="form-group">
+                            <label>Mobile</label>
+                            <input type="number" ng-model="addressData.mobile" class="form-control no-spinner" placeholder="Mobile">
+                        </div>
+                        <div class="text-right">
+                            <button type="submit" class="btn btn-lg btn-info">CONFIRM ORDER</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="row tot-cost" ng-show="message">
+                    <h4> Bill ammount: Rs. {{totalammount}}</h4>
+                    <h4>Delivery Charges: Rs. {{delivery_charge}}</h4>
+                    <hr>
+                    <h4>Total Amount : Rs. {{totalammount + delivery_charge}}</h4>
+                </div>
+                <div class="text-right" ng-show="message">
+                    <button class="btn btn-lg" style="background-color: #8CC63F" ng-hide="placeOrder" ng-click="PlaceOrder()"><span style="color: white">PLACE ORDER</span></button>
+                </div>
+            </div>
         </div>
-      </div>
-      
-      <div class="row" ng-show="message">
-        <div class="col-md-6 pull-right text-center">
-        <button class="btn btn-lg pull-right" style="background-color: #8CC63F" ng-hide="confirmOrder" ng-click="ConfirmOrder()"><span style="color: white">PLACE ORDER</span></button>
+
+        <div ng-hide="message">
+            <h2>Your Shopping Cart is empty.</h2>
+            <p>Your Shopping Cart lives to serve. Give it purpose--fill it with Items.</p>
+            <div class="row">
+                <p>
+                    <a href="index.html">
+                        <button class="btn btn-success"> Continue Shopping </button>
+                    </a> on the <a href="home.html"> ShopKare.com</a> homepage, learn about today's deals and special offers....
+                </p>
+                <br>
+            </div>
+            <p>
+                The price and availability of items at Shopkare.com are subject to change. The shopping cart is a temporary place to store a list of your items and reflects each item's most recent price.
+            </p>
         </div>
-      </div>
-
-      <div ng-hide="message">
-	    <h2>Your Shopping Cart is empty.</h2>
-	    <p>Your Shopping Cart lives to serve. Give it purpose--fill it with Items.
-	    </p>
-	    <div class="row">
-	      <p>
-		<a href="index.html">
-		  <button class="btn btn-success"> Continue Shopping </button>
-		</a> on the <a href="home.html"> ShopKare.com</a> homepage, learn about today's deals and special offers....
-	      </p>
-	      <br>
-
-	    </div>
-
-	    <p>
-	      The price and availability of items at Shopkare.com are subject to change. The shopping cart is a temporary place to store a list of your items and reflects each item's most recent price.
-	    </p>
-	  </div>
-
-	</div>
     </div>
-  </section>
-
-  <br>
-</div>
+</section>
+<br>
 
 <div ui-view="footer"></div>

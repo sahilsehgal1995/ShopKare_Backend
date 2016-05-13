@@ -200,4 +200,7 @@ angular.module('Data.factory', [])
     });
     }
   };
+})
+.filter('escapeUrl', function() {
+  return window.encodeURIComponent;
 });

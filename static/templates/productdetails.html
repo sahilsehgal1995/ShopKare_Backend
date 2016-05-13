@@ -101,7 +101,7 @@
         <div class="DocumentItem" ng-repeat="product in similar_products track by $index " style="margin-right: 20px;height: auto;min-height: 200px;border: none;display: inline-block;">
             <div class="single-products" style="width: 200px;">
                 <div ng-click="viewProduct(product);" style="cursor: pointer;">
-                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" /></div>
+                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0] | escapeUrl}}" width="150px;" height="200px" alt="" /></div>
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
@@ -133,7 +133,7 @@
         <div class="DocumentItem" ng-repeat="product in try_products track by $index " style="margin-right: 20px;height: auto;min-height: 200px;border: none;display: inline-block;">
             <div class="single-products" style="width: 200px;">
                 <div ng-click="viewProduct(product);" style="cursor: pointer;">
-                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0]}}" width="150px;" height="200px" alt="" /></div>
+                <div class="text-center"><img ng-src="http://shopkare.com/{{product.images[0] | escapeUrl}}" width="150px;" height="200px" alt="" /></div>
                 <div style="margin-top: 1px;">
                     <div style="overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
                     <div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>

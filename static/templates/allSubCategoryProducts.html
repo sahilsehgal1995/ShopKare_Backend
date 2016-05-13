@@ -5,7 +5,7 @@
 		<div class="single-products" >
 			<div style="box-shadow: 1px 1px 0px #b2b2b2 ">
 				<div ng-click="viewProduct(product);" style="cursor: pointer;">
-				<div class="product-img-cmc text-center"><img style="max-width: 150px;max-height: 200px;width: auto;height: auto;" ng-src="http://shopkare.com/{{product.images[0]}}" alt="" /></div>
+				<div class="product-img-cmc text-center"><img style="max-width: 150px;max-height: 200px;width: auto;height: auto;" ng-src="http://shopkare.com/{{product.images[0] | escapeUrl}}" alt="" /></div>
 				<div style="height:45px; overflow:hidden; "><span  style="margin-left:3px;font-size:15px;font-weight: 700;font-family: 'Roboto', sans-serif">{{product.product_name | limitTo :50}}</span></div>
 				<div ><span class="" style="padding-bottom:8px;margin-left:8px;font-size: 16px; color: #90EE90">Rs {{index[1]}}</span><span style="float:right;margin-right:10px;font-size: 16px;color: red;text-decoration: line-through">Rs {{index[2]}}</span></div>
 				</div>
