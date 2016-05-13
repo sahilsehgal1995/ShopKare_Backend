@@ -18,7 +18,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.messageLogin =  resp; 
       if (resp=='Login Success')
       {
-        location.reload();
+        // location.reload();
       }
       else{
         $scope.messageLogin =  resp;
@@ -77,9 +77,10 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
     console.log(JSON.stringify($scope.user));
     $scope.user['Mobile']= '';
     UserFactory.login(JSON.stringify($scope.user))
-    .success(function(resp){
-      $scope.messageLogin =  resp; 
-      if (resp=='Login Success')
+    .then(function sucessCallback(resp){
+      console.log(resp.headers());
+      $scope.messageLogin =  resp['data'];
+      if (resp['data']=='Login Success')
       {
         angular.element(document.getElementById('myModal')).modal('hide');
         toastr.success("Logged In Successfully");
@@ -88,11 +89,11 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       else{
         $scope.messageLogin =  resp;
       }
-    })
-    .error(function(error){
-      console.log(JSON.stringify(error));
+    }, function errorCallback(resp) {
+      console.log(JSON.stringify(resp['data']));
       $scope.messageLogin =  'Unable to Login. Try again later';
     });
+
   };
   $scope.signup = function()
   {
@@ -320,7 +321,7 @@ $scope.cat = $scope.categories[$scope.path];
 })
 
 
-.controller('cartController', function($scope, $rootScope, CartFactory){
+.controller('cartController', function($scope, $rootScope, CartFactory, $http){
   console.log("cart");
   $rootScope.$broadcast('show_filter', false);
   $scope.items=[];
@@ -432,7 +433,14 @@ $scope.cat = $scope.categories[$scope.path];
   $scope.confirmOrder = false;
   $scope.ConfirmOrder = function()
   {
-    $scope.confirmOrder = !$scope.confirmOrder;
+    // $scope.confirmOrder = !$scope.confirmOrder;
+    CartFactory.placeOrder($scope.items)
+          .then(function successCallback(response) {
+            console.log(response);
+            $scope.confirmOrder = false;
+          }, function errorCallback(response) {
+              $scope.confirmOrder = false;
+          })
   };
 })
 

@@ -156,6 +156,7 @@ def OrderPlacement(cartItems, cid):
         # cartItems = json.loads(cartItems)
         iter = collection.count()
         dt = datetime.datetime.now()
+        print cid
         totalPrice = 0
         for i in range(0, len(cartItems)):
             cartItems[i]['Status'] = 'Pending'
@@ -170,6 +171,9 @@ def OrderPlacement(cartItems, cid):
         order = collection.find({'_id': 'O_' + str(iter + 1) + cid})
         connection, db, collection = MongoDBconnection('Customer', 'Customers')
         user = collection.find({'_id': cid})
+        connection, db, collection = MongoDBconnection('Cart', cid)
+        db.drop_collection(collection)
+        connection.close()
         return {'order': order[0], 'email': user[0]['Email'], 'message': 'Order Placed Successfully'}
     except Exception as e:
         print str(e)

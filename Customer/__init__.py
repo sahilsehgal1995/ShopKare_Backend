@@ -2,6 +2,7 @@ from flask import Blueprint, session, request, jsonify
 from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement, NewCourierOrder, addToCart, getCartItems, removeFromCart
 import json
 import gc
+from flask_cors import CORS
 
 from flask_mail import Mail, Message
 
@@ -9,6 +10,7 @@ from flask_mail import Mail, Message
 def add_routes(app=None):
     Customer = Blueprint('Customer', __name__, static_url_path='/Customer/static', static_folder='./static', template_folder='./templates')
     mail = Mail(app)
+    # CORS(app, expose_headers=['set-cookie'], allow_headers='*', origins='*', supports_credentials=True)
     @Customer.route('/api/Customer/')
     def home():
         return 'Customer page'
@@ -26,6 +28,7 @@ def add_routes(app=None):
     def login():
         if request.method == 'POST':
             reply, user = loginCustomer(request.args.get('user'))
+            print reply, user
             if reply == 'Login Success':
                 session['id'] = user['_id']
                 session['Email'] = user['Email']
@@ -48,11 +51,14 @@ def add_routes(app=None):
 
         try:
             if request.method == 'POST':
+                print 'user' in session
                 if session['user'] == 'Customer':
                     reply = OrderPlacement(request.json, session['id'])
+                    print reply
                     msg = Message('Order details', sender='saurabh.1e1@gmail.com', recipients=[reply.pop('email')])
 
                     msg.html = json.dumps(reply.pop('order')).encode('utf-8')
+                    print msg.html
                     mail.send(msg)
                     return jsonify(reply)
                 return 'User Not Logged IN'
@@ -85,8 +91,6 @@ def add_routes(app=None):
     @Customer.route('/api/Customer/addToCart/', methods=['GET', 'POST'])
     def addtoCart():
         if request.method == 'POST':
-            print request.form
-            return addToCart('C_1', request.args.get('cartItem'))
             try:
                 if session['user'] == 'Customer':
                     reply = addToCart(session['id'], request.args.get('cartItem'))
