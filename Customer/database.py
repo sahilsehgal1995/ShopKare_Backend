@@ -163,11 +163,11 @@ def OrderPlacement(cartItems, cid):
             cartItems[i]['OrderDate'] = dt.strftime("%A, %d. %B %Y %I:%M%p")
             cartItems[i]['DeliveryBoy'] = []
             totalPrice += cartItems[i]['totalPrice']
-        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems})
+        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems, 'status': 'Pending'})
         connection.close()
         gc.collect()
         connection, db, collection = MongoDBconnection('Admin', 'Orders')
-        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems})
+        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems, 'status': 'Pending'})
         order = collection.find({'_id': 'O_' + str(iter + 1) + cid})
         connection, db, collection = MongoDBconnection('Customer', 'Customers')
         user = collection.find({'_id': cid})

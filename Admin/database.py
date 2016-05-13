@@ -555,6 +555,7 @@ def FetchOrders(userMode, Did):
             iter = collection.find({"status": "Pending"})
         else:
             iter = collection.find()
+
         if not iter.count():
             return '[]'
         return str(json.dumps(tuple(iter)))
