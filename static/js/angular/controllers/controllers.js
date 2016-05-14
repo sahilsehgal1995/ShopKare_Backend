@@ -475,10 +475,13 @@ $scope.cat = $scope.categories[$scope.path];
   };
   $scope.addressData;
   $scope.confirmOrder = function(){
+    for(var i = 0; i < $scope.items.length; i++){
+      $scope.items[i].totalPrice = $scope.items[i].Price * $scope.items[i].Quantity;
+    }
     console.log($scope.addressData);
     console.log($scope.items);
     var data = {items: $scope.items, address: $scope.addressData};
-    OrderPlaceFactory.placeOrder(data).success(function(response){
+    OrderPlaceFactory.placeOrder($scope.items).success(function(response){
       if(response == 'Order Placed')
         toastr.success(response);
       else
