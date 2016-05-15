@@ -28,9 +28,9 @@ $scope.AdminSuper=false;
 	.success(function(data){
 	$scope.OrdersProducts=data;
 	console.log(data);
-	for(var i in $scope.OrdersProducts){
-	$scope.OrdersProducts[i]['Status']="Fresh";
-	}
+	// for(var i in $scope.OrdersProducts){
+	// $scope.OrdersProducts[i]['Status']="Fresh";
+	// }
 	})
 	.error(function(response){
 	console.log(response);

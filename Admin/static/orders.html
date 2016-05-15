@@ -187,13 +187,14 @@
       </tr>
     </thead>
     <tbody>
-	 <tr ng-repeat="item in OrdersProducts" ng-show="item.Status=='Fresh'">
+	 <tr ng-repeat="item in OrdersProducts" ng-show="item.status=='Fresh'">
         <td>{{item._id}}</td>
-        <td><span ng-repeat="p in item.Products">{{p.ProductID}}-->>{{p.PName}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
-        <td>{{item['Customer Name']}}</td>
-      	<td>{{item.Address}},{{item.city}},{{item.state}}</td>
-	<td>{{item.Status}}</td>
-	<td>{{item['Total amount']}}</td>
+        <td><span ng-repeat="p in item.items">{{p.ProductID}}-->>{{p.product_name}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
+        <td>{{item['address']['name']}}</td>
+      	<td>{{item['address']['address']}},{{item['address'].city}},{{item['address'].state}}</td>
+	<td>{{item.status}}</td>
+	<td>{{item['totalPrice']}}</td>
+
 	<td><select ng-model='db'>
 	 <option value="None">Select Deliver Boy</option><option ng-repeat="dbBoy in deliveryBoys" value="{{dbBoy._id}}" >{{dbBoy.Name }}-->> {{ dbBoy.UID}}</option>	</select></td>       
 <td><button type="button" class="btn btn-info" ng-click="dbOperation(item,db,$index)"  ng-disabled="db=='None'">Save</button> </td>
@@ -216,13 +217,13 @@
       </tr>
     </thead>
     <tbody>
-	 <tr ng-repeat="item in OrdersProducts" ng-show="item.Status=='Pending'">
+	 <tr ng-repeat="item in OrdersProducts" ng-show="item.status=='Pending'">
         <td>{{item._id}}</td>
-        <td><span ng-repeat="p in item.Products">{{p.ProductID}}-->>{{p.PName}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
-        <td>{{item['Customer Name']}}</td>
-      	<td>{{item.Address}},{{item.city}},{{item.state}}</td>
-	<td>{{item.Status}}</td>
-	<td>{{item['Total amount']}}</td>
+        <td><span ng-repeat="p in item.items">{{p.ProductID}}-->>{{p.product_name}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
+        <td>{{item['address']['name']}}</td>
+      	<td>{{item['address']['address']}},{{item['address'].city}},{{item['address'].state}}</td>
+	<td>{{item.status}}</td>
+	<td>{{item['totalPrice']}}</td>
        <th>{{item.Delivery_Boy}} </th>
      </tr>     
     </tbody>
@@ -244,11 +245,11 @@
     <tbody>
 	 <tr ng-repeat="item in orders_products" ng-show="item.status=='delivered'">
           <td>{{item._id}}</td>
-	<td><span ng-repeat="p in item.Products">{{p.ProductID}}-->>{{p.PName}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
-	<td>{{item['Customer Name']}}</td>
-	<td>{{item.Address}},{{item.city}},{{item.state}}</td>
-	<td>{{item.Status}}</td>
-	<td>{{item['Total amount']}}</td>
+        <td><span ng-repeat="p in item.items">{{p.ProductID}}-->>{{p.product_name}}<br>{{p.Quantiy}} -->>{{p.Price}}<hr></span></td>
+        <td>{{item['address']['name']}}</td>
+      	<td>{{item['address']['address']}},{{item['address'].city}},{{item['address'].state}}</td>
+	<td>{{item.status}}</td>
+	<td>{{item['totalPrice']}}</td>
        <th>{{item.Delivery_Boy}} </th>
   
      </tr>     

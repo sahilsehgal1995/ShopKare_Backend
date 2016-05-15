@@ -20,7 +20,7 @@ def add_routes(app=None):
     def home():
         try:
             print os.getcwd()
-            return send_from_directory(os.getcwd() + '/PycharmProjects/ShopKare_Backend/Admin/static/', 'signup.html')
+            return send_from_directory(os.getcwd() + '/Admin/static/', 'signup.html')
         except Exception as e:
             print str(e)
             return 'Unable to load'
@@ -28,7 +28,7 @@ def add_routes(app=None):
     @Admin.route('/api/Admin/dashboard/')
     def dashboard():
         try:
-            return send_from_directory(os.getcwd() + '/PycharmProjects/ShopKare_Backend/Admin/static/', 'products.html')
+            return send_from_directory(os.getcwd() + '/Admin/static/', 'products.html')
         except Exception as e:
             print str(e)
             return 'Unable to load'

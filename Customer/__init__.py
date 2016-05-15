@@ -1,14 +1,29 @@
-from flask import Blueprint, session, request, jsonify
+import os
+from flask import Blueprint, session, request, jsonify, render_template
 from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement, NewCourierOrder, addToCart, getCartItems, removeFromCart
 import json
 import gc
 from flask_cors import CORS
+import jinja2
+
 
 from flask_mail import Mail, Message
 
 
 def add_routes(app=None):
     Customer = Blueprint('Customer', __name__, static_url_path='/Customer/static', static_folder='./static', template_folder='./templates')
+    app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+    app.config['MAIL_PORT'] = 465
+    app.config['MAIL_USERNAME'] = 'shopkareindia@gmail.com'
+    app.config['MAIL_PASSWORD'] = 'sand0806@1'
+    app.config['MAIL_USE_TLS'] = False
+    app.config['MAIL_USE_SSL'] = True
+    my_loader = jinja2.ChoiceLoader([
+        app.jinja_loader,
+        jinja2.FileSystemLoader(os.getcwd()+'/static/templates'),
+    ])
+    app.jinja_loader = my_loader
+
     mail = Mail(app)
     # CORS(app, expose_headers=['set-cookie'], allow_headers='*', origins='*', supports_credentials=True)
     @Customer.route('/api/Customer/')
@@ -55,11 +70,13 @@ def add_routes(app=None):
                 if session['user'] == 'Customer':
                     reply = OrderPlacement(request.json, session['id'])
                     print reply
-                    msg = Message('Order details', sender='saurabh.1e1@gmail.com', recipients=[reply.pop('email')])
+                    msg = Message('Order details', sender='shopkareindia@gmail.com', recipients=[reply.pop('email')])
+                    print os.getcwd()
+                    html_data = render_template('email.html', **reply)
+                    msg.html = json.dumps(html_data).encode('utf-8')
 
-                    msg.html = json.dumps(reply.pop('order')).encode('utf-8')
-                    print msg.html
-                    mail.send(msg)
+                    a = mail.send(msg)
+                    print a
                     return jsonify(reply)
                 return 'User Not Logged IN'
             return 'Invalid Request'

@@ -5,6 +5,12 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.config['UPLOAD_FOLDER'] = '.'
 app.config['MAX_CONTENT_LENGTH'] = 18 * 1024 * 1024
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'shopkareindia@gmail.com'
+app.config['MAIL_PASSWORD'] = 'sand0806@1'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
 CORS(app, expose_headers=['set-cookie'], allow_headers='*', origins='*', supports_credentials=True)
 
