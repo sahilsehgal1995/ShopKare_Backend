@@ -1,7 +1,8 @@
 var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers','ui.bootstrap', 'toastr']);
 
 
-app.config(function($stateProvider, $urlRouterProvider, toastrConfig) {
+app.config(function($stateProvider, $urlRouterProvider, toastrConfig, $httpProvider) {
+  $httpProvider.defaults.withCredentials = true;
   $urlRouterProvider.otherwise('/grocery/home/products');
   $stateProvider
 
