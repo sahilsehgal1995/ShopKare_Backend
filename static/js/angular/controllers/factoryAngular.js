@@ -85,6 +85,9 @@ angular.module('Data.factory', [])
     },
     newCourierOrder: function(order){
       return $http.post(base+'/api/Customer/NewCourierOrder/?order='+JSON.stringify(order));
+    },
+    placeOrder: function(data) {
+      return $http.post('http://www.shopkare.com/api/Customer/OrderPlacement/', data);
     }
     };
   return Items;
