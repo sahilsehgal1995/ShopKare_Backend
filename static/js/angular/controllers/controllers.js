@@ -481,7 +481,7 @@ $scope.cat = $scope.categories[$scope.path];
     console.log($scope.addressData);
     console.log($scope.items);
     var data = {items: $scope.items, address: $scope.addressData};
-    OrderPlaceFactory.placeOrder($scope.items).success(function(response){
+    CartFactory.placeOrder(data).success(function(response){
       if(response == 'Order Placed')
         toastr.success(response);
       else
