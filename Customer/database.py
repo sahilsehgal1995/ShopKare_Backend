@@ -156,20 +156,20 @@ def OrderPlacement(cartItems, cid):
         # cartItems = json.loads(cartItems)
         iter = collection.count()
         dt = datetime.datetime.now()
-        print cid
         totalPrice = 0
         address = cartItems.pop('address')
-        for i in range(0, len(cartItems)):
-            cartItems[i]['Status'] = 'Pending'
-            cartItems[i]['OrderDate'] = dt.strftime("%A, %d. %B %Y %I:%M%p")
-            cartItems[i]['DeliveryBoy'] = []
-            totalPrice += cartItems[i]['totalPrice']
-        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems, 'status': 'Pending',
-                           'address': address})
+        items = cartItems.pop('items')
+        for i in range(0, len(items)):
+            items[i]['Status'] = 'Pending'
+            items[i]['OrderDate'] = dt.strftime("%A, %d. %B %Y %I:%M%p")
+            items[i]['DeliveryBoy'] = []
+            totalPrice += items[i]['totalPrice']
+        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': items, 'status': 'Pending',
+                           'address': json.dumps(address)})
         connection.close()
         gc.collect()
         connection, db, collection = MongoDBconnection('Admin', 'Orders')
-        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': cartItems, 'status': 'Pending',
+        collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': items, 'status': 'Pending',
                            'address': address})
         order = collection.find({'_id': 'O_' + str(iter + 1) + cid})
         connection, db, collection = MongoDBconnection('Customer', 'Customers')
@@ -179,6 +179,7 @@ def OrderPlacement(cartItems, cid):
         connection.close()
         return {'order': order[0], 'email': user[0]['Email'], 'message': 'Order Placed Successfully'}
     except Exception as e:
+        print 'Exception'
         print str(e)
         return 'Unable to Place'
 
