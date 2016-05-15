@@ -320,11 +320,13 @@ $scope.cat = $scope.categories[$scope.path];
 })
 
 
-.controller('cartController', function($scope, $rootScope, CartFactory){
+.controller('cartController', function($scope, $rootScope, CartFactory, OrderPlaceFactory, toastr){
   console.log("cart");
   $rootScope.$broadcast('show_filter', false);
   $scope.items=[];
   $scope.totalammount=0;
+  $scope.delivery_charge = 0;
+
   CartFactory.getCartItems()
   .success(function(response){
     if (response == 'Unable to get cart items'){
@@ -339,11 +341,13 @@ $scope.cat = $scope.categories[$scope.path];
       $scope.message=true;
       for (var i=0; i<Object.keys(response).length;i++)
       {
-        response[i].totalPrice = response[i].Price * response[i].Quantity; 
         $scope.items.push(response[i]);
-        console.log(response[i]);
-        $scope.totalammount = $scope.totalammount + response[i].totalPrice;
+        $scope.totalammount = $scope.totalammount + response[i].Price * response[i].Quantity;
       }
+      if($scope.totalammount >= 1000)
+        $scope.delivery_charge = 0;
+      else
+        $scope.delivery_charge = 50;
     }
   })
   .error(function(error){
@@ -355,15 +359,23 @@ $scope.cat = $scope.categories[$scope.path];
     .success(function(response){
       if (response == 'Removed from cart')
       {
-        $scope.totalammount = $scope.totalammount - $scope.items[index].totalPrice;
+        $scope.totalammount = $scope.totalammount - $scope.items[index].Price * $scope.items[index].Quantity;
         $scope.items.splice(index,1);
         $scope.items[index].message='';
+        if($scope.totalammount >= 1000)
+          $scope.delivery_charge = 0;
+        else
+          $scope.delivery_charge = 50;
       }
       else{
+        $scope.items[index].Quantity = $scope.items[index].oldQuantity;
+        toastr.error(response);
         $scope.items[index].message = response;
       }
     })
     .error(function(error){
+      $scope.items[index].Quantity = $scope.items[index].oldQuantity;
+      toastr.error('Unable to Remove. Try Again later');
       $scope.items[index].message = 'Unable to Remove. Try Again later';
     });
 
@@ -372,19 +384,25 @@ $scope.cat = $scope.categories[$scope.path];
   {
     if($scope.items[index].Quantity>0)
     {
-      var product = $scope.items[index];
-      product.Quantity = $scope.items[index].Quantity-1;
-      CartFactory.addToCart(product)
+      CartFactory.addToCart($scope.items[index])
       .success(function(response){
         if (response == 'Updated in cart')
         {
-          $scope.items[index].totalPrice = $scope.items[index].totalPrice - $scope.items[index].Price;
           $scope.totalammount = $scope.totalammount - $scope.items[index].Price;
-          //   $scope.items[index].Quantity = $scope.items[index].Quantity-1;
+          if($scope.totalammount >= 1000)
+            $scope.delivery_charge = 0;
+          else
+            $scope.delivery_charge = 50;
         }
-        $scope.items[index].message = response;
+        else{
+          $scope.items[index].Quantity += 1;
+          toastr.error(response);
+          $scope.items[index].message = response;
+        }
       }).error(function(error){
+        $scope.items[index].Quantity += 1;
         $scope.items[index].message = 'Unable to update. Please try after sometime';
+        toastr.error(response);
         console.log(error);
       });
     }
@@ -394,46 +412,84 @@ $scope.cat = $scope.categories[$scope.path];
   };
   $scope.IncreaseQuantity = function(index)
   {
-    var product = $scope.items[index];
-    product.Quantity = $scope.items[index].Quantity+1;
-    CartFactory.addToCart(product)
+    CartFactory.addToCart($scope.items[index])
     .success(function(response){
       if (response == 'Updated in cart')
       {
-        $scope.items[index].totalPrice = $scope.items[index].totalPrice + $scope.items[index].Price;
         $scope.totalammount = $scope.totalammount + $scope.items[index].Price;
-        console.log($scope.items[index].Quantity);
-        //   $scope.items[index].Quantity = $scope.items[index].Quantity + 1;
+        if($scope.totalammount >= 1000)
+          $scope.delivery_charge = 0;
+        else
+          $scope.delivery_charge = 50;
       }
-      $scope.items[index].message = response;
+      else{
+        $scope.items[index].Quantity -= 1;
+        $scope.items[index].message = response;
+        toastr.error(response);
+      }
     }).error(function(error){
+      $scope.items[index].Quantity -= 1;
       $scope.items[index].message = 'Unable to update. Please try after sometime';
+      toastr.error('Unable to update. Please try after sometime');
       console.log(error);
     });
   };
   $scope.ChangeQuantity = function(index)
   {
-    var product = $scope.items[index];
-    product.Quantity = $scope.items[index].Quantity;
-    CartFactory.addToCart(product)
+    if(!$scope.items[index].Quantity && $scope.items[index].Quantity !== 0 || $scope.items[index].Quantity < 0){
+      $scope.items[index].Quantity = $scope.items[index].oldQuantity;
+      return true;
+    }
+    if($scope.items[index].Quantity < 1){
+      console.log("dfghjk");
+      $scope.RemoveItem(index);
+      return true;
+    }
+    CartFactory.addToCart($scope.items[index])
     .success(function(response){
       if (response == 'Updated in cart')
       {
-        $scope.items[index].totalPrice = $scope.items[index].totalPrice + $scope.items[index].Price;
+        $scope.items[index].oldQuantity = $scope.items[index].Quantity;
         $scope.totalammount = $scope.totalammount + $scope.items[index].Price;
-        //   $scope.items[index].Quantity = $scope.items[index].Quantity + 1;
+        if($scope.totalammount >= 1000)
+          $scope.delivery_charge = 0;
+        else
+          $scope.delivery_charge = 50;
       }
-      $scope.items[index].message = response;
+      else{
+        $scope.items[index].Quantity = $scope.items[index].oldQuantity;
+        $scope.items[index].message = response;
+        toastr.error(response);
+      }
     }).error(function(error){
+      $scope.items[index].Quantity = $scope.items[index].oldQuantity;
       $scope.items[index].message = 'Unable to update. Please try after sometime';
+      toastr.error('Unable to update. Please try after sometime');
       console.log(error);
     });
   }
-  $scope.confirmOrder = false;
-  $scope.ConfirmOrder = function()
+  $scope.placeOrder = false;
+  $scope.PlaceOrder = function()
   {
-    $scope.confirmOrder = !$scope.confirmOrder;
+    $scope.placeOrder = !$scope.placeOrder;
   };
+  $scope.addressData;
+  $scope.confirmOrder = function(){
+    for(var i = 0; i < $scope.items.length; i++){
+      $scope.items[i].totalPrice = $scope.items[i].Price * $scope.items[i].Quantity;
+    }
+    console.log($scope.addressData);
+    console.log($scope.items);
+    var data = {items: $scope.items, address: $scope.addressData};
+    OrderPlaceFactory.placeOrder($scope.items).success(function(response){
+      if(response == 'Order Placed')
+        toastr.success(response);
+      else
+        toastr.error(response);
+    }).error(function(error){
+      toastr.error('Unable to place order. Please try after sometime');
+    });
+  }
 })
 
 .controller('contactController', function($scope){
@@ -476,11 +532,9 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      if (response == 'Updated in cart' || response == 'Added to cart')
-      {
+      if (response == 'Updated in cart' || response == 'Added to cart'){
         toastr.success(response);
         product_data.quantity = product_data.quantity+1;
-
       }
       else
         toastr.error(response);
@@ -509,8 +563,7 @@ $scope.cat = $scope.categories[$scope.path];
       };
       CartFactory.addToCart(product)
       .success(function(response){
-        if (response == 'Updated in cart' || response == 'Added to cart')
-        {
+        if (response == 'Updated in cart' || response == 'Added to cart'){
           toastr.success(response);
           product_data.quantity = product_data.quantity-1;
         }
@@ -564,7 +617,7 @@ $scope.cat = $scope.categories[$scope.path];
       QuantityType: quantity[0],
       QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity:product_data.quantity,
       product_name: product_data.product_name,
       'Main Category': product_data['Main Category'],
       'Sub Category': product_data['Sub Category'],
@@ -572,7 +625,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       console.log(response);
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
@@ -726,7 +782,7 @@ $scope.cat = $scope.categories[$scope.path];
       QuantityType: quantity[0],
       QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity:product_data.quantity,
       product_name: product_data.product_name,
       'Main Category': product_data['Main Category'],
       'Sub Category': product_data['Sub Category'],
@@ -734,7 +790,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
@@ -887,7 +946,7 @@ $scope.cat = $scope.categories[$scope.path];
       QuantityType: quantity[0],
       QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity:product_data.quantity,
       product_name: product_data.product_name,
       'Main Category': product_data['Main Category'],
       'Sub Category': product_data['Sub Category'],
@@ -895,7 +954,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
@@ -1048,7 +1110,7 @@ $scope.cat = $scope.categories[$scope.path];
       QuantityType: quantity[0],
       QuantityIndex: $scope.products[productindex].Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity:$scope.products[productindex].quantity,
       product_name: $scope.products[productindex].product_name,
       'Main Category': $scope.products[productindex]['Main Category'],
       'Sub Category': $scope.products[productindex]['Sub Category'],
@@ -1056,7 +1118,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       $scope.products[productindex].message = response;
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
@@ -1165,7 +1230,7 @@ $scope.cat = $scope.categories[$scope.path];
       'Level1 Category': product_data['Level1 Category']
     };
     CartFactory.addToCart(product)
-    .success(function(response){console.log(response)
+    .success(function(response){
       if (response == 'Updated in cart' || response == 'Added to cart')
       {
         toastr.success(response);
@@ -1252,7 +1317,7 @@ $scope.cat = $scope.categories[$scope.path];
       QuantityType: quantity[0],
       QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity:product_data.quantity,
       product_name: product_data.product_name,
       'Main Category': product_data['Main Category'],
       'Sub Category': product_data['Sub Category'],
@@ -1260,7 +1325,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
@@ -1400,13 +1468,16 @@ $scope.cat = $scope.categories[$scope.path];
   $scope.AddToCart = function(product_data, quantity)
   {
     console.log('Add to cart');
+    if(!product_data.quantity && product_data.quantity !== 0){
+      return true;
+    }
     var cityIndex = 0;
     var product={
       ProductID: product_data._id,
       QuantityType: quantity[0],
       QuantityIndex: product_data.Quantity[cityIndex].Quantities.indexOf(quantity),
       Price: quantity[1],
-      Quantity:1,
+      Quantity: product_data.quantity,
       product_name: product_data.product_name,
       'Main Category': product_data['Main Category'],
       'Sub Category': product_data['Sub Category'],
@@ -1414,7 +1485,10 @@ $scope.cat = $scope.categories[$scope.path];
     };
     CartFactory.addToCart(product)
     .success(function(response){
-      toastr.success(response);
+      if(response == 'Updated in cart' || response == 'Added to cart')
+        toastr.success(response);
+      else
+        toastr.error(response);
       product_data.message = response;
     }).error(function(error){
       toastr.error('Unable to add. Please try after sometime');
