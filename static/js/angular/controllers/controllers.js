@@ -482,8 +482,8 @@ $scope.cat = $scope.categories[$scope.path];
     console.log($scope.items);
     var data = {items: $scope.items, address: $scope.addressData};
     CartFactory.placeOrder(data).success(function(response){
-      if(response == 'Order Placed')
-        toastr.success(response);
+      if(response['message'] == 'Order Placed Successfully')
+        toastr.success(response['message']);
       else
         toastr.error(response);
     }).error(function(error){

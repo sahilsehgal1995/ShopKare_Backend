@@ -5,8 +5,15 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 app.config['UPLOAD_FOLDER'] = '.'
 app.config['MAX_CONTENT_LENGTH'] = 18 * 1024 * 1024
+app.config['MAIL_SERVER'] = 'smtp.gmail.com'
+app.config['MAIL_PORT'] = 465
+app.config['MAIL_USERNAME'] = 'shopkareindia@gmail.com'
+app.config['MAIL_PASSWORD'] = 'sand0806@1'
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = True
 
-CORS(app)
+CORS(app, expose_headers=['set-cookie'], allow_headers='*', origins='*', supports_credentials=True)
+
 
 @app.after_request
 def add_header(response):
@@ -14,6 +21,7 @@ def add_header(response):
     Add headers to both force latest IE rendering engine or Chrome Frame,
     and also to cache the rendered page for 10 minutes.
     """
+
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=0'
     return response
@@ -30,4 +38,4 @@ Customer.add_routes(app)
 Product.add_routes(app)
 
 if __name__ == "__main__":
-  app.run(host='0.0.0.0')
+  app.run(debug=True, host='0.0.0.0')
