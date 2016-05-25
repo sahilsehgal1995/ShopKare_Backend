@@ -4,6 +4,7 @@ import os
 import gc
 from os import walk
 from random import randint
+import random
 
 base = 'http://www.filterlady.com/'
 
@@ -200,8 +201,8 @@ def searchProduct(level1Category, productName):
 
 if __name__ == "__main__":
     # print randomProducts('Grocery')
-    searchProduct('Grocery', 'amul')
+    #searchProduct('Grocery', 'amul')
     # print retrieveAllProducts('Grocery')
-    # print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
+    print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
     # print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
     # print newProducts('Grocery', 'Bakery', 'Cakes')
