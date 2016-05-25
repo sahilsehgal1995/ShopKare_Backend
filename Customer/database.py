@@ -18,7 +18,7 @@ def MongoDBconnection(database, collection):
 def registerCustomer(user):
     try:
         connection, db, collection = MongoDBconnection('Customer', 'Customers')
-        user = json.loads(user)
+
         print user
         if collection.find({'$or': [{"Mobile": user['Mobile']}, {"Email": user['Email']}]}).count():
             return 'User Already Exists'
@@ -76,6 +76,21 @@ def addToCart(cid, cartItem):
         try:
             if cartItem['$$hashKey']:
                 del cartItem['$$hashKey']
+                a, b, c = MongoDBconnection('Batches', cartItem['ProductID'])
+                print c
+                prod = c.find_one()
+                print prod
+                if prod:
+                    quantities = prod['Quantity']
+                    print quantities
+                    for i in quantities:
+                        print i
+                        if i['qty'] == cartItem['QuantityType']:
+                            print i['qty']
+                            if i['value'] < cartItem['Quantity']:
+                                print i['value']
+                                return 'Out Of Stock'
+
                 MainCategory = cartItem['Main Category'].replace(" ", "_")
                 SubCategory = cartItem['Sub Category'].replace(" ", "_")
                 product = connection[MainCategory][SubCategory].find({'_id': cartItem['ProductID']})
@@ -97,6 +112,23 @@ def addToCart(cid, cartItem):
                 gc.collect()
                 return 'Added to cart'
         except Exception as e:
+            a, b, c = MongoDBconnection('Batches', cartItem['ProductID'])
+            print c
+            prod = c.find_one()
+            print prod
+            if prod:
+                quantities = prod['Quantity']
+                print '----------------------------------------------------'
+                for i in quantities:
+                    try:
+                        if i['qty'].encode('ascii', 'ignore').decode('ascii') == cartItem['QuantityType'].encode('ascii', 'ignore').decode('ascii'):
+                            print i['qty'], i['value'], type(i['value']), int(cartItem['Quantity'])
+                            if int(i['value']) < int(cartItem['Quantity']):
+                                print i['value']
+                                return 'Out Of Stock'
+                    except Exception, e:
+                        print e
+                        pass
             MainCategory = cartItem['Main Category'].replace(" ", "_")
             SubCategory = cartItem['Sub Category'].replace(" ", "_")
             product = connection[MainCategory][SubCategory].find({'_id': cartItem['ProductID']})
@@ -149,6 +181,26 @@ def getCartItems(cid):
         print str(e)
         return 'Unable to get cart items'
 
+def password_reset(data):
+    connection, db, collection = MongoDBconnection('Customer', 'Customers')
+    customer = collection.find({'Email': data['email']})
+    if customer.count():
+        return True
+    return False
+
+
+def reset_pass(email, data):
+
+    connection, db, collection = MongoDBconnection('Customer', 'Customers')
+    customer = collection.find({'Email': email})
+
+    print customer[0]
+    if not customer:
+        return False
+    customer[0]['Password'] = sha256_crypt.encrypt(str(data['password']))
+    connection.close()
+    return True
+
 
 def OrderPlacement(cartItems, cid):
     try:
@@ -164,6 +216,24 @@ def OrderPlacement(cartItems, cid):
             items[i]['OrderDate'] = dt.strftime("%A, %d. %B %Y %I:%M%p")
             items[i]['DeliveryBoy'] = []
             totalPrice += items[i]['totalPrice']
+            a, b, c = MongoDBconnection('Batches', items[i]['ProductID'])
+            prod = c.find_one()
+            print prod
+            if prod:
+                quantities = prod['Quantity']
+                print 1, 'ququququ'
+                print '____________________________________________________'
+                for j in quantities:
+                    try:
+                        if j['qty'].encode('ascii', 'ignore').decode('ascii') == items[i]['QuantityType'].encode('ascii', 'ignore').decode('ascii'):
+                            print j['qty']
+                            j['value'] = int(j['value']) - int(items[i]['Quantity'])
+                            print j['value']
+                            c.save(prod)
+                    except Exception, e:
+                        print e
+                        pass
+            a.close()
         collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': items, 'status': 'Pending',
                            'address': json.dumps(address)})
         connection.close()

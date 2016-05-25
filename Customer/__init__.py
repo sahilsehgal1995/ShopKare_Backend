@@ -1,12 +1,12 @@
 import os
-from flask import Blueprint, session, request, jsonify, render_template
-from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement, NewCourierOrder, addToCart, getCartItems, removeFromCart
+from flask import Blueprint, session, request, jsonify, render_template, make_response
+from database import registerCustomer, loginCustomer, FetchOrders, OrderPlacement, NewCourierOrder, addToCart, getCartItems, removeFromCart,\
+    password_reset, reset_pass
 import json
 import gc
 from flask_cors import CORS
 import jinja2
-
-
+from itsdangerous import URLSafeTimedSerializer
 from flask_mail import Mail, Message
 
 
@@ -18,6 +18,18 @@ def add_routes(app=None):
     app.config['MAIL_PASSWORD'] = 'sand0806@1'
     app.config['MAIL_USE_TLS'] = False
     app.config['MAIL_USE_SSL'] = True
+
+    key = app.config['SECRET_KEY']
+
+    def get_serializer():
+        return URLSafeTimedSerializer(key)
+
+    def serialize_data(data):
+        return get_serializer().dumps(data)
+
+    def deserialize_data(data):
+        return get_serializer().loads(data)
+
     my_loader = jinja2.ChoiceLoader([
         app.jinja_loader,
         jinja2.FileSystemLoader(os.getcwd()+'/static/templates'),
@@ -26,9 +38,35 @@ def add_routes(app=None):
 
     mail = Mail(app)
     # CORS(app, expose_headers=['set-cookie'], allow_headers='*', origins='*', supports_credentials=True)
+
     @Customer.route('/api/Customer/')
     def home():
         return 'Customer page'
+
+    @Customer.route('/api/Customer/reset-pass/', methods=['GET', 'POST'])
+    def reset_password():
+        data = request.json
+        email = deserialize_data(data['code'])
+        reply = reset_pass(email, data)
+        if reply:
+            return jsonify({'success': True})
+        return make_response(jsonify({'success': False}), 403)
+        pass
+
+    @Customer.route('/api/Customer/forgot-password/', methods=['GET', 'POST'])
+    def forgot_password():
+        data = request.json
+        reply = password_reset(data)
+        if reply:
+            link = serialize_data(data['email'])
+            print link
+            msg = Message('Order details', sender='shopkareindia@gmail.com', recipients=[data['email']])
+            html_data = 'Follow link below to reset password http://www.shopkare.com/#/password/' + str(link)
+            msg.html = json.dumps(html_data).encode('utf-8')
+            mail.send(msg)
+            return jsonify({'success': True})
+        return make_response(jsonify({'success': False}), 403)
+        pass
 
     @Customer.route('/api/Customer/logout/')
     def logout():
@@ -57,7 +95,7 @@ def add_routes(app=None):
     @Customer.route('/api/Customer/signup/', methods=['GET', 'POST'])
     def signup():
         if request.method == 'POST':
-            reply = registerCustomer(request.args.get('user'))
+            reply = registerCustomer(request.json)
             return reply
         return 'Invalid Request'
 
@@ -69,14 +107,14 @@ def add_routes(app=None):
                 print 'user' in session
                 if session['user'] == 'Customer':
                     reply = OrderPlacement(request.json, session['id'])
-                    print reply
+
                     msg = Message('Order details', sender='shopkareindia@gmail.com', recipients=[reply.pop('email')])
-                    print os.getcwd()
+
                     html_data = render_template('email.html', **reply)
                     msg.html = json.dumps(html_data).encode('utf-8')
 
                     a = mail.send(msg)
-                    print a
+
                     return jsonify(reply)
                 return 'User Not Logged IN'
             return 'Invalid Request'
@@ -131,7 +169,6 @@ def add_routes(app=None):
     @Customer.route('/api/Customer/getCartItems/', methods=['GET', 'POST'])
     def GetCartItems():
         if request.method == 'POST':
-            return getCartItems('C_1')
             if session['user'] == 'Customer':
                 reply = getCartItems(session['id'])
                 return reply

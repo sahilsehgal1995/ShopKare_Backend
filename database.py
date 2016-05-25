@@ -8,6 +8,7 @@ from pyexcel_xlsx import get_data
 
 base='http://www.shopkare.com/'
 
+
 def MongoDBconnection(database, collection):
   connection = pymongo.MongoClient("mongodb://localhost")
   db = connection[database]

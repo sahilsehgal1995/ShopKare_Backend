@@ -16,6 +16,65 @@ def MongoDBconnection(database, collection):
     return connection, db, cursor
 
 
+def uploadBatch(data):
+    count = 0
+    try:
+        for k, v in data.iteritems():
+            connection, db, collection = MongoDBconnection(v[2].replace(' ', '_'), v[3].replace(' ', '_'))
+            product = collection.find({'product_name': v[5]})
+            if product.count():
+                print product[0]['_id']
+                database = connection['Batches']
+                if product[0]['_id'] in database.collection_names():
+                    print 'found collection'
+                    cur = database[product[0]['_id']]
+                    a = cur.find()
+                    if a.count() > 0:
+                        a = a[0]
+                        print a
+                        if type(a['Quantity']) == type([]):
+                            flag = False
+                            index = 0
+                            for i in range(0, len(a['Quantity'])):
+                                print i
+                                if a['Quantity'][i]['qty'] == v[6]:
+                                    data = {'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}
+                                    index = i
+                                    flag = True
+                                    break
+                                else:
+                                    flag = False
+
+                            if not flag:
+                                a['Quantity'].append({'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]})
+                                cur.save(a)
+                            else:
+                                print 'updating'
+                                a['Quantity'][index] = data
+                                print 'updated', a
+                                cur.save(a)
+                        else:
+                            a['Quantity'] = [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]
+                            cur.save(a)
+                    else:
+                        ab = {'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
+                        cur.insert_one(ab)
+                else:
+                    print 'create coll'
+                    database.create_collection(product[0]['_id'])
+                    cur = database[product[0]['_id']]
+                    a = {'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
+                    cur.insert_one(a)
+            connection.close()
+            # count += 1
+            # if count > 10:
+            #     break
+        return True
+    except Exception, e:
+        print e
+        return False
+
+
 def registerAdmin(user, AdminType):
     try:
         if AdminType == 'Super Admin':
@@ -380,6 +439,8 @@ def reteriveCategories():
         print str(e)
         return 'Unable to Remove'
 
+from bson.json_util import dumps
+
 
 def reteriveBatches(pid):
     try:
@@ -389,7 +450,7 @@ def reteriveBatches(pid):
             return '[]'
         connection.close()
         gc.collect()
-        return str(json.dumps(tuple(iter)))
+        return dumps(iter)
     except Exception as e:
         print str(e)
         return 'Unable to Remove'
@@ -400,7 +461,7 @@ def reteriveAllBatches():
         connection, db, collection = MongoDBconnection('Batches', 'Sample')
         results = list()
         for collection in db.collection_names():
-            iter = db[collection].find()
+            iter = db[collection].find({},{"_id":False})
             for index, item in enumerate(iter):
                 item['productid'] = collection
                 results.append(item)

@@ -14,7 +14,7 @@ def allowed_file(filename):
     return False
 
 
-def add_routes(app=None):
+ndef add_routes(app=None):
     Admin = Blueprint('Admin', __name__, static_url_path='/Admin/static', static_folder='./static', template_folder='./templates')
 
     @Admin.route('/api/Admin')

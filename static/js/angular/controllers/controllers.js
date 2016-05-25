@@ -1,8 +1,24 @@
 angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'])
 
+    .controller('passwordCtrl', function($scope, $stateParams, $http, $location, toastr){
+      console.log($stateParams);
+        $scope.reset = function(p1, p2) {
+            if (p1 === p2)
+                $http.post('http://www.shopkare.com/api/Customer/reset-pass/', {password: p1, code: $stateParams['code']})
+                    .then(function successCallback(response) {
+                    console.log(response);
+                        toastr.info('password updated')
+                        $location.path('/index');
+            }, function error(){
+                        toastr.error('unable to update password');
+                    })
+            else return false
+        }
+    })
 .controller('indexController', function($scope, $state, UserFactory, AuthFactory, ProductFactory){
   console.log("index controller");
   $scope.showLogin=true;
+  $scope.rdata = {};
   $scope.toggleshowLogin = function()
   {
     $scope.showLogin = !$scope.showLogin;
@@ -29,10 +45,16 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.messageLogin =  'Unable to Login. Try again later';
     });
   };
-  $scope.signup = function()
+  $scope.signup = function(a, b, c)
   {
+    console.log($scope.rdata, '123');
+    var data = {
+      Email: a,
+      Mobile: b,
+      Password: c
+    };
     $scope.messageSignup = '';
-    UserFactory.register(JSON.stringify($scope.rdata))
+    UserFactory.register($scope.rdata)
     .success(function(resp){
       $scope.messageSignup = resp;
       console.log(resp);
@@ -71,6 +93,24 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 
 .controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', 'toastr', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory, toastr){
   console.log('header');
+    $scope.user = {
+        Mobile: null
+    };
+    $scope.rdata = {
+        Mobile: null
+    };
+    $scope.fp = false;
+    $scope.toggle = function(){
+        $scope.fp = !$scope.fp;
+    };
+    $scope.forgotPassword = function(email){
+        $http.post('http://shopkare.com/api/Customer/forgot-password/', {'email': email}).then( function success(response){
+            console.log(response);
+            toggle();
+        }, function error(){
+            toastr.error('user not found');
+        });
+    };
   $scope.Login = function()
   {
     $scope.messageLogin = '';
@@ -94,10 +134,16 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
       $scope.messageLogin =  'Unable to Login. Try again later';
     });
   };
-  $scope.signup = function()
-  {
+  $scope.signup = function(a, b, c) {
+    console.log('aaaaa');
+    var data = {
+      Email: a,
+      Mobile: b,
+      Password: c
+    };
+    console.log(data, $scope.rdata);
     $scope.messageLogin = '';
-    UserFactory.register(JSON.stringify($scope.rdata))
+    UserFactory.register($scope.rdata)
     .success(function(resp){
       $scope.messageLogin = resp;
       if (resp == 'Registration Successfull')
@@ -326,7 +372,20 @@ $scope.cat = $scope.categories[$scope.path];
   $scope.items=[];
   $scope.totalammount=0;
   $scope.delivery_charge = 0;
+    $scope.$watch('totalammount', function(nval, pval) {
+        if(nval >= 1000){
+            $scope.delivery_charge = 0;
+            return true;
+      }
 
+      else {
+            if (nval >= 300) {
+                  $scope.delivery_charge = 50;
+                return true;
+            }
+        }
+        $scope.delivery_charge = 50;
+    });
   CartFactory.getCartItems()
   .success(function(response){
     if (response == 'Unable to get cart items'){
@@ -344,9 +403,17 @@ $scope.cat = $scope.categories[$scope.path];
         $scope.items.push(response[i]);
         $scope.totalammount = $scope.totalammount + response[i].Price * response[i].Quantity;
       }
-      if($scope.totalammount >= 1000)
-        $scope.delivery_charge = 0;
-      else
+      if($scope.totalammount >= 1000){
+            $scope.delivery_charge = 0;
+            return true;
+      }
+
+      else {
+            if ($scope.totalammount >= 300) {
+                  $scope.delivery_charge = 50;
+                return true;
+            }
+        }
         $scope.delivery_charge = 50;
     }
   })

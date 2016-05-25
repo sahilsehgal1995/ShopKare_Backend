@@ -3,34 +3,57 @@
 var app=angular.module('ShopKare_Backend-master',[]);
   var base = 'http://shopkare.com';
 
+    app.directive('fileModel', ['$parse', function ($parse) {
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var model = $parse(attrs.fileModel);
+                var modelSetter = model.assign;
 
+                element.bind('change', function(){
+                    scope.$apply(function(){
+                        modelSetter(scope, element[0].files[0]);
+                    });
+                });
+            }
+        };
+    }]);
 
   var categories = [];
   var level1keys= [];
    app.controller('AppCTRL',['$scope','$http', '$window',function($scope, $http, $window){
 	$scope.OptionsProduct=['Available','Coming Soon','Out of Stock'];
-  
-var AdminType=localStorage.getItem("ShopkareAdminType"); 
-console.log(AdminType);
-if(AdminType=='Super Admin'){
-$scope.AdminSuper=true;
-}
-else{
-$scope.AdminSuper=false;
-}
 
+       $scope.myFile = '';
+       $scope.uploadBatch = function () {
+           console.log($scope.myFile);
+           var fd = new FormData();
+           fd.append('uploadedFile', $scope.myFile);
+           $http.post('/api/Admin/bulkAdd', fd, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        }).then(function successCallback(data){
+               console.log(data);
+           })
+       };
+
+    var AdminType=localStorage.getItem("ShopkareAdminType");
+    console.log(AdminType);
+    $scope.AdminSuper = AdminType == 'Super Admin';
 
 	$scope.editD={};
 	  console.log('App control');
      $http.post(base+'/api/Admin/reteriveCategories/')
  	.success(function(data){
  	  categories = data;
-	  console.log()
-	  level1keys = Object.keys(data)
-	  for (key in level1keys)
-	  {
-	    level1keys[key] = data[key]._id;
-	    console.log(data[key]._id);
+	  level1keys = Object.keys(data);
+
+	  for (var key in level1keys) {
+          if (level1keys.hasOwnProperty(key)){
+            level1keys[key] = data[key]._id;
+	        console.log(data[key]._id);
+          }
+
 	  }
 	  
 	  $scope.categories = categories;
@@ -186,7 +209,6 @@ $scope.AdminSuper=false;
 	$scope.edit=product;
 	$scope.editIndex=index;
 };
- 
 
    $scope.getFileDetails = function (e) {
 
@@ -200,8 +222,6 @@ $scope.AdminSuper=false;
 
             });
         };
-
-
 
 	  $scope.uploadFiles = function (p) {
 	

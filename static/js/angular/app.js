@@ -4,14 +4,24 @@ var app = angular.module('Shopkare', ['ui.router','Shopkare.controllers','ui.boo
 app.config(function($stateProvider, $urlRouterProvider, toastrConfig, $httpProvider) {
   $httpProvider.defaults.withCredentials = true;
   $urlRouterProvider.otherwise('/grocery/home/products');
-  $stateProvider
 
+     // $routeProvider
+     //  .when('/pass', {
+     //    templateUrl: 'static/password.html',
+     //    controller: 'passwordCtrl'
+     //  });
+
+    $stateProvider
     .state('index',{
       url : '/index',
       'templateUrl' : 'static/partial-index.html',
       'controller' : 'indexController'
     })
-
+      .state('password', {
+          url: '/password/:code',
+          templateUrl: 'static/password.html',
+          controller: 'passwordCtrl'
+      })
     .state('home',{
       url : '/home',
       views: {

@@ -34,8 +34,8 @@ angular.module('Data.factory', [])
        return $http.post(base+'/api/Customer/login/?user='+user);
     },
     
-    register: function(user){
-      return $http.post(base+'/api/Customer/signup/?user='+user);
+    register: function(data){
+      return $http.post(base+'/api/Customer/signup/', data);
     },
     
     logout: function(){
