@@ -118,13 +118,13 @@ def newProducts(level1Category, MainCategory, SubCategory):
 
 
 def randomSubCategory(id, mainCategory, mainCategoryIndex):
-    connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    iter = collection.find({"_id": id})
-    subCategoryIndex = randint(0, len(iter[0]['Categories'][mainCategoryIndex][mainCategory]) - 1)
-    subCategory = iter[0]['Categories'][mainCategoryIndex][mainCategory][subCategoryIndex]
-    connection.close()
-    gc.collect()
-    return subCategory, subCategoryIndex
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  subCategoryIndex = randint(0,len(iter[0]['Categories'][mainCategoryIndex][mainCategory])-1)
+  subCategory = iter[0]['Categories'][mainCategoryIndex][mainCategory][subCategoryIndex]
+  connection.close()
+  gc.collect()
+  return subCategory, subCategoryIndex
 
 
 def randomCategory(id):
@@ -140,22 +140,35 @@ def randomCategory(id):
 
 
 def randomProducts(id):
-    mainCategory, mainCategoryIndex, subCategory, subCategoryIndex = randomCategory(id)
-    print mainCategory, mainCategoryIndex, subCategory, subCategoryIndex
-    return categoryProducts(id, mainCategory, subCategory)
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  products = list()
+  for index,keys in enumerate(iter[0]['Categories']):
+    for subCategory in keys[keys.keys()[0]]:
+      iter = connection[keys.keys()[0].replace(" ","_")][subCategory.replace(" ","_")]
+      for i in iter.find().limit(2):
+        i['images'] = getProductImages(i['_id'])
+        products.append(i)
+  connection.close()
+  gc.collect()
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 
 def randomMainCategoryProducts(id, mainCategory):
-    connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    iter = collection.find({"_id": id})
-    for index, category in enumerate(iter[0]['Categories']):
-        if mainCategory == category.keys()[0]:
-            mainCategoryIndex = index
-            break
-    subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
-    connection.close()
-    gc.collect()
-    return categoryProducts(id, mainCategory, subCategory)
+  connection, db, collection = MongoDBconnection(mainCategory.replace(" ","_"), 'Categories')
+  products = list()
+  for subCategory in db.collection_names():
+    if subCategory == 'system.indexes':
+      continue
+    iter = db[subCategory].find().limit(3)
+    for i in iter:
+      i['images'] = getProductImages(i['_id'])
+      products.append(i)
+  connection.close()
+  gc.collect()
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 
 def searchProduct(level1Category, productName):
