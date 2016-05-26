@@ -184,7 +184,7 @@ def searchProduct(level1Category, productName):
                     gc.collect()
                     connection, db, collection = MongoDBconnection(c.replace(" ", "_"), subCategory.replace(" ", "_"))
                     collection.create_index([('product_name', 'text')])
-                    iter = collection.find({"$regex": {"$search": productName}})
+                    iter = collection.find({"$text": {"$search": productName}})
                     if iter.count():
                         print subCategory, iter.count()
                         for i in iter:
