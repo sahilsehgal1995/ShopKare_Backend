@@ -626,6 +626,13 @@ def FetchOrders(userMode, Did):
         print str(e)
         return 'Unable to Fetch'
 
+def removeImage(pid, fileName):
+  ids = pid.split("_")
+  fileName = os.getcwd()+"/Product/static/Products/"+ ids[1]+ '/'+ ids[2]+ "/"+ ids[3]+ "/"+ids[4]+"/"+fileName
+  if os.path.isfile(fileName):
+    os.remove(fileName)
+    return 'Image Removed'
+  return 'Image Not Found'
 
 def testing():
     connection, db, collection = MongoDBconnection('Admin', 'Orders')
