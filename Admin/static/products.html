@@ -165,6 +165,14 @@
 <span ng-show="edit==p"><br><b>Change Pic : </b>
   <input type="file" id="file" name="file" multiple
             onchange="angular.element(this).scope().getFileDetails(this)" />
+            <button type='button' ng-show="edit==p" class='btn btn-danger' ng-click='delete_image($parent.$index, $index, i)' style='width:100px;font-size:12px; margin-top:4px;'>Delete Image</button>
+        </div>
+        <div style='clear:both;'></div>
+        <span ng-show="edit==p"><br><b>Change Pic : </b>
+            <input type="file" id="file" name="file" multiple
+                onchange="angular.element(this).scope().getFileDetails(this)" />
+	<button type="button" ng-click="">Upload Pic</button>
+        </span>
 </span>
 </td>
 	

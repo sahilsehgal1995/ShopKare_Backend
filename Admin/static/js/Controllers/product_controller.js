@@ -138,7 +138,63 @@ var app=angular.module('ShopKare_Backend-master',[]);
     });
    };
 
+// Change images to be uploaded 
+   $scope.getFileDetails = function (e) {
 
+        $scope.files = [];
+        $scope.$apply(function () {
+
+            // STORE THE FILE OBJECT IN AN ARRAY.
+            for (var i = 0; i < e.files.length; i++) {
+                $scope.files.push(e.files[i])
+            }
+
+        });
+    };
+    var currentindex;
+    // Upload image
+    	// NOW UPLOAD THE FILES.
+        $scope.uploadFiles = function (product, index) {
+            console.log('Uploading images Please wait');
+            $scope.status="Please while the products are being Uploaded..."
+            //FILL FormData WITH FILE DETAILS.
+	    console.log("File Upload function");
+            var data = new FormData();
+            console.log($scope.files);
+            for (var i in $scope.files) {
+                data.append("uploadedFile", $scope.files[i]);
+            }
+            currentindex = index;
+            // ADD LISTENERS.
+            var objXhr = new XMLHttpRequest();
+            objXhr.addEventListener("progress", updateProgress, false);
+            objXhr.addEventListener("load", transferComplete, false);
+	  
+ // SEND FILE DETAILS TO THE API.
+            objXhr.open("POST", base+"/api/Admin/imageUpload/?pid="+product._id);
+           objXhr.send(data);
+        }
+   
+  // Delete Image 
+   $scope.delete_image=function  (productindex, imageindex, image) {
+     console.log($scope.products[productindex]._id);
+     filename=image.split('/');
+    console.log(filename);
+    file = filename.pop().replace("&","%26");
+    $http.post(base+"/api/Admin/imageremove/?pid="+$scope.products[productindex]._id+"&fileName="+file)
+        .success(function(response){
+           alert(response);
+          if (response == "Image Removed")
+	  {
+		$scope.ImageDATA[productindex].images.splice(imageindex,1);
+	  }
+
+        })
+        .error(function(response){
+          console.log(response);
+          // alert(response);
+   });
+  };
    $scope.delete_Product=function(index){
     console.log(JSON.stringify($scope.products[index]));
     $http.post("/api/Admin/removeProduct/?product="+JSON.stringify($scope.products[index]))
