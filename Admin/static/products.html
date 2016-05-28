@@ -21,7 +21,6 @@
 .dropdown-submenu {
     position: relative;
 }
-
 .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;
@@ -160,8 +159,9 @@
 	</tr>
     </thead>
 	 <tbody>
-      <tr ng-repeat="p in products">
-	<td><div ng-repeat='i in ImageDATA[$index].images' style='margin:10px 10px 10px 0; float:left;' id='{{ImageDATA[$index].images[i]}}and{{i}}'>
+      <tr ng-repeat="p in products track by $index">
+	<td>
+        <div ng-repeat='i in ImageDATA[$index].images' style='margin:10px 10px 10px 0; float:left;' id='{{ImageDATA[$index].images[i]}}and{{i}}'>
             <img ng-src="http://shopkare.com{{i}}" height="100px" width="100 px" style='display:block'>
    	    <button type='button' ng-show="edit==p" class='btn btn-danger' ng-click='delete_image($parent.$index, $index, i)' style='width:100px;font-size:12px; margin-top:4px;'>Delete Image</button>
         </div>
@@ -169,35 +169,40 @@
         <span ng-show="edit==p"><br><b>Change Pic : </b>
             <input type="file" id="file" name="file" multiple
             onchange="angular.element(this).scope().getFileDetails(this)" />
-	<button type="button" ng-click="uploadImage(p, $index)">Upload Pic</button>
+	<button type="button" ng-click="uploadFiles(p, $index)">Upload Pic</button>
         </span>
-</td>
+    </td>
 	
 <td width="100 px">{{p['Product Category']}}<br><input width="100" type="text" ng-show="edit==p" ng-model="edit.Product_Category"></td>
         <td width="100 px">{{p.product_name}}<input type="text" width="100px" ng-show="edit==p" ng-model="edit.product_name"></td>
         <td>  
 	<p ng-repeat ="k in p.Quantity[0].Quantities">
         {{k[0]}} :- <b>RS {{k[1]}}</b>
-	<span ng-show="edit==p"><br>Quanitity<input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][0]">
-	<span ng-show="edit==p"><br>Price :<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][1]"></span>
-	<br>Orignal Price:<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][2]">
-	<br>Discount<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][3]">
-	<select ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][4]">
-	<option value="{{k}}" ng-repeat="k in OptionsProduct">{{k}}</option>
-	
-	</select>
+	   <span ng-show="edit==p"><br>Quanitity<input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][0]">
+	   <span ng-show="edit==p"><br>Price :<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][1]"></span>
+    	<br>Orignal Price:<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][2]">
+    	<br>Discount<input type="number" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][3]">
+    	<select ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][4]">
+    	   <option value="{{k}}" ng-repeat="k in OptionsProduct">{{k}}</option>
+        </select>
 
-
-
+        <br>
+        Barcode : <input type="text" ng-show="edit==p" ng-model="p.Quantity[0].Quantities[$index][5]" > 
+       
        <button ng-show="edit==p" class='btn btn-xs btn-danger' ng-click="deleteQuantity(p,$index)">x</button>
 	 </p>
 	<button ng-show="edit ==p" class='btn btn-primary' ng-click='addNewQuantity(p)'>Add New Quantity</button>
 	</td></span>
 <td>{{p.description}}<br><input type="text" ng-show="edit==p" ng-model="edit.description" value="{{p['description']}}"></td>
+    
+    <td>
+        <p>{{p.barcode}}</p>
+        <input type="text" ng-show="edit==p" ng-model="edit.barcode" value="{{p['barcode']}}">    
+    </td>
+
 	<td><button type="button" ng-hide="edit==p" class="btn btn-danger" ng-click="delete_Product($index)">Remove</button> <button type="button" ng-hide="edit==p" class="btn btn-danger" ng-click="set_edit(p,$index)">Edit </button>
 <span ng-show="edit==p">
 <br><button  ng-click="saveData(p,AdminSuper)"  ng-show="!AdminSuper">Send Request For Changes</button>
-<button  ng-click="uploadFiles(p)" ng-show="AdminSuper">Save</button>
 <br>     
 </span>
  </tr>
