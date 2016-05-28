@@ -4,22 +4,22 @@
   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Portal</title>
-    
-   <!-- 
+
+   <!--
  Angular js Codes     -->
   <script type="text/javascript" src="http://shopkare.com/Admin/static/js/angular.min.js"></script>
         <script type="text/javascript" src="http://shopkare.com/Admin/static/js/app.js"></script>
          <script type="text/javascript" src="http://shopkare.com/Admin/static/js/Controllers/product_controller.js"></script>
 
-	  	
+
 
 
     <link href="http://shopkare.com/Admin/static/assets/css/bootstrap.css" rel="stylesheet" />
-    
+
     <link href="http://shopkare.com/Admin/static/assets/css/font-awesome.css" rel="stylesheet" />
-    
+
     <link href="http://shopkare.com/Admin/static/assets/css/style.css" rel="stylesheet" />
-     
+
 </head>
 <body ng-controller="AppCTRL">
     <div id="wrapper">
@@ -38,15 +38,15 @@
 
             <div class="notifications-wrapper">
 <ul class="nav">
-               
-               
+
+
                 <li class="dropdown navbar-right">
                    <a class="dropdown-toggle" data-toggle="dropdown" href="#" >
                         <i class="fa fa-user-plus"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user" >
-                        
-                       
+
+
                         <li><a href="#"><i class="fa fa-sign-out"></i> Logout</a>
                         </li>
                     </ul>
@@ -62,31 +62,31 @@
                         <div class="user-img-div">
                             <img src="http://shopkare.com/Admin/static/assets/img/user.png" class="img-circle" />
 
-                           
+
                         </div>
 
                     </li>
                      <li>
                         <a  href="#"> <center><strong><b>Admin</b> </strong></center></a>
                     </li>
-                      
+
                     <li>
                         <a href="http://shopkare.com/Admin/static/products.html"><i class="fa fa-sitemap "></i>Products</a>
-                        
+
                     </li>
-                    
+
                     <li>
                         <a href="http://shopkare.com/Admin/static/orders.html"><i class="fa fa-bolt "></i>Orders</a>
-                        
+
                     </li>
-                   
+
                     <li>
                         <a  href="http://shopkare.com/Admin/static/feedback.html"><i class="fa fa-dashcube "></i>Feedback</a>
                     </li>
 <li>
                         <a   href="http://shopkare.com/Admin/static/addcategory.html"><i class="fa fa-bolt "></i>Add Category</a>
                     </li>
-                   
+
 				   <li>
                         <a class="active-menu"   href="http://shopkare.com/Admin/static/batches.html"><i class="fa fa-dashcube "></i>Batches</a>
                     </li>
@@ -119,40 +119,40 @@
 <div class="row">
 
           <div class="col-md-12">
-                        <h1 class="page-head-line">Batches</h1>			
+                        <h1 class="page-head-line">Batches</h1>
 				<a href="#loginbox"><button type="button" class="btn btn-info">Show Details : </button></a>
 						<br><br>
 	    </div>
 <div  >
     <div class="form-group">
 	<label for="text">Select Level 1 Category</label> &nbsp;
-	<select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-init=" l1category='-1'" ng-change="selectLevel1Category()">  
+	<select class="btn btn-default dropdown-toggle" type="button" ng-model="l1category" ng-init=" l1category='-1'" ng-change="selectLevel1Category()">
 	<option value="-1">Select Level1 Category </option>
 	<option value="{{category}}" ng-repeat="category in categories">{{category._id}} </option>
 	</select>
       </div>
     <div class="form-group">
 	<label for="text">Select Main Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<select class="btn btn-default dropdown-toggle" ng-model="mainCategory" ng-init="mainCategory='-1'" type="button" ng-change="selectmainCategory()">  
+	<select class="btn btn-default dropdown-toggle" ng-model="mainCategory" ng-init="mainCategory='-1'" type="button" ng-change="selectmainCategory()">
 	<option value="-1">Select Level1 Category First</option>
 	<option value="{{$index}}" ng-repeat="maincategory in mainCategories">{{maincategory}}</option>
 	</select>
     </div>
     <div class="form-group">
 	<label for="text">Select Sub Category</label> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<select class="btn btn-default dropdown-toggle" type="button" ng-init="subcategoryindex='-1'" ng-model="subcategoryindex" ng-change="selectsubcategories()">  
+	<select class="btn btn-default dropdown-toggle" type="button" ng-init="subcategoryindex='-1'" ng-model="subcategoryindex" ng-change="selectsubcategories()">
 	<option value="-1">Select Main Level Category First </option>
 	<option value="{{$index}}" ng-repeat="subcategory in subcategories">{{subcategory}}</option>
 	</select>
 	</div>
     <div class="form-group">
 	<label for="text">Select Product</label>&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-	<select class="btn btn-default dropdown-toggle" type="button" ng-init="productindex='-1'" ng-model="productindex" ng-change="selectproducts()">  
+	<select class="btn btn-default dropdown-toggle" type="button" ng-init="productindex='-1'" ng-model="productindex" ng-change="selectproducts()">
 	<option value="-1">Select Sub Category First </option>
 	<option value="{{$index}}" ng-repeat="product in products track by $index">{{product.product_name}}</option>
 	</select>
 	</div>
-    
+
 <br>
 
 <button value="submit" name="submit" ng-click="getBatches()"> Show Batches </button>
@@ -183,7 +183,9 @@
         <th>Store Id</th>
         <th>Date Of Purchase</th>
 	    <th>Date of Expiry</th>
-		<th>Remove Batch</th>
+          <th>Product Id</th>
+          <th>Product Name</th>
+          <th>Remove Batch</th>
           <th>Cost Price</th>
           <th>Selling Price</th>
           <th>Qty</th>
@@ -196,6 +198,8 @@
         <td>{{batch.StoreId}}</td>
         <td>{{batch.DateofPurchase}}</td>
 	<td>{{batch.DateOfExpiry}}</td>
+          <td>{{ batch.productid }}</td>
+          <td>{{ batch.productName }}</td>
         <td><button type="button" class="btn btn-primary" ng-click="">Remove Batch</button></td>
 
         <td>
@@ -218,27 +222,27 @@
     </tbody>
   </table>
  <br>
-		   		
-<div class="container" >    
 
-        <div id="loginbox"  class="mainbox col-md-6  col-sm-8 ">                    
+<div class="container" >
+
+        <div id="loginbox"  class="mainbox col-md-6  col-sm-8 ">
             <div class="panel panel-info" >
                     <div class="panel-heading">
                         <div class="panel-title">Add Batch</div>
                         <div style="float:right; font-size: 80%; position: relative; top:-10px">(Add If Any)</div>
-                    </div>     
+                    </div>
 
                     <div style="padding-top:30px" class="panel-body" >
 
                         <div style="display:none" id="login-alert" class="alert alert-danger col-sm-12"></div>
                        					<div class="alert alert-danger register-alert hidden" role="alert"></div>
 
-  
+
   <div>
-  
+
 <div class="form-group">
         <label for="text">Store</label> &nbsp;
-          <select class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-model="Batch_data.StoreId">  
+          <select class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-model="Batch_data.StoreId">
            <span class="caret"></span>
          <ul class="dropdown-menu">
             <li class="dropdown-submenu">
@@ -248,7 +252,7 @@
             <option value="store_1" >Store 1</option>
             </li>
             <li class="dropdown-submenu">
-            <option value="store_2" >Store 2</option> 
+            <option value="store_2" >Store 2</option>
             </li>
               </ul>
       </select>
@@ -262,16 +266,16 @@
     </div>
 <div id="Add_New">
      <label for="qno">Quantity</label><br>
-          <select class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-model="Batch_data.Quantity.type">  
+          <select class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" ng-model="Batch_data.Quantity.type">
            <span class="caret"></span>
          <ul class="dropdown-menu">
             <li class="dropdown-submenu">
-            <option value="{{qty}}" ng-repeat="qty in qtyBatchUse" >{{qty}}</option> 
+            <option value="{{qty}}" ng-repeat="qty in qtyBatchUse" >{{qty}}</option>
             </li>
               </ul>
       </select>
-     
-     
+
+
 	    <input type="number" name="quantity" ng-model="Batch_data.Quantity.value" id="quantity" placeholder="Number of units."></div>
       <br>
 		  <div class="form-group">
@@ -281,17 +285,17 @@
 		  <div class="form-group">
 		    <label for="sp">Selling Price  (Rs)</label>
 		    <input type="number" name="sp" class="form-control" id="sp" ng-model="Batch_data.Selling_Price" placeholder="Enter selling price" >
-		 
+
 		  <br>
 	<button type="button" class="btn btn-primary" ng-click="post_batch_data()">Submit</button>
 		  <br>
 {{BatchReply}}<br>
-			</div>  
 			</div>
-		   
+			</div>
+
 		   </div>
                 </div>
-                         
+
             <!-- /. PAGE INNER  -->
         </div>
         <!-- /. PAGE WRAPPER  -->
@@ -299,7 +303,7 @@
     <!-- /. WRAPPER  -->
     <footer >
           <b> &copy; Admin Portal | By : Creative Mammoth  </b>
-    </footer>  
+    </footer>
     <!-- /. FOOTER  -->
     <!-- SCRIPTS -AT THE BOTOM TO REDUCE THE LOAD TIME-->
     <!-- JQUERY SCRIPTS -->
@@ -327,7 +331,7 @@ function load_more_options () {
    container.appendChild(input);
    container.appendChild(input1);
    container.appendChild(document.createElement("br"))
-                
+
 }
 */
 </script>

@@ -5,6 +5,8 @@ import os
 import gc
 import csv
 from pyexcel_xlsx import get_data
+from bson.json_util import dumps
+
 
 base = 'http://www.shopkare.com/'
 
@@ -35,6 +37,7 @@ def uploadBatch(data):
                         if type(a['Quantity']) == type([]):
                             flag = False
                             index = 0
+                            a['productName'] = v[5]
                             for i in range(0, len(a['Quantity'])):
                                 print i
                                 if a['Quantity'][i]['qty'] == v[6]:
@@ -54,16 +57,17 @@ def uploadBatch(data):
                                 print 'updated', a
                                 cur.save(a)
                         else:
+                            a['productName'] = v[5]
                             a['Quantity'] = [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]
                             cur.save(a)
                     else:
-                        ab = {'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
+                        ab = {'productName': v[5], 'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
                         cur.insert_one(ab)
                 else:
                     print 'create coll'
                     database.create_collection(product[0]['_id'])
                     cur = database[product[0]['_id']]
-                    a = {'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
+                    a = {'productName': v[5], 'Quantity': [{'type': v[7], 'value': v[14], 'qty': v[6], 'Selling_Price': v[9], 'Cost_Price': v[10]}]}
                     cur.insert_one(a)
             connection.close()
             # count += 1
@@ -439,8 +443,6 @@ def reteriveCategories():
         print str(e)
         return 'Unable to Remove'
 
-from bson.json_util import dumps
-
 
 def reteriveBatches(pid):
     try:
@@ -461,13 +463,13 @@ def reteriveAllBatches():
         connection, db, collection = MongoDBconnection('Batches', 'Sample')
         results = list()
         for collection in db.collection_names():
-            iter = db[collection].find({},{"_id":False})
+            iter = db[collection].find()
             for index, item in enumerate(iter):
                 item['productid'] = collection
                 results.append(item)
         connection.close()
         gc.collect()
-        return str(json.dumps(results))
+        return dumps(results)
     except Exception as e:
         print str(e)
         return 'Unable to Remove'

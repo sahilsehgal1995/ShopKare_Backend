@@ -223,17 +223,35 @@ def OrderPlacement(cartItems, cid):
                 quantities = prod['Quantity']
                 print 1, 'ququququ'
                 print '____________________________________________________'
-                for j in quantities:
-                    try:
-                        if j['qty'].encode('ascii', 'ignore').decode('ascii') == items[i]['QuantityType'].encode('ascii', 'ignore').decode('ascii'):
-                            print j['qty']
-                            j['value'] = int(j['value']) - int(items[i]['Quantity'])
-                            print j['value']
-                            c.save(prod)
-                    except Exception, e:
-                        print e
-                        pass
+                try:
+                    for j in quantities:
+                        print j
+                        try:
+                            print j['qty'], type(j['qty'])
+                            if type(j['qty']) == type(str):
+                                if str(j['qty']).encode('ascii', 'ignore').decode('ascii') == items[i]['QuantityType'].encode('ascii', 'ignore').decode('ascii'):
+                                    print j['qty']
+                                    j['value'] = int(j['value']) - int(items[i]['Quantity'])
+                                    print j['value']
+                                    c.save(prod)
+                            else:
+                                print 'fucker'
+                                if j['qty'] == items[i]['QuantityType']:
+                                    print j['qty']
+                                    j['value'] = int(j['value']) - int(items[i]['Quantity'])
+                                    print j['value']
+                                    c.save(prod)
+
+                        except Exception, e:
+                            print 'exp1'
+                            print e
+                            pass
+                except Exception, e:
+                    print 'exp2'
+                    print e
+                    pass
             a.close()
+            print 'dsdsd'
         collection.insert({'_id': 'O_' + str(iter + 1) + cid, 'cid': cid, 'totalPrice': totalPrice, 'items': items, 'status': 'Pending',
                            'address': json.dumps(address)})
         connection.close()
@@ -247,6 +265,7 @@ def OrderPlacement(cartItems, cid):
         connection, db, collection = MongoDBconnection('Cart', cid)
         db.drop_collection(collection)
         connection.close()
+        print 'e3e3e3e'
         return {'order': order[0], 'email': user[0]['Email'], 'message': 'Order Placed Successfully'}
     except Exception as e:
         print 'Exception'

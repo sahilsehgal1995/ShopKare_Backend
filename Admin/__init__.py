@@ -286,6 +286,17 @@ def add_routes(app=None):
             print str(e)
             return 'Unable to Fetch'
 
+    @Admin.route('/api/Admin/allbatches/', methods=['GET'])
+    def allbatches():
+        try:
+
+            reply = reteriveAllBatches()
+            return reply
+
+        except Exception as e:
+            print str(e)
+            return 'Unable to Fetch'
+
     @Admin.route('/api/Admin/javaretallbatches/', methods=['GET', 'POST'])
     def javaretallbatches():
         try:

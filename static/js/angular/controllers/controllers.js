@@ -91,11 +91,12 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
   });
 })
 
-.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', 'toastr', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory, toastr){
+.controller('headerController',['$scope','$http', '$state','$stateParams', 'UserFactory', 'AuthFactory','ProductFactory', 'CartFactory', 'toastr', 'UserFactory', function($scope, $http, $state,$stateParams, UserFactory, AuthFactory,ProductFactory, CartFactory, toastr, UserFactory){
   console.log('header');
     $scope.user = {
         Mobile: null
     };
+    $scope.login = false;
     $scope.rdata = {
         Mobile: null
     };
@@ -111,6 +112,17 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
             toastr.error('user not found');
         });
     };
+    $scope.Logout = function()
+    {
+      $scope.login = false;
+      UserFactory.logout().success(function(reply){
+          console.log(reply);
+    })
+    .error(function(error){
+        console.log(error);
+    });
+      toastr.success("Logged Out Successfully");
+    };
   $scope.Login = function()
   {
     $scope.messageLogin = '';
@@ -124,6 +136,7 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
         angular.element(document.getElementById('myModal')).modal('hide');
         toastr.success("Logged In Successfully");
         // $state.go('grocery.home.CategoryProducts');
+        $scope.login = true;
       }
       else{
         $scope.messageLogin =  resp;
@@ -163,9 +176,11 @@ angular.module('Shopkare.controllers',['angularBootstrapNavTree', 'Data.factory'
 
   $scope.searchProduct1 = function()
   {
+    console.log("Searching product");
     ProductFactory.searchProduct('Grocery', $scope.query)
     .success(function(reply){
-      if (reply == 'Unable to Fetch')
+     console.log(reply); 
+     if (reply == 'Unable to Fetch')
       {
         console.log("afa");
         $scope.message = 'Sorry Unable to fetch Products right now.';

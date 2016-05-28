@@ -107,11 +107,16 @@ def add_routes(app=None):
                 print 'user' in session
                 if session['user'] == 'Customer':
                     reply = OrderPlacement(request.json, session['id'])
-
+                    print reply
                     msg = Message('Order details', sender='shopkareindia@gmail.com', recipients=[reply.pop('email')])
-
-                    html_data = render_template('email.html', **reply)
-                    msg.html = json.dumps(html_data).encode('utf-8')
+                    print reply, type(reply)
+                    print '111111111111'
+                    html_data = render_template('email.html', **reply.pop('order'))
+                    print '1222222222222'
+                    print html_data
+                    print reply
+                    msg.html = html_data.encode('utf-8')
+                    print msg.html
 
                     a = mail.send(msg)
 
@@ -119,6 +124,7 @@ def add_routes(app=None):
                 return 'User Not Logged IN'
             return 'Invalid Request'
         except Exception as e:
+            print e
             return str(e)
 
     @Customer.route('/api/Customer/NewCourierOrder/', methods=['GET', 'POST'])

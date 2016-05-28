@@ -55,7 +55,7 @@ var app=angular.module('ShopKare_Backend-master',[]);
           }
 
 	  }
-	  
+
 	  $scope.categories = categories;
 	  console.log(data);
  	})
@@ -70,10 +70,10 @@ var app=angular.module('ShopKare_Backend-master',[]);
     {
       $scope.mainCategories=[];
       var a = JSON.parse($scope.l1category);
-      $scope.MainCategories = a.Categories; 
+      $scope.MainCategories = a.Categories;
 //       console.log(a.Categories);
       $scope.level1keys = Object.keys(a.Categories);
-      
+
 // 	console.log(Object.keys(a.Categories[]));
 	for (key in $scope.level1keys)
 	{
@@ -81,30 +81,30 @@ var app=angular.module('ShopKare_Backend-master',[]);
 	}
 	//console.log($scope.mainCategories);
     };
-    
+
     $scope.selectmainCategory = function(){
-     
+
       $scope.subcategories = JSON.parse($scope.l1category).Categories[$scope.mainCategory];
       $scope.MAINCATEGORY=$scope.mainCategories[$scope.mainCategory];
       console.log($scope.MAINCATEGORY);
-      var mainCategory = $scope.mainCategories[$scope.mainCategory]; 
+      var mainCategory = $scope.mainCategories[$scope.mainCategory];
 	console.log($scope.subcategories[mainCategory]);
       $scope.subcategories = $scope.subcategories[mainCategory];
-//       console.log(Object.keys(a.Categories[key])[0]); 
+//       console.log(Object.keys(a.Categories[key])[0]);
     };
     $scope.selectsubcategories=function(){
       $scope.SUBCATEGORY=$scope.subcategories[$scope.subcategoryindex];
       $scope.getProducts();
       console.log($scope.SUBCATEGORY);
-      
-      
+
+
     };
     $scope.getproducts = function()
     {
       var id = level1keys.indexOf(JSON.parse($scope.l1category)._id).toString() + $scope.mainCategory.toString() + $scope.subcategoryindex.toString();
       console.log(id);
     };
-    
+
     $scope.RemoveBatch = function(index)
     {
       console.log($scope.Batches[index]['_id']);
@@ -118,9 +118,9 @@ var app=angular.module('ShopKare_Backend-master',[]);
 	console.log(error);
       });
     };
-    
+
    $scope.getProducts=function(){
-    
+
     $http.get("http://shopkare.com/api/Product/getCategoryProducts/?level1Category=Grocery&MainCategory="+$scope.MAINCATEGORY+"&SubCategory="+$scope.SUBCATEGORY)
 	.success(function(response){
 	$scope.ImageDATA=response;
@@ -131,14 +131,14 @@ var app=angular.module('ShopKare_Backend-master',[]);
 	 $http.post("/api/admin/getProducts/?maincategory="+$scope.MAINCATEGORY+"&subcategory="+$scope.SUBCATEGORY)
      .success(function(response) {
       $scope.products=response;
-              
+
      })
      .error(function(error){
        $scope.error=error;
     });
    };
-   
-   
+
+
    $scope.delete_Product=function(index){
     console.log(JSON.stringify($scope.products[index]));
     $http.post("/api/Admin/removeProduct/?product="+JSON.stringify($scope.products[index]))
@@ -153,16 +153,16 @@ var app=angular.module('ShopKare_Backend-master',[]);
       console.log(response);
 	alert(response);
     });
-  };  
-  
-  
+  };
+
+
      $scope.selectproducts=function(){
        $scope.product=$scope.products[$scope.productindex];
        console.log($scope.product);
        $scope.quantityBatchUse=JSON.parse(JSON.stringify($scope.products[$scope.productindex].Quantity[0].Quantities));
  console.log($scope.quantityBatchUse);
       $scope.qtyBatchUse=[];
-	console.log($scope.quantityBatchUse.length); 
+	console.log($scope.quantityBatchUse.length);
 	console.log($scope.quantityBatchUse);
      for(var z in $scope.quantityBatchUse){
           $scope.qtyBatchUse.push($scope.quantityBatchUse[z][0]);
@@ -172,11 +172,11 @@ var app=angular.module('ShopKare_Backend-master',[]);
 
         var x=$scope.productindex;
    console.log(x);
-   $scope.p_id=$scope.products[x]._id;  
+   $scope.p_id=$scope.products[x]._id;
     console.log($scope.p_id);
-   
+
      };
-  
+
   //Batch fuctions
    $scope.post_batch_data=function(){
      $http.post(base+"/api/Admin/addatch/?pid="+$scope.p_id+"&Batch="+JSON.stringify($scope.Batch_data))
@@ -186,11 +186,21 @@ var app=angular.module('ShopKare_Backend-master',[]);
      .error(function(data){
        console.log(data);
     });
-     
+
     };
-  
- 
-    
+
+    $scope.getAllBatches = function() {
+        $http.get(base+"/api/Admin/allbatches/")
+	  .success(function(data){
+	    console.log(data);
+	    $scope.Batches=data;
+	  })
+	  .error(function(data){
+	    console.log(data);
+	  });
+    };
+       $scope.getAllBatches();
+
     $scope.getBatches=function(){
 	  $http.post(base+"/api/Admin/reteriveBatches/?pid="+$scope.p_id)
 	  .success(function(data){
@@ -200,9 +210,9 @@ var app=angular.module('ShopKare_Backend-master',[]);
 	  .error(function(data){
 	    console.log(data);
 	  });
-	
+
       };
-   
+
 	$scope.set_edit=function(product,index){
 	console.log(product);
 	console.log(index);
@@ -224,7 +234,7 @@ var app=angular.module('ShopKare_Backend-master',[]);
         };
 
 	  $scope.uploadFiles = function (p) {
-	
+
 		console.log(p);
 		delete p['$$hashKey'];
              $scope.status="Please while the products are being Uploaded..."
@@ -282,14 +292,14 @@ var app=angular.module('ShopKare_Backend-master',[]);
 
 
 	$scope.deleteQuantity=function(data,key){
-	
+
 	console.log(data);
 	console.log(key);
 	var k=$scope.products.indexOf(data);
 	console.log(k);
 
 	$scope.products[k].Quantity[0].Quantities.splice(key,1);
-	
+
 	console.log($scope.products[k]);
 
  	delete $scope.products[k]['$$hashKey'];
@@ -299,21 +309,21 @@ var app=angular.module('ShopKare_Backend-master',[]);
 	})
 .error(function(response){
 	console.log(response);
-	});	
+	});
 	};
 
 	$scope.addNewQuantity=function(id){
-	
-	console.log(id);	
-	
+
+	console.log(id);
+
 	var k=$scope.products.indexOf(id);
 	var q=["","0","0","0","Available"];
-	$scope.products[k].Quantity[0].Quantities.push(q);	
+	$scope.products[k].Quantity[0].Quantities.push(q);
 	}
 
    }]);
-   
-   
+
+
 
 
 
@@ -325,4 +335,4 @@ var app=angular.module('ShopKare_Backend-master',[]);
 
 
 
- 
+

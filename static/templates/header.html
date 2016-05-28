@@ -638,6 +638,7 @@
 					</li>
 				<li>
 					<button  type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="NormalLogin()"  ng-show="!login"  data-toggle="modal" data-target="#myModal"><span style="font-weight:400 !important;">Login</span></button>
+					<button  type="button" class="btn btn-default btn-cmc" style="background-color: #000000; border-right: 0; border: 2px solid #fff;border-radius: 3px; color: #fff; margin-top: 8px; padding: 3px 15px;" ng-click="Logout()"  ng-show="login" ><span style="font-weight:400 !important;">Logout</span></button>
 
 				</li>
 
@@ -698,6 +699,10 @@
                                             <div class="col-sm-12 controls">
 							<button id="btn-login"  ng-click="toggle();forgotPassword(email)" class="btn btn-success">Send Email</button>
 						</div>
+					<div class="col-sm-12 controls">
+                                             <i>A password reset email will be sent to your Email ID.</i> 
+                                                </div>
+
 
 				</form>
 

@@ -1,10 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+<table>
+    <thead>
+    <tr>
+        <td>
+            Items
+        </td>
+        <td>
+            Price
+        </td>
+        <td>
+            Quantity
+        </td>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in items %}
+    <tr>
+        <td>
+                {{ item['product_name'] }}
+        </td>
+        <td>
+                {{ item['totalPrice'] }}
+        </td>
+        <td>
+            {{ item['Quantity'] }}
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<div style="font-weight: bold">
+    {{ totalPrice }}
+</div>

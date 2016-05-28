@@ -4,7 +4,7 @@ import os
 import gc
 from os import walk
 from random import randint
-
+import random
 base = 'http://www.filterlady.com/'
 
 
@@ -118,13 +118,13 @@ def newProducts(level1Category, MainCategory, SubCategory):
 
 
 def randomSubCategory(id, mainCategory, mainCategoryIndex):
-    connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    iter = collection.find({"_id": id})
-    subCategoryIndex = randint(0, len(iter[0]['Categories'][mainCategoryIndex][mainCategory]) - 1)
-    subCategory = iter[0]['Categories'][mainCategoryIndex][mainCategory][subCategoryIndex]
-    connection.close()
-    gc.collect()
-    return subCategory, subCategoryIndex
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  subCategoryIndex = randint(0,len(iter[0]['Categories'][mainCategoryIndex][mainCategory])-1)
+  subCategory = iter[0]['Categories'][mainCategoryIndex][mainCategory][subCategoryIndex]
+  connection.close()
+  gc.collect()
+  return subCategory, subCategoryIndex
 
 
 def randomCategory(id):
@@ -140,22 +140,35 @@ def randomCategory(id):
 
 
 def randomProducts(id):
-    mainCategory, mainCategoryIndex, subCategory, subCategoryIndex = randomCategory(id)
-    print mainCategory, mainCategoryIndex, subCategory, subCategoryIndex
-    return categoryProducts(id, mainCategory, subCategory)
+  connection, db, collection = MongoDBconnection('Admin', 'Categories')
+  iter = collection.find({"_id":id})
+  products = list()
+  for index,keys in enumerate(iter[0]['Categories']):
+    for subCategory in keys[keys.keys()[0]]:
+      iter = connection[keys.keys()[0].replace(" ","_")][subCategory.replace(" ","_")]
+      for i in iter.find().limit(2):
+        i['images'] = getProductImages(i['_id'])
+        products.append(i)
+  connection.close()
+  gc.collect()
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 
 def randomMainCategoryProducts(id, mainCategory):
-    connection, db, collection = MongoDBconnection('Admin', 'Categories')
-    iter = collection.find({"_id": id})
-    for index, category in enumerate(iter[0]['Categories']):
-        if mainCategory == category.keys()[0]:
-            mainCategoryIndex = index
-            break
-    subCategory, subCategoryIndex = randomSubCategory(id, mainCategory, mainCategoryIndex)
-    connection.close()
-    gc.collect()
-    return categoryProducts(id, mainCategory, subCategory)
+  connection, db, collection = MongoDBconnection(mainCategory.replace(" ","_"), 'Categories')
+  products = list()
+  for subCategory in db.collection_names():
+    if subCategory == 'system.indexes':
+      continue
+    iter = db[subCategory].find().limit(3)
+    for i in iter:
+      i['images'] = getProductImages(i['_id'])
+      products.append(i)
+  connection.close()
+  gc.collect()
+  random.shuffle(products)
+  return str(json.dumps(products))
 
 
 def searchProduct(level1Category, productName):
@@ -170,7 +183,7 @@ def searchProduct(level1Category, productName):
                     gc.collect()
                     connection, db, collection = MongoDBconnection(c.replace(" ", "_"), subCategory.replace(" ", "_"))
                     collection.create_index([('product_name', 'text')])
-                    iter = collection.find({"$regex": {"$search": productName}})
+                    iter = collection.find({"$text": {"$search": productName}})
                     if iter.count():
                         print subCategory, iter.count()
                         for i in iter:
@@ -181,14 +194,14 @@ def searchProduct(level1Category, productName):
         gc.collect()
         return json.dumps(results)
     except Exception as e:
-        print e
+        return str(e)
         return '{"response":"Unable to Retrieve"}'
 
 
 if __name__ == "__main__":
     # print randomProducts('Grocery')
-    searchProduct('Grocery', 'amul')
+    #searchProduct('Grocery', 'amul')
     # print retrieveAllProducts('Grocery')
-    # print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
+    print randomMainCategoryProducts('Grocery', 'Beverages and Drinks')
     # print categoryProducts('Grocery', 'Cereals', 'Cornflakes')
     # print newProducts('Grocery', 'Bakery', 'Cakes')
