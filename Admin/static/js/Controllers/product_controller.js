@@ -154,7 +154,7 @@ var app=angular.module('ShopKare_Backend-master',[]);
     var currentindex;
     // Upload image
     	// NOW UPLOAD THE FILES.
-        $scope.uploadFiles = function (product, index) {
+        $scope.uploadImage = function (product, index) {
             console.log('Uploading images Please wait');
             $scope.status="Please while the products are being Uploaded..."
             //FILL FormData WITH FILE DETAILS.
