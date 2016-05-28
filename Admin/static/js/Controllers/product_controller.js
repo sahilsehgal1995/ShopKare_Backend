@@ -325,6 +325,7 @@ var app=angular.module('ShopKare_Backend-master',[]);
         function transferComplete(e) {
          $scope.products.splice($scope.editIndex,1,$scope.edit);
         $scope.edit={};
+        alert(JSON.stringify(e));
         $scope.editD={};
 
         }
