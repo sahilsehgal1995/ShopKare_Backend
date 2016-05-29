@@ -148,7 +148,10 @@ def registerProduct(MainCategory, SubCategory, product):
         if not iter.count():
             product['_id'] = 'P_' + product['_id'] + '_1'
         else:
-            product['_id'] = 'P_' + product['_id'] + '_' + str(int(iter[iter.count() - 1]['_id'].split("_")[-1]) + 1)
+            ids = list()
+            for i in iter:
+                ids.append(int(i['_id'].split("_")[-1]))
+            product['_id'] = 'P_' + product['_id'] + '_' + str(max(ids)+1)
         collection.insert(product)
         connection.close()
         gc.collect()
@@ -641,7 +644,7 @@ def testing():
 
 
 if __name__ == '__main__':
-    print reteriveAllBatches()
+    #print reteriveAllBatches()
     # print UpdateBatch('P_1_0_0_12', '{"Cost_Price":30,"StoreId":"store_1","Quantity":{"type":"600 ml","value":20},"_id":"B_1","Selling_Price":60,"DateOfPurchase":"04/04/2016","DateOfExpiry":"04/04/2017"}')
     # print testing()
     # print registerBulkProduct('Grocery','Prodduct List new.xlsx')
@@ -664,5 +667,5 @@ if __name__ == '__main__':
     # print AddBatch('P_1_1_1','{"Product Name": "Cocacola", "Quantity":10, "Quantity Unit":"Number", "SP":15, "CP":18}')
     # print registerAdmin('{"Name":"Sahil","Password":"123456","Mobile":"9780008628","Email":"sahilsehgal1995@gmail.com"}')
     # print loginAdmin('{"Email":"sahilsehgal1995@gmail.com","Password":"123456","Mobile":"9780008628"}')
-    # print registerProduct('Snacks Beverages','Cold Drinks','')
+    print registerProduct('Beverages_and_Drinks','Health_Drinks','{"_id":"1_1_1"}')
     # print removeProduct('Snacks Beverages','Cold Drinks','P_1_1_1')
